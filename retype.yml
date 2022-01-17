@@ -1,6 +1,6 @@
 input: ./
 output: .retype
-url: frinxio.github.io/
+url: frinxio.github.io
 favicon: static/favicon-32x32.png
 
 branding:
