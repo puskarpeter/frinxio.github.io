@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://frinxio.github.io/sitemap.xml.gz
+Sitemap: https://testdocs.frinx.io/sitemap.xml.gz
