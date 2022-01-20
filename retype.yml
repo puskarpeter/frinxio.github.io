@@ -1,6 +1,6 @@
 input: ./
 output: .retype
-url: frinxio.github.io
+url: testdocs.frinx.io
 favicon: static/favicon-32x32.png
 
 branding:
@@ -22,7 +22,7 @@ links:
     target: blank
 
   - text: GitHub
-    link: https://github.com/FRINXio/docs
+    link: https://github.com/FRINXio
     icon: mark-github
     target: blank
 
