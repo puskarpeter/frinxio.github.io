@@ -11,28 +11,28 @@
     <!-- Primary Meta Tags -->
     <title>UniConfig Operations | Frinx Docs</title>
     <meta name="title" content="UniConfig Operations | Frinx Docs">
-    <meta name="description" content="Sending and receiving data (RESTCONF)" />
+    <meta name="description" content="RESTCONF represents REST API to access datastores and UniConfig operations." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://testdocs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/">
     <meta property="og:title" content="UniConfig Operations | Frinx Docs">
-    <meta property="og:description" content="Sending and receiving data (RESTCONF)">
+    <meta property="og:description" content="RESTCONF represents REST API to access datastores and UniConfig operations.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://testdocs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/">
     <meta property="twitter:title" content="UniConfig Operations | Frinx Docs">
-    <meta property="twitter:description" content="Sending and receiving data (RESTCONF)">
+    <meta property="twitter:description" content="RESTCONF represents REST API to access datastores and UniConfig operations.">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696270762994" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696271185363" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696270762994" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696271185363" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696270762994" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696271185363" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -235,25 +235,75 @@
         <span>UniConfig Operations</span>
     </h1>
 </doc-anchor-target>
-<p><strong>Sending and receiving data (RESTCONF)</strong></p>
+<doc-anchor-target id="sending-and-receiving-data-restconf">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sending-and-receiving-data-restconf">#</doc-anchor-trigger>
+        <span>Sending and receiving data (RESTCONF)</span>
+    </h2>
+</doc-anchor-target>
 <p>RESTCONF represents REST API to access datastores and UniConfig operations.</p>
-<p><strong>UniConfig Node Manager API</strong></p>
+<doc-anchor-target id="uniconfig-node-manager-api">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#uniconfig-node-manager-api">#</doc-anchor-trigger>
+        <span>UniConfig Node Manager API</span>
+    </h2>
+</doc-anchor-target>
 <p>The responsibility of this component is to maintain configuration on devices based on intended configuration. Each device and its configuration is represented as a node in the uniconfig topology and the configuration of this node is described by using OpenConfig YANG models. The Northbound API of Uniconfig Manager (UNM) is RPC driven and provides functionality for commit with automatic rollback and synchronization of configuration from the network.</p>
-<p><strong>Device discovery</strong></p>
+<doc-anchor-target id="device-discovery">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#device-discovery">#</doc-anchor-trigger>
+        <span>Device discovery</span>
+    </h2>
+</doc-anchor-target>
 <p>This component is used to check reachable devices in a network. The manager checks the reachability via the ICMP protocol. Afterwards, the manager is able to check whether various TCP/UDP ports are open or not.</p>
-<p><strong>Dry-run Manager API</strong></p>
+<doc-anchor-target id="dry-run-manager-api">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dry-run-manager-api">#</doc-anchor-trigger>
+        <span>Dry-run Manager API</span>
+    </h2>
+</doc-anchor-target>
 <p>The manager provides functionality showing CLI commands which would be sent to network element.</p>
-<p><strong>Snapshot Manager API</strong></p>
+<doc-anchor-target id="snapshot-manager-api">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#snapshot-manager-api">#</doc-anchor-trigger>
+        <span>Snapshot Manager API</span>
+    </h2>
+</doc-anchor-target>
 <p>The snapshot manager creates and deletes uniconfig snapshots of actual uniconfig topology. Multiple snapshots can be created in the system.</p>
-<p><strong>Subtree Manager API</strong></p>
+<doc-anchor-target id="subtree-manager-api">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#subtree-manager-api">#</doc-anchor-trigger>
+        <span>Subtree Manager API</span>
+    </h2>
+</doc-anchor-target>
 <p>The subtree manager copies (merge/replace) subtrees between source and target paths.</p>
-<p><strong>Templates Manager API</strong></p>
+<doc-anchor-target id="templates-manager-api">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#templates-manager-api">#</doc-anchor-trigger>
+        <span>Templates Manager API</span>
+    </h2>
+</doc-anchor-target>
 <p>This component is responsible for application of templates into UniConfig nodes.</p>
-<p><strong>Websocket Notifications</strong></p>
+<doc-anchor-target id="websocket-notifications">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#websocket-notifications">#</doc-anchor-trigger>
+        <span>Websocket Notifications</span>
+    </h2>
+</doc-anchor-target>
 <p>Mechanism where the NETCONF client indicates interest in receiving event notifications from a NETCONF server by creating a subscription to receive event notifications. The NETCONF server replies to indicate whether the subscription request was successful and, if it was successful, begins sending the event notifications to the NETCONF client as the events occur within the system.</p>
-<p><strong>Transaction Log API</strong></p>
+<doc-anchor-target id="transaction-log-api">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#transaction-log-api">#</doc-anchor-trigger>
+        <span>Transaction Log API</span>
+    </h2>
+</doc-anchor-target>
 <p>This component is responsible for tracking transactions.</p>
-<p><strong>Dedicated transaction (Immediate Commit Model)</strong></p>
+<doc-anchor-target id="dedicated-transaction-immediate-commit-model">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dedicated-transaction-immediate-commit-model">#</doc-anchor-trigger>
+        <span>Dedicated transaction (Immediate Commit Model)</span>
+    </h2>
+</doc-anchor-target>
 <p>The immediate commit creates new transactions for every call of an RPC. The transaction is then closed so no lingering data will occur.</p>
 
 
