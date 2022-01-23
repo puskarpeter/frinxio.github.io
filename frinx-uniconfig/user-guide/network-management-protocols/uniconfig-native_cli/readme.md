@@ -390,7 +390,7 @@ c. **Delegating bucket**: Bucket that doesn't have any identifier, it
     just delegates configuration to its children buckets. It can be used
     for nodes that are described by ChoiceNode or MapNode.
 
-![image](commands-serialization.svg)
+![Command serialization](commands-serialization.svg)
 
 !!!
 The current implementation processes updates in default way - the

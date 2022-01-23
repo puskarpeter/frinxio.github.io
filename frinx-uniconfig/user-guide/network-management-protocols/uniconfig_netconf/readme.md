@@ -488,7 +488,7 @@ The NETCONF repository can be registered in 3 ways:
 Already registered schema repositories can be listed using following
 request:
 
-```
+```bash
 curl -X GET \
   http://127.0.0.1:8181/rests/data/schema-resources:odl-nodes?content=nonconfig
 ```
@@ -647,7 +647,7 @@ The following example shows how to register a NETCONF repository with
 name 'example-repository'. The name of the provided repository must
 equal to name of the directory which contains YANG schemas.
 
-```
+```bash
 curl -X POST \
   http://127.0.0.1:8181/rests/operations/schema-resources:register-repository \
   -d '{
@@ -700,7 +700,7 @@ netconf-connector.
 To update an existing netconf-connector you need to send following
 request to RESTCONF:
 
-```
+```bash
 curl -X PUT \
   http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=topology-netconf/node=example \
   -d '{
@@ -723,7 +723,7 @@ should result in a '2xx' response and the instance of netconf-connector
 called 'example' will be reconfigured to use username 'bob' and password
 'passwd'. New configuration can be verified by executing:
 
-```
+```bash
 curl -X GET \
   http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=topology-netconf/node=example?content=config
 ```
@@ -739,7 +739,7 @@ NETCONF mount-point on NETCONF layer will be cleaned (both CONFIGURATION
 and OPERATIONAL data-store information). To do this, simply issue a
 request to following URL:
 
-```
+```bash
 curl -X DELETE \
   http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=topology-netconf/node=example
 ```
