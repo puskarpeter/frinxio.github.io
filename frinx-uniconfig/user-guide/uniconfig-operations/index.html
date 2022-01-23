@@ -9,30 +9,30 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>UniConfig Node Manager | Frinx Docs</title>
-    <meta name="title" content="UniConfig Node Manager | Frinx Docs">
-    <meta name="description" content="The responsibility of this component is to maintain configuration on devices based on intended configuration. Each device and its" />
+    <title>UniConfig Operations | Frinx Docs</title>
+    <meta name="title" content="UniConfig Operations | Frinx Docs">
+    <meta name="description" content="Sending and receiving data (RESTCONF)" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://testdocs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/">
-    <meta property="og:title" content="UniConfig Node Manager | Frinx Docs">
-    <meta property="og:description" content="The responsibility of this component is to maintain configuration on devices based on intended configuration. Each device and its">
+    <meta property="og:title" content="UniConfig Operations | Frinx Docs">
+    <meta property="og:description" content="Sending and receiving data (RESTCONF)">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://testdocs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/">
-    <meta property="twitter:title" content="UniConfig Node Manager | Frinx Docs">
-    <meta property="twitter:description" content="The responsibility of this component is to maintain configuration on devices based on intended configuration. Each device and its">
+    <meta property="twitter:title" content="UniConfig Operations | Frinx Docs">
+    <meta property="twitter:description" content="Sending and receiving data (RESTCONF)">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696009918088" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696270762994" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696009918088" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696270762994" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696009918088" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696270762994" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -229,31 +229,32 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="uniconfig-node-manager" class="break-words">
+<doc-anchor-target id="uniconfig-operations" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#uniconfig-node-manager">#</doc-anchor-trigger>
-        <span>UniConfig Node Manager</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#uniconfig-operations">#</doc-anchor-trigger>
+        <span>UniConfig Operations</span>
     </h1>
 </doc-anchor-target>
-<p>The responsibility of this component is to maintain configuration on
-devices based on intended configuration. Each device and its
-configuration is represented as a node in the uniconfig topology and the
-configuration of this node is described by using OpenConfig YANG models.
-The Northbound API of Uniconfig Manager (UNM) is RPC driven and provides
-functionality for commit with automatic rollback and synchronization of
-configuration from the network.</p>
-<p>When a commit is called, the UNM creates a diff based on intended state
-from CONFIG DS and actual state from OPER DS. This Diff is used as the
-basis for device configuration. UNM prepares a network wide transaction
-which uses Unified mountpoints for communication with different types of
-devices.</p>
-<p>An additional git like diff RPC was created so it shows all the changes
-grouped under root elements in a git-like style.</p>
-<p>In the case where the configuration of one device fails, the UNM
-executes automatic rollback where the previous configuration is restored
-on all modified devices.</p>
-<p>Synchronization from the network reads configuration from devices and
-stores it as an actual state to the OPER DS.</p>
+<p><strong>Sending and receiving data (RESTCONF)</strong></p>
+<p>RESTCONF represents REST API to access datastores and UniConfig operations.</p>
+<p><strong>UniConfig Node Manager API</strong></p>
+<p>The responsibility of this component is to maintain configuration on devices based on intended configuration. Each device and its configuration is represented as a node in the uniconfig topology and the configuration of this node is described by using OpenConfig YANG models. The Northbound API of Uniconfig Manager (UNM) is RPC driven and provides functionality for commit with automatic rollback and synchronization of configuration from the network.</p>
+<p><strong>Device discovery</strong></p>
+<p>This component is used to check reachable devices in a network. The manager checks the reachability via the ICMP protocol. Afterwards, the manager is able to check whether various TCP/UDP ports are open or not.</p>
+<p><strong>Dry-run Manager API</strong></p>
+<p>The manager provides functionality showing CLI commands which would be sent to network element.</p>
+<p><strong>Snapshot Manager API</strong></p>
+<p>The snapshot manager creates and deletes uniconfig snapshots of actual uniconfig topology. Multiple snapshots can be created in the system.</p>
+<p><strong>Subtree Manager API</strong></p>
+<p>The subtree manager copies (merge/replace) subtrees between source and target paths.</p>
+<p><strong>Templates Manager API</strong></p>
+<p>This component is responsible for application of templates into UniConfig nodes.</p>
+<p><strong>Websocket Notifications</strong></p>
+<p>Mechanism where the NETCONF client indicates interest in receiving event notifications from a NETCONF server by creating a subscription to receive event notifications. The NETCONF server replies to indicate whether the subscription request was successful and, if it was successful, begins sending the event notifications to the NETCONF client as the events occur within the system.</p>
+<p><strong>Transaction Log API</strong></p>
+<p>This component is responsible for tracking transactions.</p>
+<p><strong>Dedicated transaction (Immediate Commit Model)</strong></p>
+<p>The immediate commit creates new transactions for every call of an RPC. The transaction is then closed so no lingering data will occur.</p>
 
 
 
@@ -275,10 +276,10 @@ stores it as an actual state to the OPER DS.</p>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/device-discovery/device-discovery/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/snapshot-manager/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Device Discovery</span>
+                <span class="block mt-1">Snapshot Manager</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>

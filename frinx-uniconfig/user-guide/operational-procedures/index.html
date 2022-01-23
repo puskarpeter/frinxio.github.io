@@ -11,28 +11,28 @@
     <!-- Primary Meta Tags -->
     <title>Operational Procedures | Frinx Docs</title>
     <meta name="title" content="Operational Procedures | Frinx Docs">
-    <meta name="description" content="High Availability Cluster" />
+    <meta name="description" content="UniConfig distribution uses Logback as the implementation of the logging framework. Logback is the successor to to the log4j framework with many" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://testdocs.frinx.io/frinx-uniconfig/user-guide/operational-procedures/">
     <meta property="og:title" content="Operational Procedures | Frinx Docs">
-    <meta property="og:description" content="High Availability Cluster">
+    <meta property="og:description" content="UniConfig distribution uses Logback as the implementation of the logging framework. Logback is the successor to to the log4j framework with many">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://testdocs.frinx.io/frinx-uniconfig/user-guide/operational-procedures/">
     <meta property="twitter:title" content="Operational Procedures | Frinx Docs">
-    <meta property="twitter:description" content="High Availability Cluster">
+    <meta property="twitter:description" content="UniConfig distribution uses Logback as the implementation of the logging framework. Logback is the successor to to the log4j framework with many">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696009918088" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696270762994" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696009918088" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696270762994" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696009918088" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696270762994" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -235,30 +235,104 @@
         <span>Operational Procedures</span>
     </h1>
 </doc-anchor-target>
-<p><strong>High Availability Cluster</strong></p>
-<p>Deployment of UniConfig in a high-availability cluster.</p>
-<p><strong>Logging</strong></p>
+<doc-anchor-target id="logging">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#logging">#</doc-anchor-trigger>
+        <span>Logging</span>
+    </h2>
+</doc-anchor-target>
 <p>UniConfig distribution uses Logback as the implementation of the logging
 framework. Logback is the successor to to the log4j framework with many
 improvements such as more options for configuration, better performance,
 and context-based separation of logs. Context-based separation of logs
 is used widely in UniConfig to achieve per-device logging based on the
 set marker in the logs.</p>
-<p><strong>AAA</strong></p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">Logging</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/operational-procedures/logging/</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/operational-procedures/logging/" class="absolute block inset-0"></a>
+</div>
+</p>
+<doc-anchor-target id="aaa">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#aaa">#</doc-anchor-trigger>
+        <span>AAA</span>
+    </h2>
+</doc-anchor-target>
 <p>Authentication, Authorization and Accounting (AAA) is a term for a
 framework controlling access to resources, enforcing policies to use
 those resources and auditing their usage. These processes are the
 fundamental building blocks for effective network management and
 security.</p>
-<p><strong>TLS</strong></p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">AAA</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/operational-procedures/aaa/</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/operational-procedures/aaa/" class="absolute block inset-0"></a>
+</div>
+</p>
+<doc-anchor-target id="tls">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#tls">#</doc-anchor-trigger>
+        <span>TLS</span>
+    </h2>
+</doc-anchor-target>
 <p>TLS, is a widely adopted security protocol designed to facilitate
 privacy and data security for communications over the Internet. In the
 default version of UniConfig TLS authentication is disabled.</p>
-<p><strong>OpenAPI</strong></p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">TLS</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/operational-procedures/tls/</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/operational-procedures/tls/" class="absolute block inset-0"></a>
+</div>
+</p>
+<doc-anchor-target id="openapi">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#openapi">#</doc-anchor-trigger>
+        <span>OpenAPI</span>
+    </h2>
+</doc-anchor-target>
 <p>UniConfig distributions contain .yaml file that generates list of all
 usable RPCs and their examples. and can be easily viewed either locally.
 You can view it locally or on our hosted version that always shows
 latest OpenAPI version.</p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">OpenAPI</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/operational-procedures/openapi/</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/operational-procedures/openapi/" class="absolute block inset-0"></a>
+</div>
+</p>
 
 
 
@@ -270,17 +344,17 @@ latest OpenAPI version.</p>
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/templates-manager/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/unistore-api/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">Templates Manager</span>
+                <span class="block mt-1">UniStore API</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/operational-procedures/aaa/aaa/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/operational-procedures/aaa/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
                 <span class="block mt-1">Authentication, Authorization and Accounting (AAA) Services</span>

@@ -30,11 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696009918088" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696270762994" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696009918088" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696270762994" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696009918088" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696270762994" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696270762994" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -245,13 +246,11 @@ dynamically installed and uninstalled.</p>
         <span>Adding device to inventory</span>
     </h2>
 </doc-anchor-target>
-<p>To add new device to invetory, click on the <code v-pre>Add device</code> button in the
-<code v-pre>Device inventory</code> tab.</p>
+<p>To add new device to invetory, click on the <strong>Add device</strong> button in the
+<strong>Device inventory</strong> tab.</p>
 <p><figure class="content-center">
-    <a href="fm_install.gif">
-        <img src="fm_install.gif" alt="alt_text" />
-    </a>
-    <figcaption class="caption">alt_text</figcaption>
+    <img src="fm_install.gif" alt="FM Install" />
+    <figcaption class="caption">FM Install</figcaption>
 </figure>
 </p>
 <doc-anchor-target id="json-examples">
@@ -262,8 +261,7 @@ dynamically installed and uninstalled.</p>
 </doc-anchor-target>
 <p>To adding a new device toggle the &quot;Blueprints&quot; switch in the form and
 choose the blueprint that you want to use.</p>
-<p>New devices are added by JSON code snippets. They are similar to how
-<a href="https://docs.frinx.io/frinx-uniflow/blueprints/blueprints.html">blueprints</a>
+<p>New devices are added by JSON code snippets. They are similar to <a href="../frinx-uniflow/blueprints">Blueprints</a>
 with one addition: <strong>device_id</strong> must be specified in the snippet.</p>
 <doc-anchor-target id="cisco-classic-ios-cli">
     <h3>
@@ -272,7 +270,7 @@ with one addition: <strong>device_id</strong> must be specified in the snippet.<
     </h3>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{
+<pre class="language-json"><code v-pre class="language-json">{
     &quot;node-id&quot;:&quot;ios1&quot;,
     &quot;cli&quot;:{
         &quot;cli-topology:host&quot;:&quot;192.168.1.25&quot;,
@@ -295,7 +293,7 @@ with one addition: <strong>device_id</strong> must be specified in the snippet.<
     </h3>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{
+<pre class="language-json"><code v-pre class="language-json">{
     &quot;node-id&quot;:&quot;xr1&quot;,
     &quot;netconf&quot;:{
         &quot;netconf-node-topology:host&quot;:&quot;10.0.0.1&quot;,
@@ -329,7 +327,7 @@ with one addition: <strong>device_id</strong> must be specified in the snippet.<
     </h3>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{
+<pre class="language-json"><code v-pre class="language-json">{
     &quot;node-id&quot;:&quot;junos1&quot;,
     &quot;cli&quot;:{
         &quot;cli-topology:host&quot;:&quot;10.103.5.208&quot;,
@@ -351,7 +349,7 @@ with one addition: <strong>device_id</strong> must be specified in the snippet.<
     </h3>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{
+<pre class="language-json"><code v-pre class="language-json">{
     &quot;node-id&quot;:&quot;cal1&quot;,
     &quot;netconf&quot;:{
         &quot;netconf-node-topology:host&quot;:&quot;10.19.0.16&quot;,
@@ -376,7 +374,7 @@ with one addition: <strong>device_id</strong> must be specified in the snippet.<
     </h3>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{
+<pre class="language-json"><code v-pre class="language-json">{
     &quot;node-id&quot;:&quot;nokia1&quot;,
     &quot;netconf&quot;:{
         &quot;netconf-node-topology:host&quot;:&quot;10.19.0.18&quot;,
@@ -407,7 +405,7 @@ with one addition: <strong>device_id</strong> must be specified in the snippet.<
     </h3>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{
+<pre class="language-json"><code v-pre class="language-json">{
     &quot;node-id&quot;:&quot;ciena1&quot;,
     &quot;cli&quot;:{
         &quot;cli-topology:host&quot;:&quot;localhost&quot;,
@@ -448,7 +446,7 @@ with one addition: <strong>device_id</strong> must be specified in the snippet.<
         <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniflow/workflow-builder/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Workflow builder</span>
+                <span class="block mt-1">Workflow Builder</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -499,7 +497,7 @@ with one addition: <strong>device_id</strong> must be specified in the snippet.<
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Device Inventory", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Device Inventory", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
         <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f4b74451-b2eb-4560-acd3-af512e0b29d1";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     </body>
 </html>

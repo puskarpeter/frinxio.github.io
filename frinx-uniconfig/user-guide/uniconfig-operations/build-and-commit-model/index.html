@@ -30,11 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696009918088" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696270762994" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696009918088" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696270762994" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696009918088" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696270762994" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696270762994" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -339,8 +340,8 @@ the end of the transaction (commit RPC closes transaction).</p>
 </ol>
 <p>All possible scenarios are captured in the following diagrams.</p>
 <p><figure class="content-center">
-    <img src="optimistic-locking.svg" alt="optimistic locking" />
-    <figcaption class="caption">optimistic locking</figcaption>
+    <img src="optimistic-locking.svg" alt="Optimistic locking" />
+    <figcaption class="caption">Optimistic locking</figcaption>
 </figure>
 </p>
 <doc-anchor-target id="dynamic-mountpoints">
@@ -362,8 +363,8 @@ closed. The second diagram shows scenario in which 2 transactions share
 mountpoints is not closed since the second transaction still may
 communicate with corresponding device.</p>
 <p><figure class="content-center">
-    <img src="dynamic-mountpoints.svg" alt="dynamic mountpoints" />
-    <figcaption class="caption">dynamic mountpoints</figcaption>
+    <img src="dynamic-mountpoints.svg" alt="Dynamic mountpoints" />
+    <figcaption class="caption">Dynamic mountpoints</figcaption>
 </figure>
 </p>
 <doc-anchor-target id="creation-of-transaction">
@@ -418,19 +419,12 @@ transaction. Response contains Set-Cookie header with UNICONFIGTXID key
 and value.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">RPC Request</div>
-<pre class="language-none"><code v-pre class="language-none">Method
-POST
-
-URL
-http://127.0.0.1:8181/rests/operations/uniconfig-manager:create-transaction</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
+--header 'Accept: application/json'</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Response</div>
-<pre class="language-none"><code v-pre class="language-none">Status code
-201
-
-Headers
-1Set-Cookie: UNICONFIGTXID=2ab7cfc3-dedc-4444-8431-6e9cf94fad3b;Version=1;Comment=&quot;uniconfig transaction created&quot;;Path=/rests/</code></pre>
+<div class="codeblock-title">RPC Response, Status: 201</div>
+<pre class="language-none"><code v-pre class="language-none">1Set-Cookie: UNICONFIGTXID=2ab7cfc3-dedc-4444-8431-6e9cf94fad3b;Version=1;Comment=&quot;uniconfig transaction created&quot;;Path=/rests/</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="failed-example">
     <h3>
@@ -442,14 +436,15 @@ Headers
 reached maximum number of open transactions that is limited by
 &#x27;maxDbPoolSize&#x27; database connection pool setting. In that case,
 UniConfig returns response with 500 status code.</p>
-<blockquote>
-<p><strong>RPC request</strong></p>
-<p><strong>RPC request:</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>RPC response</strong></p>
-<p><strong>RPC response:</strong></p>
-</blockquote>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
+--header 'Accept: application/json'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 500</div>
+<pre class="language-none"><code v-pre class="language-none"></code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="invocation-of-crud-operation-in-transaction">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#invocation-of-crud-operation-in-transaction">#</doc-anchor-trigger>
@@ -470,8 +465,8 @@ inside temporary datastore transaction - goal is to improve performance
 by limiting transferring data between UniConfig and PostgreSQL. Next
 access to same configuration can be evaluated under in-memory datastore.</p>
 <p><figure class="content-center">
-    <img src="crud-operation-in-transaction-invocation_of_crud_operation_in_uniconfig_transaction.svg" alt="invocation of CRUD operation in transaction" />
-    <figcaption class="caption">invocation of CRUD operation in transaction</figcaption>
+    <img src="crud-operation-in-transaction-invocation_of_crud_operation_in_uniconfig_transaction.svg" alt="Invocation of CRUD" />
+    <figcaption class="caption">Invocation of CRUD</figcaption>
 </figure>
 </p>
 <doc-anchor-target id="successful-example-1">
@@ -483,14 +478,50 @@ access to same configuration can be evaluated under in-memory datastore.</p>
 <p>The following request demonstrates reading of some configuration from
 uniconfig topology, junos node in the transaction with ID
 &#x27;d7ff736e-8efa-4cc5-9d27-b7f560a76ff3&#x27;.</p>
-<blockquote>
-<p><strong>GET request</strong></p>
-<p><strong>GET request:</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>GET response</strong></p>
-<p><strong>GET response:</strong></p>
-</blockquote>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">GET Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=junos/configuration/frinx-openconfig-interfaces:interfaces/interface=fxp0' \
+--header 'Accept: application/json' \
+--header 'Cookie: UNICONFIGTXID=d7ff736e-8efa-4cc5-9d27-b7f560a76ff3'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">GET Response, Status: 200</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;frinx-openconfig-interfaces:interface&quot;: [
+        {
+            &quot;name&quot;: &quot;fxp0&quot;,
+            &quot;config&quot;: {
+                &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
+                &quot;enabled&quot;: true,
+                &quot;name&quot;: &quot;fxp0&quot;
+            },
+            &quot;subinterfaces&quot;: {
+                &quot;subinterface&quot;: [
+                    {
+                        &quot;index&quot;: 0,
+                        &quot;config&quot;: {
+                            &quot;index&quot;: 0
+                        },
+                        &quot;frinx-openconfig-if-ip:ipv4&quot;: {
+                            &quot;addresses&quot;: {
+                                &quot;address&quot;: [
+                                    {
+                                        &quot;ip&quot;: &quot;10.103.5.208&quot;,
+                                        &quot;config&quot;: {
+                                            &quot;prefix-length&quot;: 24,
+                                            &quot;ip&quot;: &quot;10.103.5.208&quot;
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}</code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="failed-example-1">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#failed-example-1">#</doc-anchor-trigger>
@@ -499,14 +530,26 @@ uniconfig topology, junos node in the transaction with ID
 </doc-anchor-target>
 <p>Trying to use non-existing UniConfig transaction results in 403 status
 code (Forbidden access).</p>
-<blockquote>
-<p><strong>GET request</strong></p>
-<p><strong>GET request:</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>GET response</strong></p>
-<p><strong>GET response:</strong></p>
-</blockquote>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">GET Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=junos/configuration/frinx-openconfig-interfaces:interfaces/interface=fxp0' \
+--header 'Accept: application/json' \
+--header 'Cookie: UNICONFIGTXID=d7ff736e-8efa-4cc5-9d27-b7f560a76ff4'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">GET Response, Status: 403</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;errors&quot;: {
+        &quot;error&quot;: [
+            {
+                &quot;error-message&quot;: &quot;Unknown uniconfig transaction: d7ff736e-8efa-4cc5-9d27-b7f560a76ff4&quot;,
+                &quot;error-tag&quot;: &quot;access-denied&quot;,
+                &quot;error-type&quot;: &quot;protocol&quot;
+            }
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="invocation-of-rpc-operation-in-transaction">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#invocation-of-rpc-operation-in-transaction">#</doc-anchor-trigger>
@@ -536,8 +579,8 @@ modified nodes in the transaction).</li>
 <p>Following diagram shows execution of random RPC in the specified
 transaction.</p>
 <p><figure class="content-center">
-    <img src="invoke-operation-in-transaction-invocation_of_uniconfig_rpc_operation_in_transaction.svg" alt="invocation of RPC operation in transaction" />
-    <figcaption class="caption">invocation of RPC operation in transaction</figcaption>
+    <img src="invoke-operation-in-transaction-invocation_of_uniconfig_rpc_operation_in_transaction.svg" alt="Invocation of RPC" />
+    <figcaption class="caption">Invocation of RPC</figcaption>
 </figure>
 </p>
 <doc-anchor-target id="successful-example-2">
@@ -548,14 +591,43 @@ transaction.</p>
 </doc-anchor-target>
 <p>Invocation of calculate-diff RPC in the transaction which contains
 modifications done on the &#x27;junos&#x27; node.</p>
-<blockquote>
-<p><strong>RPC invocation</strong></p>
-<p><strong>POST request:</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>RPC response</strong></p>
-<p><strong>POST response:</strong></p>
-</blockquote>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:calculate-diff' \
+--header 'Accept: application/json' \
+--header 'Cookie: UNICONFIGTXID=d7ff736e-8efa-4cc5-9d27-b7f560a76ff3' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;input&quot;: {
+        &quot;target-nodes&quot;: {
+            &quot;node&quot;: [&quot;junos&quot;]
+        }
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 200</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;output&quot;: {
+        &quot;node-results&quot;: {
+            &quot;node-result&quot;: [
+                {
+                    &quot;node-id&quot;: &quot;junos&quot;,
+                    &quot;status&quot;: &quot;complete&quot;,
+                    &quot;updated-data&quot;: [
+                        {
+                            &quot;path&quot;: &quot;/network-topology:network-topology/topology=uniconfig/node=junos/frinx-uniconfig-topology:configuration/frinx-openconfig-interfaces:interfaces/interface=fxp0/config&quot;,
+                            &quot;data-actual&quot;: &quot;{\n  \&quot;frinx-openconfig-interfaces:config\&quot;: {\n    \&quot;type\&quot;: \&quot;iana-if-type:ethernetCsmacd\&quot;,\n    \&quot;enabled\&quot;: true,\n    \&quot;name\&quot;: \&quot;fxp0\&quot;\n  }\n}&quot;,
+                            &quot;data-intended&quot;: &quot;{\n  \&quot;frinx-openconfig-interfaces:config\&quot;: {\n    \&quot;type\&quot;: \&quot;iana-if-type:ethernetCsmacd\&quot;,\n    \&quot;enabled\&quot;: false,\n    \&quot;name\&quot;: \&quot;fxp0\&quot;\n  }\n}&quot;
+                        }
+                    ]
+                }
+            ]
+        },
+        &quot;overall-status&quot;: &quot;complete&quot;
+    }
+}</code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="failed-example-2">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#failed-example-2">#</doc-anchor-trigger>
@@ -564,14 +636,35 @@ modifications done on the &#x27;junos&#x27; node.</p>
 </doc-anchor-target>
 <p>Invocation of calculate-diff RPC with transaction ID that has wrong
 format.</p>
-<blockquote>
-<p><strong>RPC invocation</strong></p>
-<p><strong>POST request:</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>RPC response</strong></p>
-<p><strong>POST response:</strong></p>
-</blockquote>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:calculate-diff' \
+--header 'Accept: application/json' \
+--header 'Cookie: UNICONFIGTXID=d7ff736e-8efa-4cc5-9d27-b7f560a76ffx' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;input&quot;: {
+        &quot;target-nodes&quot;: {
+            &quot;node&quot;: [&quot;junos&quot;]
+        }
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 403</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;errors&quot;: {
+        &quot;error&quot;: [
+            {
+                &quot;error-type&quot;: &quot;protocol&quot;,
+                &quot;error-message&quot;: &quot;Invalid transaction-id format; it should conform UUID based on RFC 4122: 2a335e04-ae11-4677-885b-cea1ea71157x&quot;,
+                &quot;error-tag&quot;: &quot;access-denied&quot;,
+                &quot;error-info&quot;: &quot;Error at index 11 in: \&quot;cea1ea71157x\&quot;&quot;
+            }
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="closing-transaction">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#closing-transaction">#</doc-anchor-trigger>
@@ -599,8 +692,11 @@ from other diagrams.</p>
     <figcaption class="caption">close-transaction RPC</figcaption>
 </figure>
 </p>
-<p>| .. image:: clean-orphaned-mountpoints-Clean_orphaned_mountpoints.svg
-:alt: cleaning orphaned mountpoints :scale: 100</p>
+<p><figure class="content-center">
+    <img src="clean-orphaned-mountpoints-clean_orphaned_mountpoints.svg" alt="Clean orphaned mountpoints" />
+    <figcaption class="caption">Clean orphaned mountpoints</figcaption>
+</figure>
+</p>
 <p>Briefly depicted most important actions:</p>
 <ol>
 <li>Loading UniConfig transaction from registry by provided transaction
@@ -614,14 +710,23 @@ transaction - connection to device is closed and representing
 southbound / Unified mountpoints are removed together with state
 data.</li>
 </ol>
-<blockquote>
-<p><strong>note</strong></p>
-<p>After transaction is closed, it cannot be used by any other operation</p>
-<ul>
-<li>user must create a new transaction in order to use build-and-commit
-model.</li>
-</ul>
-</blockquote>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>After transaction is closed, it cannot be used by any other operation - user must create a new transaction in order to use build-and-commit model.</p>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="successful-example-3">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#successful-example-3">#</doc-anchor-trigger>
@@ -630,14 +735,16 @@ model.</li>
 </doc-anchor-target>
 <p>Closing existing transaction using close-transaction RPC. Response
 doesn&#x27;t body, only status code 200.</p>
-<blockquote>
-<p><strong>RPC request</strong></p>
-<p><strong>RPC request:</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>RPC response</strong></p>
-<p><strong>RPC response:</strong></p>
-</blockquote>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:close-transaction' \
+--header 'Accept: application/json' \
+--header 'Cookie: UNICONFIGTXID=2ab7cfc3-dedc-4444-8431-6e9cf94fad3b'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 200</div>
+<pre class="language-json"><code v-pre class="language-json"></code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="failed-example-3">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#failed-example-3">#</doc-anchor-trigger>
@@ -646,14 +753,26 @@ doesn&#x27;t body, only status code 200.</p>
 </doc-anchor-target>
 <p>If transaction has already been closed, user will receive response with
 JSON body containing error message.</p>
-<blockquote>
-<p><strong>RPC request</strong></p>
-<p><strong>RPC request:</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>RPC response</strong></p>
-<p><strong>RPC response:</strong></p>
-</blockquote>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:close-transaction' \
+--header 'Accept: application/json' \
+--header 'Cookie: UNICONFIGTXID=2ab7cfc3-dedc-4444-8431-6e9cf94fad3b'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 403</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;errors&quot;: {
+        &quot;error&quot;: [
+            {
+                &quot;error-message&quot;: &quot;Uniconfig transaction 3819fbaa-6bd4-4c79-bc4e-68f70cf97903 has already been closed&quot;,
+                &quot;error-tag&quot;: &quot;access-denied&quot;,
+                &quot;error-type&quot;: &quot;protocol&quot;
+            }
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="transaction-cleaner">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#transaction-cleaner">#</doc-anchor-trigger>
@@ -669,8 +788,8 @@ of the workflow.</p>
 &#x27;Close transaction&#x27; is placed in the previous &#x27;Closing transaction&#x27;
 section.</p>
 <p><figure class="content-center">
-    <img src="transaction-cleaner-transaction_cleaner.svg" alt="transaction cleaner" />
-    <figcaption class="caption">transaction cleaner</figcaption>
+    <img src="transaction-cleaner-transaction_cleaner.svg" alt="Transaction cleaner" />
+    <figcaption class="caption">Transaction cleaner</figcaption>
 </figure>
 </p>
 <doc-anchor-target id="use-cases">
@@ -688,8 +807,8 @@ section.</p>
 <p><strong>1. Installation of 2 devices - ‘xr6_1’ and ‘xr6_2’ (without
 transaction ID)</strong></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request POST 'http://localhost:8181/rests/operations/connection-manager:install-node' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/connection-manager:install-node' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -745,8 +864,8 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
 </doc-codeblock></div>
 <p><strong>2. Creation of 2 uniconfig transactions: let’s name them TX1 and TX2</strong></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -755,14 +874,14 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
 <p>The first response contains transaction-id of TX1 that can be used in
 the subsequent requests that belong to TX1:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">Status: 201 Created
 Set cookie: UNICONFIGTXID=73f85310-a20a-46b9-beaf-d2ac98cc74cc;Version=1;Comment=&quot;uniconfig transaction created&quot;;Path=/rests/</code></pre>
 </doc-codeblock></div>
 <p>The first second contains transaction-id of TX2 that can be used in the
 subsequent requests that belong to TX2:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">Status: 201 Created
 Set cookie: UNICONFIGTXID=5e8ab9d0-803a-40d6-9f0a-92e47524bab8;Version=1;Comment=&quot;uniconfig transaction created&quot;;Path=/rests/</code></pre>
 </doc-codeblock></div>
@@ -770,8 +889,8 @@ Set cookie: UNICONFIGTXID=5e8ab9d0-803a-40d6-9f0a-92e47524bab8;Version=1;Comment
 <p>Creation of new Loopback97 interface in the TX1 - cookie header contains
 UNICONFIGTXID of TX1:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request PUT 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PUT 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -791,14 +910,14 @@ UNICONFIGTXID of TX1:</p>
 </doc-codeblock></div>
 <p>Response:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">Status: 201 Created</code></pre>
 </doc-codeblock></div>
 <p>Verification if TX1 contains created interface (Cookie header contains
 UNICONFIGTXID of TX1):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97?content=config' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97?content=config' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -806,7 +925,7 @@ UNICONFIGTXID of TX1):</p>
 </doc-codeblock></div>
 <p>Response:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;interface-configuration&quot;: [
         {
@@ -824,8 +943,8 @@ UNICONFIGTXID of TX1):</p>
 <p>Creation of new Loopback79 interface - cookie header contains
 UNICONFIGTXID of TX2:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request PUT 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_2/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback79' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PUT 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_2/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback79' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -845,14 +964,14 @@ UNICONFIGTXID of TX2:</p>
 </doc-codeblock></div>
 <p>Response:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">Status: 201 Created</code></pre>
 </doc-codeblock></div>
 <p>Verification if TX2 contains created interface (Cookie header contains
 UNICONFIGTXID of TX2):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_2/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback79?content=config' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_2/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback79?content=config' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -860,7 +979,7 @@ UNICONFIGTXID of TX2):</p>
 </doc-codeblock></div>
 <p>Response:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;interface-configuration&quot;: [
         {
@@ -877,8 +996,8 @@ UNICONFIGTXID of TX2):</p>
 <p><strong>5. Verification if TX1 and TX2 are isolated</strong></p>
 <p>TX1 doesn&#x27;t see modifications done in TX2 and vice-versa:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -892,7 +1011,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 </doc-codeblock></div>
 <p>Both responses should return Status 404 Not Found:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;errors&quot;: {
         &quot;error&quot;: [
@@ -909,8 +1028,8 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 <p>It is not required to specify target nodes in the input because
 UniConfig transaction tracks modified nodes:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
 --header 'Cookie: UNICONFIGTXID=73f85310-a20a-46b9-beaf-d2ac98cc74cc; JSESSIONID=node01ojoxzbr05hlopwixblbfbk7i5.node0' \
@@ -925,7 +1044,7 @@ UniConfig transaction tracks modified nodes:</p>
 <p>Since there aren&#x27;t any conflicts between modifications in the committed
 transactions, both RPCs should succeed. Expected responses:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;output&quot;: {
         &quot;node-results&quot;: {
@@ -941,7 +1060,7 @@ transactions, both RPCs should succeed. Expected responses:</p>
 }</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;output&quot;: {
         &quot;node-results&quot;: {
@@ -961,8 +1080,8 @@ transactions, both RPCs should succeed. Expected responses:</p>
 read under yang-ext:mount) and if datastore was updated (GET request
 without transaction ID):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_2/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback79?content=config' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_2/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback79?content=config' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -985,8 +1104,8 @@ verification can be done on &#x27;xr6_2&#x27;.</p>
 <p><strong>8. Verification if TX1 and TX2 are closed</strong></p>
 <p>Trying to read some data in the TX1:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -994,7 +1113,7 @@ verification can be done on &#x27;xr6_2&#x27;.</p>
 </doc-codeblock></div>
 <p>Response - Status 403 Forbidden:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;errors&quot;: {
         &quot;error&quot;: [
@@ -1009,8 +1128,8 @@ verification can be done on &#x27;xr6_2&#x27;.</p>
 </doc-codeblock></div>
 <p>Trying to read some data in the TX2:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_2/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback79' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_2/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback79' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -1018,7 +1137,7 @@ verification can be done on &#x27;xr6_2&#x27;.</p>
 </doc-codeblock></div>
 <p>Response - Status 403 Forbidden:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;errors&quot;: {
         &quot;error&quot;: [
@@ -1039,8 +1158,8 @@ verification can be done on &#x27;xr6_2&#x27;.</p>
 </doc-anchor-target>
 <p><strong>1. Installation of device ‘xr6_1’</strong></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request POST 'http://localhost:8181/rests/operations/connection-manager:install-node' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/connection-manager:install-node' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -1070,8 +1189,8 @@ verification can be done on &#x27;xr6_2&#x27;.</p>
 <p><strong>2. Preparation of configuration on &#x27;xr6_1&#x27;</strong></p>
 <p>Creation of Loopback97 interface with some initial description:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -1110,8 +1229,8 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 <p><strong>3. Creation of 2 uniconfig transactions: let’s name them TX1 and TX2</strong></p>
 <p>Creation of the uniconfig transaction TX1:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -1119,8 +1238,8 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 </doc-codeblock></div>
 <p>Creation of the uniconfig transaction TX2:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:create-transaction' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -1129,8 +1248,8 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 <p><strong>4. Modification of ‘xr6_1’ uniconfig configuration inside TX1</strong></p>
 <p>Changing description of interface Loopback97 to &#x27;test loopback&#x27;:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request PUT 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PUT 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -1153,8 +1272,8 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 is a conflict with TX1 which also tries to create/replace the
 configuration of the same interface:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request PUT 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PUT 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -1175,8 +1294,8 @@ configuration of the same interface:</p>
 <p><strong>6. Commit TX1</strong></p>
 <p>Commit TX2 without target nodes - it should pass:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
 --header 'Cookie: UNICONFIGTXID=5160a334-aeb0-4864-931a-bc652990feb0; JSESSIONID=node0nqbpx1l07fbilbrxdj1h0vx15.node0' \
@@ -1190,7 +1309,7 @@ configuration of the same interface:</p>
 </doc-codeblock></div>
 <p>Response:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;output&quot;: {
         &quot;node-results&quot;: {
@@ -1210,8 +1329,8 @@ configuration of the same interface:</p>
 has already been modified by different transaction that has already been
 committed:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
 --header 'Cookie: UNICONFIGTXID=14804ad7-c0f6-4b22-8336-7484efc23e31; JSESSIONID=node0nqbpx1l07fbilbrxdj1h0vx15.node0' \
@@ -1225,7 +1344,7 @@ committed:</p>
 </doc-codeblock></div>
 <p>Response - Status 200 OK with error message:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;output&quot;: {
         &quot;error-message&quot;: &quot;14804ad7-c0f6-4b22-8336-7484efc23e31: Node 'xr6_1' in topology 'uniconfig' has been modified by other transaction.&quot;
@@ -1237,8 +1356,8 @@ committed:</p>
 <p>Verification if committed changes in TX1 were applied to datastore and
 device:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97?content=config' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97?content=config' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -1259,7 +1378,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 Response for all three requests (description of interface is 'test loopback' - TX2 hasn't been committed):</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;interface-configuration&quot;: [
         {
@@ -1276,8 +1395,8 @@ Response for all three requests (description of interface is 'test loopback' - T
 <p><strong>9. Verification if TX1 and TX2 are closed</strong></p>
 <p>Trying to read some data in the transaction:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
-<pre class="language-none"><code v-pre class="language-none">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=xr6_1/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback97' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -1291,7 +1410,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 </doc-codeblock></div>
 <p>Respective responses:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;errors&quot;: {
         &quot;error&quot;: [
@@ -1305,7 +1424,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 }</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .json}</div>
+<div class="codeblock-title">RPC Response</div>
 <pre class="language-none"><code v-pre class="language-none">{
     &quot;errors&quot;: {
         &quot;error&quot;: [
@@ -1339,10 +1458,10 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/templates-manager/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/device-discovery/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Templates Manager</span>
+                <span class="block mt-1">Device Discovery</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -1393,7 +1512,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Build-and-Commit Model", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Build-and-Commit Model", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
         <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f4b74451-b2eb-4560-acd3-af512e0b29d1";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     </body>
 </html>

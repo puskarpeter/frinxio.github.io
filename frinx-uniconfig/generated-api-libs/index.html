@@ -9,30 +9,30 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Generated api libs | Frinx Docs</title>
-    <meta name="title" content="Generated api libs | Frinx Docs">
-    <meta name="description" content="Swagger" />
+    <title>Generated API libs | Frinx Docs</title>
+    <meta name="title" content="Generated API libs | Frinx Docs">
+    <meta name="description" content="Swagger is a framework backed by a large ecosystem of tools that helps developers to work with RESTful Web services. The Swagger toolset" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://testdocs.frinx.io/frinx-uniconfig/generated-api-libs/">
-    <meta property="og:title" content="Generated api libs | Frinx Docs">
-    <meta property="og:description" content="Swagger">
+    <meta property="og:title" content="Generated API libs | Frinx Docs">
+    <meta property="og:description" content="Swagger is a framework backed by a large ecosystem of tools that helps developers to work with RESTful Web services. The Swagger toolset">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://testdocs.frinx.io/frinx-uniconfig/generated-api-libs/">
-    <meta property="twitter:title" content="Generated api libs | Frinx Docs">
-    <meta property="twitter:description" content="Swagger">
+    <meta property="twitter:title" content="Generated API libs | Frinx Docs">
+    <meta property="twitter:description" content="Swagger is a framework backed by a large ecosystem of tools that helps developers to work with RESTful Web services. The Swagger toolset">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696009918088" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696270762994" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696009918088" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696270762994" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696009918088" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696270762994" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -232,19 +232,15 @@
 <doc-anchor-target id="generated-api-libs" class="break-words">
     <h1>
         <doc-anchor-trigger class="header-anchor-trigger" to="#generated-api-libs">#</doc-anchor-trigger>
-        <span>Generated api libs</span>
-    </h1>
-</doc-anchor-target>
-<dl>
-<dt>nosearch</dt>
-</dl>
-<doc-anchor-target id="generated-api-libs">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#generated-api-libs">#</doc-anchor-trigger>
         <span>Generated API libs</span>
     </h1>
 </doc-anchor-target>
-<p><strong>Swagger</strong></p>
+<doc-anchor-target id="swagger">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#swagger">#</doc-anchor-trigger>
+        <span>Swagger</span>
+    </h2>
+</doc-anchor-target>
 <p>Swagger is a framework backed by a large ecosystem of tools that helps
 developers to work with RESTful Web services. The Swagger toolset
 includes support for automated documentation, code generation, and
@@ -252,20 +248,27 @@ test-case generation.</p>
 <p>Following files provide OpenAPI files for FRINX ODL’s REST interface (in
 context of uniconfig topology, unified topology and southbound topology)
 which can be used with Swagger tools.</p>
-<p><strong>How to launch Swagger-UI</strong></p>
+<doc-anchor-target id="how-to-launch-swagger-ui">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-launch-swagger-ui">#</doc-anchor-trigger>
+        <span>How to launch Swagger-UI</span>
+    </h2>
+</doc-anchor-target>
 <ol>
-<li>Download swagger-uniconfig-4.2.4.frinx.zip (The first download link
-bellow)</li>
-<li>Unzip the file</li>
-<li>Go to the directory which you extracted the file in</li>
-<li>Run following command in your terminal:</li>
-</ol>
+<li><p>Download swagger-uniconfig-4.2.4.frinx.zip (The first download link
+bellow)</p>
+</li>
+<li><p>Unzip the file</p>
+</li>
+<li><p>Go to the directory which you extracted the file in</p>
+</li>
+<li><p>Run following command in your terminal:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .console}</div>
 <pre class="language-none"><code v-pre class="language-none">sudo docker run -p 80:8080 -e SWAGGER_JSON=/foo/uniconfig.yaml -v $PWD:/foo swaggerapi/swagger-ui</code></pre>
 </doc-codeblock></div>
-<ol start="5">
-<li>Open your browser and visit: localhost</li>
+</li>
+<li><p>Open your browser and visit: localhost</p>
+</li>
 </ol>
 <hr />
 <doc-anchor-target id="uniconfig-openapi-v2">
@@ -277,7 +280,7 @@ bellow)</li>
 <ul>
 <li>OpenAPI document generated from Uniconfig model + OpenConfig models</li>
 </ul>
-<p><strong>Download</strong> document here:</p>
+<p><strong>Download document here:</strong></p>
 <p><a href="https://license.frinx.io/download/swagger-uniconfig-4.2.4.frinx.zip"><a href="https://license.frinx.io/download/swagger-uniconfig-4.2.4.frinx.zip">https://license.frinx.io/download/swagger-uniconfig-4.2.4.frinx.zip</a></a></p>
 <hr />
 <doc-anchor-target id="uniconfig-python-and-go-clients">
@@ -400,7 +403,7 @@ interacting with southbound (cli and netconf topology)</li>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Generated api libs", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Generated API libs", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
         <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f4b74451-b2eb-4560-acd3-af512e0b29d1";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     </body>
 </html>

@@ -28,11 +28,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696009918088" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696270762994" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696009918088" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696270762994" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696009918088" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696270762994" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -248,13 +248,123 @@ it is necessary to copy some configuration between two mounted nodes
 that are described by slightly different YANG schemas. The following
 changes between schemas are tolerated:</p>
 <ul>
-<li>skipping non-existing composite nodes and leaves,</li>
-<li>adjusting namespace and revision in node identifiers, only name of
+<li>Skipping non-existing composite nodes and leaves,</li>
+<li>Adjusting namespace and revision in node identifiers, only name of
 nodes must match with target schema,</li>
-<li>moving nodes between choice and augmentation schema nodes,</li>
-<li>adjusting value format to target type definition of leaf or
+<li>Moving nodes between choice and augmentation schema nodes,</li>
+<li>Adjusting value format to target type definition of leaf or
 leaf-list schema node.</li>
 </ul>
+<doc-anchor-target id="rpc-copy-one-to-one">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-copy-one-to-one">#</doc-anchor-trigger>
+        <span>RPC copy-one-to-one</span>
+    </h2>
+</doc-anchor-target>
+<p>Provides a list of supported operations on subscriptions, includes
+request examples and workflow diagrams.</p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">RPC copy-one-to-one</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_copy-one-to-one/</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_copy-one-to-one/" class="absolute block inset-0"></a>
+</div>
+</p>
+<doc-anchor-target id="rpc-copy-one-to-many">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-copy-one-to-many">#</doc-anchor-trigger>
+        <span>RPC copy-one-to-many</span>
+    </h2>
+</doc-anchor-target>
+<p>Provides a list of supported operations on subscriptions, includes
+request examples and workflow diagrams.</p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">RPC copy-one-to-many</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_copy-one-to-many/</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_copy-one-to-many/" class="absolute block inset-0"></a>
+</div>
+</p>
+<doc-anchor-target id="rpc-copy-many-to-one">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-copy-many-to-one">#</doc-anchor-trigger>
+        <span>RPC copy-many-to-one</span>
+    </h2>
+</doc-anchor-target>
+<p>Provides a list of supported operations on subscriptions, includes
+request examples and workflow diagrams.</p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">RPC copy-many-to-one</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_copy-many-to-one/</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_copy-many-to-one/" class="absolute block inset-0"></a>
+</div>
+</p>
+<doc-anchor-target id="rpc-calculate-subtree-diff">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-calculate-subtree-diff">#</doc-anchor-trigger>
+        <span>RPC calculate-subtree-diff</span>
+    </h2>
+</doc-anchor-target>
+<p>Provides a list of supported operations on subscriptions, includes
+request examples and workflow diagrams.</p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">RPC calculate-subtree-diff</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_calculate-subtree-diff/</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_calculate-subtree-diff/" class="absolute block inset-0"></a>
+</div>
+</p>
+<doc-anchor-target id="rpc-calculate-subtree-git-like-diff">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-calculate-subtree-git-like-diff">#</doc-anchor-trigger>
+        <span>RPC calculate-subtree-git-like-diff</span>
+    </h2>
+</doc-anchor-target>
+<p>Provides a list of supported operations on subscriptions, includes
+request examples and workflow diagrams.</p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">RPC calculate-subtree-git-like-diff</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_calculate-subtree-git-like-diff/</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_calculate-subtree-git-like-diff/" class="absolute block inset-0"></a>
+</div>
+</p>
 
 
 
@@ -266,7 +376,7 @@ leaf-list schema node.</li>
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/snapshot-manager/rpc_replace-config-with-snapshot/replace-config-with-snapshot/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/snapshot-manager/rpc_replace-config-with-snapshot/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
@@ -276,7 +386,7 @@ leaf-list schema node.</li>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_calculate-subtree-diff/calculate-subtree-diff/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/subtree-manager/rpc_calculate-subtree-diff/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
                 <span class="block mt-1">RPC calculate-subtree-diff</span>

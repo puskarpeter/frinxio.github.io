@@ -28,12 +28,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696009918088" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696270762994" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696009918088" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696270762994" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696009918088" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696009918088" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696270762994" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696270762994" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -706,7 +706,7 @@ RPC.</li>
 <p>Already registered schema repositories can be listed using following
 request:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">curl -X GET \
+<pre class="language-bash"><code v-pre class="language-bash">curl -X GET \
   http://127.0.0.1:8181/rests/data/schema-resources:odl-nodes?content=nonconfig</code></pre>
 </doc-codeblock></div>
 <p>It should return list of ODL nodes in cluster with list of all loaded
@@ -871,7 +871,7 @@ schemas) at runtime.</p>
 name &#x27;example-repository&#x27;. The name of the provided repository must
 equal to name of the directory which contains YANG schemas.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">curl -X POST \
+<pre class="language-bash"><code v-pre class="language-bash">curl -X POST \
   http://127.0.0.1:8181/rests/operations/schema-resources:register-repository \
   -d '{
     &quot;input&quot;: {
@@ -921,7 +921,7 @@ netconf-connector.</p>
 <p>To update an existing netconf-connector you need to send following
 request to RESTCONF:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">curl -X PUT \
+<pre class="language-bash"><code v-pre class="language-bash">curl -X PUT \
   http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=topology-netconf/node=example \
   -d '{
       &quot;node&quot;: [
@@ -942,7 +942,7 @@ should result in a &#x27;2xx&#x27; response and the instance of netconf-connecto
 called &#x27;example&#x27; will be reconfigured to use username &#x27;bob&#x27; and password
 &#x27;passwd&#x27;. New configuration can be verified by executing:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">curl -X GET \
+<pre class="language-bash"><code v-pre class="language-bash">curl -X GET \
   http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=topology-netconf/node=example?content=config</code></pre>
 </doc-codeblock></div>
 <p>With new configuration, the old connection will be closed and a new one
@@ -959,7 +959,7 @@ NETCONF mount-point on NETCONF layer will be cleaned (both CONFIGURATION
 and OPERATIONAL data-store information). To do this, simply issue a
 request to following URL:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">curl -X DELETE \
+<pre class="language-bash"><code v-pre class="language-bash">curl -X DELETE \
   http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=topology-netconf/node=example</code></pre>
 </doc-codeblock></div>
 <p>The last element of the URL is the name of the mount-point.</p>
