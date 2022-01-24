@@ -28,11 +28,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696271349988" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696321961667" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696271349988" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696321961667" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696271349988" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696321961667" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696321961667" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -250,7 +251,6 @@ corresponds to directory name, the second identifier placed in brackets
 corresponds to module name. All modules are represented by &#x27;pom.xml&#x27;
 files.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">+ ios-xr (cli-units-ios-xr)
     + init (ios-xr-cli-init-unit)
 + junos (cli-units-junos)
@@ -328,8 +328,7 @@ next example with comments that describe CLI flavour parameters).</li>
 </ul>
 <p>Example: Implementation of JUNOS 17 native-CLI unit:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">public final class NativeCliUnit extends GenericCliNativeUnit {
+<pre class="language-java"><code v-pre class="language-java">public final class NativeCliUnit extends GenericCliNativeUnit {
 
     public NativeCliUnit(final TranslationUnitCollector registry, final DOMSchemaService domSchemaService,
                          final BindingNormalizedNodeSerializer mappingCodec) {
@@ -389,8 +388,7 @@ translation unit (the most usual scenario), then init unit must extend
 &#x27;AbstractUnitWithNativeSupport&#x27; and not just &#x27;AbstractUnit&#x27; abstract
 class.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">public class IosXrCliInitializerUnit extends AbstractUnitWithNativeSupport {
+<pre class="language-java"><code v-pre class="language-java">public class IosXrCliInitializerUnit extends AbstractUnitWithNativeSupport {
     /* ... */
 }</code></pre>
 </doc-codeblock></div>
@@ -408,7 +406,6 @@ consists only from YANG extensions that are declared in the
 import the same device-template model.</p>
 <p>Sample device-template model for IOS XR 5.* devices:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">module xr5-template {
     yang-version 1.1;
     namespace &quot;http://frinx.io/yang/native/xr5/template&quot;;
@@ -459,12 +456,25 @@ used for organization of YANG structure. The following subsections
 explain general structure of the native-CLI YANG model and application
 of different schema nodes for modelling of device configuration with
 examples.</p>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>Augmentations are currently not supported in native-CLI models (except
 the augmentations into UniConfig configuration container which is
 required).</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="structure">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#structure">#</doc-anchor-trigger>
@@ -474,7 +484,6 @@ required).</p>
 <p>The following YANG snippet shows structure that should all native-CLI
 YANG schemas follow (variable parts are marked by square brackets):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">module [device-type]-[entity]-clinative {
     yang-version &quot;1.1&quot;;
     namespace &quot;http://frinx.io/yang/native/[device-type]/[entity]&quot;;
@@ -531,12 +540,25 @@ when multiple root containers are lists are required. For each root
 grouping there must be a separate augmentation into &#x27;configuration&#x27;
 container.</li>
 </ul>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>Importing of the device-template model is not necessary at all - in
 that case, the default device template is applied - Cisco IOS XR
 template.</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="containers">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#containers">#</doc-anchor-trigger>
@@ -548,15 +570,13 @@ can have at least one child node but there is only one instance of
 configuration that is placed under this node. For example, let assume
 the following two lines in the XR 5.3.4 configuration of access-lists:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">ipv6 access-list ACL6-01
  10 remark &quot;This is just a test&quot;</code></pre>
 </doc-codeblock></div>
-<p>In this snippet, &#x27;ipv6&#x27; is modelled by container schema node with the
+<p>In this snippet, <strong>ipv6</strong> is modelled by container schema node with the
 same identifier, because &#x27;ipv6&#x27; command word is a root node and it can
-contain only single instance of list with identifier &#x27;access-list&#x27;:</p>
+contain only single instance of list with identifier <strong>access-list</strong>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">container ipv6 {
     list access-list {
         ...
@@ -566,12 +586,10 @@ contain only single instance of list with identifier &#x27;access-list&#x27;:</p
 <p>It is also possible to wrap multiple containers in a chain. For example,
 the following command line:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">ipv4 verify unicast source reachable-via any allow-self-ping</code></pre>
 </doc-codeblock></div>
 <p>can be modelled by following containers:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">container unicast {
     container source {
         container reachable-via {
@@ -595,7 +613,6 @@ are represented by one or multiple keys. Values of keys are represented
 by command nodes that follow list command word. For example, let
 consider following configuration of XR 5.3.4 interfaces:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">interface MgmtEth0/0/CPU0/0
  ipv4 address 192.168.1.214 255.255.255.0
 !
@@ -614,7 +631,6 @@ values, based on the example, are &#x27;MgmtEth0/0/CPU0/0&#x27;,
 GigabitEthernet0/0/0/0, GigabitEthernet0/0/0/1, and
 GigabitEthernet0/0/0/2).</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">list interface {
     key &quot;name&quot;;
 
@@ -630,7 +646,6 @@ view of association between configuration and YANG model.</p>
 <p>The second example presents a scenario in which a list with multiple
 keys must be used (IOS XR 5.3.4 access-lists):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">ipv4 access-list ACL02
  10 deny esp 10.0.0.0/8 any icmp-off
  20 deny icmp 172.16.1.0/24 172.16.2.0/24 echo
@@ -641,7 +656,6 @@ access-list entry that must be unique in scope of the single
 access-list. Because of this, access-list can be modelled by following
 list schema node:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">list access-list {
     key &quot;name sequence-number&quot;;
 
@@ -672,7 +686,6 @@ fail on device anyway.</p>
 <p>For example, the JUNOS 17 allows configuration of different interface
 types:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">ge-0/0/2 {
     hold-time up 100 down 80;
     disable;
@@ -693,7 +706,6 @@ on the bundle interfaces. Because of this logical separation, it has a
 sense to differ between physical and bundle interfaces in YANG (common
 settings can be placed directly under &#x27;interfaces&#x27; list):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">list interfaces {
     key &quot;name&quot;;
 
@@ -736,7 +748,6 @@ are currently supported:</p>
 (there is only one command word that identifies leaf). For example,
 JUNOS 17 interface &#x27;disable&#x27; command:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">interfaces {
     ge-0/0/2 {
         disable;
@@ -745,7 +756,6 @@ JUNOS 17 interface &#x27;disable&#x27; command:</p>
 </doc-codeblock></div>
 <p>can be modelled as leaf with empty type:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">leaf disable {
     type empty;
 }</code></pre>
@@ -757,13 +767,11 @@ a single string, boolean, or numeric value (types constrained by a
 range). The following commands can be modelled as one of these types
 (different JUNOS 17 damping settings):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">interfaces ge-0/0/0 damping half-life 20
 interfaces ge-0/0/0 damping suppress 100</code></pre>
 </doc-codeblock></div>
 <p>YANG representation of leaves &#x27;half-life&#x27; and &#x27;suppress&#x27;:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">leaf half-life {
     type uint32;
 }
@@ -776,7 +784,6 @@ strings assignable to the command, then the enumeration type should be
 used. Let consider the following variations of the &#x27;mode&#x27; command (IOS
 XR 5.3.4 LACP configuration):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">interface GigabitEthernet0/0/0/1 bundle mode active
 interface GigabitEthernet0/0/0/1 bundle mode passive
 interface GigabitEthernet0/0/0/1 bundle mode on</code></pre>
@@ -784,7 +791,6 @@ interface GigabitEthernet0/0/0/1 bundle mode on</code></pre>
 <p>In this example, &#x27;mode&#x27; is modelled as leaf with type enumeration with
 three possible values:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">leaf mode {
     type enumeration {
         enum active;
@@ -799,7 +805,6 @@ enumeration), but they are not mutually exclusive - different values can
 be combined in a chain of strings. Consider the following options how to
 configure Unicast Reverse Path Forwarding on IOS XR 5.3.4:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">ipv6 verify unicast source reachable-via any allow-self-ping allow-default
 ipv6 verify unicast source reachable-via any allow-default allow-self-ping
 ipv6 verify unicast source reachable-via any allow-self-ping
@@ -810,7 +815,6 @@ random combination of options &#x27;allow-self-ping&#x27; and &#x27;allow-defaul
 random ordering too. Because of this reason, leaf with identifier &#x27;any&#x27;
 has bits type:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">leaf any {
     type bits {
         bit allow-default;
@@ -825,7 +829,6 @@ that are too complicated to be represented by different YANG structures.
 Internally, &#x27;blob-data&#x27; is a type definition derived from string type.
 For example, JUNOS 17 firewall rules fulfils high complexity:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .bash}</div>
 <pre class="language-none"><code v-pre class="language-none">term rule-1 {
     from {
         address {
@@ -843,7 +846,6 @@ For example, JUNOS 17 firewall rules fulfils high complexity:</p>
 <p>Commands &#x27;from&#x27; and &#x27;then&#x27; can be represented by leaves with
 &#x27;blob-type&#x27;:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .text}</div>
 <pre class="language-none"><code v-pre class="language-none">import cli-native-extensions {
     prefix cne;
     revision-date &quot;2020-03-09&quot;;
@@ -867,20 +869,20 @@ leaf then {
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/developer-guide/cli-translation-unit/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/developer-guide/netconf-translation-unit/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">Implementing CLI Translation Unit</span>
+                <span class="block mt-1">NETCONF Unified Translation Unit</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/developer-guide/netconf-translation-unit/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/release-notes/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">NETCONF Unified Translation Unit</span>
+                <span class="block mt-1">Release notes</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -931,7 +933,7 @@ leaf then {
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Native-CLI translation units", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Native-CLI translation units", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
         <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f4b74451-b2eb-4560-acd3-af512e0b29d1";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     </body>
 </html>

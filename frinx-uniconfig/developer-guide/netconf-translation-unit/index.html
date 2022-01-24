@@ -28,11 +28,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696271349988" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696321961667" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696271349988" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696321961667" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696271349988" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696321961667" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696321961667" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -249,17 +250,16 @@ better
     </h2>
 </doc-anchor-target>
 <p>Translate unit class must implement interface
-<em>io.frinx.unitopo.registry.spi.TranslateUnit</em>. Naming convention for
+<strong>io.frinx.unitopo.registry.spi.TranslateUnit</strong>. Naming convention for
 translate unit class is just name Unit. Translate unit class is usually
 instantiated, initialized and closed from Blueprint.</p>
 <p>Implementation of TranslateUnit must be registered into
-<em>TranslationUnitCollector</em> and must provide set of supported underlay
+<strong>TranslationUnitCollector</strong> and must provide set of supported underlay
 YANG models. Snippet below shows registration of
 <a href="https://github.com/FRINXio/unitopo-units/blob/master/junos/junos-17/junos-17-interface-unit/src/main/kotlin/io/frinx/unitopo/unit/junos/interfaces/Unit.kt">Unit</a>
 for junos device version 17.3.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .kotlin}</div>
-<pre class="language-none"><code v-pre class="language-none">class Unit(private val registry: TranslationUnitCollector) : TranslateUnit {
+<pre class="language-kotlin"><code v-pre class="language-kotlin">class Unit(private val registry: TranslationUnitCollector) : TranslateUnit {
     private var reg: TranslationUnitCollector.Registration? = null
 
     fun init() {
@@ -288,14 +288,14 @@ translation unit. These YANG modules describes configuration of NETCONF
 capable device.</p>
 <p><strong>getRpcs(underlayAccess: UnderlayAccess): Set&gt;</strong></p>
 <p>Return RPC services implemented in the translation unit. Default
-implementation returns an emptySet. Parameter <em>underlayAccess</em>
+implementation returns an emptySet. Parameter <strong>underlayAccess</strong>
 represents object containing methods for communication with a device via
 NETCONF and should be passed to readers/writers.</p>
 <p><strong>provideHandlers(rRegistry: ModifiableReaderRegistryBuilder,</strong>
 <strong>wRegistry: ModifiableWriterRegistryBuilder,</strong> <strong>underlayAccess:
 UnderlayAccess): Unit</strong></p>
 <p>Handlers(readers/writers) need to be registered in this method.
-<em>underlayAccess</em> represents object containing methods for communication
+<strong>underlayAccess</strong> represents object containing methods for communication
 with a device via NETCONF and should be passed to readers/writers.</p>
 <p>How to register readers/writers is described in
 CLI Translation Unit &lt;cli-translation-unit&gt;</p>
@@ -360,11 +360,24 @@ ConfigBuilder) into device data (T) using .</li>
 </ul>
 </li>
 </ul>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>Naming of the methods should be unified in order to be easily parsed
 by auto-generated documentation.</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="writers">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#writers">#</doc-anchor-trigger>
@@ -373,14 +386,27 @@ by auto-generated documentation.</p>
 </doc-anchor-target>
 <p>A writer needs to implement all 3 methods: Write, Update, Delete in
 order to fully support default rollback mechanism of the framework</p>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>Time showed that update like 1. delete, 2. write is anti-pattern and
 should not be used. There is just one case where it is necessary: when
 re-writing list entry, you must first delete the previous entry, then
 write the new one, otherwise the previous entry would still be present
 and the new entry will be added to the list.</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 <p>A writer can properly work only if there is a reader for the same
 composite node.</p>
 <p>The framework provides safe methods to use when handling data on device:</p>
@@ -436,20 +462,20 @@ data into device specific data (T)</li>
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/developer-guide/native-cli-units/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/developer-guide/cli-translation-unit/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">Native-CLI translation units</span>
+                <span class="block mt-1">Implementing CLI Translation Unit</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/developer-guide/open-config-to-device-config-mapping/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/developer-guide/native-cli-units/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">OpenConfig to device config mapping</span>
+                <span class="block mt-1">Native-CLI translation units</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -500,7 +526,7 @@ data into device specific data (T)</li>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "NETCONF Unified Translation Unit", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "NETCONF Unified Translation Unit", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
         <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f4b74451-b2eb-4560-acd3-af512e0b29d1";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     </body>
 </html>

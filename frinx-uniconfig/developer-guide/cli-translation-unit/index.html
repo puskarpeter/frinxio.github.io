@@ -18,23 +18,24 @@
     <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/developer-guide/cli-translation-unit/">
     <meta property="og:title" content="Implementing CLI Translation Unit | Frinx Docs">
     <meta property="og:description" content="CLI Translation units are located in https://github.com/FRINXio/cli-units repository. Java is used in CLI">
-    <meta property="og:image" content="https://docs.frinx.io/frinx-uniconfig/developer-guide/process-of-reading-of-cli-configuration-from-device.png">
+    <meta property="og:image" content="https://docs.frinx.io/frinx-uniconfig/developer-guide/cli-translation-unit/process-of-reading-of-cli-configuration-from-device.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/developer-guide/cli-translation-unit/">
     <meta property="twitter:title" content="Implementing CLI Translation Unit | Frinx Docs">
     <meta property="twitter:description" content="CLI Translation units are located in https://github.com/FRINXio/cli-units repository. Java is used in CLI">
-    <meta property="twitter:image" content="https://docs.frinx.io/frinx-uniconfig/developer-guide/process-of-reading-of-cli-configuration-from-device.png">
+    <meta property="twitter:image" content="https://docs.frinx.io/frinx-uniconfig/developer-guide/cli-translation-unit/process-of-reading-of-cli-configuration-from-device.png">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696271349988" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696321961667" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696271349988" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696321961667" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696271349988" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696321961667" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696321961667" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -247,15 +248,14 @@ translation units.</p>
     </h2>
 </doc-anchor-target>
 <p>Init translation unit does not contain readers and writers but it only
-contains implementation of <em>TranslateUnit</em>. There should be only one
+contains implementation of <strong>TranslateUnit</strong>. There should be only one
 init translation unit per device type. Purpose of the init TU is to
 setup CLI prompt and define rollback strategy.</p>
-<p>The implementation of <em>TranslateUnit</em> needs to override methods:</p>
+<p>The implementation of <strong>TranslateUnit</strong> needs to override methods:</p>
 <p><strong>SessionInitializationStrategy getInitializer(@Nonnull final
 RemoteDeviceId id, @Nonnull final CliNode cliNodeConfiguration)</strong></p>
 <p>Implement and return device specific <em>SessionInitializationStrategy</em>
 where:</p>
-<blockquote>
 <ul>
 <li>Setup device CLI terminal with attributes like width and length
 allowing to display infinite output.</li>
@@ -263,7 +263,6 @@ allowing to display infinite output.</li>
 reader and writer gets CLI prompt in this state (e.g. EXEC mode
 for IOS, config mode for IOS-XR, cli mode for Junos)</li>
 </ul>
-</blockquote>
 <p>These methods may be overridden if necessary:</p>
 <p><strong>getPreCommitHook()</strong> - method that is invoked before actual commit is
 written into device. For example this method can enter configuration
@@ -285,18 +284,17 @@ be returned by the device after issuing commit.</p>
     </h2>
 </doc-anchor-target>
 <p>Translate unit class must implement interface
-<em>io.frinx.cli.unit.utils.AbstractUnit</em>. Naming convention for translate
+<strong>io.frinx.cli.unit.utils.AbstractUnit</strong>. Naming convention for translate
 unit class is device-type+openconfig-domain+Unit (e.g.
 IosXrInterfaceUnit). Translate unit class is usually instantiated,
 initialized and closed from Blueprint.</p>
 <p>Implementation of TranslateUnit must be registered into
-<em>TranslationUnitCollector</em> and must specify device type and device
+<strong>TranslationUnitCollector</strong> and must specify device type and device
 version during registration. Snippet below shows registration of
 <a href="https://github.com/FRINXio/cli-units/blob/master/ios-xr/interface/src/main/java/io/frinx/cli/unit/iosxr/ifc/IosXRInterfaceUnit.java">IosXRInterfaceUnit</a>
 for device type &quot;ios xr&quot; all versions.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">private final TranslationUnitCollector registry;
+<pre class="language-java"><code v-pre class="language-java">private final TranslationUnitCollector registry;
 private TranslationUnitCollector.Registration reg;
 
 public IosXRInterfaceUnit(@Nonnull final TranslationUnitCollector registry) {
@@ -333,7 +331,7 @@ handlers(readers/writers). Default implementation returns empty Set if
 no handlers are implemented.</p>
 <p><strong>Set getRpcs(@Nonnull Context context)</strong></p>
 <p>Return RPC services implemented in the translation unit. Parameter
-<em>context.getTransport()</em> returns <em>Cli</em> object containing methods for
+<strong>context.getTransport()</strong> returns <strong>Cli</strong> object containing methods for
 communication with a device via CLI - may need to be passed to RPC
 implementations. Default implementation returns empty Set.</p>
 <p><strong>Set&lt;Device&gt; getSupportedVersions()</strong></p>
@@ -341,20 +339,19 @@ implementations. Default implementation returns empty Set.</p>
 handler.</p>
 <p><strong>void provideHandlers()</strong></p>
 <p>Handlers(readers/writers) need to be registered in this method.
-Parameter <em>context.getTransport()</em> returns <em>Cli</em> object containing
+Parameter <strong>context.getTransport()</strong> returns <strong>Cli</strong> object containing
 methods for communication with a device via CLI - should be passed to
 readers/writers.</p>
 <p>This method should also registers for general Openconfig checks:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">CheckRegistry checkRegistry = ChecksMap.getOpenconfigCheckRegistry();
+<pre class="language-java"><code v-pre class="language-java">CheckRegistry checkRegistry = ChecksMap.getOpenconfigCheckRegistry();
 readRegistry.setCheckRegistry(checkRegistry);
 writeRegistry.setCheckRegistry(checkRegistry);</code></pre>
 </doc-codeblock></div>
 <p>Instance-identifier in generic reader/writer must be without keys
 pointing to the target composite node used in implemented reader/writer.</p>
 <p>Instance-identifiers for YANG container and list (not for augmentations
-and nodes behind augmentations) are automatically generated to <em>IIDs</em>
+and nodes behind augmentations) are automatically generated to <strong>IIDs</strong>
 class (used in examples bellow) during build of openconfig project.</p>
 <doc-anchor-target id="ordering-of-handlers">
     <h3>
@@ -364,102 +361,120 @@ class (used in examples bellow) during build of openconfig project.</p>
 </doc-anchor-target>
 <p>Writers are stored in a linear structure and are invoked in order of
 registration. When registering a writer a relationship with another
-writer or set of writers can be expressed using <em>addBefore, addAfter,
-subtreeAddBefore, subtreeAddAfter</em> methods. E.g. InterfaceWriter and
+writer or set of writers can be expressed using <strong>addBefore, addAfter,
+subtreeAddBefore, subtreeAddAfter</strong> methods. E.g. InterfaceWriter and
 VRFInterfaceWriter should have a relationship: InterfaceWriter -&gt;
 VRFInterfaceWriter so that first an interface is created and only then
 assigned to VRF.</p>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>VRF writer should be between them. If the order is not expressed
 during registration, commands might be executed on device in an
 unpredictable/invalid order.</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 <p>The following sample shows a CLI translation unit with dependency
 between 2 writers. The unit is dedicated for interface configuration on
 a Cisco IOS device.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .console}</div>
 <pre class="language-none"><code v-pre class="language-none">R2(config)#interface loopback 1
 R2(config-if)#ip address 10.0.0.1 255.255.255.255</code></pre>
 </doc-codeblock></div>
-<p>As the example shows, the <em>ip address</em> command must be executed after
-the <em>interface</em> command.</p>
-<p>Registration of Ipv4ConfigWriter by using the <em>addAfter</em> method ensures
+<p>As the example shows, the <strong>ip address</strong> command must be executed after
+the <strong>interface</strong> command.</p>
+<p>Registration of Ipv4ConfigWriter by using the <strong>addAfter</strong> method ensures
 that the OpenConfig ip address data is translated after OpenConfig
 interface data. That means CLI commands are executed in the desired
 order.</p>
 <p><strong>rRegistry.add</strong></p>
-<p>Use when common <em>GenericConfigListReader</em>, <em>GenericConfigReader</em>,
-<em>GenericOperListReader</em> or <em>GenericOperReader</em> need to be registered.</p>
+<p>Use when common <strong>GenericConfigListReader</strong>, <strong>GenericConfigReader</strong>,
+*<em>GenericOperListReader</em> or <strong>GenericOperReader</strong> need to be registered.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">rRegistry.add(IIDs.IN_INTERFACE, new InterfaceReader(cli));</code></pre>
+<pre class="language-java"><code v-pre class="language-java">rRegistry.add(IIDs.IN_INTERFACE, new InterfaceReader(cli));</code></pre>
 </doc-codeblock></div>
 <p><strong>rRegistry.addNoop</strong></p>
 <p>Use to register noop writers</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">rRegistry.addNoop(IIDs.IN_IN_CONFIG);</code></pre>
+<pre class="language-java"><code v-pre class="language-java">rRegistry.addNoop(IIDs.IN_IN_CONFIG);</code></pre>
 </doc-codeblock></div>
 <p><strong>rRegistry.subtreeAdd</strong></p>
 <p>Use when a reader implementation also fills composite child nodes of
-target composite node. Method <em>subtreeAdd</em> requires a set of IIDs for
+target composite node. Method <strong>subtreeAdd</strong> requires a set of IIDs for
 all handled children.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">rRegistry.subtreeAdd(IIDs.IN_IN_AUG_INTERFACE1_ET_CONFIG, new EthernetConfigReader(cli),
+<pre class="language-java"><code v-pre class="language-java">rRegistry.subtreeAdd(IIDs.IN_IN_AUG_INTERFACE1_ET_CONFIG, new EthernetConfigReader(cli),
     Sets.newHashSet(IIDs.IN_IN_ET_CO_AUG_CONFIG1,
         io.frinx.openconfig.openconfig.lacp.IIDs.IN_IN_ET_CO_AUG_LACPETHCONFIGAUG);</code></pre>
 </doc-codeblock></div>
 <p><strong>wRegistry.add</strong></p>
-<p>Use when common <em>GenericListWriter</em> or <em>GenericWriter</em> are registered.</p>
+<p>Use when common <strong>GenericListWriter</strong> or <strong>GenericWriter</strong> are registered.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">wRegistry.add(IIDs.IN_IN_CONFIG, new InterfaceConfigWriter(cli));</code></pre>
+<pre class="language-java"><code v-pre class="language-java">wRegistry.add(IIDs.IN_IN_CONFIG, new InterfaceConfigWriter(cli));</code></pre>
 </doc-codeblock></div>
 <p><strong>wRegistry.subtreeAdd</strong></p>
 <p>Use for writers handling data of whole composite node subtrees. This
 ensures that if only a child node is updated, the writer gets triggered.
-Method <em>subtreeAdd</em> requires a set of IIDs for all handled children, the
+Method <strong>subtreeAdd</strong> requires a set of IIDs for all handled children, the
 IIDs must start from the reader itself, not from root.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">wRegistry.subtreeAddAfter(IIDs.IN_IN_AUG_INTERFACE1_ET_CONFIG, new EthernetConfigWriter(cli),
+<pre class="language-java"><code v-pre class="language-java">wRegistry.subtreeAddAfter(IIDs.IN_IN_AUG_INTERFACE1_ET_CONFIG, new EthernetConfigWriter(cli),
     Sets.newHashSet(IIDs.IN_IN_ET_CO_AUG_CONFIG1,
         io.frinx.openconfig.openconfig.lacp.IIDs.IN_IN_ET_CO_AUG_LACPETHCONFIGAUG),
     IIDs.IN_IN_CONFIG);</code></pre>
 </doc-codeblock></div>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>This example uses method subtreeAddAfter instead of subtreeAdd. Last
 parameter in this method shows dependency on writer registered under
 IIDs.IN_IN_CONFIG.</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="device-registration">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#device-registration">#</doc-anchor-trigger>
         <span>Device registration</span>
     </h3>
 </doc-anchor-target>
-<p>In TranslateUnit we had just created, <em>e.g. MplsUnitXR4.java</em>, we have
+<p>In TranslateUnit we had just created, <strong>e.g. MplsUnitXR4.java</strong>, we have
 to register device as a constant located
-<em>../iosxr/init/IosXrDevices.java</em> containing device type and version as
+<strong>../iosxr/init/IosXrDevices.java</strong> containing device type and version as
 described in TranslateUnit &lt;cli-translation-unit-translate-unit&gt;
 documentation.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">public void init() {
+<pre class="language-java"><code v-pre class="language-java">public void init() {
     reg = registry.registerTranslateUnit(IOS_4, this);
 }</code></pre>
 </doc-codeblock></div>
 <p>This unit can reuse all writers/readers from existing ones, except the
 writer (or other handler) we want to alter or create (in our example
 writer for tunnel configuration). We have to create a new writer with
-desired behaviour and add it into <em>provideWriters</em> method.</p>
+desired behaviour and add it into <strong>provideWriters</strong> method.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .java}</div>
-<pre class="language-none"><code v-pre class="language-none">private void provideWriters(ModifiableWriterRegistryBuilder wRegistry, Cli cli) {
+<pre class="language-java"><code v-pre class="language-java">private void provideWriters(ModifiableWriterRegistryBuilder wRegistry, Cli cli) {
     wRegistry.add(IIDs.NE_NE_MP_LS_CO_TU_TU_CONFIG, new TunnelConfigWriterXR4(cli));
 }</code></pre>
 </doc-codeblock></div>
@@ -474,7 +489,6 @@ from a device</p>
 <p>There are 2 types of readers: Reader and ListReader. Reader can be used
 to handle container or augmentation nodes and ListReader should handle
 list nodes from YANG.</p>
-<blockquote>
 <ul>
 <li>Both types need to implement <strong>readCurrentAttributes</strong> to fill the
 builder with appropriate values</li>
@@ -483,11 +497,10 @@ retrieves a key for each item to be present in current list. After
 the list is received, framework will invoke
 <strong>readCurrentAttributes</strong> for each item from getAllIds</li>
 </ul>
-</blockquote>
 <p>Readers should always use overloaded <strong>blockingRead</strong> method which takes
 in the ReadContext since that method performs caching internally</p>
 <p><strong>Use full version of commands</strong> e.g. <em>show running-config interface</em>
-instead of <em>sh run int</em></p>
+instead of <strong>sh run int</strong></p>
 <doc-anchor-target id="reading-of-cli-and-device-configuration">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#reading-of-cli-and-device-configuration">#</doc-anchor-trigger>
@@ -498,9 +511,7 @@ instead of <em>sh run int</em></p>
 sending read commands to the device and outputs are cached. This process
 is shown below.</p>
 <p><figure class="content-center">
-    <a href="../process-of-reading-of-cli-configuration-from-device.png">
-        <img src="../process-of-reading-of-cli-configuration-from-device.png" alt="Reading CLI conf from device" />
-    </a>
+    <img src="process-of-reading-of-cli-configuration-from-device.png" alt="Reading CLI conf from device" />
     <figcaption class="caption">Reading CLI conf from device</figcaption>
 </figure>
 </p>
@@ -531,9 +542,7 @@ first time</li>
 </li>
 </ol>
 <p><figure class="content-center">
-    <a href="../reading-of-configuration-from-cli-network-device-different-scenarios.png">
-        <img src="../reading-of-configuration-from-cli-network-device-different-scenarios.png" alt="Different scenarios" />
-    </a>
+    <img src="reading-of-configuration-from-cli-network-device-different-scenarios.png" alt="Different scenarios" />
     <figcaption class="caption">Different scenarios</figcaption>
 </figure>
 </p>
@@ -565,9 +574,9 @@ need to be invoked when reading specific node in YANG.</p>
 it&#x27;s type. All child readers need to implement a check when the
 particular reader should be invoked or the parent reader should move on
 to the next reader.</p>
-<p>For example child reader for bgp (located under <em>protocol</em>) needs to
-check if <em>identifier</em> in <em>protocol</em> has value <em>BGP</em>. Otherwise reader
-for bgp will be invoked even if <em>protocol identifier</em> is <em>OSPF</em>.</p>
+<p>For example child reader for bgp (located under <strong>protocol</strong>) needs to
+check if <strong>identifier</strong> in <strong>protocol</strong> has value <strong>BGP</strong>. Otherwise reader
+for bgp will be invoked even if <strong>protocol identifier</strong> is <strong>OSPF</strong>.</p>
 <doc-anchor-target id="util-classes">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#util-classes">#</doc-anchor-trigger>
@@ -584,12 +593,12 @@ plaintext to java object builder</p>
 </doc-anchor-target>
 <p><strong>Use</strong> as <strong>specific regular expressions</strong> when parsing CLI output as
 possible.</p>
-<p><strong>For Cisco CLI devices</strong> avoid using <em>section</em> and other advanced
+<p><strong>For Cisco CLI devices</strong> avoid using <strong>section</strong> and other advanced
 formatting parameters. <strong>Only</strong> <code v-pre>include</code>, <code v-pre>exclude</code> <strong>and</strong> <code v-pre>begin</code>
 <strong>are allowed</strong>.</p>
 <p>Use CONFIG data as the source of truth when parsing information from
 device. Except when parsing state containers (or containers explicitly
-marked as <em>config false</em>).</p>
+marked as <strong>config false</strong>).</p>
 <ul>
 <li>I.e. use <code v-pre>show running-config | include router ospf</code> instead of
 <code v-pre>sh ospf</code> when retrieving ospf routers list.</li>
@@ -603,12 +612,10 @@ it is difficult to extract lines and their relationships: i.e. when
 parsing configured BGP neighbors per address family following command
 can be used:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .console}</div>
 <pre class="language-none"><code v-pre class="language-none">show running-config | include ^router bgp | ^ address-family |^ neighbor``</code></pre>
 </doc-codeblock></div>
 <p>which results in:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">{.sourceCode .console}</div>
 <pre class="language-none"><code v-pre class="language-none">router bgp 65000
     address-family ipv4 vrf vrf1
         neighbor 1.2.3.4 remote-as 65000&gt;
@@ -644,11 +651,24 @@ and they are used to get the regular expression needed to parse
 output of the command (eg. in case of interface reader, you will
 create methods getDescriptionLine, getShutdownLine etc.)</li>
 </ul>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>Naming of the methods should be unified in order to be easily parsed
 by auto-generated documentation.</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="writers">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#writers">#</doc-anchor-trigger>
@@ -657,14 +677,27 @@ by auto-generated documentation.</p>
 </doc-anchor-target>
 <p>A writer needs to implement all 3 methods: Write, Update, Delete in
 order to fully support default rollback mechanism of the framework</p>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>Time showed that update like 1. delete, 2. write is anti-pattern and
 should not be used. There is just one case where it is necessary: when
 re-writing list entry, you must first delete the previous entry, then
 write the new one, otherwise the previous entry would still be present
 and the new entry will be added to the list.</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 <p>A writer can properly work only if there is a reader for the same
 composite node.</p>
 <p>A writer should check whether the command it executed was handled by the
@@ -716,11 +749,24 @@ device.</li>
 <li><strong>String deleteTemplate(Config data)</strong> this method returns Chunk
 template used for deleting data from device.</li>
 </ul>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>If updating data is done differently than writing new data, method
 <strong>String writeTemplate(Config data)</strong> might be used as well.</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="chunk-templates">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#chunk-templates">#</doc-anchor-trigger>
@@ -733,17 +779,17 @@ manipulation with data. There is now a new filter called <em>update</em>. It&#x2
 usage is following:</p>
 <p><strong>&quot;{$data|update(mtu,mtu $data.mtu, no mtu)}&quot;</strong></p>
 <ul>
-<li><em>$data</em> represents the data structure on which we check if it was
+<li><strong>$data</strong> represents the data structure on which we check if it was
 updated from the previous state.</li>
-<li><em>mtu</em> first argument represents the <strong>name</strong> of the field that
+<li><strong>mtu</strong> first argument represents the <strong>name</strong> of the field that
 should be checked within the $data</li>
-<li><em>$data.mtu</em> second argument represents the actual string that will
+<li><strong>$data.mtu</strong> second argument represents the actual string that will
 be sent to the device if the value of the field named in first
 argument was changed or didn&#x27;t exist before</li>
-<li><em>no mtu</em> third argument represents the actual string that will be
+<li><strong>no mtu</strong> third argument represents the actual string that will be
 sent to the device if the value of the field named in first argument
 was deleted</li>
-<li>optional <em>true</em> fourth argument, if present, lets the filter know it
+<li>optional <strong>true</strong> fourth argument, if present, lets the filter know it
 should send <strong>both</strong> outputs to the device, first the delete string
 (third argument) then the update string (second argument)</li>
 </ul>
@@ -753,14 +799,27 @@ value did not change.</p>
 method (format template) with one pair of the arguments being <em>&quot;before&quot;,
 before</em> to let the template know what data represents the previous
 state.</p>
-<blockquote>
-<p><strong>note</strong></p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
 <p>Unfortunately, Opendaylight generates boolean fields instead of
 Boolean and Chunk does not work with boolean fields in the same way as
 any other object fields. Therefore for boolean values (eg. shutdown),
 you cannot use update filter and checking for changes needs to be done
 in a traditional way.</p>
-</blockquote>
+        </div>
+    </div>
+</div>
 
 
 
@@ -782,10 +841,10 @@ in a traditional way.</p>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/developer-guide/native-cli-units/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/developer-guide/netconf-translation-unit/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Native-CLI translation units</span>
+                <span class="block mt-1">NETCONF Unified Translation Unit</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -836,7 +895,7 @@ in a traditional way.</p>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Implementing CLI Translation Unit", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Implementing CLI Translation Unit", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
         <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f4b74451-b2eb-4560-acd3-af512e0b29d1";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     </body>
 </html>
