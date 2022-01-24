@@ -1,8 +1,10 @@
-OpenConfig to device config mapping
-===================================
+---
+order: 5
+---
 
-Finding mapping between device and the model
---------------------------------------------
+# OpenConfig to device config mapping
+
+## Finding mapping between device and the model
 
 Preferred YANG models for device config and operational data are
 [OpenConfig
@@ -26,9 +28,9 @@ whether such a model doesn't already exist. There are plenty of YANG
 models available, modeling many aspects of network device management.
 The biggest groups of models are:
 
--   OpenConfig
+- OpenConfig
     <https://github.com/openconfig/public/tree/master/release/models>
--   IETF <https://github.com/YangModels/yang/tree/master/standard/ietf>
+- IETF <https://github.com/YangModels/yang/tree/master/standard/ietf>
 
 It is usually wiser to choose an existing YANG model instead of
 developing a custom one. Also, it is very important to check for
@@ -36,10 +38,9 @@ existing units already implemented for a device. If there are any, the
 best approach will most likely be to use YANG models from the same
 family as existing units use.
 
-Existing documentation
-----------------------
+## Existing documentation
 
 There is translation-units-docs
-page \<https://github.com/FRINXio/translation-units-docs\> as a single
+[page](https://github.com/FRINXio/translation-units-docs) as a single
 point of truth for mapping. **Use** `{{ip}}` **notation** for variables
 in the templates. This notation is postman compatible.

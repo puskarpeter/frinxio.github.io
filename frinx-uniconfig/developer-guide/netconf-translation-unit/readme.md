@@ -1,5 +1,8 @@
-NETCONF Unified Translation Unit
-================================
+---
+order: 2
+---
+
+# NETCONF Unified Translation Unit
 
 Unified translation units are located in
 <https://github.com/FRINXio/unitopo-units> repository.
@@ -10,21 +13,20 @@ aliases](https://kotlinlang.org/docs/reference/type-aliases.html) and
 better
 [null-safety](https://kotlinlang.org/docs/reference/null-safety.html).
 
-TranslateUnit
--------------
+## TranslateUnit
 
 Translate unit class must implement interface
-*io.frinx.unitopo.registry.spi.TranslateUnit*. Naming convention for
+**io.frinx.unitopo.registry.spi.TranslateUnit**. Naming convention for
 translate unit class is just name Unit. Translate unit class is usually
 instantiated, initialized and closed from Blueprint.
 
 Implementation of TranslateUnit must be registered into
-*TranslationUnitCollector* and must provide set of supported underlay
+**TranslationUnitCollector** and must provide set of supported underlay
 YANG models. Snippet below shows registration of
 [Unit](https://github.com/FRINXio/unitopo-units/blob/master/junos/junos-17/junos-17-interface-unit/src/main/kotlin/io/frinx/unitopo/unit/junos/interfaces/Unit.kt)
 for junos device version 17.3.
 
-``` {.sourceCode .kotlin}
+```kotlin
 class Unit(private val registry: TranslationUnitCollector) : TranslateUnit {
     private var reg: TranslationUnitCollector.Registration? = null
 
@@ -63,7 +65,7 @@ capable device.
 **getRpcs(underlayAccess: UnderlayAccess): Set\>**
 
 Return RPC services implemented in the translation unit. Default
-implementation returns an emptySet. Parameter *underlayAccess*
+implementation returns an emptySet. Parameter **underlayAccess**
 represents object containing methods for communication with a device via
 NETCONF and should be passed to readers/writers.
 
@@ -72,14 +74,13 @@ NETCONF and should be passed to readers/writers.
 UnderlayAccess): Unit**
 
 Handlers(readers/writers) need to be registered in this method.
-*underlayAccess* represents object containing methods for communication
+**underlayAccess** represents object containing methods for communication
 with a device via NETCONF and should be passed to readers/writers.
 
 How to register readers/writers is described in
 CLI Translation Unit \<cli-translation-unit\>
 
-Readers
--------
+## Readers
 
 Readers are handlers responsible for reading and parsing the data coming
 from a device.
@@ -88,9 +89,9 @@ There are 2 types of readers: Reader and ListReader. Reader can be used
 to handle container or argument nodes and ListReader should handle list
 nodes from YANG.
 
--   Both types need to implement **readCurrentAttributes** to fill the
+- Both types need to implement **readCurrentAttributes** to fill the
     builder with appropriate values
--   ListReader needs to also implement **getAllIds()** where it
+- ListReader needs to also implement **getAllIds()** where it
     retrieves a key for each item to be present in current list. After
     the list is received, framework will invoke
     **readCurrentAttributes** for each item from getAllIds
@@ -121,46 +122,45 @@ Each base reader for netconf readers should be generic. The generic
 marks the data element within device YANG that is being parsed into. The
 base reader should contain abstract methods:
 
--   **fun readIid(\<args\>): InstanceIdentifier\<T\>** - each child
+- **fun readIid(\<args\>): InstanceIdentifier\<T\>** - each child
     reader should fill in the device specific InstanceIdentifier that
     points to the information needed for this reader. Arguments may vary
     and they are used to be more specific IID (e.g. when creating an IID
     to gather information about a specific interface, you may want to
     pass interface name as argument).
--   **fun readData(data: T?, configBuilder: ConfigBuilder, \<args\>)**
+- **fun readData(data: T?, configBuilder: ConfigBuilder, \<args\>)**
     - this method is used to transform OpenConfig data (contained in
     ConfigBuilder) into device data (T) using .
 
-> **note**
->
-> Naming of the methods should be unified in order to be easily parsed
-> by auto-generated documentation.
+!!!
+Naming of the methods should be unified in order to be easily parsed
+by auto-generated documentation.
+!!!
 
-Writers
--------
+## Writers
 
 A writer needs to implement all 3 methods: Write, Update, Delete in
 order to fully support default rollback mechanism of the framework
 
-> **note**
->
-> Time showed that update like 1. delete, 2. write is anti-pattern and
-> should not be used. There is just one case where it is necessary: when
-> re-writing list entry, you must first delete the previous entry, then
-> write the new one, otherwise the previous entry would still be present
-> and the new entry will be added to the list.
+!!!
+Time showed that update like 1. delete, 2. write is anti-pattern and
+should not be used. There is just one case where it is necessary: when
+re-writing list entry, you must first delete the previous entry, then
+write the new one, otherwise the previous entry would still be present
+and the new entry will be added to the list.
+!!!
 
 A writer can properly work only if there is a reader for the same
 composite node.
 
 The framework provides safe methods to use when handling data on device:
 
--   **safePut** deletes or adds managed data. Does not touch data that
+- **safePut** deletes or adds managed data. Does not touch data that
     was previously on the device and is not handled by the writer.
--   **safeMerge** stores just the changed data into device. Does not
+- **safeMerge** stores just the changed data into device. Does not
     touch data that was previously on the device and is not handled by
     the writer.
--   **safeDelete** removes data from the device only if the managed node
+- **safeDelete** removes data from the device only if the managed node
     does not contain any other information (even one not handled by the
     writer)
 

@@ -1,18 +1,18 @@
-Translation Units Documentation for FRINX Uniconfig
-===================================================
+---
+order: 6
+---
 
-Auto-generated documentation
-----------------------------
+# Translation Units Documentation for FRINX Uniconfig
+
+## Auto-generated documentation
 
 A documentation to translation-units that is generated automatically
-from the source code and javadocs can be found here:
-[](https://frinxio.github.io/translation-units-docs/) This documentation
-is useful to check actual implementations, whether a functionality is
+from the source code and javadocs can be found [here](https://frinxio.github.io/translation-units-docs/). 
+This documentation is useful to check actual implementations, whether a functionality is
 implemented for a particular device and by which protocol (netconf or
 cli).
 
-Manual documentation
---------------------
+## Manual documentation
 
 [This repository](https://github.com/FRINXio/translation-units-docs)
 contains documentation for all available translation units. A
