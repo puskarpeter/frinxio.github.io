@@ -30,12 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696601608525" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696602973678" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696601608525" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696602973678" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696601608525" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696601608525" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696602973678" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696602973678" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -284,10 +284,14 @@ container. Note that build-and-commit model is enabled if
     */
     &quot;uniconfigTransactionEnabled&quot;: true,
     /*
+    Time after transaction can be closed [seconds] by transaction cleaner.
+    */
+    &quot;transactionIdleTimeOut&quot;: 300,
+    /*
     Maximum transaction age before it can be evicted from transaction registry [seconds].
     Configuring '0' disables cleaning of Uniconfig transactions.
     */
-    &quot;maxTransactionAge&quot;: 600,
+    &quot;maxTransactionAge&quot;: 1800,
     /*
     Interval at which expired transactions are closed and cleaned [seconds].
     Expired transaction: transaction which age exceeds 'maxTransactionAge' setting.
@@ -780,10 +784,12 @@ JSON body containing error message.</p>
     </h2>
 </doc-anchor-target>
 <p>Transaction cleaner is used for automatic closing of transactions that
-are open longer then specified timeout value (&#x27;maxTransactionAge&#x27;
-setting in the configuration). This mechanism effectively suppresses
-application-level errors - open transactions are not closed at the end
-of the workflow.</p>
+are open longer then specified timeout value (&#x27;transactionIdleTimeOut&#x27;
+or &#x27;maxTransactionAge&#x27; setting in the configuration). Transaction resets
+her time setting &#x27;transactionIdleTimeOut&#x27; after invoking CRUD, RPC operation,
+and is still valid  for time specified in value of setting. This mechanism
+effectively suppresses application-level errors - open transactions are not
+closed at the end of the workflow.</p>
 <p>Next sequence diagram describes cleaning process. Referenced diagram
 &#x27;Close transaction&#x27; is placed in the previous &#x27;Closing transaction&#x27;
 section.</p>
