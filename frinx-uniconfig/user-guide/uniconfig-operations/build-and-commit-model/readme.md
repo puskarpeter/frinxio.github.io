@@ -40,10 +40,14 @@ container. Note that build-and-commit model is enabled if
     */
     "uniconfigTransactionEnabled": true,
     /*
+    Time after transaction can be closed [seconds] by transaction cleaner.
+    */
+    "transactionIdleTimeOut": 300,
+    /*
     Maximum transaction age before it can be evicted from transaction registry [seconds].
     Configuring '0' disables cleaning of Uniconfig transactions.
     */
-    "maxTransactionAge": 600,
+    "maxTransactionAge": 1800,
     /*
     Interval at which expired transactions are closed and cleaned [seconds].
     Expired transaction: transaction which age exceeds 'maxTransactionAge' setting.
@@ -462,10 +466,12 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 ## Transaction cleaner
 
 Transaction cleaner is used for automatic closing of transactions that
-are open longer then specified timeout value ('maxTransactionAge'
-setting in the configuration). This mechanism effectively suppresses
-application-level errors - open transactions are not closed at the end
-of the workflow.
+are open longer then specified timeout value ('transactionIdleTimeOut' 
+or 'maxTransactionAge' setting in the configuration). Transaction resets 
+her time setting 'transactionIdleTimeOut' after invoking CRUD, RPC operation, 
+and is still valid  for time specified in value of setting. This mechanism 
+effectively suppresses application-level errors - open transactions are not 
+closed at the end of the workflow.
 
 Next sequence diagram describes cleaning process. Referenced diagram
 'Close transaction' is placed in the previous 'Closing transaction'
