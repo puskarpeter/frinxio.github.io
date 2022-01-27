@@ -35,7 +35,7 @@ Only 1 node with the same node-id can be installed on UniConfig layer.
 
 It is synchronous: it succeeds only after node is successfully installed
 it fails in other cases – **max-connection-attempts** is automatically
-set to value '1', if different value is not provided in RPC input.
+set to value '1', if different value is not provided in RPC input or in database.
 
 Following sections provide deeper explanation of parameters needed for
 installation, along with example install requests.
@@ -43,6 +43,82 @@ installation, along with example install requests.
 !!!
 Overview of our OpenAPI along with all parameters and expected returns [can be found here](https://app.swaggerhub.com/apis-docs/Frinx/uniconfig/latest#/connection-manager/rpc_connection-manager%3Ainstall-node).
 !!!
+
+## Default parameters
+All install parameters (CLI/NETCONF) are set in database when Uniconfig is initializing. 
+Values of these parameters are equal to specific yang model default values. 
+These parameters are used when they are missing in RPC request.
+
+Priority of using install parameters : 
+1. Parameter set in install RPC request
+2. Parameter set in database
+3. Default parameter from yang model
+
+Default parameters can be managed (put/read/delete) by user using RESTCONF/Uniconfig-shell.
+
+**RPC request - CLI default parameters:**
+
+```
+REST
+    PUT
+URL
+    http://localhost:8181/rests/data/cli-topology:default-parameters
+HEAD
+    Accept
+        application/json
+    Content-Type
+        application/json
+
+BODY
+{
+    "cli-topology:default-parameters" : {
+        "cli-topology:max-connection-attempts": 3,
+        "cli-topology:max-reconnection-attempts": 3,
+        "cli-topology:keepalive-delay" : 60,
+        "cli-topology:keepalive-timeout": 60,
+        "cli-topology:keepalive-initial-timeout": 120,
+        "cli-topology:journal-size" : 0,
+        "cli-topology:dry-run-journal-size" : 0,
+        "cli-topology:journal-level" : "command-only",
+        "cli-topology:parsing-engine" : "tree-parser"
+    }
+}
+```
+
+**RPC request - NETCONF default parameters:**
+
+```
+REST
+    PUT
+URL
+    http://localhost:8181/rests/data/netconf-node-topology:default-parameters
+HEAD
+    Accept
+        application/json
+    Content-Type
+        application/json
+
+BODY
+{
+    "netconf-node-topology:default-parameters" : {
+        "netconf-node-topology:connection-timeout-millis": 20000,
+        "netconf-node-topology:default-request-timeout-millis": 20000,
+        "netconf-node-topology:between-attempts-timeout-millis" : 20000,
+        "netconf-node-topology:max-connection-attempts": 20,
+        "netconf-node-topology:max-reconnection-attempts": 3,
+        "netconf-node-topology:reconnect-on-changed-schema" : false,
+        "netconf-node-topology:keepalive-delay": 5,
+        "netconf-node-topology:sleep-factor": 1.0,
+        "netconf-node-topology:confirm-timeout" : 600,
+        "netconf-node-topology:concurrent-rpc-limit" : 0,
+        "netconf-node-topology:actor-response-wait-time" : 5,
+        "netconf-node-topology:dry-run-journal-size" : 0,
+        "netconf-node-topology:enabled-notifications" : true,
+        "netconf-node-topology:customization-factory" : "default",
+        "netconf-node-topology:strict-parsing" : true
+    }
+}
+```
 
 ## Installing CLI device
 
