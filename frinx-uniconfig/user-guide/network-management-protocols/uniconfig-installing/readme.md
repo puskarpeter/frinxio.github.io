@@ -54,6 +54,11 @@ Priority of using install parameters :
 2. Parameter set in database
 3. Default parameter from yang model
 
+Priority of initial writing default parameters into database:
+1. Database already contains default parameters
+2. User defines default parameters into config file
+3. Default values from yang schema file will be saved
+
 Default parameters can be managed (put/read/delete) by user using RESTCONF/Uniconfig-shell.
 
 **RPC request - CLI default parameters:**
@@ -62,7 +67,7 @@ Default parameters can be managed (put/read/delete) by user using RESTCONF/Unico
 REST
     PUT
 URL
-    http://localhost:8181/rests/data/cli-topology:default-parameters
+    http://localhost:8181/rests/data/cli-topology:cli-default-parameters
 HEAD
     Accept
         application/json
@@ -71,7 +76,7 @@ HEAD
 
 BODY
 {
-    "cli-topology:default-parameters" : {
+    "cli-topology:cli-default-parameters" : {
         "cli-topology:max-connection-attempts": 3,
         "cli-topology:max-reconnection-attempts": 3,
         "cli-topology:keepalive-delay" : 60,
@@ -91,7 +96,7 @@ BODY
 REST
     PUT
 URL
-    http://localhost:8181/rests/data/netconf-node-topology:default-parameters
+    http://localhost:8181/rests/data/netconf-node-topology:netconf-default-parameters
 HEAD
     Accept
         application/json
@@ -100,7 +105,7 @@ HEAD
 
 BODY
 {
-    "netconf-node-topology:default-parameters" : {
+    "netconf-node-topology:netconf-default-parameters" : {
         "netconf-node-topology:connection-timeout-millis": 20000,
         "netconf-node-topology:default-request-timeout-millis": 20000,
         "netconf-node-topology:between-attempts-timeout-millis" : 20000,
