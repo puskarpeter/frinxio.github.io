@@ -30,12 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696602973678" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696603114666" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696602973678" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696603114666" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696602973678" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696602973678" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696603114666" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696603114666" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -287,6 +287,71 @@ accept both string with variables and original YANG type.</p>
         </div>
     </div>
 </div>
+<doc-anchor-target id="latest-schema">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#latest-schema">#</doc-anchor-trigger>
+        <span>Latest-schema</span>
+    </h2>
+</doc-anchor-target>
+<p>Latest-schema defines name of the schema repository of which built schema context is used for template validation.
+Latest-schema is used only if there is not &#x27;uniconfig-schema-repository&#x27; query parameter when creating template.
+If &#x27;uniconfig-schema-repository&#x27; query parameter is defined, latest-schema is ignored.</p>
+<doc-anchor-target id="configuration-of-the-latest-schema">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration-of-the-latest-schema">#</doc-anchor-trigger>
+        <span>Configuration of the latest-schema</span>
+    </h3>
+</doc-anchor-target>
+<p>Latest-schema can be set using PUT request. It will be placed in Config datastore. Name of directory has to point
+to existing schema repository that is placed under UniConfig distribution.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Set the latest schema</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PUT 'http://localhost:8181/rests/data/schema-settings:schema-settings/latest-schema' \
+--header 'Content-type: application/json' \
+--data-raw '{
+    {
+        &quot;latest-schema&quot; : &quot;schemas-1&quot;
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PUT response</div>
+<pre class="language-none"><code v-pre class="language-none">Status: 201</code></pre>
+</doc-codeblock></div>
+<p>GET request can be used for check if latest-schema is placed in config datastore.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Read the latest schema</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/schema-settings:schema-settings/latest-schema' \
+--header 'Accept: application/json'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">GET response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;latest-schema&quot; : &quot;schemas-1&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="auto-upgrading-of-the-latest-schema">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#auto-upgrading-of-the-latest-schema">#</doc-anchor-trigger>
+        <span>Auto-upgrading of the latest-schema</span>
+    </h3>
+</doc-anchor-target>
+<p>Latest-schema can be automatically upgraded by UniConfig after installation of new YANG repository. YANG repository
+is installed after deploying of new type of NETCONF/GRPC device or after manual invocation of RPC for loading
+of new YANG repository from directory.</p>
+<p>In order to enable auto-upgrading process, &#x27;latestSchemaReferenceModuleName&#x27; must be specified in the
+&#x27;config/lighty-uniconfig-config.json&#x27; file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">settings</div>
+<pre class="language-json"><code v-pre class="language-json">    &quot;templates&quot;: {
+        &quot;enabled&quot;: false,
+        &quot;latestSchemaReferenceModuleName&quot;: &quot;system&quot;
+    }</code></pre>
+</doc-codeblock></div>
+<p>After new YANG repository is installed, then UniConfig will look for revision of module
+&#x27;latestSchemaReferenceModuleName&#x27; in the repository. If found revision is more recent than the last cached
+revision, UniConfig will automatically write identifier of the fresh repository into &#x27;latest-schema&#x27; configuration.
+Afterwards, &#x27;latest-schema&#x27; is used by UniConfig the same way as it would be written manually via RESTCONF.</p>
 <doc-anchor-target id="variables">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#variables">#</doc-anchor-trigger>
