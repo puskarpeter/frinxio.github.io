@@ -1150,3 +1150,39 @@ Example of using the 'unhide' parameter for the GET request.
 > ```
 > http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=device/configuration?unhide=all
 > ```
+
+
+## Leafref validation
+According to YANG standard there are constraints for leafrefs.
+These constraints are not validated by default. Leafref validation
+can be enabled using checkForReferences query parameter with value
+set to true.
+
+Example:
+
+**Using leafref validation**
+
+> ```
+> DELETE http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=device/configuration/
+> frinx-openconfig-interfaces:interfaces/interface=eth0?checkForReferences=true
+> ```
+
+**Example output of failed validation**
+
+> ```
+> {
+>    "errors": {
+>        "error": [
+>            {
+>                "error-message": "Leafref validation failed. Violated leafref constraint on leaf /network-topology/topology/node/configuration/interfaces/interface/name -
+>                                    node is referenced by leaf on path: /network-topology/topology/node/configuration/referencing/path,
+>                "error-tag": "invalid-value",
+>                "error-type": "protocol"
+>            }
+>        ]
+>    }
+> }
+> ```
+
+If checkForReferences parameter is set to false or is not provided UniConfig will
+not perform leafref validation and there will be no leafref validation error.
