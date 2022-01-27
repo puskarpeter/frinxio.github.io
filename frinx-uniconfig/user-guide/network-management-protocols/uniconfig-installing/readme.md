@@ -61,21 +61,50 @@ Priority of initial writing default parameters into database:
 
 Default parameters can be managed (put/read/delete) by user using RESTCONF/Uniconfig-shell.
 
+Definition of default parameters can be also done using config file **default-parameters.json**. 
+It is placed in config subdirectory together with lighty-uniconfig-config.json.
+
+```json
+{
+    "netconf-default-parameters" : {
+        "connection-timeout-millis": 20000,
+        "default-request-timeout-millis": 60000,
+        "between-attempts-timeout-millis" : 2000,
+        "max-connection-attempts": 1,
+        "max-reconnection-attempts": 0,
+        "reconnect-on-changed-schema" : false,
+        "keepalive-delay": 120,
+        "sleep-factor": 1.5,
+        "confirm-timeout" : 600,
+        "concurrent-rpc-limit" : 0,
+        "actor-response-wait-time" : 5,
+        "dry-run-journal-size" : 0,
+        "enabled-notifications" : true,
+        "customization-factory" : "default",
+        "edit-config-test-option" : "test-then-set",
+        "strict-parsing" : true
+    },
+    "cli-default-parameters" : {
+        "max-connection-attempts": 1,
+        "max-reconnection-attempts": 0,
+        "keepalive-delay" : 60,
+        "keepalive-timeout": 60,
+        "keepalive-initial-delay": 120,
+        "journal-size" : 0,
+        "dry-run-journal-size" : 0,
+        "journal-level" : "command-only",
+        "parsing-engine" : "tree-parser"
+    }
+}
+```
+
 **RPC request - CLI default parameters:**
 
-```
-REST
-    PUT
-URL
-    http://localhost:8181/rests/data/cli-topology:cli-default-parameters
-HEAD
-    Accept
-        application/json
-    Content-Type
-        application/json
-
-BODY
-{
+```bash
+curl --location --request PUT 'http://localhost:8181/rests/data/cli-topology:cli-default-parameters' \
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--header 'Content-Type: application/json' \
+--data-raw '{
     "cli-topology:cli-default-parameters" : {
         "cli-topology:max-connection-attempts": 3,
         "cli-topology:max-reconnection-attempts": 3,
@@ -87,24 +116,16 @@ BODY
         "cli-topology:journal-level" : "command-only",
         "cli-topology:parsing-engine" : "tree-parser"
     }
-}
+}'
 ```
 
 **RPC request - NETCONF default parameters:**
 
-```
-REST
-    PUT
-URL
-    http://localhost:8181/rests/data/netconf-node-topology:netconf-default-parameters
-HEAD
-    Accept
-        application/json
-    Content-Type
-        application/json
-
-BODY
-{
+```bash
+curl --location --request PUT 'http://localhost:8181/rests/data/netconf-node-topology:netconf-default-parameters' \
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--header 'Content-Type: application/json' \
+--data-raw '{
     "netconf-node-topology:netconf-default-parameters" : {
         "netconf-node-topology:connection-timeout-millis": 20000,
         "netconf-node-topology:default-request-timeout-millis": 20000,
@@ -120,9 +141,10 @@ BODY
         "netconf-node-topology:dry-run-journal-size" : 0,
         "netconf-node-topology:enabled-notifications" : true,
         "netconf-node-topology:customization-factory" : "default",
+        "netconf-node-topology:edit-config-test-option" : "test-then-set",
         "netconf-node-topology:strict-parsing" : true
     }
-}
+}'
 ```
 
 ## Installing CLI device
