@@ -37,3 +37,11 @@ You can view it locally or on our hosted version that always shows
 latest OpenAPI version.
 
 [!ref text="OpenAPI"](../operational-procedures/openapi)
+
+## Data Security Models
+
+UniConfig supports encryption and hashing of values in RESTCONF and
+UniConfig shell API and managing of confidential data during transfer
+between UniConfig database and network devices.
+
+[!ref text="OpenAPI"](../operational-procedures/data-security-models)
