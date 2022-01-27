@@ -30,11 +30,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.696603114666" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696604636988" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696603114666" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696604636988" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696603114666" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696604636988" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -342,33 +342,6 @@ window you will see a sub-workflow.</p>
 <p>This sub-workflow is an embedded task that makes a separate API call to
 Slack to notify a pre-defined user group that the workflow has been
 executed and whether it has succeeded or failed.</p>
-<doc-anchor-target id="journal-output">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#journal-output">#</doc-anchor-trigger>
-        <span>Journal Output</span>
-    </h3>
-</doc-anchor-target>
-<p>The final task listed in the output of the executed workflow is
-<strong>CLI_get_cli_journal</strong>.</p>
-<p>The output of <strong>CLI_get_cli_journal</strong> shows the exact commands that
-UniConfig sends to the IOS devices to configure the pseudowire for the
-Layer 2 VPN Point-to-Point connection.</p>
-<p>From the output you can see the following configuration commands have
-been input by UniConfig to create the pseudowire connection:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">* configure terminal
-* pseudowire-class conn1233
-* encapsulation mpls
-* exit
-* interface GigabitEthernet3
-* xconnect 10.1.1.1 444 pw-class conn1233
-* end</code></pre>
-</doc-codeblock></div>
-<p><figure class="content-center">
-    <img src="cli_get_journal.png" alt="ClI Get CLI Journal" />
-    <figcaption class="caption">ClI Get CLI Journal</figcaption>
-</figure>
-</p>
 
 
 
