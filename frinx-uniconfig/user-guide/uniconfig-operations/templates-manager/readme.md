@@ -33,6 +33,65 @@ Schema validation of leaves and leaf-lists is adjusted, so it can
 accept both string with variables and original YANG type.
 !!!
 
+## Latest-schema
+
+Latest-schema defines name of the schema repository of which built schema context is used for template validation.
+Latest-schema is used only if there is not 'uniconfig-schema-repository' query parameter when creating template.
+If 'uniconfig-schema-repository' query parameter is defined, latest-schema is ignored.
+
+### Configuration of the latest-schema
+
+Latest-schema can be set using PUT request. It will be placed in Config datastore. Name of directory has to point
+to existing schema repository that is placed under UniConfig distribution.
+
+```bash Set the latest schema
+curl --location --request PUT 'http://localhost:8181/rests/data/schema-settings:schema-settings/latest-schema' \
+--header 'Content-type: application/json' \
+--data-raw '{
+    {
+        "latest-schema" : "schemas-1"
+    }
+}'
+```
+
+```text PUT response
+Status: 201
+```
+
+GET request can be used for check if latest-schema is placed in config datastore.
+
+```bash Read the latest schema
+curl --location --request GET 'http://localhost:8181/rests/data/schema-settings:schema-settings/latest-schema' \
+--header 'Accept: application/json'
+```
+
+```json GET response
+{
+    "latest-schema" : "schemas-1"
+}
+```
+
+### Auto-upgrading of the latest-schema
+
+Latest-schema can be automatically upgraded by UniConfig after installation of new YANG repository. YANG repository
+is installed after deploying of new type of NETCONF/GRPC device or after manual invocation of RPC for loading
+of new YANG repository from directory.
+
+In order to enable auto-upgrading process, 'latestSchemaReferenceModuleName' must be specified in the
+'config/lighty-uniconfig-config.json' file:
+
+```json settings
+    "templates": {
+        "enabled": false,
+        "latestSchemaReferenceModuleName": "system"
+    }
+```
+
+After new YANG repository is installed, then UniConfig will look for revision of module
+'latestSchemaReferenceModuleName' in the repository. If found revision is more recent than the last cached
+revision, UniConfig will automatically write identifier of the fresh repository into 'latest-schema' configuration.
+Afterwards, 'latest-schema' is used by UniConfig the same way as it would be written manually via RESTCONF.
+
 ## Variables
 
 Using variables it is possible to parametrise values in the template.
