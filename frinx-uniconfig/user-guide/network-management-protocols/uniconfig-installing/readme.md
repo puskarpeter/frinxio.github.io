@@ -358,6 +358,7 @@ uniconfig-native support.
 - **uniconfig-config:sequence-read-active** - Forces reading of data
     sequentially when mounting device. By default, this flag is set to
     'false'. This parameter has effect only on NETCONF nodes.
+- **uniconfig-config:whitelist** - List of root YANG entities that should be read. This parameter has effect only on NETCONF nodes.
 - **uniconfig-config:blacklist** - List of root YANG entities that
     should not be read from NETCONF device due to incompatibility with
     uniconfig-native or other malfunctions in YANG schemas. This
