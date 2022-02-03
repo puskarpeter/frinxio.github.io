@@ -302,38 +302,44 @@ Configuration for notifications is in lighty-uniconfig-config.json file
 under *notifications* property. Whole configuration looks like this:
 
 ```json
-"notifications": {
+{
+  "notifications": {
     "enabled": true,
     "kafka": {
-        "username": "kafka",
-        "password": "kafka",
-        "kafkaServers": [
-            {
-                "brokerHost": "127.0.0.1",
-                "brokerListeningPort": 9092
-            }
-        ],
-        "netconfNotificationsEnabled": true,
-        "auditLogsEnabled": true,
-        "transactionNotificationsEnabled": true,
-        "netconfNotificationsTopicName": "netconf-notifications",
-        "auditLogsTopicName": "auditLogs",
-        "transactionsTopicName": "transactions",
-        "embeddedKafka": {
-            "enabled": true,
-            "installDir": "/tmp/embedded-kafka",
-            "archiveUrl": "https://dlcdn.apache.org/kafka/3.0.0/kafka_2.12-3.0.0.tgz",
-            "dataDir": "./data/embedded-kafka",
-            "cleanDataBeforeStart": true,
-            "partitions": 1
+      "username": "kafka",
+      "password": "kafka",
+      "kafkaServers": [
+        {
+          "brokerHost": "127.0.0.1",
+          "brokerListeningPort": 9092
         }
+      ],
+      "netconfNotificationsEnabled": true,
+      "auditLogsEnabled": true,
+      "transactionNotificationsEnabled": true,
+      "netconfNotificationsTopicName": "netconf-notifications",
+      "auditLogsTopicName": "auditLogs",
+      "transactionsTopicName": "transactions",
+      "blockingTimeout": 60000,
+      "requestTimeout": 30000,
+      "deliveryTimeout": 120000,
+      "maxThreadPoolSize": 8,
+      "queueCapacity": 2048,
+      "embeddedKafka": {
+        "enabled": true,
+        "installDir": "/tmp/embedded-kafka",
+        "archiveUrl": "https://dlcdn.apache.org/kafka/3.0.0/kafka_2.12-3.0.0.tgz",
+        "dataDir": "./data/embedded-kafka",
+        "cleanDataBeforeStart": true,
+        "partitions": 1
+      }
     },
     "auditLogs": {
-        "includeResponseBody": true
+      "includeResponseBody": true
     },
     "notificationDbTreshold": {
-        "maxCount": 10000,
-        "maxAge": 100
+      "maxCount": 10000,
+      "maxAge": 100
     },
     "netconfSubscriptionsMonitoringInterval": 5,
     "maxNetconfSubscriptionsPerInterval": 10,
@@ -341,6 +347,7 @@ under *notifications* property. Whole configuration looks like this:
     "rebalanceOnUCNodeGoingDownGracePeriod": 120,
     "optimalNetconfSubscriptionsApproachingMargin": 0.05,
     "optimalNetconfSubscriptionsReachedMargin" : 0.10
+  }
 }
 ```
 
@@ -376,7 +383,25 @@ environment:**
 - optimalNetconfSubscriptionsReachedMargin - the higher margin to
      calculate optimal range end. Default = 0.10
 
- 
+**There are three properties related to the timeout of messages to Kafka**
+
+- blockingTimeout - configuration of how long the **send()** method and the
+  creation of connection for reading of metadata methods will block (in ms).
+- requestTimeout - configuration of how long will the producer wait for
+  the acknowledgement of a request (in ms). If the acknowledgement
+  is not received before the timeout elapses, the producer will resend
+  the request or fail the request if retries are exhausted.
+- deliveryTimeout - configuration of the upper bound on the time to report
+  success or failure after a call to **send()** returns (in ms). This limits
+  the total time that a record will be delayed prior to sending, the
+  time to await acknowledgement from the broker (if expected), and the
+  time allowed for retriable send failures.
+
+**There are two properties related to the thread pool executor which is needed to
+send messages to Kafka**
+
+- maxThreadPoolSize - the maximum thread pool size in the executor.
+- queueCapacity - the maximum capacity of the work queue in the executor.
 
 **There are two properties that are used to limit number of records in
 database in notifications table:**
