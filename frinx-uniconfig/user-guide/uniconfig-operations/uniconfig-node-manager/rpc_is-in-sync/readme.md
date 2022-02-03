@@ -179,11 +179,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 
 ### Failed Example
 
-RPC input contains 2 nodes, the first one ('node1') is valid and synced,
-the second one ('nodeX') has not been mounted yet. Even if there is one
-invalid node, is-in-sync process will be executed for each node
-('is-in-sync' flag will be set for valid node 'node1'). However,
-'overall-status' will be set to 'fail'.
+RPC input contains 2 nodes, the first one ('node1') is valid and synced, the second one ('nodeX') has not been mounted yet. If there is one invalid node, Uniconfig will be evaluate nodes with fail. However, 'overall-status' will be set to 'fail'.
 
 ```bash RPC Request
 curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:is-in-sync' \
