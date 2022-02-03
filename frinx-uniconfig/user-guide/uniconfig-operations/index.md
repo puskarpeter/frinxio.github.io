@@ -33,10 +33,6 @@ The subtree manager copies (merge/replace) subtrees between source and target pa
 
 This component is responsible for application of templates into UniConfig nodes.
 
-## Websocket Notifications
-
-Mechanism where the NETCONF client indicates interest in receiving event notifications from a NETCONF server by creating a subscription to receive event notifications. The NETCONF server replies to indicate whether the subscription request was successful and, if it was successful, begins sending the event notifications to the NETCONF client as the events occur within the system.
-
 ## Transaction Log API
 
 This component is responsible for tracking transactions.
