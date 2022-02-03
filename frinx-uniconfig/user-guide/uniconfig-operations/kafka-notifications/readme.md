@@ -98,7 +98,7 @@ json format - event time - time when notification was generated
 Example request for reading notifications using RESTCONF:
 
 ```bash Request
-curl --location --request POST 'http://localhost:8181/rests/data/notifications:notification' \
+curl --location --request GET 'http://localhost:8181/rests/data/notifications:notification' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json'
 ```
@@ -112,7 +112,7 @@ at runtime.
 Example request for reading kafka settings using RESTCONF:
 
 ```bash Request
-curl --location --request POST 'http://localhost:8181/rests/data/kafka-brokers:kafka-settings' \
+curl --location --request GET 'http://localhost:8181/rests/data/kafka-brokers:kafka-settings' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json'
 ```
@@ -130,7 +130,7 @@ be collected - end time - time when notifications stop to be collected
 Example request for reading subscriptions using RESTCONF:
 
 ```bash Request
-curl --location --request POST 'http://localhost:8181/rests/data/netconf-subscriptions:netconf-subscriptions' \
+curl --location --request GET 'http://localhost:8181/rests/data/netconf-subscriptions:netconf-subscriptions' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json'
 ```
