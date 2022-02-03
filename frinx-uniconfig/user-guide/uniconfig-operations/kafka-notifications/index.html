@@ -30,12 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.697212277108" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.697218018340" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697212277108" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697218018340" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697212277108" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697212277108" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697218018340" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697218018340" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -630,38 +630,44 @@ be crossed, regardless of the optimal range.</p>
 <p>Configuration for notifications is in lighty-uniconfig-config.json file
 under <em>notifications</em> property. Whole configuration looks like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-json"><code v-pre class="language-json">&quot;notifications&quot;: {
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;notifications&quot;: {
     &quot;enabled&quot;: true,
     &quot;kafka&quot;: {
-        &quot;username&quot;: &quot;kafka&quot;,
-        &quot;password&quot;: &quot;kafka&quot;,
-        &quot;kafkaServers&quot;: [
-            {
-                &quot;brokerHost&quot;: &quot;127.0.0.1&quot;,
-                &quot;brokerListeningPort&quot;: 9092
-            }
-        ],
-        &quot;netconfNotificationsEnabled&quot;: true,
-        &quot;auditLogsEnabled&quot;: true,
-        &quot;transactionNotificationsEnabled&quot;: true,
-        &quot;netconfNotificationsTopicName&quot;: &quot;netconf-notifications&quot;,
-        &quot;auditLogsTopicName&quot;: &quot;auditLogs&quot;,
-        &quot;transactionsTopicName&quot;: &quot;transactions&quot;,
-        &quot;embeddedKafka&quot;: {
-            &quot;enabled&quot;: true,
-            &quot;installDir&quot;: &quot;/tmp/embedded-kafka&quot;,
-            &quot;archiveUrl&quot;: &quot;https://dlcdn.apache.org/kafka/3.0.0/kafka_2.12-3.0.0.tgz&quot;,
-            &quot;dataDir&quot;: &quot;./data/embedded-kafka&quot;,
-            &quot;cleanDataBeforeStart&quot;: true,
-            &quot;partitions&quot;: 1
+      &quot;username&quot;: &quot;kafka&quot;,
+      &quot;password&quot;: &quot;kafka&quot;,
+      &quot;kafkaServers&quot;: [
+        {
+          &quot;brokerHost&quot;: &quot;127.0.0.1&quot;,
+          &quot;brokerListeningPort&quot;: 9092
         }
+      ],
+      &quot;netconfNotificationsEnabled&quot;: true,
+      &quot;auditLogsEnabled&quot;: true,
+      &quot;transactionNotificationsEnabled&quot;: true,
+      &quot;netconfNotificationsTopicName&quot;: &quot;netconf-notifications&quot;,
+      &quot;auditLogsTopicName&quot;: &quot;auditLogs&quot;,
+      &quot;transactionsTopicName&quot;: &quot;transactions&quot;,
+      &quot;blockingTimeout&quot;: 60000,
+      &quot;requestTimeout&quot;: 30000,
+      &quot;deliveryTimeout&quot;: 120000,
+      &quot;maxThreadPoolSize&quot;: 8,
+      &quot;queueCapacity&quot;: 2048,
+      &quot;embeddedKafka&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;installDir&quot;: &quot;/tmp/embedded-kafka&quot;,
+        &quot;archiveUrl&quot;: &quot;https://dlcdn.apache.org/kafka/3.0.0/kafka_2.12-3.0.0.tgz&quot;,
+        &quot;dataDir&quot;: &quot;./data/embedded-kafka&quot;,
+        &quot;cleanDataBeforeStart&quot;: true,
+        &quot;partitions&quot;: 1
+      }
     },
     &quot;auditLogs&quot;: {
-        &quot;includeResponseBody&quot;: true
+      &quot;includeResponseBody&quot;: true
     },
     &quot;notificationDbTreshold&quot;: {
-        &quot;maxCount&quot;: 10000,
-        &quot;maxAge&quot;: 100
+      &quot;maxCount&quot;: 10000,
+      &quot;maxAge&quot;: 100
     },
     &quot;netconfSubscriptionsMonitoringInterval&quot;: 5,
     &quot;maxNetconfSubscriptionsPerInterval&quot;: 10,
@@ -669,6 +675,7 @@ under <em>notifications</em> property. Whole configuration looks like this:</p>
     &quot;rebalanceOnUCNodeGoingDownGracePeriod&quot;: 120,
     &quot;optimalNetconfSubscriptionsApproachingMargin&quot;: 0.05,
     &quot;optimalNetconfSubscriptionsReachedMargin&quot; : 0.10
+  }
 }</code></pre>
 </doc-codeblock></div>
 <p>All notifications and also monitoring system can be enabled and disabled
@@ -700,6 +707,26 @@ Uniconfig node has been seen last. Default = 120 seconds.</li>
 calculate optimal range start. Default = 0.05</li>
 <li>optimalNetconfSubscriptionsReachedMargin - the higher margin to
 calculate optimal range end. Default = 0.10</li>
+</ul>
+<p><strong>There are three properties related to the timeout of messages to Kafka</strong></p>
+<ul>
+<li>blockingTimeout - configuration of how long the <strong>send()</strong> method and the
+creation of connection for reading of metadata methods will block (in ms).</li>
+<li>requestTimeout - configuration of how long will the producer wait for
+the acknowledgement of a request (in ms). If the acknowledgement
+is not received before the timeout elapses, the producer will resend
+the request or fail the request if retries are exhausted.</li>
+<li>deliveryTimeout - configuration of the upper bound on the time to report
+success or failure after a call to <strong>send()</strong> returns (in ms). This limits
+the total time that a record will be delayed prior to sending, the
+time to await acknowledgement from the broker (if expected), and the
+time allowed for retriable send failures.</li>
+</ul>
+<p><strong>There are two properties related to the thread pool executor which is needed to
+send messages to Kafka</strong></p>
+<ul>
+<li>maxThreadPoolSize - the maximum thread pool size in the executor.</li>
+<li>queueCapacity - the maximum capacity of the work queue in the executor.</li>
 </ul>
 <p><strong>There are two properties that are used to limit number of records in
 database in notifications table:</strong></p>
