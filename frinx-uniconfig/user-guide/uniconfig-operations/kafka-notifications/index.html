@@ -9,23 +9,23 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Workflow Builder | Frinx Docs</title>
-    <meta name="title" content="Workflow Builder | Frinx Docs">
-    <meta name="description" content="Workflow Builder is the graphical interface of UniFlow used to create, modify and manage workflows." />
+    <title>Kafka Notifications | Frinx Docs</title>
+    <meta name="title" content="Kafka Notifications | Frinx Docs">
+    <meta name="description" content="NETCONF devices are capable of generating NETCONF notifications. UniConfig is able to collect these notifications and creates its own" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://docs.frinx.io/frinx-uniflow/workflow-builder/">
-    <meta property="og:title" content="Workflow Builder | Frinx Docs">
-    <meta property="og:description" content="Workflow Builder is the graphical interface of UniFlow used to create, modify and manage workflows.">
-    <meta property="og:image" content="https://docs.frinx.io/frinx-uniflow/workflow-builder/createnew.gif">
+    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/kafka-notifications/">
+    <meta property="og:title" content="Kafka Notifications | Frinx Docs">
+    <meta property="og:description" content="NETCONF devices are capable of generating NETCONF notifications. UniConfig is able to collect these notifications and creates its own">
+    <meta property="og:image" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/kafka-notifications/cluster.svg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniflow/workflow-builder/">
-    <meta property="twitter:title" content="Workflow Builder | Frinx Docs">
-    <meta property="twitter:description" content="Workflow Builder is the graphical interface of UniFlow used to create, modify and manage workflows.">
-    <meta property="twitter:image" content="https://docs.frinx.io/frinx-uniflow/workflow-builder/createnew.gif">
+    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/kafka-notifications/">
+    <meta property="twitter:title" content="Kafka Notifications | Frinx Docs">
+    <meta property="twitter:description" content="NETCONF devices are capable of generating NETCONF notifications. UniConfig is able to collect these notifications and creates its own">
+    <meta property="twitter:image" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/kafka-notifications/cluster.svg">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -35,6 +35,7 @@
     <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697190248039" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
     <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697190248039" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697190248039" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -231,421 +232,351 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="workflow-builder" class="break-words">
+<doc-anchor-target id="kafka-notifications" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#workflow-builder">#</doc-anchor-trigger>
-        <span>Workflow Builder</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#kafka-notifications">#</doc-anchor-trigger>
+        <span>Kafka Notifications</span>
     </h1>
 </doc-anchor-target>
-<p>Workflow Builder is the graphical interface of UniFlow used to create, modify and manage workflows.</p>
-<doc-anchor-target id="creating-new-workflow">
+<doc-anchor-target id="introduction">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-new-workflow">#</doc-anchor-trigger>
-        <span>Creating new workflow</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#introduction">#</doc-anchor-trigger>
+        <span>Introduction</span>
     </h2>
 </doc-anchor-target>
-<p>To create a new workflow click on the <strong>Create</strong> button in the <strong>Create workflow</strong> tab and
-fill in workflow general parameters. Then you can proceed with adding tasks &lt;workflow-builder-adding-tasks&gt;.</p>
-<div class="flex mb-6">
-    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3">
-<p>Parameter <strong>Name</strong> is required and must be unique. Keep in mind that the name cannot be changed later.
-Other parameters are optional and can be changed anytime.</p>
-        </div>
-    </div>
-</div>
+<p>NETCONF devices are capable of generating NETCONF notifications.
+UniConfig is able to collect these notifications and creates its own
+UniConfig notifications about specific events. Kafka is used for
+publishing of these notifications from NETCONF devices and UniConfig.
+Currently there are these types of notifications: - NETCONF
+notifications - notifications about transactions - audit logs (RESTCONF
+notifications)</p>
+<p>Each type of notifications is stored in its own topic in kafka. Besides
+that all notifications are stored in one table in database.</p>
 <p><figure class="content-center">
-    <img src="createnew.gif" alt="Create new workflow" />
-    <figcaption class="caption">Create new workflow</figcaption>
+    <img src="cluster.svg" alt="notifications-in-cluster" />
+    <figcaption class="caption">notifications-in-cluster</figcaption>
 </figure>
 </p>
-<doc-anchor-target id="editing-existing-workflow">
+<doc-anchor-target id="kafka">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#editing-existing-workflow">#</doc-anchor-trigger>
-        <span>Editing existing workflow</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#kafka">#</doc-anchor-trigger>
+        <span>Kafka</span>
     </h2>
 </doc-anchor-target>
-<p>To edit an already existing workflow, find the workflow in the <strong>Definitions</strong> tab, click on it and then click on the <strong>Edit</strong> button.
-A diagram of the workflow will be rendered on the canvas. Now you can restructure the workflow, add new tasks, remove tasks or edit the workflow information and parameters.</p>
-<p><figure class="content-center">
-    <img src="edit.gif" alt="Workflow edit" />
-    <figcaption class="caption">Workflow edit</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="adding-tasks">
+<p>Apache Kafka is a publish-subscribe based durable messaging system. A
+messaging system sends messages between processes, applications, and
+servers. Apache Kafka is a software where topics can be defined (think
+of a topic as a category), applications can add, process and reprocess
+records.</p>
+<p>In our specific case UniConfig is publisher of notifications. Each type
+of notifications is stored in separate topic and therefore can be
+subscribed to independently. Names of topics and connection data are
+configurable in lighty-uniconfig-config.json file.</p>
+<doc-anchor-target id="netconf-notifications">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#adding-tasks">#</doc-anchor-trigger>
-        <span>Adding tasks</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#netconf-notifications">#</doc-anchor-trigger>
+        <span>NETCONF notifications</span>
     </h2>
 </doc-anchor-target>
-<p>To add new task on canvas, find the task in the left menu and click the <code v-pre>+</code> icon.</p>
-<p><figure class="content-center">
-    <img src="add_task.gif" alt="Add task" />
-    <figcaption class="caption">Add task</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="removing-tasks">
+<p><a href="https://tools.ietf.org/html/rfc5277">RFC 5277</a> document defines a
+mechanism where the NETCONF client indicates interest in receiving event
+notifications from a NETCONF server by creating a subscription to
+receive event notifications. The NETCONF server replies to indicate
+whether the subscription request was successful and, if it was
+successful, begins sending the event notifications to the NETCONF client
+as the events occur within the system. These event notifications will
+continue to be sent until either the NETCONF session is terminated or
+the subscription terminates for some other reason.</p>
+<p>NETCONF notifications have categories called streams. While subscribing
+it is required to choose which streams should be received. Default
+stream is called NETCONF.</p>
+<doc-anchor-target id="notifications-about-transactions">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#removing-tasks">#</doc-anchor-trigger>
-        <span>Removing tasks</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#notifications-about-transactions">#</doc-anchor-trigger>
+        <span>Notifications about transactions</span>
     </h2>
 </doc-anchor-target>
-<p>To remove a task, click on the three dots next to a task and press the <code v-pre>Remove task</code> button.</p>
-<p><figure class="content-center">
-    <img src="delete.gif" alt="Delete task" />
-    <figcaption class="caption">Delete task</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="task-parameters">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#task-parameters">#</doc-anchor-trigger>
-        <span>Task parameters</span>
-    </h2>
-</doc-anchor-target>
-<p>To edit or add task parameters, double-click on the task that is placed on the canvas.
-Input parameters can be declared as:</p>
+<p>This type of notifications is generated after each commit in UniConfig.
+It contains:</p>
 <ul>
-<li>Input provided by user, e.g.:</li>
+<li>transaction id</li>
+<li>calculate diff result</li>
+<li>commit result</li>
 </ul>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">`${workflow.input.&lt;name&gt;}`</code></pre>
-</doc-codeblock></div>
+<doc-anchor-target id="audit-logs-restconf-notifications">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#audit-logs-restconf-notifications">#</doc-anchor-trigger>
+        <span>Audit logs (RESTCONF notifications)</span>
+    </h2>
+</doc-anchor-target>
+<p>This type of notifications is generated after each RESTCONF operation.</p>
+<p><strong>It contains:</strong></p>
 <ul>
-<li>Variable provided by other task, e.g.:</li>
-</ul>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">`${&lt;taskRefName&gt;.output.result}`</code></pre>
-</doc-codeblock></div>
+<li>transaction id</li>
+<li>request data
 <ul>
-<li>Statically defined, e.g.:</li>
+<li>uri</li>
+<li>http-method</li>
+<li>source-address</li>
+<li>source-port</li>
+<li>query-parameters</li>
+<li>user-id</li>
+<li>body</li>
 </ul>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">`https://example.com/api/user`</code></pre>
-</doc-codeblock></div>
-<p>For full documentation of tasks see: <a href="https://netflix.github.io/conductor/configuration/taskdef/">https://netflix.github.io/conductor/configuration/taskdef/</a>.</p>
-<doc-anchor-target id="system-tasks">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#system-tasks">#</doc-anchor-trigger>
-        <span>System tasks</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="fork--join">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#fork--join">#</doc-anchor-trigger>
-        <span>Fork &amp; Join</span>
-    </h3>
-</doc-anchor-target>
-<p>The &#x27;Fork&#x27; function is used to schedule a parallel set of tasks.</p>
-<div class="flex mb-6">
-    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3">
-<p>A <strong>Join</strong> task MUST follow <strong>Fork</strong> task.</p>
-        </div>
-    </div>
-</div>
-<p><figure class="content-center">
-    <img src="forkjoin.png" alt="Fork and Join" />
-    <figcaption class="caption">Fork and Join</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="decision">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#decision">#</doc-anchor-trigger>
-        <span>Decision</span>
-    </h3>
-</doc-anchor-target>
-<p>A decision task is similar to an <strong>if...else</strong> statement in a programming language. The task takes 2 parameters:</p>
+</li>
+<li>response data
 <ul>
-<li>name of the parameter in the task input whose value will be evaluated (default is <code v-pre>param</code>)</li>
-<li>value that will be compared with <code v-pre>param</code> (or other specified input variable)</li>
+<li>status-code</li>
+<li>query-parameters</li>
+<li>body</li>
 </ul>
-<p>If <strong>param</strong> and <strong>is equal to</strong> are evaluated as equal, the workflow will continue to <strong>If</strong> branch,
-otherwise the workflow will continue in <strong>else</strong> branch.</p>
-<div class="flex mb-6">
-    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3">
-<p><strong>Else</strong> branch is optional and can be empty.</p>
-        </div>
-    </div>
-</div>
-<p><figure class="content-center">
-    <img src="decide.png" alt="Decision" />
-    <figcaption class="caption">Decision</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="lambda">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#lambda">#</doc-anchor-trigger>
-        <span>Lambda</span>
-    </h3>
+</li>
+</ul>
+<p>Response body does not need to be included in notification. It can be
+configured using <em>includeResponseBody</em> parameter in
+lighty-uniconfig-config.json file.</p>
+<doc-anchor-target id="database">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#database">#</doc-anchor-trigger>
+        <span>Database</span>
+    </h2>
 </doc-anchor-target>
-<p>Lambda Task helps execute ad hoc logic at Workflow run-time, using javax &amp; <strong>Nashorn</strong> Javascript evaluator engine.
-This is particularly helpful in running simple evaluations in the Conductor server, instead of creating Workers.</p>
-<p><figure class="content-center">
-    <img src="lambda.png" alt="Lambda" />
-    <figcaption class="caption">Lambda</figcaption>
-</figure>
-</p>
-<p>The task output can then be referenced in downstream tasks like:</p>
+<p>There are three tables related to notifications in database:</p>
+<ul>
+<li>notification</li>
+<li>settings</li>
+<li>netconf-subscription</li>
+</ul>
+<p>Notifications are stored in notification table. It has these columns: -
+stream name - name of the notification stream for NETCONF notifications
+or UniConfig instance id - node id - node id of the NETCONF device for
+NETCONF notifications or value UNICONFIG for notifications about
+transactions or value RESTCONF for audit logs (RESTCONF notifications) -
+identifier - name of the notification - body - full notification body in
+json format - event time - time when notification was generated</p>
+<p>Example request for reading notifications using RESTCONF:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">${lambda_a211.output.result.testvalue}</code></pre>
+<div class="codeblock-title">Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/data/notifications:notification' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json'</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="http">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#http">#</doc-anchor-trigger>
-        <span>HTTP</span>
-    </h3>
-</doc-anchor-target>
-<p>An HTTP system task is used to make calls to another microservice over HTTP.
-You can use <strong>GET</strong>, <strong>PUT</strong>, <strong>POST</strong>, <strong>DELETE</strong> Methods and also you can set your custom header.</p>
-<p><figure class="content-center">
-    <img src="http.png" alt="HTTP" />
-    <figcaption class="caption">HTTP</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="terminate">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#terminate">#</doc-anchor-trigger>
-        <span>TERMINATE</span>
-    </h3>
-</doc-anchor-target>
-<p>Task that can terminate a workflow with a given status and modify the workflow&#x27;s output with a given parameter.
-It can act as a &quot;return&quot; statement for conditions where you simply want to terminate your workflow.
-For example, if you have a decision where the first condition is met, you want to execute some tasks, otherwise you want to finish your workflow.</p>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>name</th>
-<th>description</th>
-<th>notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>terminationStatus</td>
-<td>can only accept “COMPLETED” or “FAILED”</td>
-<td>task cannot be optional</td>
-</tr>
-<tr>
-<td>workflowOutput</td>
-<td>Expected workflow output</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><figure class="content-center">
-    <img src="terminate.png" alt="TERMINATE" />
-    <figcaption class="caption">TERMINATE</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="event">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#event">#</doc-anchor-trigger>
-        <span>EVENT</span>
-    </h3>
-</doc-anchor-target>
-<p>Event task provides ability to publish an event (message) to either
-Conductor or an external eventing system like SQS. Event tasks are
-useful for creating event based dependencies for workflows and tasks.</p>
-<p><figure class="content-center">
-    <img src="event.png" alt="EVENT" />
-    <figcaption class="caption">EVENT</figcaption>
-</figure>
-</p>
-<p>When producing an event with Conductor as sink, the event name follows
-the structure:</p>
+<p>Settings table has 2 columns: identifier and config. Record with
+identifier kafka contains configuration for kafka that can be modified
+at runtime.</p>
+<p>Example request for reading kafka settings using RESTCONF:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">conductor:&lt;workflow_name&gt;:&lt;task_reference_name&gt;</code></pre>
+<div class="codeblock-title">Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/data/kafka-brokers:kafka-settings' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json'</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="wait">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#wait">#</doc-anchor-trigger>
-        <span>WAIT</span>
-    </h3>
-</doc-anchor-target>
-<p>A wait task is implemented as a gate that remains in <strong>IN_PROGRESS</strong> state
-unless marked as <strong>COMPLETED</strong> or <strong>FAILED</strong> by an external trigger. To use
-a wait task, set the task type as <strong>WAIT</strong></p>
-<p><figure class="content-center">
-    <img src="wait.png" alt="WAIT" />
-    <figcaption class="caption">WAIT</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="jsonjq">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#jsonjq">#</doc-anchor-trigger>
-        <span>jsonJQ</span>
-    </h3>
-</doc-anchor-target>
-<p>jsonJQ is like sed for JSON data - it is especially useful for filtering
-JSON data.</p>
-<p><figure class="content-center">
-    <img src="jsonjq.png" alt="jsonJQ" />
-    <figcaption class="caption">jsonJQ</figcaption>
-</figure>
-</p>
-<p>Example of jsonJQ query expression could be:</p>
+<p>NETCONF subscription table is used to track NETCONF notification
+subscriptions. It has folloving columns: - node id - id of the node from
+which notififications should be collected - UniConfig instance id -
+instance id of UniConfig that is collecting notifications from this
+device - stream name - NETCONF stream name - creation time - time when
+subscription was created - start time - time when notifications start to
+be collected - end time - time when notifications stop to be collected</p>
+<p>Example request for reading subscriptions using RESTCONF:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">.[&quot;frinx-uniconfig-topology:configuration&quot;][&quot;Cisco-IOS-XR-ifmgr-cfg:interface-configurations&quot;] . &quot;interface-configuration&quot; | select(. != null) | .[] | select(.description == &quot;${workflow.input.Description}&quot;) | {interface: .&quot;interface-name&quot;}</code></pre>
+<div class="codeblock-title">Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/data/netconf-subscriptions:netconf-subscriptions' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json'</code></pre>
 </doc-codeblock></div>
-<p>It searches through the whole config and under the
-<strong>&quot;Cisco-IOS-XR-ifmgr-cfg:interface-configurations&quot;</strong> model we find the
-interface with a description that the user inputs
-<strong>${workflow.input.Description}</strong>. The task would return the name
-interface with fitting description.</p>
-<doc-anchor-target id="kafka-publish">
+<doc-anchor-target id="subscription">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#subscription">#</doc-anchor-trigger>
+        <span>Subscription</span>
+    </h2>
+</doc-anchor-target>
+<p>To receive NETCONF notifications from NETCONF device it is necessary to
+create subscription. Subscription is created using install request:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/connection-manager:install-node' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;input&quot;:{
+        &quot;node-id&quot;:&quot;versa_2&quot;,
+        &quot;netconf&quot;:{
+            &quot;netconf-node-topology:host&quot;:&quot;10.103.5.202&quot;,
+            &quot;netconf-node-topology:port&quot;:2022,
+            &quot;netconf-node-topology:keepalive-delay&quot;:5,
+            &quot;netconf-node-topology:max-connection-attempts&quot;:1,
+            &quot;netconf-node-topology:connection-timeout-millis&quot;:60000,
+            &quot;netconf-node-topology:default-request-timeout-millis&quot;:60000,
+            &quot;netconf-node-topology:tcp-only&quot;:false,
+            &quot;netconf-node-topology:username&quot;:&quot;admin&quot;,
+            &quot;netconf-node-topology:password&quot;:&quot;versa123&quot;,
+            &quot;netconf-node-topology:sleep-factor&quot;:1.0,
+            &quot;uniconfig-config:UniConfig-native-enabled&quot;:true,
+            &quot;netconf-node-topology:edit-config-test-option&quot;:&quot;set&quot;,
+            &quot;uniconfig-config:blacklist&quot;:{
+                &quot;extension&quot;:[
+                    &quot;tailf:display-when false&quot;
+                ]
+            },
+            &quot;stream&quot;:[
+                {
+                    &quot;stream-name&quot;:&quot;NETCONF&quot;,
+                    &quot;start-time&quot;:&quot;2021-11-08T02:00:00+00:00&quot;,
+                    &quot;stop-time&quot;:&quot;2021-11-08T22:00:00+00:00&quot;
+                },
+                {
+                    &quot;stream-name&quot;:&quot;oam&quot;
+                }
+            ]
+        }
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<p>Subscriptions to notification streams are defined as list with name
+<em>stream</em>. There is one record for each stream. The only required
+parameter is <em>stream-name</em>. Besides the required <em>stream-name</em>
+parameter, this record also supports optional parameters:</p>
+<ul>
+<li><em>start-time</em> - must be specified if user wants to enable replay and
+it should start at the time specified.</li>
+<li><em>stop time</em> - used with the optional replay feature to indicate the
+newest notifications of interest. If stopTime is not present, the
+notifications will continue until the subscription is terminated.
+Must be used with and be later than <em>start-time</em>. Values in the
+future are valid.</li>
+</ul>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>Creation of new subscription for the stream will terminate all
+existing subscriptions for this stream.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="monitoring-system---processing-of-subscriptions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#monitoring-system---processing-of-subscriptions">#</doc-anchor-trigger>
+        <span>Monitoring system - processing of subscriptions</span>
+    </h2>
+</doc-anchor-target>
+<p>Inside UniConfig, NETCONF notification subscriptions are processed in an
+infinite loop within monitoring system. An iteration of the monitoring
+system loop consists of following steps:</p>
+<ol>
+<li><p>Check global setting for netconf notifications</p>
+<ul>
+<li>If turned off, release all netconf subscriptions and end current iteration</li>
+</ul>
+</li>
+<li><p>Release cancelled subscriptions</p>
+</li>
+<li><p>Query free subscriptions from DB and for each:</p>
+<ol>
+<li>create notification session (create mountpoint and register listeners)</li>
+<li>lock subscription (set UniConfig instance)</li>
+</ol>
+</li>
+</ol>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>There is a hard limit for how many sessions can a single Uniconfig node
+handle. In case this limit is reached, Uniconfig node refuses to acquire
+additional subscriptions.</p>
+        </div>
+    </div>
+</div>
+<p>Loop interval, hard subscription limit and maximum number of
+subscriptions processed per interval can be set in
+lighty-uniconfig-config.json file.</p>
+<doc-anchor-target id="dedicated-netconf-session-for-subscription">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#kafka-publish">#</doc-anchor-trigger>
-        <span>Kafka publish</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dedicated-netconf-session-for-subscription">#</doc-anchor-trigger>
+        <span>Dedicated NETCONF session for subscription</span>
     </h3>
 </doc-anchor-target>
-<p>Kafka is a distributed publish-subscribe messaging system and a robust
-queue that can handle a high volume of data and enables you to pass
-messages from one end-point to another.</p>
+<p>NETCONF device may have the :interleave capability that indicates
+support to interleave other NETCONF operations within a notification
+subscription. This means the NETCONF server can receive, process, and
+respond to NETCONF requests on a session with an active notification
+subscription. However, not all devices support this capability, so the
+common approach for devices &#x27;with&#x27; and &#x27;without&#x27; interleave
+capability is to track notifications with a separate NETCONF session. In
+order to support this functionality, UniConfig will create a separate
+NETCONF session with a separate mount-point for every subscription.
+These mount points and sessions are destroyed automatically when the
+corresponding subscription is closed.</p>
 <p><figure class="content-center">
-    <img src="kafka.png" alt="Kafka" />
-    <figcaption class="caption">Kafka</figcaption>
+    <img src="monitoring.svg" alt="monitoring-system" />
+    <figcaption class="caption">monitoring-system</figcaption>
 </figure>
 </p>
-<doc-anchor-target id="subworkflows">
+<doc-anchor-target id="clustering">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#subworkflows">#</doc-anchor-trigger>
-        <span>Subworkflows</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#clustering">#</doc-anchor-trigger>
+        <span>Clustering</span>
     </h2>
 </doc-anchor-target>
-<p>Subworkflows act as a regular tasks inside a parent workflow.
-Subworkflows can be expanded to view the tasks they contain (or other
-nested subworkflows) by clicking the three dots next to the subworkflow
-and then clicking the <code v-pre>Expand</code> button. Expanded subworkflows can be then
-edited the same way as parent workflow.</p>
-<div class="flex mb-6">
-    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3">
-<p><strong>Simple tasks</strong> differs in color shade from <strong>Subworkflow</strong> tasks and
-cannot be expanded.</p>
-        </div>
-    </div>
-</div>
-<p><figure class="content-center">
-    <img src="expand.gif" alt="Expand" />
-    <figcaption class="caption">Expand</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="linking-tasks">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#linking-tasks">#</doc-anchor-trigger>
-        <span>Linking tasks</span>
-    </h2>
+<p>When device is installed with stream property set, subscriptions for all
+provided streams are created in database. These subscriptions are always
+created with UniConfig instance id set to null, so they can be acquired
+by any UniConfig from cluster. Each UniConfig instance in cluster uses
+its own monitoring system to acquire free subscriptions. Monitoring
+system uses specialized transaction to lock subscriptions which prevents
+more UniConfig instances to lock same subscriptions. While locking
+subscription, UniConfig instance writes its id to subscription table to
+currently locked subscription and which means that this subscription is
+already acquired by this UniConfig instance. Other instances of
+UniConfig will not find this subscription as free anymore.</p>
+<doc-anchor-target id="optimal-subscription-count-and-rebalancing">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#optimal-subscription-count-and-rebalancing">#</doc-anchor-trigger>
+        <span>Optimal subscription count and rebalancing</span>
+    </h3>
 </doc-anchor-target>
-<p>To connect tasks or subworkflows into execution flow, drag and drop
-respective <strong>Out</strong> and <strong>In</strong> endpoints on nodes, like this: <strong>Out</strong>
--&gt; <strong>In</strong></p>
-<p><figure class="content-center">
-    <img src="linking.gif" alt="Linking tasks" />
-    <figcaption class="caption">Linking tasks</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="unlinking-tasks">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#unlinking-tasks">#</doc-anchor-trigger>
-        <span>Unlinking tasks</span>
-    </h2>
-</doc-anchor-target>
-<p>To remove the link, double-click on the link.</p>
-<p><figure class="content-center">
-    <img src="unlinking.gif" alt="Unlinking tasks" />
-    <figcaption class="caption">Unlinking tasks</figcaption>
-</figure>
-</p>
-<doc-anchor-target id="adding-workflow-information">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#adding-workflow-information">#</doc-anchor-trigger>
-        <span>Adding workflow information</span>
-    </h2>
-</doc-anchor-target>
-<p>To provide additional workflow information, click on <strong>Actions</strong> in the
-upper right-hand corner and then click <strong>Edit workflow</strong>.</p>
-<doc-anchor-target id="output-parameters">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#output-parameters">#</doc-anchor-trigger>
-        <span>Output parameters</span>
-    </h2>
-</doc-anchor-target>
-<p>We can specify custom output parameters of a workflow, by using JSON
-templates to generate the output of the workflow. If not specified, the
-output is defined as the output of the last executed task.</p>
-<p>Let&#x27;s say we have a task with taskReferenceName: <code v-pre>task1</code> which returns
-<code v-pre>summary</code> and we want output of the worklow to be output of this
-specific task only. The outputParameter value named e.g. <code v-pre>finalResult</code>
-will be:</p>
+<p>With multiple UniConfig instances working in a cluster, each instance
+calculates an optimal range of subscriptions to manage.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">${task1.output.summary}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">OPTIMAL_RANGE_LOW = (NUMBER_OF_ALL_SUBSCRIPTIONS / NUMBER_OF_LIVE_UC_NODES_IN_CLUSTER) * OPTIMAL_NETCONF_SUBSCRIPTIONS_APPROACHING_MARGIN
+OPTIMAL_RANGE_HIGH = (NUMBER_OF_ALL_SUBSCRIPTIONS / NUMBER_OF_LIVE_UC_NODES_IN_CLUSTER) * OPTIMAL_NETCONF_SUBSCRIPTIONS_REACHED_MARGIN
+# Example: optimal range for 5000 subscriptions with 3 nodes in the cluster and margins set to 0.05 and 0.10 =
+# (1750, 1834)</code></pre>
 </doc-codeblock></div>
-<p>For full documentation of workflow parameters and definition read
-<a href="https://netflix.github.io/conductor/configuration/workflowdef/">https://netflix.github.io/conductor/configuration/workflowdef/</a>.</p>
-<doc-anchor-target id="defaults--description">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#defaults--description">#</doc-anchor-trigger>
-        <span>Defaults &amp; Description</span>
-    </h2>
-</doc-anchor-target>
-<p>Here, we can define default values and descriptions for workflow inputs.
-Each input value declared as <code v-pre>${workflow.input...}</code> will appear in a
-dropdown list of available input parameters.</p>
-<doc-anchor-target id="save-and-execute-workflow">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#save-and-execute-workflow">#</doc-anchor-trigger>
-        <span>Save and execute workflow</span>
-    </h2>
-</doc-anchor-target>
-<p>To <strong>Save</strong> workflow, click on the <strong>Actions</strong> button in the upper right
-corner and select <strong>Save workflow</strong>. Then you can find the workflow in the
-<strong>Explore workflows</strong> section under <strong>Definitions</strong> tab.</p>
-<p>To <strong>Execute</strong> workflow directly from the builder, click on the
-<strong>Save and execute</strong> button in the upper right corner. You will be
-prompted to provide input parameters.</p>
+<p>Based on optimal range and a number of currently opened subscriptions,
+each uniconfig node (while performing a monitoring system iteration)
+decides whether it should:</p>
+<ul>
+<li>Acquire additional subscriptions before optimal range is reached</li>
+<li>Stay put and not acquire additional subscriptions in case optimal
+range is reached</li>
+<li>Release some of its subscriptions to trigger rebalancing until
+optimal range is reached</li>
+</ul>
+<p>When an instance goes down, all of its subscriptions will be immediately
+released and the optimal range for the other living nodes will change
+and thus the subscriptions will be reopened by the rest of the cluster.</p>
 <div class="flex mb-6">
     <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -659,43 +590,19 @@ prompted to provide input parameters.</p>
             </svg>
         </div>
         <div class="pr-5 ml-3">
-<p><strong>Executing</strong> workflow will also save the workflow.</p>
+<p>There is a grace period before the other nodes take over the
+subscriptions. So in case a node goes down and up quickly, it will
+restart the subscriptions on its own.</p>
         </div>
     </div>
 </div>
-<doc-anchor-target id="import-and-export-of-workflows">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#import-and-export-of-workflows">#</doc-anchor-trigger>
-        <span>Import and export of workflows</span>
-    </h2>
-</doc-anchor-target>
-<p>To import workflow, click the setting icon and then select the <strong>Import</strong>
-button. Only <strong>valid</strong> JSON definition of the workflow will be imported.</p>
-<div class="flex mb-6">
-    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3">
-<p>Imported workflow will not be saved until you <strong>Save</strong> or <strong>Execute</strong>
-it.</p>
-        </div>
-    </div>
-</div>
+<p>Following example illustrates a timeline of a 3 node cluster and how
+many subscriptions each node handles:</p>
 <p><figure class="content-center">
-    <img src="import_export.gif" alt="Import/Export workflow" />
-    <figcaption class="caption">Import/Export workflow</figcaption>
+    <img src="netconf_subs_rebalancing.svg" alt="notifications-in-cluster-rebalancing" />
+    <figcaption class="caption">notifications-in-cluster-rebalancing</figcaption>
 </figure>
 </p>
-<p>To export and save the workflow in JSON format into your filesystem,
-click on <strong>Export</strong> button.</p>
 <div class="flex mb-6">
     <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -709,12 +616,166 @@ click on <strong>Export</strong> button.</p>
             </svg>
         </div>
         <div class="pr-5 ml-3">
-<p>In order to choose a location to which you want to export the
-workflow, you have to have it enabled in your browser settings.
-Default location is Downloads folder.</p>
+<p>The hard limit still applies in clustered environment and it will never
+be crossed, regardless of the optimal range.</p>
         </div>
     </div>
 </div>
+<doc-anchor-target id="configuration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration">#</doc-anchor-trigger>
+        <span>Configuration</span>
+    </h2>
+</doc-anchor-target>
+<p>Configuration for notifications is in lighty-uniconfig-config.json file
+under <em>notifications</em> property. Whole configuration looks like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">&quot;notifications&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;kafka&quot;: {
+        &quot;username&quot;: &quot;kafka&quot;,
+        &quot;password&quot;: &quot;kafka&quot;,
+        &quot;kafkaServers&quot;: [
+            {
+                &quot;brokerHost&quot;: &quot;127.0.0.1&quot;,
+                &quot;brokerListeningPort&quot;: 9092
+            }
+        ],
+        &quot;netconfNotificationsEnabled&quot;: true,
+        &quot;auditLogsEnabled&quot;: true,
+        &quot;transactionNotificationsEnabled&quot;: true,
+        &quot;netconfNotificationsTopicName&quot;: &quot;netconf-notifications&quot;,
+        &quot;auditLogsTopicName&quot;: &quot;auditLogs&quot;,
+        &quot;transactionsTopicName&quot;: &quot;transactions&quot;,
+        &quot;embeddedKafka&quot;: {
+            &quot;enabled&quot;: true,
+            &quot;installDir&quot;: &quot;/tmp/embedded-kafka&quot;,
+            &quot;archiveUrl&quot;: &quot;https://dlcdn.apache.org/kafka/3.0.0/kafka_2.12-3.0.0.tgz&quot;,
+            &quot;dataDir&quot;: &quot;./data/embedded-kafka&quot;,
+            &quot;cleanDataBeforeStart&quot;: true,
+            &quot;partitions&quot;: 1
+        }
+    },
+    &quot;auditLogs&quot;: {
+        &quot;includeResponseBody&quot;: true
+    },
+    &quot;notificationDbTreshold&quot;: {
+        &quot;maxCount&quot;: 10000,
+        &quot;maxAge&quot;: 100
+    },
+    &quot;netconfSubscriptionsMonitoringInterval&quot;: 5,
+    &quot;maxNetconfSubscriptionsPerInterval&quot;: 10,
+    &quot;maxNetconfSubscriptionsHardLimit&quot;: 5000,
+    &quot;rebalanceOnUCNodeGoingDownGracePeriod&quot;: 120,
+    &quot;optimalNetconfSubscriptionsApproachingMargin&quot;: 0.05,
+    &quot;optimalNetconfSubscriptionsReachedMargin&quot; : 0.10
+}</code></pre>
+</doc-codeblock></div>
+<p>All notifications and also monitoring system can be enabled and disabled
+by <em>enabled</em> flag.</p>
+<p><strong>There are 3 properties related to monitoring system:</strong></p>
+<ul>
+<li>subscriptionsMonitoringInterval - how often is monitoring system
+loop running and trying to acquire free subscriptions, value is in
+seconds and default is 5</li>
+<li>maxSubscriptionsPerInterval - maximum number of free subscriptions
+that can be acquired in single monitoring system loop iteration,
+when there is fewer free subscription than this value, only this
+smaller amount will be processed (even zero if there are none), if
+the number of free subscriptions is higher or equal to this value,
+only specified amount will be acquired, the rest can be acquired
+in next iterations of monitoring system loop or by other UniConfig
+instances in cluster, default value for this property is 10</li>
+<li>maxNetconfSubscriptionsHardLimit - hard limit for how many
+subscriptions can a single UniConfig node handle</li>
+</ul>
+<p><strong>There are 3 properties related to monitoring system in clustered
+environment:</strong></p>
+<ul>
+<li>rebalanceOnUCNodeGoingDownGracePeriod - grace period for a
+UniConfig node going down. Other nodes will not restart the
+subscriptions until the grace period passes from when a dead
+Uniconfig node has been seen last. Default = 120 seconds.</li>
+<li>optimalNetconfSubscriptionsApproachingMargin - the lower margin to
+calculate optimal range start. Default = 0.05</li>
+<li>optimalNetconfSubscriptionsReachedMargin - the higher margin to
+calculate optimal range end. Default = 0.10</li>
+</ul>
+<p><strong>There are two properties that are used to limit number of records in
+database in notifications table:</strong></p>
+<ul>
+<li>maxCount - if number of records in notifications table exceeds
+specified number then oldest record in this table will be deleted,
+this way there will never be more records in database than
+specified value, default is 10 000</li>
+<li>maxAge - if record is older than specified value it will be
+deleted, value is in hours and default is 100</li>
+</ul>
+<p>These properties are under <em>notificationDbTreshold</em>. Both of these are
+implemented using database triggers. Triggers are running on inserts to
+notifications table.</p>
+<p>Audit logs settings are under auditLogs property. Currently there is
+only one flag <em>includeResponseBody</em> that is used to enable or disable of
+logging body of RESTCONF responses.</p>
+<p>All settings related to kafka are grouped under <em>kafka</em> property. For
+authentication there are <em>username</em> and <em>password</em> properties. For kafka
+connection there is <em>kafkaServers</em> property. This contains list of kafka
+servers as combination of <em>brokerHost</em> and <em>brokerListeningPort</em>. Broker
+host can be either ip address or hostname.</p>
+<p>It is possible to enable/disable each type of notifications
+independently. To do that these flags are used:</p>
+<ul>
+<li>netconfNotificationsEnabled</li>
+<li>auditLogsEnabled</li>
+<li>transactionNotificationsEnabled</li>
+</ul>
+<p>It is possible to setup names of all topics for every notification type.
+This is done using:</p>
+<ul>
+<li>transactionsTopicName - topic name for transactions about
+notifications</li>
+<li>netconfNotificationsTopicName - topic name for NETCONF
+notifications</li>
+<li>auditLogsTopicName - topic name for audit logs</li>
+</ul>
+<p>It is also possible to setup embedded kafka. These setting are grouped
+under <em>embeddedKafka</em> property:</p>
+<ul>
+<li>enabled - flag that enables or disables embedded kafka</li>
+<li>installDir - where should be kafka files placed</li>
+<li>archiveUrl - where to download kafka from</li>
+<li>dataDir - kafka data directory</li>
+<li>cleanDataBeforeStart - if kafka config should be cleared before start</li>
+</ul>
+<p>Kafka settings are also stored in db. This way they can be changed at
+runtime. This change can be done using RESTCONF or UniConfig shell.
+Kafka setting are stored in settings table.</p>
+<doc-anchor-target id="example">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example">#</doc-anchor-trigger>
+        <span>Example</span>
+    </h2>
+</doc-anchor-target>
+<p>To read notifications from kafka, it is possible to use command line
+consumer. It is done by running following command in kafka installation
+directory:</p>
+<p>bin/kafka-console-consumer.sh --bootstrap-server localhost:9092
+--topic netconf-notifications</p>
+<p>It is important to have properly setup hostname, port and topic name.
+Output after creation of NETCONF notification may look like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;eventTime&quot;: &quot;2021-12-03T08:16:45.75600-00:00&quot;,
+  &quot;nodeId&quot;: &quot;R1&quot;,
+  &quot;streamName&quot;: &quot;NETCONF&quot;,
+  &quot;identifier&quot;: &quot;netconf-session-start&quot;,
+  &quot;body&quot;: {
+    &quot;session-id&quot;: 191,
+    &quot;source-host&quot;: &quot;10.255.246.85&quot;,
+    &quot;username&quot;: &quot;admin&quot;
+  }
+}</code></pre>
+</doc-codeblock></div>
 
 
 
@@ -726,20 +787,20 @@ Default location is Downloads folder.</p>
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniflow/inventory/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/immediate-commit-model/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">Device Inventory</span>
+                <span class="block mt-1">Immediate Commit Model</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniresource/introduction/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/templates-manager/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">FRINX UniResource introduction</span>
+                <span class="block mt-1">Templates Manager</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -790,7 +851,7 @@ Default location is Downloads folder.</p>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Workflow Builder", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Kafka Notifications", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
         <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f4b74451-b2eb-4560-acd3-af512e0b29d1";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     </body>
 </html>
