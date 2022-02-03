@@ -30,12 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.697190248039" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.697190919123" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697190248039" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697190919123" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697190248039" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697190248039" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697190919123" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697190919123" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -358,7 +358,7 @@ json format - event time - time when notification was generated</p>
 <p>Example request for reading notifications using RESTCONF:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Request</div>
-<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/data/notifications:notification' \
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/notifications:notification' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json'</code></pre>
 </doc-codeblock></div>
@@ -368,7 +368,7 @@ at runtime.</p>
 <p>Example request for reading kafka settings using RESTCONF:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Request</div>
-<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/data/kafka-brokers:kafka-settings' \
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/kafka-brokers:kafka-settings' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json'</code></pre>
 </doc-codeblock></div>
@@ -382,7 +382,7 @@ be collected - end time - time when notifications stop to be collected</p>
 <p>Example request for reading subscriptions using RESTCONF:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Request</div>
-<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/data/netconf-subscriptions:netconf-subscriptions' \
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/netconf-subscriptions:netconf-subscriptions' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json'</code></pre>
 </doc-codeblock></div>
