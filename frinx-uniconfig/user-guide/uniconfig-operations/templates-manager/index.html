@@ -30,12 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.697556263894" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.697565353235" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697556263894" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697565353235" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697556263894" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697556263894" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697565353235" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697565353235" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -819,6 +819,135 @@ PLAIN-PATCH RESTCONF method.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">RPC Response, Status: 200</div>
 <pre class="language-json"><code v-pre class="language-json">{
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="rpc-get-template-info">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-get-template-info">#</doc-anchor-trigger>
+        <span>RPC get-template-info</span>
+    </h2>
+</doc-anchor-target>
+<p>This RPC shows information about all variables in specified template. The RPC input has to contain template name.</p>
+<doc-anchor-target id="creation-of-template-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creation-of-template-1">#</doc-anchor-trigger>
+        <span>Creation of template</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PUT 'http://localhost:8181/rests/data/network-topology:network-topology/topology=templates/node=interface_template/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=%7B%24act-var%7D,%7B%24ifc-name-var%7D?uniconfig-schema-repository=schemas_1' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;interface-configuration&quot;: [
+        {
+            &quot;active&quot;: &quot;{$act-var}&quot;,
+            &quot;interface-name&quot;: &quot;{$ifc-name-var}&quot;,
+            &quot;shutdown&quot;: [
+                &quot;{$shutdown-var}&quot;
+            ]
+        }
+    ]
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 201</div>
+<pre class="language-json"><code v-pre class="language-json"></code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="usage-of-rpc">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage-of-rpc">#</doc-anchor-trigger>
+        <span>Usage of RPC</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:get-template-info' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;input&quot;: {
+        &quot;template-node-id&quot;: &quot;interface_template&quot;
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response</div>
+<pre class="language-bash"><code v-pre class="language-bash">{
+    &quot;output&quot;: {
+        &quot;variables&quot;: {
+            &quot;variable&quot;: [
+                {
+                    &quot;variable-name&quot;: &quot;{$act-var}&quot;,
+                    &quot;type&quot;: &quot;Cisco-IOS-XR-ifmgr-cfg:Interface-active&quot;,
+                    &quot;paths&quot;: {
+                        &quot;path&quot;: [
+                            {
+                                &quot;path&quot;: &quot;/network-topology:network-topology/topology=templates/node=interface_template/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration={%24act-var},{%24ifc-name-var}/active&quot;,
+                                &quot;path-description&quot;: &quot;Whether the interface is active or\npreconfigured&quot;
+                            }
+                        ]
+                    },
+                    &quot;base-types&quot;: {
+                        &quot;base-type&quot;: [
+                            {
+                                &quot;constraints&quot;: [
+                                    &quot;Length: [[0..2147483647]]&quot;,
+                                    &quot;Pattern: (act)|(pre)&quot;
+                                ],
+                                &quot;type&quot;: &quot;string&quot;
+                            }
+                        ]
+                    },
+                    &quot;type-description&quot;: &quot;act:The interface is active, pre:Preconfiguration&quot;
+                },
+                {
+                    &quot;variable-name&quot;: &quot;{$ifc-name-var}&quot;,
+                    &quot;type&quot;: &quot;Cisco-IOS-XR-types:Interface-name&quot;,
+                    &quot;paths&quot;: {
+                        &quot;path&quot;: [
+                            {
+                                &quot;path&quot;: &quot;/network-topology:network-topology/topology=templates/node=interface_template/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration={%24act-var},{%24ifc-name-var}/interface-name&quot;,
+                                &quot;path-description&quot;: &quot;The name of the interface&quot;
+                            }
+                        ]
+                    },
+                    &quot;base-types&quot;: {
+                        &quot;base-type&quot;: [
+                            {
+                                &quot;constraints&quot;: [
+                                    &quot;Length: [[0..2147483647]]&quot;,
+                                    &quot;Pattern: (([a-zA-Z0-9_]*\\d+/){3}\\d+)|(([a-zA-Z0-9_]*\\d+/){4}\\d+)|(([a-zA-Z0-9_]*\\d+/){3}\\d+\\.\\d+)|(([a-zA-Z0-9_]*\\d+/){2}([a-zA-Z0-9_]*\\d+))|(([a-zA-Z0-9_]*\\d+/){2}([a-zA-Z0-9_]+))|([a-zA-Z0-9_-]*\\d+)|([a-zA-Z0-9_-]*\\d+\\.\\d+)|(mpls)|(dwdm)&quot;
+                                ],
+                                &quot;type&quot;: &quot;string&quot;
+                            }
+                        ]
+                    },
+                    &quot;type-description&quot;: &quot;An interface name specifying an interface type and\ninstance.\nInterface represents a string defining an interface\ntype and instance, e.g. MgmtEth0/4/CPU1/0 or\nTenGigE0/2/0/0.2 or Bundle-Ether9 or\nBundle-Ether9.98&quot;
+                },
+                {
+                    &quot;variable-name&quot;: &quot;{$shutdown-var}&quot;,
+                    &quot;type&quot;: &quot;empty&quot;,
+                    &quot;paths&quot;: {
+                        &quot;path&quot;: [
+                            {
+                                &quot;path&quot;: &quot;/network-topology:network-topology/topology=templates/node=interface_template/frinx-uniconfig-topology:configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration={%24act-var},{%24ifc-name-var}/shutdown&quot;,
+                                &quot;path-description&quot;: &quot;Shut the interface&quot;
+                            }
+                        ]
+                    },
+                    &quot;base-types&quot;: {
+                        &quot;base-type&quot;: [
+                            {
+                                &quot;type&quot;: &quot;empty&quot;
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
 }</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="application-of-template">
