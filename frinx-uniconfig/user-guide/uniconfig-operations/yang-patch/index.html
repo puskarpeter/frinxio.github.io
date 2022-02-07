@@ -9,23 +9,21 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>RPC checked-commit | Frinx Docs</title>
-    <meta name="title" content="RPC checked-commit | Frinx Docs">
-    <meta name="description" content="The trigger for execution of the checked configuration is RPC checked-commit. A checked commit is similar to an RPC commit but it also" />
+    <title>YANG Patch Operations | Frinx Docs</title>
+    <meta name="title" content="YANG Patch Operations | Frinx Docs">
+    <meta name="description" content="Yang Patch is used for modification of subtrees under configuration. Advantages of YANG Patch in comparison" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-node-manager/rpc_checked-commit/">
-    <meta property="og:title" content="RPC checked-commit | Frinx Docs">
-    <meta property="og:description" content="The trigger for execution of the checked configuration is RPC checked-commit. A checked commit is similar to an RPC commit but it also">
-    <meta property="og:image" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-node-manager/rpc_checked-commit/rpc_checked-commit-rpc_checked_commit.svg">
+    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/yang-patch/">
+    <meta property="og:title" content="YANG Patch Operations | Frinx Docs">
+    <meta property="og:description" content="Yang Patch is used for modification of subtrees under configuration. Advantages of YANG Patch in comparison">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-node-manager/rpc_checked-commit/">
-    <meta property="twitter:title" content="RPC checked-commit | Frinx Docs">
-    <meta property="twitter:description" content="The trigger for execution of the checked configuration is RPC checked-commit. A checked commit is similar to an RPC commit but it also">
-    <meta property="twitter:image" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-node-manager/rpc_checked-commit/rpc_checked-commit-rpc_checked_commit.svg">
+    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/yang-patch/">
+    <meta property="twitter:title" content="YANG Patch Operations | Frinx Docs">
+    <meta property="twitter:description" content="Yang Patch is used for modification of subtrees under configuration. Advantages of YANG Patch in comparison">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -232,37 +230,32 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="rpc-checked-commit" class="break-words">
+<doc-anchor-target id="yang-patch-operations" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-checked-commit">#</doc-anchor-trigger>
-        <span>RPC checked-commit</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#yang-patch-operations">#</doc-anchor-trigger>
+        <span>YANG Patch Operations</span>
     </h1>
 </doc-anchor-target>
-<p>The trigger for execution of the checked configuration is RPC
-checked-commit. A checked commit is similar to an RPC commit but it also
-checks if nodes are in sync with the network before it starts
-configuration. RPC fails if any node is out of sync. Output of the RPC
-describes the result of the commit and matches all modified nodes in the
-UniConfig transaction. If one node failed for any reason, RPC will fail
-entirely.</p>
-<p>In comparison to commit RPC, there is one additional phase between &#x27;lock
-and validate configured nodes&#x27; and &#x27;write configuration into device&#x27;
-phases:</p>
-<ol>
-<li>Lock and validate configured nodes</li>
-<li>Check if nodes are in-sync with state on devices</li>
-<li>Write configuration into device</li>
-<li>Validate configuration</li>
-<li>Confirmed commit</li>
-<li>Confirming commit (submit configuration)</li>
-</ol>
-<p>Following diagram captures check if configuration fingerprints in the
-transaction datastore and device are equal.</p>
-<p><figure class="content-center">
-    <img src="rpc_checked-commit-rpc_checked_commit.svg" alt="RPC checked-commit" />
-    <figcaption class="caption">RPC checked-commit</figcaption>
-</figure>
-</p>
+<p>Yang Patch is used for modification of subtrees under configuration. Advantages of YANG Patch in comparison
+to other RESTCONF operations:</p>
+<ul>
+<li>YANG Patch may contain multiple edits with different operations applied to different subtrees</li>
+<li>all edits inside YANG Patch are applied atomically - either all edits are successful or PATCH operation will fail
+and configuration will not be modified</li>
+<li>supported reordering of lists (move operation) and inserting of list entry to specific position in the list
+(insert operation)</li>
+</ul>
+<p>UniConfig supports all RFC-specified operations inside edits:</p>
+<ul>
+<li>CREATE</li>
+<li>REPLACE</li>
+<li>MERGE</li>
+<li>MOVE</li>
+<li>INSERT</li>
+<li>DELETE</li>
+<li>REMOVE</li>
+</ul>
+<p>Using these operations, the user is able to reorder lists, create new data, remove data, or update specific data.</p>
 <div class="flex mb-6">
     <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -276,14 +269,7 @@ transaction datastore and device are equal.</p>
             </svg>
         </div>
         <div class="pr-5 ml-3">
-<p>There is a difference between fingerprint-based validation in the
-phases 1 and 2. The goal of the first phase is validation if other
-transaction has already changed the same node by comparison of
-fingerprint in the UniConfig transaction and in the database. On the
-other side, the second phase validates if fingerprint in the
-transaction equals to fingerprint on the device - if another system /
-directly user via CLI has updated device configuration since the
-beginning of the transaction.</p>
+<p>For more information, please refer to the official documentation of the <a href="https://datatracker.ietf.org/doc/html/rfc8072">RFC YANG patch</a></p>
         </div>
     </div>
 </div>
@@ -293,256 +279,472 @@ beginning of the transaction.</p>
         <span>RPC Examples</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="successful-example">
+<doc-anchor-target id="creation-of-list-entries">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#successful-example">#</doc-anchor-trigger>
-        <span>Successful Example</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creation-of-list-entries">#</doc-anchor-trigger>
+        <span>Creation of list entries</span>
     </h3>
 </doc-anchor-target>
-<p>RPC checked-commit input has 2 target nodes and the output describes the
-result of the checked-commit.</p>
+<p>The request creates new list entries in the tvi list.
+If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Request</div>
-<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:checked-commit' \
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    &quot;input&quot;: {
-        &quot;target-nodes&quot;: {
-            &quot;node&quot;: [&quot;IOSXR&quot;,&quot;IOSXRN&quot;]
-        }
+    &quot;yang-patch&quot;: {
+        &quot;patch-id&quot;: &quot;add-list-entries&quot;,
+        &quot;comment&quot;: &quot;Adding list entries&quot;,
+        &quot;edit&quot;: [
+            {
+                &quot;edit-id&quot;: &quot;1&quot;,
+                &quot;operation&quot;: &quot;create&quot;,
+                &quot;target&quot;: &quot;/tvi&quot;,
+                &quot;value&quot;: {
+                    &quot;tvi&quot;: [
+                        {
+                            &quot;mode&quot;: &quot;ipsec&quot;,
+                            &quot;enable&quot;: false,
+                            &quot;name&quot;: &quot;tvi-0/99&quot;,
+                            &quot;description&quot;: &quot;test interface&quot;,
+                            &quot;type&quot;: &quot;p2mp-vxlan&quot;
+                        }
+                    ]
+                }
+            },
+            {
+                &quot;edit-id&quot;: &quot;2&quot;,
+                &quot;operation&quot;: &quot;create&quot;,
+                &quot;target&quot;: &quot;/tvi&quot;,
+                &quot;value&quot;: {
+                    &quot;tvi&quot;: [
+                        {
+                            &quot;mode&quot;: &quot;ipsec&quot;,
+                            &quot;enable&quot;: false,
+                            &quot;name&quot;: &quot;tvi-0/98&quot;,
+                            &quot;description&quot;: &quot;test interface&quot;,
+                            &quot;type&quot;: &quot;p2mp-vxlan&quot;
+                        }
+                    ]
+                }
+            },
+            {
+                &quot;edit-id&quot;: &quot;3&quot;,
+                &quot;operation&quot;: &quot;create&quot;,
+                &quot;target&quot;: &quot;/tvi&quot;,
+                &quot;value&quot;: {
+                    &quot;tvi&quot;: [
+                        {
+                            &quot;mode&quot;: &quot;ipsec&quot;,
+                            &quot;enable&quot;: false,
+                            &quot;name&quot;: &quot;tvi-0/97&quot;,
+                            &quot;description&quot;: &quot;test interface&quot;,
+                            &quot;type&quot;: &quot;p2mp-vxlan&quot;
+                        }
+                    ]
+                }
+            }
+        ]
     }
 }'</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Response, Status: 200</div>
+<div class="codeblock-title">PATCH response</div>
 <pre class="language-json"><code v-pre class="language-json">{
-    &quot;output&quot;: {
-        &quot;overall-status&quot;: &quot;complete&quot;,
-        &quot;node-results&quot;: {
-            &quot;node-result&quot;: [
+    &quot;ietf-yang-patch:yang-patch-status&quot;:{
+        &quot;patch-id&quot;:&quot;add-list-entries&quot;,
+        &quot;ok&quot;:[
+            null
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="moving-list-entry">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moving-list-entry">#</doc-anchor-trigger>
+        <span>Moving list entry</span>
+    </h3>
+</doc-anchor-target>
+<p>The request moves an existing list entry on a user defined position.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;yang-patch&quot;: {
+        &quot;patch-id&quot;: &quot;moving-list-entry&quot;,
+        &quot;comment&quot;: &quot;Moving a list entry&quot;,
+        &quot;edit&quot;: [
+            {
+                &quot;edit-id&quot;: &quot;4&quot;,
+                &quot;operation&quot;: &quot;move&quot;,
+                &quot;target&quot;: &quot;/tvi=tvi-0%2F99&quot;,
+                &quot;point&quot;: &quot;/tvi=tvi-0%2F98&quot;,
+                &quot;where&quot;: &quot;before&quot;
+            }
+        ]
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;ietf-yang-patch:yang-patch-status&quot;:{
+        &quot;patch-id&quot;:&quot;moving-list-entry&quot;,
+        &quot;ok&quot;:[
+            null
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="inserting-new-list-entry">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inserting-new-list-entry">#</doc-anchor-trigger>
+        <span>Inserting new list entry</span>
+    </h3>
+</doc-anchor-target>
+<p>The request inserts new list entries on a user defined position.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;yang-patch&quot;:{
+        &quot;patch-id&quot;:&quot;insert-list-entries&quot;,
+        &quot;comment&quot;:&quot;Inserting list entries&quot;,
+        &quot;edit&quot;:[
+            {
+                &quot;edit-id&quot;:&quot;5&quot;,
+                &quot;operation&quot;:&quot;insert&quot;,
+                &quot;target&quot;:&quot;/tvi=tvi-0%2F50&quot;,
+                &quot;point&quot;:&quot;/tvi=tvi-0%2F98&quot;,
+                &quot;where&quot;:&quot;before&quot;,
+                &quot;value&quot;:{
+                    &quot;tvi&quot;:[
+                        {
+                            &quot;mode&quot;:&quot;ipsec&quot;,
+                            &quot;enable&quot;:false,
+                            &quot;name&quot;:&quot;tvi-0/50&quot;,
+                            &quot;description&quot;:&quot;test interface&quot;,
+                            &quot;type&quot;:&quot;p2mp-vxlan&quot;
+                        }
+                    ]
+                }
+            },
+            {
+                &quot;edit-id&quot;:&quot;6&quot;,
+                &quot;operation&quot;:&quot;insert&quot;,
+                &quot;target&quot;:&quot;/tvi=tvi-0%2F51&quot;,
+                &quot;where&quot;:&quot;first&quot;,
+                &quot;value&quot;:{
+                    &quot;tvi&quot;:[
+                        {
+                            &quot;mode&quot;:&quot;ipsec&quot;,
+                            &quot;enable&quot;:false,
+                            &quot;name&quot;:&quot;tvi-0/51&quot;,
+                            &quot;description&quot;:&quot;test interface&quot;,
+                            &quot;type&quot;:&quot;p2mp-vxlan&quot;
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;ietf-yang-patch:yang-patch-status&quot;:{
+        &quot;patch-id&quot;:&quot;insert-list-entries&quot;,
+        &quot;ok&quot;:[
+            null
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="replacing-list-entry">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#replacing-list-entry">#</doc-anchor-trigger>
+        <span>Replacing list entry</span>
+    </h3>
+</doc-anchor-target>
+<p>The request replaces an existing value in a list entry.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;yang-patch&quot;:{
+        &quot;patch-id&quot;:&quot;replace-list-entry-value&quot;,
+        &quot;comment&quot;:&quot;Replacing a value in list entry&quot;,
+        &quot;edit&quot;:[
+            {
+                &quot;edit-id&quot;:&quot;7&quot;,
+                &quot;operation&quot;:&quot;replace&quot;,
+                &quot;target&quot;:&quot;/tvi=tvi-0%2F99/enable&quot;,
+                &quot;value&quot;:{
+                    &quot;enable&quot;:true
+                }
+            }
+        ]
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;ietf-yang-patch:yang-patch-status&quot;:{
+        &quot;patch-id&quot;:&quot;replace-list-entry-value&quot;,
+        &quot;ok&quot;:[
+            null
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="merging-configuration">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#merging-configuration">#</doc-anchor-trigger>
+        <span>Merging configuration</span>
+    </h3>
+</doc-anchor-target>
+<p>The request merges an existing value in a list entry.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;yang-patch&quot;:{
+        &quot;patch-id&quot;:&quot;merge-value-list-entry&quot;,
+        &quot;comment&quot;:&quot;Merge new values in list entry&quot;,
+        &quot;edit&quot;:[
+            {
+                &quot;edit-id&quot;:&quot;8&quot;,
+                &quot;operation&quot;:&quot;merge&quot;,
+                &quot;target&quot;:&quot;/tvi=tvi-0%2F99/unit=0/family/inet/address&quot;,
+                &quot;value&quot;:{
+                    &quot;address&quot;:[
+                        {
+                            &quot;addr&quot;:&quot;10.1.0.101/32&quot;
+                        },
+                        {
+                            &quot;addr&quot;:&quot;1.2.3.4/32&quot;
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;ietf-yang-patch:yang-patch-status&quot;:{
+        &quot;patch-id&quot;:&quot;merge-value-list-entry&quot;,
+        &quot;ok&quot;:[
+            null
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="delete-list-entry">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#delete-list-entry">#</doc-anchor-trigger>
+        <span>Delete list entry</span>
+    </h3>
+</doc-anchor-target>
+<p>The request deletes a list entry. If the data is missing, returns an error.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;yang-patch&quot;:{
+        &quot;patch-id&quot;:&quot;delete-list-entry&quot;,
+        &quot;comment&quot;:&quot;Delete a list entry&quot;,
+        &quot;edit&quot;:[
+            {
+                &quot;edit-id&quot;:&quot;9&quot;,
+                &quot;operation&quot;:&quot;delete&quot;,
+                &quot;target&quot;:&quot;/tvi=tvi-0%2F98&quot;
+            }
+        ]
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;ietf-yang-patch:yang-patch-status&quot;:{
+        &quot;patch-id&quot;:&quot;delete-list-entry&quot;,
+        &quot;ok&quot;:[
+            null
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="removing-list-entry">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#removing-list-entry">#</doc-anchor-trigger>
+        <span>Removing list entry</span>
+    </h3>
+</doc-anchor-target>
+<p>The request removes a list entry.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;yang-patch&quot;: {
+        &quot;patch-id&quot;: &quot;remove-list-entry&quot;,
+        &quot;comment&quot;: &quot;Remove a list entry&quot;,
+        &quot;edit&quot;: [
+            {
+                &quot;edit-id&quot;: &quot;10&quot;,
+                &quot;operation&quot;: &quot;remove&quot;,
+                &quot;target&quot;: &quot;/tvi=tvi-0%2F50&quot;
+            }
+        ]
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;ietf-yang-patch:yang-patch-status&quot;: {
+        &quot;patch-id&quot;: &quot;remove-list-entry&quot;,
+        &quot;ok&quot;: [
+            null
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="failed-deleting-of-list-entry">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#failed-deleting-of-list-entry">#</doc-anchor-trigger>
+        <span>Failed deleting of list entry</span>
+    </h3>
+</doc-anchor-target>
+<p>The request to delete a list entry that is not present.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;yang-patch&quot;: {
+        &quot;patch-id&quot;: &quot;delete-list-entry&quot;,
+        &quot;comment&quot;: &quot;Delete a list entry&quot;,
+        &quot;edit&quot;: [
+            {
+                &quot;edit-id&quot;: &quot;9&quot;,
+                &quot;operation&quot;: &quot;delete&quot;,
+                &quot;target&quot;: &quot;/tvi=tvi-0%2F98&quot;
+            }
+        ]
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;ietf-yang-patch:yang-patch-status&quot;: {
+        &quot;patch-id&quot;: &quot;delete-list-entry&quot;,
+        &quot;edit-status&quot;: {
+            &quot;edit&quot;: [
                 {
-                    &quot;node-id&quot;: &quot;IOSXRN&quot;,
-                    &quot;configuration-status&quot;: &quot;complete&quot;
-                },
-                {
-                    &quot;node-id&quot;: &quot;IOSXR&quot;,
-                    &quot;configuration-status&quot;: &quot;complete&quot;
+                    &quot;edit-id&quot;: &quot;9&quot;,
+                    &quot;errors&quot;: {
+                        &quot;error&quot;: [
+                            {
+                                &quot;error-type&quot;: &quot;protocol&quot;,
+                                &quot;error-tag&quot;: &quot;data-missing&quot;,
+                                &quot;error-path&quot;: &quot;/network-topology/topology=uniconfig/node=dev1/configuration/interfaces/tvi=tvi-0%2F98&quot;,
+                                &quot;error-message&quot;: &quot;Data does not exist&quot;
+                            }
+                        ]
+                    }
                 }
             ]
         }
     }
 }</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="successful-example-1">
+<doc-anchor-target id="sending-patch-request-with-invalid-structure">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#successful-example-1">#</doc-anchor-trigger>
-        <span>Successful Example</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sending-patch-request-with-invalid-structure">#</doc-anchor-trigger>
+        <span>Sending Patch request with invalid structure</span>
     </h3>
 </doc-anchor-target>
-<p>If the RPC input does not contain the target nodes, all touched nodes
-will be invoked.</p>
+<p>The request is missing some data.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Request</div>
-<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:checked-commit' \
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    &quot;output&quot;: {
-        &quot;overall-status&quot;: &quot;complete&quot;,
-        &quot;node-results&quot;: {
-            &quot;node-result&quot;: [
+    &quot;yang-patch&quot;: {
+        &quot;comment&quot;: &quot;insert-lists&quot;,
+        &quot;edit&quot;: [
+            {
+                &quot;edit-id&quot;: &quot;5&quot;,
+                &quot;target&quot;: &quot;/tvi=tvi-0%2F50&quot;,
+                &quot;point&quot;: &quot;/tvi=tvi-0%2F98&quot;,
+                &quot;where&quot;: &quot;before&quot;,
+                &quot;value&quot;: {
+                    &quot;tvi&quot;: [
+                        {
+                            &quot;mode&quot;: &quot;ipsec&quot;,
+                            &quot;enable&quot;: false,
+                            &quot;name&quot;: &quot;tvi-0/50&quot;,
+                            &quot;description&quot;: &quot;test interface&quot;,
+                            &quot;type&quot;: &quot;p2mp-vxlan&quot;
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;ietf-yang-patch:yang-patch-status&quot;: {
+        &quot;patch-id&quot;: null,
+        &quot;errors&quot;: {
+            &quot;error&quot;: [
                 {
-                    &quot;node-id&quot;: &quot;IOSXRN&quot;,
-                    &quot;configuration-status&quot;: &quot;complete&quot;
-                },
+                    &quot;error-type&quot;: &quot;application&quot;,
+                    &quot;error-tag&quot;: &quot;missing-element&quot;,
+                    &quot;error-message&quot;: &quot;Patch-id must be set&quot;
+                }
+            ]
+        },
+        &quot;edit-status&quot;: {
+            &quot;edit&quot;: [
                 {
-                    &quot;node-id&quot;: &quot;IOSXR&quot;,
-                    &quot;configuration-status&quot;: &quot;complete&quot;
+                    &quot;edit-id&quot;: &quot;5&quot;,
+                    &quot;errors&quot;: {
+                        &quot;error&quot;: [
+                            {
+                                &quot;error-type&quot;: &quot;application&quot;,
+                                &quot;error-tag&quot;: &quot;missing-element&quot;,
+                                &quot;error-message&quot;: &quot;Edit operation must be specified&quot;
+                            }
+                        ]
+                    }
                 }
             ]
         }
-    }
-}'</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Response, Status: 200</div>
-<pre class="language-json"><code v-pre class="language-json">{
-    &quot;output&quot;: {
-        &quot;overall-status&quot;: &quot;complete&quot;
-    }
-}</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="failed-example">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#failed-example">#</doc-anchor-trigger>
-        <span>Failed Example</span>
-    </h3>
-</doc-anchor-target>
-<p>RPC checked-commit input has 2 target nodes. One of them failed on
-configuration (IOSXRN). The output describes the result of the
-checked-commit.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Request</div>
-<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:checked-commit' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---data-raw '{
-    &quot;input&quot;: {
-        &quot;target-nodes&quot;: {
-            &quot;node&quot;: [&quot;IOSXR&quot;,&quot;IOSXRN&quot;]
-        }
-    }
-}'</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Response, Status: 200</div>
-<pre class="language-json"><code v-pre class="language-json">{
-    &quot;output&quot;: {
-        &quot;overall-status&quot;: &quot;fail&quot;,
-        &quot;node-results&quot;: {
-            &quot;node-result&quot;: [
-                {
-                    &quot;node-id&quot;: &quot;IOSXRN&quot;,
-                    &quot;error-type&quot;: &quot;processing-error&quot;,
-                    &quot;rollback-status&quot;: &quot;complete&quot;,
-                    &quot;error-message&quot;: &quot;Supplied value \&quot;GigabitEthernet0/0/0/1ghjfhjfhjfghj\&quot; does not match required pattern \&quot;^(([a-zA-Z0-9_]*\\d+/){3,4}\\d+)|(([a-zA-Z0-9_]*\\d+/){3,4}\\d+\\.\\d+)|(([a-zA-Z0-9_]*\\d+/){2}([a-zA-Z0-9_]*\\d+))|(([a-zA-Z0-9_]*\\d+/){2}([a-zA-Z0-9_]+))|([a-zA-Z0-9_-]*\\d+)|([a-zA-Z0-9_-]*\\d+\\.\\d+)|(mpls)|(dwdm)$\&quot;\n&quot;,
-                    &quot;configuration-status&quot;: &quot;fail&quot;
-                },
-                {
-                    &quot;node-id&quot;: &quot;IOSXR&quot;,
-                    &quot;configuration-status&quot;: &quot;complete&quot;,
-                    &quot;rollback-status&quot;: &quot;complete&quot;
-                }
-            ]
-        }
-    }
-}</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="failed-example-1">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#failed-example-1">#</doc-anchor-trigger>
-        <span>Failed Example</span>
-    </h3>
-</doc-anchor-target>
-<p>The RPC checked-commit input has 2 target nodes. One of them has failed
-on the changed fingerprint (IOSXRN) and the other has a bad
-configuration (IOSXR). The output describes the result of the
-checked-commit.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Request</div>
-<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:checked-commit' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---data-raw '{
-    &quot;input&quot;: {
-        &quot;target-nodes&quot;: {
-            &quot;node&quot;: [&quot;IOSXR&quot;,&quot;IOSXRN&quot;]
-        }
-    }
-}'</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Response, Status: 200</div>
-<pre class="language-json"><code v-pre class="language-json">{
-    &quot;output&quot;: {
-        &quot;overall-status&quot;: &quot;fail&quot;,
-        &quot;node-results&quot;: {
-            &quot;node-result&quot;: [
-                {
-                    &quot;node-id&quot;: &quot;IOSXRN&quot;,
-                    &quot;error-type&quot;: &quot;processing-error&quot;,
-                    &quot;error-message&quot;: &quot;Fingerprint from datastore: 2019-09-04T09:32:41 is different than fingerprint from device: 2019-09-04T09:49:01&quot;,
-                    &quot;configuration-status&quot;: &quot;fail&quot;
-                },
-                {
-                    &quot;node-id&quot;: &quot;IOSXR&quot;,
-                    &quot;configuration-status&quot;: &quot;fail&quot;,
-                    &quot;error-type&quot;: &quot;processing-error&quot;
-                }
-            ]
-        }
-    }
-}</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="failed-example-2">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#failed-example-2">#</doc-anchor-trigger>
-        <span>Failed Example</span>
-    </h3>
-</doc-anchor-target>
-<p>The RPC checked-commit input has 3 target nodes. One of them was deleted
-so it is missing in the Config Datastore(IOSXR), the other has not been
-mounted yet (AAA). The output describes the result of the
-checked-commit.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Request</div>
-<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:checked-commit' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---data-raw '{
-    &quot;input&quot;: {
-        &quot;target-nodes&quot;: {
-            &quot;node&quot;: [&quot;IOSXR&quot;,&quot;IOSXRN&quot;,&quot;AAA&quot;]
-        }
-    }
-}'</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Response, Status: 200</div>
-<pre class="language-json"><code v-pre class="language-json">{
-    &quot;output&quot;: {
-        &quot;overall-status&quot;: &quot;fail&quot;,
-        &quot;node-results&quot;: {
-            &quot;node-result&quot;: [
-                {
-                    &quot;node-id&quot;: &quot;AAA&quot;,
-                    &quot;error-type&quot;: &quot;no-connection&quot;,
-                    &quot;error-message&quot;: &quot;Node has not been mounted yet.&quot;,
-                    &quot;configuration-status&quot;: &quot;fail&quot;
-                },
-                {
-                    &quot;node-id&quot;: &quot;IOSXRN&quot;,
-                    &quot;configuration-status&quot;: &quot;fail&quot;,
-                    &quot;error-type&quot;: &quot;processing-error&quot;
-                },
-                {
-                    &quot;node-id&quot;: &quot;IOSXR&quot;,
-                    &quot;error-type&quot;: &quot;processing-error&quot;,
-                    &quot;error-message&quot;: &quot;Node is missing in uniconfig topology CONFIG datastore.&quot;,
-                    &quot;configuration-status&quot;: &quot;fail&quot;
-                }
-            ]
-        }
-    }
-}</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="failed-example-3">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#failed-example-3">#</doc-anchor-trigger>
-        <span>Failed Example</span>
-    </h3>
-</doc-anchor-target>
-<p>If the RPC input does not contain the target nodes and there weren&#x27;t any
-touched nodes, the request will result in an error.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Request</div>
-<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:checked-commit' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---data-raw '{
-    &quot;input&quot;: {
-        &quot;target-nodes&quot;: {
-        }
-    }
-}'</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">RPC Response, Status: 200</div>
-<pre class="language-json"><code v-pre class="language-json">{
-    &quot;output&quot;: {
-        &quot;error-message&quot;: &quot;There aren't any nodes specified in input RPC and there aren't any touched nodes.&quot;,
-        &quot;overall-status&quot;: &quot;fail&quot;
     }
 }</code></pre>
 </doc-codeblock></div>
@@ -557,20 +759,20 @@ touched nodes, the request will result in an error.</p>
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-node-manager/uniconfig_check_installed_devices/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/unistore-api/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">RPC check-installed-nodes</span>
+                <span class="block mt-1">UniStore API</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-node-manager/rpc_commit/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/operational-procedures/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">RPC commit</span>
+                <span class="block mt-1">Operational Procedures</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -621,7 +823,7 @@ touched nodes, the request will result in an error.</p>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "RPC checked-commit", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "YANG Patch Operations", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
         <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f4b74451-b2eb-4560-acd3-af512e0b29d1";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     </body>
 </html>
