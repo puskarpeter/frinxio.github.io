@@ -38,7 +38,5 @@ footer:
       link: about.md
 
 integrations:
-  crisp:
-    id: f4b74451-b2eb-4560-acd3-af512e0b29d1
   googleAnalytics:
     id: G-6HVGXQFHWX
