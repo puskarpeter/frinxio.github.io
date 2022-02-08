@@ -94,9 +94,9 @@ Enter the following commands to download, activate and start UniConfig
 in a Docker container:
 
 ```
-docker pull frinx/uniconfig:4.2.9
+docker pull frinx/uniconfig:4.2.10
 TOKEN=[frinx-license_secret-token]
-docker run -it --hostname uniconfig --name uniconfig -p 8181:8181 frinx/uniconfig:4.2.9 -l $TOKEN
+docker run -it --hostname uniconfig --name uniconfig -p 8181:8181 frinx/uniconfig:4.2.10 -l $TOKEN
 ```
 
 !!!
@@ -118,7 +118,7 @@ docker stop uniconfig
 
 Click on the link to download a zip archive of the latest FRINX
 UniConfig:\
-[uniconfig-4.2.9.frinx.zip](https://license.frinx.io/download/uniconfig-4.2.9.frinx.zip)\
+[uniconfig-4.2.10.frinx.zip](https://license.frinx.io/download/uniconfig-4.2.10.frinx.zip)\
 By downloading the file you accept the FRINX software agreement:
 [EULA](https://frinx.io/eula)
 
