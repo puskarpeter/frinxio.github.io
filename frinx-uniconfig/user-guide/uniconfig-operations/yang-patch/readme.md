@@ -17,6 +17,7 @@ UniConfig supports all RFC-specified operations inside edits:
 * INSERT
 * DELETE
 * REMOVE
+* RENAME
 
 Using these operations, the user is able to reorder lists, create new data, remove data, or update specific data.
 
@@ -336,6 +337,41 @@ curl --location --request PATCH 'http://localhost:8181/rests/data/network-topolo
                 "edit-id": "10",
                 "operation": "remove",
                 "target": "/tvi=tvi-0%2F50"
+            }
+        ]
+    }
+}'
+```
+
+```json PATCH response
+{
+    "ietf-yang-patch:yang-patch-status": {
+        "patch-id": "remove-list-entry",
+        "ok": [
+            null
+        ]
+    }
+}
+```
+
+### Renaming list entry
+
+The request renames a list entry key.
+
+```bash PATCH request
+curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=vnf20/frinx-uniconfig-topology:configuration/interfaces' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "yang-patch": {
+        "patch-id": "rename-list-entry",
+        "comment": "Rename a list entry key",
+        "edit": [
+            {
+                "edit-id": "11",
+                "operation": "rename",
+                "target": "/tvi=tvi-0%2F98",
+                "point": "/tvi=tvi-0%2F101"
             }
         ]
     }
