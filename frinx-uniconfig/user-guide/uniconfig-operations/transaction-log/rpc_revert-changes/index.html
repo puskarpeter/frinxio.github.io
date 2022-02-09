@@ -30,12 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.697689636014" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.697691485564" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697689636014" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697691485564" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697689636014" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697689636014" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697691485564" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697691485564" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -536,7 +536,7 @@ transaction in the request body.</p>
                     &quot;transaction-id&quot;: &quot;82b4e916-e1ed-4a54-97bc-067699842af6&quot;,
                     &quot;status&quot;: &quot;fail&quot;,
                     &quot;error-message&quot;: &quot;Failed to find transaction in log with ID: 82b4e916-e1ed-4a54-97bc-067699842af6&quot;,
-                    &quot;error-type&quot;: &quot;processing-error&quot;
+                    &quot;error-type&quot;: &quot;uniconfig-error&quot;
                 }
             ]
         },
@@ -574,13 +574,13 @@ of &#x27;false&#x27; is used, and therefore the RPC fails.</p>
                 {
                     &quot;transaction-id&quot;: &quot;221aa4a5-e32e-46fd-921a-83314b190e89&quot;,
                     &quot;status&quot;: &quot;fail&quot;,
-                    &quot;error-type&quot;: &quot;processing-error&quot;
+                    &quot;error-type&quot;: &quot;uniconfig-error&quot;
                 },
                 {
                     &quot;transaction-id&quot;: &quot;2c4c1eb5-185a-4204-8021-2ea05ba2c2c1&quot;,
                     &quot;status&quot;: &quot;fail&quot;,
                     &quot;error-message&quot;: &quot;Transactions metadata 2c4c1eb5-185a-4204-8021-2ea05ba2c2c1 contain non-existent uniconfig nodes: [R1]&quot;,
-                    &quot;error-type&quot;: &quot;processing-error&quot;
+                    &quot;error-type&quot;: &quot;uniconfig-error&quot;
                 }
             ]
         },
