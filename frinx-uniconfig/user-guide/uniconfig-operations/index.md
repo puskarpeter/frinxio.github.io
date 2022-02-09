@@ -40,3 +40,7 @@ This component is responsible for tracking transactions.
 ## Dedicated transaction (Immediate Commit Model)
 
 The immediate commit creates new transactions for every call of an RPC. The transaction is then closed so no lingering data will occur.
+
+## Utilities
+
+This sub-directory contains UniConfig utilities.
