@@ -38,9 +38,7 @@ whether the subscription request was successful and, if it was
 successful, begins sending the event notifications to the NETCONF client
 as the events occur within the system. These event notifications will
 continue to be sent until either the NETCONF session is terminated or
-the subscription terminates for some other reason.
-
- 
+the subscription terminates for some other reason. 
 
 NETCONF notifications have categories called streams. While subscribing
 it is required to choose which streams should be received. Default
@@ -101,9 +99,7 @@ Example request for reading notifications using RESTCONF:
 curl --location --request GET 'http://localhost:8181/rests/data/notifications:notification' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json'
-```
-
- 
+``` 
 
 Settings table has 2 columns: identifier and config. Record with
 identifier kafka contains configuration for kafka that can be modified
@@ -115,9 +111,7 @@ Example request for reading kafka settings using RESTCONF:
 curl --location --request GET 'http://localhost:8181/rests/data/kafka-brokers:kafka-settings' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json'
-```
-
- 
+``` 
 
 NETCONF subscription table is used to track NETCONF notification
 subscriptions. It has folloving columns: - node id - id of the node from
@@ -178,9 +172,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
         }
     }
 }'
-```
-
- 
+``` 
 
 Subscriptions to notification streams are defined as list with name
 *stream*. There is one record for each stream. The only required
@@ -206,8 +198,8 @@ Inside UniConfig, NETCONF notification subscriptions are processed in an
 infinite loop within monitoring system. An iteration of the monitoring
 system loop consists of following steps:
 
-1. Check global setting for netconf notifications
-    -   If turned off, release all netconf subscriptions and end current iteration
+1. Check global setting for NETCONF notifications
+    -   If turned off, release all NETCONF subscriptions and end current iteration
 
 2. Release cancelled subscriptions
 
@@ -216,8 +208,8 @@ system loop consists of following steps:
     2.  lock subscription (set UniConfig instance)
 
 !!!
-There is a hard limit for how many sessions can a single Uniconfig node
-handle. In case this limit is reached, Uniconfig node refuses to acquire
+There is a hard limit for how many sessions can a single UniConfig node
+handle. In case this limit is reached, UniConfig node refuses to acquire
 additional subscriptions.
 !!!
 
@@ -263,18 +255,16 @@ calculates an optimal range of subscriptions to manage.
 ```
 OPTIMAL_RANGE_LOW = (NUMBER_OF_ALL_SUBSCRIPTIONS / NUMBER_OF_LIVE_UC_NODES_IN_CLUSTER) * OPTIMAL_NETCONF_SUBSCRIPTIONS_APPROACHING_MARGIN
 OPTIMAL_RANGE_HIGH = (NUMBER_OF_ALL_SUBSCRIPTIONS / NUMBER_OF_LIVE_UC_NODES_IN_CLUSTER) * OPTIMAL_NETCONF_SUBSCRIPTIONS_REACHED_MARGIN
-# Example: optimal range for 5000 subscriptions with 3 nodes in the cluster and margins set to 0.05 and 0.10 =
-# (1750, 1834)
+# Example: optimal range for 5000 subscriptions with 3 nodes in the cluster and margins set to 0.05 and 0.10 = (1750, 1834)
 ```
+
 Based on optimal range and a number of currently opened subscriptions,
-each uniconfig node (while performing a monitoring system iteration)
+each UniConfig node (while performing a monitoring system iteration)
 decides whether it should:
 
 - Acquire additional subscriptions before optimal range is reached
-- Stay put and not acquire additional subscriptions in case optimal
-    range is reached
-- Release some of its subscriptions to trigger rebalancing until
-    optimal range is reached
+- Stay put and not acquire additional subscriptions in case optimal range is reached
+- Release some of its subscriptions to trigger rebalancing until optimal range is reached
 
 When an instance goes down, all of its subscriptions will be immediately
 released and the optimal range for the other living nodes will change
@@ -370,7 +360,6 @@ by *enabled* flag.
 - maxNetconfSubscriptionsHardLimit - hard limit for how many
      subscriptions can a single UniConfig node handle
 
-
 **There are 3 properties related to monitoring system in clustered
 environment:**
 
@@ -432,9 +421,7 @@ independently. To do that these flags are used:
 
 - netconfNotificationsEnabled
 - auditLogsEnabled
-- transactionNotificationsEnabled
-
- 
+- transactionNotificationsEnabled 
 
 It is possible to setup names of all topics for every notification type.
 This is done using:
