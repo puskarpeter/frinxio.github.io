@@ -30,12 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.697688386780" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.697689636014" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697688386780" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697689636014" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697688386780" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697688386780" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697689636014" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697689636014" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -475,9 +475,9 @@ existing subscriptions for this stream.</p>
 infinite loop within monitoring system. An iteration of the monitoring
 system loop consists of following steps:</p>
 <ol>
-<li><p>Check global setting for netconf notifications</p>
+<li><p>Check global setting for NETCONF notifications</p>
 <ul>
-<li>If turned off, release all netconf subscriptions and end current iteration</li>
+<li>If turned off, release all NETCONF subscriptions and end current iteration</li>
 </ul>
 </li>
 <li><p>Release cancelled subscriptions</p>
@@ -502,8 +502,8 @@ system loop consists of following steps:</p>
             </svg>
         </div>
         <div class="pr-5 ml-3">
-<p>There is a hard limit for how many sessions can a single Uniconfig node
-handle. In case this limit is reached, Uniconfig node refuses to acquire
+<p>There is a hard limit for how many sessions can a single UniConfig node
+handle. In case this limit is reached, UniConfig node refuses to acquire
 additional subscriptions.</p>
         </div>
     </div>
@@ -561,18 +561,15 @@ calculates an optimal range of subscriptions to manage.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">OPTIMAL_RANGE_LOW = (NUMBER_OF_ALL_SUBSCRIPTIONS / NUMBER_OF_LIVE_UC_NODES_IN_CLUSTER) * OPTIMAL_NETCONF_SUBSCRIPTIONS_APPROACHING_MARGIN
 OPTIMAL_RANGE_HIGH = (NUMBER_OF_ALL_SUBSCRIPTIONS / NUMBER_OF_LIVE_UC_NODES_IN_CLUSTER) * OPTIMAL_NETCONF_SUBSCRIPTIONS_REACHED_MARGIN
-# Example: optimal range for 5000 subscriptions with 3 nodes in the cluster and margins set to 0.05 and 0.10 =
-# (1750, 1834)</code></pre>
+# Example: optimal range for 5000 subscriptions with 3 nodes in the cluster and margins set to 0.05 and 0.10 = (1750, 1834)</code></pre>
 </doc-codeblock></div>
 <p>Based on optimal range and a number of currently opened subscriptions,
-each uniconfig node (while performing a monitoring system iteration)
+each UniConfig node (while performing a monitoring system iteration)
 decides whether it should:</p>
 <ul>
 <li>Acquire additional subscriptions before optimal range is reached</li>
-<li>Stay put and not acquire additional subscriptions in case optimal
-range is reached</li>
-<li>Release some of its subscriptions to trigger rebalancing until
-optimal range is reached</li>
+<li>Stay put and not acquire additional subscriptions in case optimal range is reached</li>
+<li>Release some of its subscriptions to trigger rebalancing until optimal range is reached</li>
 </ul>
 <p>When an instance goes down, all of its subscriptions will be immediately
 released and the optimal range for the other living nodes will change
