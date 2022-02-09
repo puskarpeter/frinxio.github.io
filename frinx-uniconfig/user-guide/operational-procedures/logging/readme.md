@@ -209,22 +209,38 @@ Example - sending POST RPC for installing CLI device, and getting
 requests with corresponding responses paired with same Message-ID:
 
 ```
-15:11:33.119 TRACE io.frinx.cli.io.impl.cli.CliLoggingBroker -
-Message-ID:1 - Sending CLI command: show configuration commit list |
-utility egrep "\^1 " 15:11:33.697 TRACE
-io.frinx.cli.io.impl.cli.CliLoggingBroker - Message-ID:1 - Received CLI
-response: Wed Sep 22 13:11:29.776 UTC 1 1000005360 cisco
-vty0:node0\_0\_CPU0 CLI Mon Sep 6 07:53:03 2021 15:11:33.724 TRACE
-io.frinx.cli.io.impl.cli.CliLoggingBroker - Message-ID:2 - Sending CLI
-command: show running-config 15:11:34.459 TRACE
-io.frinx.cli.io.impl.cli.CliLoggingBroker - Message-ID:2 - Received CLI
-response: Wed Sep 22 13:11:30.116 UTC Building configuration... !! IOS
-XR Configuration 5.3.4 !! Last configuration change at Mon Sep 6
-07:53:03 2021 by cisco ! hostname XR5 interface MgmtEth0/0/CPU0/0 ipv4
-address 192.168.1.214 255.255.255.0 ! interface GigabitEthernet0/0/0/0
-shutdown ! interface GigabitEthernet0/0/0/1 description init description
-shutdown ! interface GigabitEthernet0/0/0/2 ! ssh server v2 ssh server
-netconf port 830 netconf-yang agent ssh ! end
+15:11:33.119 TRACE io.frinx.cli.io.impl.cli.CliLoggingBroker - Message-ID:1 - Sending CLI command:
+show configuration commit list | utility egrep "^1 "
+15:11:33.697 TRACE io.frinx.cli.io.impl.cli.CliLoggingBroker - Message-ID:1 - Received CLI response:
+Wed Sep 22 13:11:29.776 UTC
+1    1000005360            cisco     vty0:node0_0_CPU0   CLI         Mon Sep  6 07:53:03 2021
+15:11:33.724 TRACE io.frinx.cli.io.impl.cli.CliLoggingBroker - Message-ID:2 - Sending CLI command:
+show running-config
+15:11:34.459 TRACE io.frinx.cli.io.impl.cli.CliLoggingBroker - Message-ID:2 - Received CLI response:
+Wed Sep 22 13:11:30.116 UTC
+Building configuration...
+!! IOS XR Configuration 5.3.4
+!! Last configuration change at Mon Sep  6 07:53:03 2021 by cisco
+!
+hostname XR5
+interface MgmtEth0/0/CPU0/0
+ ipv4 address 192.168.1.214 255.255.255.0
+!
+interface GigabitEthernet0/0/0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/1
+ description init description
+ shutdown
+!
+interface GigabitEthernet0/0/0/2
+!
+ssh server v2
+ssh server netconf port 830
+netconf-yang agent
+ ssh
+!
+end
 ```
 
 #### NETCONF Messages
