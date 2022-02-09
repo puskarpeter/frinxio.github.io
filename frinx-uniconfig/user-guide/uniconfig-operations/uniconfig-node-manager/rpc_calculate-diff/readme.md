@@ -141,13 +141,13 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
                 {
                     "node-id": "AAA",
                     "status": "fail",
-                    "error-type": "processing-error",
+                    "error-type": "uniconfig-error",
                     "error-message": "Node is missing in uniconfig topology CONFIG and OPERATIONAL datastore.",
                 }
                 {
                     "node-id": "IOSXR",
                     "status": "fail",
-                    "error-type": "processing-error",
+                    "error-type": "uniconfig-error",
                 }
             ]
         }

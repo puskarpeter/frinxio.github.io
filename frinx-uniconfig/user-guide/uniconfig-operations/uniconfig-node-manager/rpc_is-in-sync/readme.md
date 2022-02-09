@@ -34,7 +34,7 @@ Possible RPC outputs per target node:
     mountpoint doesn't exist because the connection has been lost or the
     node has not been mounted yet.
 3. 'status' field with value 'fail' with set 'error-type' to
-    'processing-error' and corresponding 'error-message'; reading of the
+    'uniconfig-error' and corresponding 'error-message'; reading of the
     fingerprint from the Operational datastore or Unified mountpoint has
     failed, or the configuration metadata parsing is not supported for
     the device type.
@@ -163,7 +163,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
                     "node-id": "example2",
                     "status": "fail",
                     "error-message": "Unable to check configuration fingerprint - parsing of configuration fingerprint is not implemented for this device type.",
-                    "error-type": "processing-error"
+                    "error-type": "uniconfig-error"
                 },
                 {
                     "node-id": "nodeX",

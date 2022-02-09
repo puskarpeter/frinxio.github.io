@@ -258,7 +258,7 @@ curl --location --request POST 'http://192.168.56.11:8181/rests/operations/trans
                     "transaction-id": "82b4e916-e1ed-4a54-97bc-067699842af6",
                     "status": "fail",
                     "error-message": "Failed to find transaction in log with ID: 82b4e916-e1ed-4a54-97bc-067699842af6",
-                    "error-type": "processing-error"
+                    "error-type": "uniconfig-error"
                 }
             ]
         },
@@ -297,13 +297,13 @@ curl --location --request POST 'http://192.168.56.11:8181/rests/operations/trans
                 {
                     "transaction-id": "221aa4a5-e32e-46fd-921a-83314b190e89",
                     "status": "fail",
-                    "error-type": "processing-error"
+                    "error-type": "uniconfig-error"
                 },
                 {
                     "transaction-id": "2c4c1eb5-185a-4204-8021-2ea05ba2c2c1",
                     "status": "fail",
                     "error-message": "Transactions metadata 2c4c1eb5-185a-4204-8021-2ea05ba2c2c1 contain non-existent uniconfig nodes: [R1]",
-                    "error-type": "processing-error"
+                    "error-type": "uniconfig-error"
                 }
             ]
         },

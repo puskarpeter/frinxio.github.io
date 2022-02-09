@@ -844,7 +844,7 @@ curl --location --request PUT 'http://localhost:8181/rests/operations/template-m
         "node-result": [
             {
                 "node-id": "dev1",
-                "error-type": "processing-error",
+                "error-type": "uniconfig-error",
                 "status": "fail"
             }
         ],
@@ -907,13 +907,13 @@ curl --location --request PUT 'http://localhost:8181/rests/operations/template-m
         "node-result": [
             {
                 "node-id": "dev1",
-                "error-type": "processing-error",
+                "error-type": "uniconfig-error",
                 "status": "fail",
                 "error-message": "String substitution failed: Node /network-topology:network-topology/topology=templates/node=redundancy_template/frinx-uniconfig-topology:configuration/ha:redundancy/intra-chassis/bfd-liveness-detection/transmit-interval/minimum-interval has defined variable/s: '[min-interval]', but there is not provided or default value for all of these variables"
             },
             {
                 "node-id": "dev2",
-                "error-type": "processing-error",
+                "error-type": "uniconfig-error",
                 "status": "fail"
             }
         ]
@@ -966,7 +966,7 @@ curl --location --request PUT 'http://localhost:8181/rests/operations/template-m
         "node-result": [
             {
                 "node-id": "dev1",
-                "error-type": "processing-error",
+                "error-type": "uniconfig-error",
                 "status": "fail",
                 "error-message": "Value '172.30.15.1s' cannot be applied to leaf /network-topology:network-topology/topology=templates/node=redundancy_template/frinx-uniconfig-topology:configuration/ha:redundancy/inter-chassis/local-ip - it accepts only values with following YANG types: [type: string, constraints: [Length[[0..2147483647]], PatternConstraintImpl{regex=^(?:(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\\p{N}\\p{L}]+)?)$, errorAppTag=invalid-regular-expression}], type: string, constraints: [Length[[0..2147483647]], PatternConstraintImpl{regex=^(?:((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}((([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\\p{N}\\p{L}]+)?)$, errorAppTag=invalid-regular-expression}, PatternConstraintImpl{regex=^(?:(([^:]+:){6}(([^:]+:[^:]+)|(.*\\..*)))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?)(%.+)?)$, errorAppTag=invalid-regular-expression}]]"
             }
