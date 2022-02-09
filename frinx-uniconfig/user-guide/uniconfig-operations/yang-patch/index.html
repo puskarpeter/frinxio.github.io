@@ -28,12 +28,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.697691485564" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.697691919680" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697691485564" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.697691919680" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697691485564" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697691485564" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.697691919680" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.697691919680" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -254,6 +254,7 @@ and configuration will not be modified</li>
 <li>INSERT</li>
 <li>DELETE</li>
 <li>REMOVE</li>
+<li>RENAME</li>
 </ul>
 <p>Using these operations, the user is able to reorder lists, create new data, remove data, or update specific data.</p>
 <div class="flex mb-6">
@@ -611,6 +612,44 @@ If the data exist, return an error.</p>
                 &quot;edit-id&quot;: &quot;10&quot;,
                 &quot;operation&quot;: &quot;remove&quot;,
                 &quot;target&quot;: &quot;/tvi=tvi-0%2F50&quot;
+            }
+        ]
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH response</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;ietf-yang-patch:yang-patch-status&quot;: {
+        &quot;patch-id&quot;: &quot;remove-list-entry&quot;,
+        &quot;ok&quot;: [
+            null
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="renaming-list-entry">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#renaming-list-entry">#</doc-anchor-trigger>
+        <span>Renaming list entry</span>
+    </h3>
+</doc-anchor-target>
+<p>The request renames a list entry key.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">PATCH request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=vnf20/frinx-uniconfig-topology:configuration/interfaces' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;yang-patch&quot;: {
+        &quot;patch-id&quot;: &quot;rename-list-entry&quot;,
+        &quot;comment&quot;: &quot;Rename a list entry key&quot;,
+        &quot;edit&quot;: [
+            {
+                &quot;edit-id&quot;: &quot;11&quot;,
+                &quot;operation&quot;: &quot;rename&quot;,
+                &quot;target&quot;: &quot;/tvi=tvi-0%2F98&quot;,
+                &quot;point&quot;: &quot;/tvi=tvi-0%2F101&quot;
             }
         ]
     }
