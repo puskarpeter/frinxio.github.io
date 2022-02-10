@@ -153,12 +153,15 @@ brokers.
 - Requests and responses are paired using a unique message-id. This
     message-id is not part of the HTTP request, it is generated on the
     RESTCONF server.
+- Requests and responses contain Uniconfig transactions for easier matching
+  with the log-transactions.
 
 **Example: - Request and corresponding response with the same message-id**
 
 ```
 08:51:21.508 TRACE org.opendaylight.restconf.nb.rfc8040.jersey.providers.logging.RestconfLoggingBroker - HTTP request:
 Message ID: 3
+Uniconfig transaction: b6639cb4-55f2-449e-a91e-d2ad490198d2
 HTTP method: POST
 URI: http://localhost:8181/rests/operations/logging:enable-device-logging
 Source address: 0:0:0:0:0:0:0:1
@@ -184,6 +187,7 @@ Request body:
 
 08:51:21.518 TRACE org.opendaylight.restconf.nb.rfc8040.jersey.providers.logging.RestconfLoggingBroker - HTTP response:
 Request message ID: 3
+Uniconfig transaction: b6639cb4-55f2-449e-a91e-d2ad490198d2
 Status code: 200
 HTTP headers:
     Content-Type: [application/yang-data+json]
