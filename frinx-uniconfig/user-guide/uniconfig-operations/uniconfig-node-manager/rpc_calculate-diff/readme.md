@@ -105,6 +105,15 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
                         }
                     ],
                     "status": "complete"
+                },
+                {
+                    "node-id": "XR5",
+                    "reordered-lists": [
+                        "path": "/network-topology:network-topology/topology=uniconfig/node=R6/frinx-uniconfig-topology:configuration/routing-policy:routing-policy/policy-definitions/policy-definition=route_policy_1/statements/statement",
+                        "actual-list-keys": "[\"name=1\", \"name=3\", \"name=2\"]",
+                        "intended-list-keys": "[\"name=1\", \"name=2\", \"name=3\"]"
+                    ],
+                    "status": "complete"
                 }
             ]
         },
