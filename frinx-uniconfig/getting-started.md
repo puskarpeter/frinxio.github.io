@@ -141,12 +141,11 @@ For more information on the different arguments run the startup script with the 
 
 ## OpenAPI
 
-UniConfig distributions contain .yaml file that generates list of all
-usable RPCs and their examples. and can be easily viewed either locally.
-You can view it locally or on our hosted version that always shows
+UniConfig distributions contain '.yaml' file that generates list of all
+usable RPCs and their examples. You can view it locally or on our hosted version that always shows
 latest OpenAPI version.
 
-**File can be found at:**
+**File can be found here:**
 
 ```
 /uniconfig-x.x.x.frinx/openapi
