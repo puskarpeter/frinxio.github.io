@@ -21,9 +21,8 @@ default version of UniConfig TLS authentication is disabled.
 
 ## OpenAPI
 
-UniConfig distributions contain .yaml file that generates list of all
-usable RPCs and their examples. and can be easily viewed either locally.
-You can view it locally or on our hosted version that always shows
+UniConfig distributions contain '.yaml' file that generates list of all
+usable RPCs and their examples. You can view it locally or on our hosted version that always shows
 latest OpenAPI version.
 
 [!ref text="OpenAPI"](../operational-procedures/openapi)
