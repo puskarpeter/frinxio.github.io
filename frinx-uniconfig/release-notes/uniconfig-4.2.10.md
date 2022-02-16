@@ -2171,7 +2171,7 @@ config>show unistore system settings
 
 - UniConfig uses asymmetric encryption for ensuring confidentiality of selected leaf and leaf-list values. 
 
-[!ref text="encryption"](../user-guide/operational-procedures/data-security-models/#data-encryption)
+[!ref text="Encryption"](../user-guide/operational-procedures/data-security-models/#data-encryption)
 
 ---
 
