@@ -103,6 +103,21 @@ docker run -it --hostname uniconfig --name uniconfig -p 8181:8181 frinx/uniconfi
 Replace [frinx-licence-secret-token] with your unique token. The token is unique to your user account on frinx.io and cannot be shared with other users. It can be found [here](https://frinx.io/profile). (you need to be logged in frinx.io to view your token).
 !!!
 
+### OpenAPI
+
+UniConfig distributions contain .yaml file that generates list of all
+usable RPCs and their examples. and can be easily viewed either locally.
+You can view it locally or on our hosted version that always shows
+latest OpenAPI version.
+
+**File can be found at:**
+
+```
+/uniconfig-x.x.x.frinx/openapi
+```
+
+[!ref text="OpenAPI"](../user-guide/operational-procedures/openapi/)
+
 ### Stop the container
 
 
