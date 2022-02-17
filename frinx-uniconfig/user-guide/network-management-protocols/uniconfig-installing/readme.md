@@ -35,7 +35,7 @@ Only 1 node with the same node-id can be installed on UniConfig layer.
 
 It is synchronous: it succeeds only after node is successfully installed
 it fails in other cases – **max-connection-attempts** is automatically
-set to value '1', if different value is not provided in RPC input or in database.
+set to value '1', if different value is not provided in RPC input, database or config file.
 
 Following sections provide deeper explanation of parameters needed for
 installation, along with example install requests.
@@ -187,6 +187,14 @@ strategy. None of these parameters is mandatory - if they are not set,
 default values are set. There are two exclusive groups of parameters
 based on selected reconnection strategy - you can define only parameters
 from single group. By default, keepalive strategy is used.
+
+### Connection parameters
+
+Following parameters adjust maintaining of CLI session state. 
+None of these parameters are mandatory (default values will be used).
+
+-   **cli-topology:max-connection-attempts** - Maximum number of connection attempts (default value: 1).
+-   **cli-topology:max-reconnection-attempts** - Maximum number of reconnection attempts (default value: 1).
 
 ### Keepalive strategies
 
@@ -415,7 +423,9 @@ of NETCONF session state. None of these parameters are mandatory
     for blocking RPC operations within transactions (default value:
     60000 ms).
 - **netconf-node-topology:max-connection-attempts** - Maximum number
-    of connection attempts (default value: 0 - disabled).
+    of connection attempts (default value: 1).
+- **netconf-node-topology:max-reconnection-attempts** - Maximum number
+    of reconnection attempts (default value: 1).
 - **netconf-node-topology:between-attempts-timeout-millis** - Initial
     timeout between reconnection attempts (default value: 2000 ms).
 - **netconf-node-topology:sleep-factor** - Multiplier between
