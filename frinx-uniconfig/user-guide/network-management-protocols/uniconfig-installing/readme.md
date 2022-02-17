@@ -193,7 +193,7 @@ from single group. By default, keepalive strategy is used.
 Following parameters adjust maintaining of CLI session state. 
 None of these parameters are mandatory (default values will be used).
 
--   **cli-topology:max-connection-attempts** - Maximum number of connection attempts (default value: 1).
+-   **cli-topology:max-connection-attempts** - Maximum number of initial connection attempts (default value: 1).
 -   **cli-topology:max-reconnection-attempts** - Maximum number of reconnection attempts (default value: 1).
 
 ### Keepalive strategies
@@ -423,7 +423,7 @@ of NETCONF session state. None of these parameters are mandatory
     for blocking RPC operations within transactions (default value:
     60000 ms).
 - **netconf-node-topology:max-connection-attempts** - Maximum number
-    of connection attempts (default value: 1).
+    of initial connection attempts (default value: 1).
 - **netconf-node-topology:max-reconnection-attempts** - Maximum number
     of reconnection attempts (default value: 1).
 - **netconf-node-topology:between-attempts-timeout-millis** - Initial
