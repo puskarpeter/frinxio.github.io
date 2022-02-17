@@ -30,12 +30,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.698344658522" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.698414428473" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.698344658522" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.698414428473" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.698344658522" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.698344658522" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.698414428473" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.698414428473" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -277,7 +277,7 @@ layer. Default value is &#x27;true&#x27;:</p>
 <p>Only 1 node with the same node-id can be installed on UniConfig layer.</p>
 <p>It is synchronous: it succeeds only after node is successfully installed
 it fails in other cases – <strong>max-connection-attempts</strong> is automatically
-set to value &#x27;1&#x27;, if different value is not provided in RPC input or in database.</p>
+set to value &#x27;1&#x27;, if different value is not provided in RPC input, database or config file.</p>
 <p>Following sections provide deeper explanation of parameters needed for
 installation, along with example install requests.</p>
 <div class="flex mb-6">
@@ -449,6 +449,18 @@ strategy. None of these parameters is mandatory - if they are not set,
 default values are set. There are two exclusive groups of parameters
 based on selected reconnection strategy - you can define only parameters
 from single group. By default, keepalive strategy is used.</p>
+<doc-anchor-target id="connection-parameters">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#connection-parameters">#</doc-anchor-trigger>
+        <span>Connection parameters</span>
+    </h3>
+</doc-anchor-target>
+<p>Following parameters adjust maintaining of CLI session state.
+None of these parameters are mandatory (default values will be used).</p>
+<ul>
+<li><strong>cli-topology:max-connection-attempts</strong> - Maximum number of initial connection attempts (default value: 1).</li>
+<li><strong>cli-topology:max-reconnection-attempts</strong> - Maximum number of reconnection attempts (default value: 1).</li>
+</ul>
 <doc-anchor-target id="keepalive-strategies">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#keepalive-strategies">#</doc-anchor-trigger>
@@ -759,7 +771,9 @@ NETCONF server must be established (default value: 20000 ms).</li>
 for blocking RPC operations within transactions (default value:
 60000 ms).</li>
 <li><strong>netconf-node-topology:max-connection-attempts</strong> - Maximum number
-of connection attempts (default value: 0 - disabled).</li>
+of initial connection attempts (default value: 1).</li>
+<li><strong>netconf-node-topology:max-reconnection-attempts</strong> - Maximum number
+of reconnection attempts (default value: 1).</li>
 <li><strong>netconf-node-topology:between-attempts-timeout-millis</strong> - Initial
 timeout between reconnection attempts (default value: 2000 ms).</li>
 <li><strong>netconf-node-topology:sleep-factor</strong> - Multiplier between
