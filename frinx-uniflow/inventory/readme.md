@@ -22,7 +22,6 @@ with one addition: **device_id** must be specified in the snippet.
 
 ```json
 {
-    "node-id":"ios1",
     "cli":{
         "cli-topology:host":"192.168.1.25",
         "cli-topology:port":"22",
@@ -42,7 +41,6 @@ with one addition: **device_id** must be specified in the snippet.
 
 ```json
 {
-    "node-id":"xr1",
     "netconf":{
         "netconf-node-topology:host":"10.0.0.1",
         "netconf-node-topology:port":830,
@@ -73,7 +71,6 @@ with one addition: **device_id** must be specified in the snippet.
 
 ```json
 {
-    "node-id":"junos1",
     "cli":{
         "cli-topology:host":"10.103.5.208",
         "cli-topology:port":"22",
@@ -92,7 +89,6 @@ with one addition: **device_id** must be specified in the snippet.
 
 ```json
 {
-    "node-id":"cal1",
     "netconf":{
         "netconf-node-topology:host":"10.19.0.16",
         "netconf-node-topology:port":830,
@@ -114,7 +110,6 @@ with one addition: **device_id** must be specified in the snippet.
 
 ```json
 {
-    "node-id":"nokia1",
     "netconf":{
         "netconf-node-topology:host":"10.19.0.18",
         "netconf-node-topology:port":2830,
@@ -142,7 +137,6 @@ with one addition: **device_id** must be specified in the snippet.
 
 ```json
 {
-    "node-id":"ciena1",
     "cli":{
         "cli-topology:host":"localhost",
         "cli-topology:port":"51022",

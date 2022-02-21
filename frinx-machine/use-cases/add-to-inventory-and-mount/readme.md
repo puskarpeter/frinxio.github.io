@@ -1,119 +1,161 @@
-# Add a device to inventory and mount it
+# Add a device to inventory and install it
 
-## Create a new device in the inventory
+## Adding device to inventory
 
-In this workflow we will create a device entry in our inventory via the
-UniConfig UI.
+To add new device to invetory, click on the **Add device** button in the
+**Device inventory** tab.
 
-Many customers will choose to import bulk data from other data sources
-like Excel or CSV files. Many data import tools exist for Elasticsearch
-(e.g. https://github.com/knutandre/excelastic).
-The import of bulk data is out of scope for this use case. We rather
-focus on data input via our GUI to demonstrate a simple set of
-workflows.
+![Add device to inventory](fm_install.gif)
 
-Click on: Workflows
+## JSON examples
 
-You'll be able to search for workflows by `label` and/or `keyword`
+New devices are added to inventory by JSON code snippets. They are similar to [Blueprints](/frinx-uniflow/blueprints)
+with one addition: **device_id** must be specified in the snippet.
 
-![Workflows Dashboard](workflow_dashboard.png)
-Search for **Add_cli_device_to_inventory** or
-**Add_netconf_device_to_inventory**. This workflows has the labels
-**BASIC**, **MAIN**.
+To add a new device from Blueprint, toggle the "Blueprints" switch in the form and
+choose the blueprint that you want to use.
 
-Click on this workflow and select **Input** and fill out the form.
+### Cisco classic IOS (cli)
 
-**Add_cli_device_to_inventory**:
-
-``` 
-device_id: any unique identifier
-type: type of device (e.g. ios, ios xr)
-version: version of the device
-host: host ip address
-protocol: protocol for connection
-port: port to connect to
-username: credentials to use
-password: credentials to use
-labels: label of device (optional)
+```json
+{
+    "cli":{
+        "cli-topology:host":"192.168.1.25",
+        "cli-topology:port":"22",
+        "cli-topology:transport-type":"ssh",
+        "cli-topology:device-type":"ios",
+        "cli-topology:device-version":"15.4",
+        "cli-topology:username":"USERNAME",
+        "cli-topology:password":"PASSWORD",
+        "cli-topology:journal-size":500,
+        "cli-topology:dry-run-journal-size":180,
+        "cli-topology:parsing-engine":"tree-parser"
+    }
+}
 ```
 
-**Add_netconf_device_to_inventory**:
+### Cisco IOS XR (netconf)
 
+```json
+{
+    "netconf":{
+        "netconf-node-topology:host":"10.0.0.1",
+        "netconf-node-topology:port":830,
+        "netconf-node-topology:keepalive-delay":5,
+        "netconf-node-topology:tcp-only":false,
+        "netconf-node-topology:username":"USERNAME",
+        "netconf-node-topology:password":"PASSWORD",
+        "netconf-node-topology:dry-run-journal-size":180,
+        "uniconfig-config:uniconfig-native-enabled":true,
+        "uniconfig-config:blacklist":{
+            "uniconfig-config:path":[
+                "openconfig-interfaces:interfaces",
+                "ietf-interfaces:interfaces",
+                "openconfig-vlan:vlans",
+                "openconfig-routing-policy:routing-policy",
+                "openconfig-lldp:lldp",
+                "Cisco-IOS-XR-l2vpn-cfg:l2vpn",
+                "Cisco-IOS-XR-group-cfg:groups",
+                "openconfig-acl:acl",
+                "openconfig-network-instance:network-instances"
+            ]
+        }
+    }
+}
 ```
-device_id: any unique identifier
-port: port to connect to
-host: host ip address
-keepalive: value of keepalive delay
-tcponly: set type of communication
-username: credentials to use
-password: credentials to use
-labels: label of device (optional)
-uniconfignative: enable uniconfig-native
-blacklist: List of blacklisted root paths and/or extensions
+
+### JUNOS (cli)
+
+```json
+{
+    "cli":{
+        "cli-topology:host":"10.103.5.208",
+        "cli-topology:port":"22",
+        "cli-topology:transport-type":"ssh",
+        "cli-topology:device-type":"junos",
+        "cli-topology:device-version":"17.3",
+        "cli-topology:username":"USERNAME",
+        "cli-topology:password":"PASSWORD",
+        "cli-topology:journal-size":150,
+        "uniconfig-config:install-uniconfig-node-enabled":false
+    }
+}
 ```
 
-Click on `Execute`. A link to the left of the `Execute` button should
-pop up. If you click on it, you'll be taken to the
-`Home` --> `Workflows` --> `Executed` page.
+### CALIX (netconf)
 
-There, you can click on the just executed workflow to see it's details.
+```json
+{
+    "netconf":{
+        "netconf-node-topology:host":"10.19.0.16",
+        "netconf-node-topology:port":830,
+        "netconf-node-topology:keepalive-delay":0,
+        "netconf-node-topology:tcp-only":false,
+        "netconf-node-topology:username":"USERNAME",
+        "netconf-node-topology:password":"PASSWORD",
+        "uniconfig-config:uniconfig-native-enabled":true,
+        "uniconfig-config:install-uniconfig-node-enabled":true,
+        "uniconfig-config:blacklist":{
+            "uniconfig-config:path":[],
+            "uniconfig-config:extension":[]
+        }
+    }
+}
+```
 
-After successful execution of our first workflow, we can see the new
-device created in Elasticsearch. To see it, go to
-`Home` --> `Inventory` --> `Discover`
+### Nokia (netconf)
 
-!!!
-If you are using Kibana for the first time, you will have to create a
-new index pattern called **inventory**.
+```json
+{
+    "netconf":{
+        "netconf-node-topology:host":"10.19.0.18",
+        "netconf-node-topology:port":2830,
+        "netconf-node-topology:keepalive-delay":10,
+        "netconf-node-topology:tcp-only":false,
+        "netconf-node-topology:username":"USERNAME",
+        "netconf-node-topology:password":"PASSWORD",
+        "uniconfig-config:uniconfig-native-enabled":true,
+        "uniconfig-config:install-uniconfig-node-enabled":true,
+        "uniconfig-config:blacklist":{
+            "uniconfig-config:path":[]
+        },
+        "netconf-node-topology:yang-module-capabilities":{
+            "capability":[
+                "urn:ietf:params:xml:ns:yang:ietf-inet-types?module=ietf-inet-types&amp;revision=2010-09-24",
+                "urn:ietf:params:xml:ns:netconf:base:1.0?module=ietf-netconf&amp;revision=2011-06-01"
+            ]
+        },
+        "netconf-node-topology:customization-factory":"netconf-customization-alu"
+    }
+}
+```
 
-To create a new index pattern click on `Management` in the left hand
-side bar, select `Index Patterns` and click on the button `Create
-Index Pattern`. Enter `inventory` in the index pattern field and
-click `Create`.
+### Ciena (cli)
 
-Now click on `Discover` in the left hand side bar and you should see
-all devices that you have entered in the step before.
-!!!
+```json
+{
+    "cli":{
+        "cli-topology:host":"localhost",
+        "cli-topology:port":"51022",
+        "cli-topology:transport-type":"ssh",
+        "cli-topology:device-type":"saos",
+        "cli-topology:device-version":"8",
+        "cli-topology:username":"USERNAME",
+        "cli-topology:password":"PASSWORD",
+        "cli-topology:journal-size":150,
+        "cli-topology:dry-run-journal-size":180,
+        "cli-topology:keepalive-delay":45,
+        "cli-topology:keepalive-timeout":45
+    }
+}
+```
 
-## Mount the new device from Inventory
 
-Next we want to mount the device in ODL. The mount operation for NETCONF
-or CLI devices in ODL results in a permanent connection that is
-established, maintained and if necessary re-established with the device.
-Once a device is mounted in FRINX OpenDaylight, it can be accessed via
-the UniConfig framework for reading and writing configuration and
-operational data. The next workflow will mount the device in FRINX ODL.
+## Install the new device from Inventory
 
-Go back to `Home` --> `Workflows` --> `Definitions` and search for a
-workflow called **Mount_from_inventory**
+Now that the device is added we can install it. We used to need dedicated workflow to install device form inventory, but now
+it can be done purely via UI. Click on **Explore** in **Explore & configure devices** tab, under **Device Inventory** section.
 
-To mount the device that you previously inserted into the inventory,
-specify the ID that you used when you filled out the form. As
-previously, after you click `Execute` a link should pop up to the left
-of the `Execute` button. Click on it to see the executed workflows.
-Click on the one that you are presented with to see more details.
+![Install device from inventory](fm_install_from_inventory.gif)
 
-## Look at the details of the workflow
-
-The workflow that we have executed will spawn a number of sub workflows
-and will only show completed if all sub workflows have completed
-successfully. You can verify the state of main and sub-workflows in the
-view below.
-
-![Workflows detail](details_mount_inv.png)
-
-![Workflows diagram](mount_from_inv_flow.png)
-
-In this view, we can see that all workflows have completed successfully.
-After the main workflow was executed it has spawned of multiple sub
-workflows until the last workflow checks if the device was successfully
-mounted.
-
-The following screenshots show additional information about the
-sub-workflows that is relevant to analysis and troubleshooting.
-
-![Workflow input/output](mount_from_inv_output.png)
-
-Once the main workflow has successfully completed the device is mounted
-and can now be used to get information from the device or configure the
-device.
+If you did everything correctly, your devices is now in inventory and installed, ready to be operated through Frinx Machine.
