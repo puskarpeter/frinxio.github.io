@@ -1,22 +1,19 @@
-# Device Inventory
-
-Devices are stored in a Device Inventory. From here they can be
-dynamically installed and uninstalled.
+# Add a device to inventory and install it
 
 ## Adding device to inventory
 
 To add new device to invetory, click on the **Add device** button in the
 **Device inventory** tab.
 
-![FM Install](fm_install.gif)
+![Add device to inventory](fm_install.gif)
 
 ## JSON examples
 
-To adding a new device toggle the "Blueprints" switch in the form and
-choose the blueprint that you want to use.
-
-New devices are added by JSON code snippets. They are similar to [Blueprints](../frinx-uniflow/blueprints)
+New devices are added to inventory by JSON code snippets. They are similar to [Blueprints](/frinx-uniflow/blueprints)
 with one addition: **device_id** must be specified in the snippet.
+
+To add a new device from Blueprint, toggle the "Blueprints" switch in the form and
+choose the blueprint that you want to use.
 
 ### Cisco classic IOS (cli)
 
@@ -152,3 +149,13 @@ with one addition: **device_id** must be specified in the snippet.
     }
 }
 ```
+
+
+## Install the new device from Inventory
+
+Now that the device is added we can install it. We used to need dedicated workflow to install device form inventory, but now
+it can be done purely via UI. Click on **Explore** in **Explore & configure devices** tab, under **Device Inventory** section.
+
+![Install device from inventory](fm_install_from_inventory.gif)
+
+If you did everything correctly, your devices is now in inventory and installed, ready to be operated through Frinx Machine.
