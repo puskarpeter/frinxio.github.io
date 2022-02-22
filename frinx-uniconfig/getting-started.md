@@ -14,6 +14,8 @@ in a container, standalone or as part of our automation solution FRINX
 Machine. UniConfig has a built-in data store that can be run in memory
 or with an external database.
 
+![UniConfig features](uc_features.png)
+
 ## UniConfig key feature overview
 
 -   Retrieves and stores current startup and running configuration from
