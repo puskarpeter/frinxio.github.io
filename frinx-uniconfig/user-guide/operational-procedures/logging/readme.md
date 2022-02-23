@@ -477,6 +477,12 @@ The next JSON snippet shows the sample configuration
 enabled for all devices while 'netconf\_notifications' is enabled only
 for 'xr6' and 'xr7' devices.
 
+!!!
+If unknown parameters are specified in a configuration file, they will be
+ignored and a warning, that the corresponding parameter
+was ignored, will be logged.
+!!!
+
 ```json
 {
   "loggingController": {
