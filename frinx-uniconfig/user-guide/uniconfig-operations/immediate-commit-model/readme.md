@@ -44,7 +44,7 @@ instead.
         If disabled, only manually created transactions can exist.
         */
         "isImmediateCommitEnabled": true
-    },
+    }
 ```
 
 RPC Examples
