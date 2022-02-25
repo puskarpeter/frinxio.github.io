@@ -147,6 +147,44 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 }
 ```
 
+### Successful Example
+
+RPC commit input has target node and the output describes the result
+of the commit.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "target-nodes": {
+            "node": ["IOSXR","IOSXRN"]
+        }
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "overall-status": "complete",
+        "node-results": {
+            "node-result": [
+                {
+                    "node-id": "IOSXRN",
+                    "configuration-status": "complete"
+                },
+                {
+                    "node-id": "IOSXR",
+                    "configuration-status": "complete"
+                }
+            ]
+        }
+    }
+}
+```
+
 ### Failed Example
 
 RPC commit input has 2 target nodes and the output describes the result
