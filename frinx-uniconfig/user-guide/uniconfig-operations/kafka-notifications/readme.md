@@ -11,6 +11,7 @@ Currently, there are these types of notifications:
 - notifications about transactions
 - audit logs (RESTCONF notifications)
 - data-change-events
+- connection notifications
 
 Each type of notifications is stored in its own topic in kafka. Besides
 that, all notifications are stored in one table in database.
@@ -139,6 +140,32 @@ Edit entry fields:
   represents created data.
 - data-after: JSON representation of subtree data including done changes. If this fields is not present, then
  'data-before' represents removed data.
+
+## Connection notifications
+
+Connection notification are generated whenever status of some node changes.
+For connection notifications, streamName is always 'CONNECTION' and identifier of YANG notification is 'connection-notification'.
+
+It contains:
+
+- topology id
+- node id
+- connection status
+- connection message
+
+Supported topologies are cli, netconf and gnmi.
+
+Sample connection notifications captured by Kafka console consumer:
+
+**CLI disconnect notification:**
+```json
+{"eventTime":"2022-02-17T10:09:28.76615-00:00","nodeId":"UC-5b4d0cec-6493-4e3d-bd1c-348a3ce83600","streamName":"CONNECTION","identifier":"connection-notification","body":{"connection-status":"disconnected","node-id":"R1","connection-message":"","topology":"cli"}}
+```
+
+**NETCONF connect notification:**
+```json
+{"eventTime":"2022-02-17T10:09:51.41777-00:00","nodeId":"UC-5b4d0cec-6493-4e3d-bd1c-348a3ce83600","streamName":"CONNECTION","identifier":"connection-notification","body":{"connection-status":"connecting","node-id":"R2","connection-message":"Connecting","topology":"topology-netconf"}}
+```
 
 ## Database entities
 
