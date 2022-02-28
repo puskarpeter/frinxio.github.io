@@ -662,6 +662,50 @@ curl --location --request POST 'http://localhost:8181/rests/operations/template-
 }
 ```
 
+## Upgrade of template to latest yang repository
+
+Template can be upgradedto latest yang repository using 'upgrade-template' RPC.
+This procedure does following steps:
+
+1. **Read template** - Reading of template configuration from
+    'templates' topology in Configuration datastore.
+2. **Version-drop** - Conversion of template into target schema context
+    that is created by specified yang-repository. Because of this feature, it is
+    possible to change template between different versions of devices
+    with different revisions of YANG schemas but with similar structure.
+    Version-drop is also aware of 'ignoredDataOnWriteByExtensions'
+    RESTCONF filtering mechanism.
+3. **Removal of previous template / writing new template** - If
+    'upgraded-template-name' is not specified in RPC input,
+    previous template will be deleted and replaced by new one.
+    If it is specified, previous template will not be deleted.
+
+Description of input RPC fields:
+
+- **template-name**: Name of the existing input template. This field is mandatory.
+- **upgraded-template-name**: Name of upgraded/new template. This field is optional.
+- **yang-repository**: Name of yang repository against
+    which version-dropping is used. This field is optional.
+    If no yang-repository is specified, latest yang repository will be used.
+
+Description of fields in RPC response:
+
+No fields are used, only HTTP response codes [200 - OK, 404 - Fail]
+
+### Usage of RPC
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:upgrade-template' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "template-name": "interface_template",
+        "upgraded-template-name": "new_interface_template",
+        "yang-repository": "schema1"
+    }
+}'
+```
 
 ## Application of template
 
