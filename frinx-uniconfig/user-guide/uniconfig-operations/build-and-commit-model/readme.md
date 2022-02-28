@@ -124,6 +124,18 @@ additionally contains Set-Cookie header with UNICONFIGTXID key and
 corresponding value - transaction identifier that conforms RFC-4122
 Universally Unique IDentifier (UUID) format.
 
+Create-transaction RPC can be used with optional query parameter called timeout.
+This parameter is used to override global idle timeout for transaction created 
+by this RPC call. After transaction inactivity for specified time transaction will be
+automatically cleaned. Value of this parameter is whole number and defines
+time in seconds.
+
+### Example request with timeout parameter
+```URL
+http://localhost:8181/rests/operations/uniconfig-manager:create-transaction?timeout=100
+```
+
+
 Process of transaction creation is depicted by following sequence
 diagram.
 
