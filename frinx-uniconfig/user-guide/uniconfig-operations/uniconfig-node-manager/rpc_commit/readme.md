@@ -16,6 +16,7 @@ The configuration of nodes consists of the following phases:
     device without committing of this changes.
 3. Validate configuration - Validation of written configuration from
     the view of constraints and consistency.
+    This phase can be skipped with "do-validate" flag.
 4. Confirmed commit - It is used for locking of device configuration,
     so no other transaction can touch this device.
 5. Confirming commit (submit configuration) - Persisting all changes on
@@ -193,7 +194,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 
 RPC commit input has 2 target nodes and the output describes the result
 of the commit. One node has failed because the confirmed commit failed
-(IOSXRN).
+(IOSXRN). Validation phase was skipped due to false "do-validate" flag.
 
 ```bash RPC Request
 curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
@@ -201,6 +202,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 --header 'Content-Type: application/json' \
 --data-raw '{
     "input": {
+        "do-validate" : False,
         "target-nodes": {
             "node": ["IOSXR", "IOSXRN"]
         }
