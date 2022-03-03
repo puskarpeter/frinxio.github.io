@@ -261,7 +261,7 @@ end
 **Example: - Sending NETCONF GET RPC and receiving response**
 
 ```
-11:10:15.038 TRACE org.opendaylight.netconf.logging.brokers.NetconfMessagesLoggingBroker - b1b2b9c1: Sending NETCONF message:
+11:10:15.038 TRACE org.opendaylight.netconf.logging.brokers.NetconfMessagesLoggingBroker - Session: 641 - Sending NETCONF message:
 <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="m-179">
     <get>
         <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:type="subtree">
@@ -270,7 +270,7 @@ end
     </get>
 </rpc>
 
-11:10:15.055 TRACE org.opendaylight.netconf.logging.brokers.NetconfMessagesLoggingBroker - b1b2b9c1: Received NETCONF message:
+11:10:15.055 TRACE org.opendaylight.netconf.logging.brokers.NetconfMessagesLoggingBroker - Session: 641 - Received NETCONF message:
 <rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="m-179">
     <data>
         <netconf xmlns="urn:ietf:params:xml:ns:netmod:notification">
@@ -294,7 +294,8 @@ end
 ```
 
 !!!
-String 'b1b2b9c1' represents the session ID. If multiple sessions are
+Number 641 represents the session ID. It is read from 
+the NETCONF hello message. If multiple sessions are 
 created between the NETCONF server and NETCONF client and are
 logically grouped by the same node ID, then logs from multiple
 sessions are stored to the same logging file (this is needed to
