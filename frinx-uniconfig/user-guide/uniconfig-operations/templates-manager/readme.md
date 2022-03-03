@@ -662,10 +662,10 @@ curl --location --request POST 'http://localhost:8181/rests/operations/template-
 }
 ```
 
-## Upgrade of template to latest yang repository
+## Upgrading template to latest yang repository
 
-Template can be upgradedto latest yang repository using 'upgrade-template' RPC.
-This procedure does following steps:
+Template can be upgraded to latest YANG repository using 'upgrade-template' RPC.
+This procedure consists of:
 
 1. **Read template** - Reading of template configuration from
     'templates' topology in Configuration datastore.
@@ -684,7 +684,7 @@ Description of input RPC fields:
 
 - **template-name**: Name of the existing input template. This field is mandatory.
 - **upgraded-template-name**: Name of upgraded/new template. This field is optional.
-- **yang-repository**: Name of yang repository against
+- **yang-repository**: Name of YANG repository against
     which version-dropping is used. This field is optional.
     If no yang-repository is specified, latest yang repository will be used.
 
