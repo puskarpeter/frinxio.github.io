@@ -18,7 +18,7 @@ Example pools:
 - IPv4 address pool allocating IP addresses from a range / subnet
 - VLAN pool allocating all available VLAN numbers 0 - 4096
 - Route distinguisher pool allocating route distinguishers from a
-    specific, per customer, input
+  specific, per customer, input
 
 Depending on resource type and user’s requirements, pools need to be
 capable of allocating resources based on various criteria / algorithms.
@@ -36,12 +36,12 @@ served already exists.
 Properties of SetPool
 
 - Config
-    - Set of unique resources to provide
-    - Name of the pool
-    - Resource recycling - whether deallocated resources should be
-        used again
+  - Set of unique resources to provide
+  - Name of the pool
+  - Resource recycling - whether deallocated resources should be
+    used again
 - Operational
-    - Utilisation - % of pool capacity used
+  - Utilisation - % of pool capacity used
 
 ## SingletonPool
 
@@ -55,8 +55,8 @@ stored in the UniResource.
 Properties of SingletonPool
 
 - Config
-    - A single unique resources to provide
-    - Name of the pool
+  - A single unique resources to provide
+  - Name of the pool
 
 ## AllocatingPool
 
@@ -74,19 +74,19 @@ This type of pool can be used when
 - a predefined set of resources cannot be used
 - resource creation requires additional inputs
 - or in general whenever using an allocation script makes more sense
-    then using a predefined set of resources
+  then using a predefined set of resources
 
 Properties of AllocatingPool
 
 - Config
-    - Allocation strategy - a script defining the allocation logic
-    - Name of the pool
-    - Resource recycling - whether deallocated resources should be
-        used again
-    - Limit - hard limit on total number of resource that can be
-        produced
+  - Allocation strategy - a script defining the allocation logic
+  - Name of the pool
+  - Resource recycling - whether deallocated resources should be
+    used again
+  - Limit - hard limit on total number of resource that can be
+    produced
 - Operational
-    - Utilisation - % of pool limit used
+  - Utilisation - % of pool limit used
 
 Example AllocationPools:
 
@@ -94,11 +94,29 @@ Example AllocationPools:
 - Pool providing just odd VLAN numbers
 - Pool providing random VLAN numbers
 - Pool providing Route Distinguishers that include customer specific
-    information (which is passed as “additional input” as part of
-    resource claim request)
+  information (which is passed as “additional input” as part of
+  resource claim request)
 - Pool providing IPv4-mapped IPv6 addresses from a specific range /
-    subnet
+  subnet
 - In general, anything that a user might need
+
+## Nested pool
+
+UniResource allows to create nested pools. Nested pools provide possibility to create subgroups from already existing pools. With these subgroups it is easier to reason about topology.
+
+### How to create nested pool
+
+Process (in UI):
+
+- Create pool or open existing one
+- Allocate resource in newly created or existing pool
+- Open **create pool** page
+- Select parent from which nested pool should be created
+- Select allocated resource of parent from which nested pool will be taking resources
+- Fill other mandatory inputs
+- Push button to create nested pool
+
+After successful submit newly created nested pool should be visible in pools list or in nested pools list in its parent detail page. Also it is possible to create nested pool from detail page of pool.
 
 ## Allocation strategy overview
 
@@ -155,7 +173,6 @@ Enables: Unique resources across different networks
 
 ![Instance multiple labels](instance_multiple_labels.png)
 
-
 ##### Configuration: **Pool grouping**
 
 Enables: Dividing resource pools into groups based on network regions.
@@ -163,7 +180,6 @@ Enables users to simply ask for a resource based on label name +
 resource type (removing the need to know specific pools)
 
 ![Pool grouping](instance_grouping.png)
-
 
 ##### Configuration: **Multiple pool instances under the same Label**
 
