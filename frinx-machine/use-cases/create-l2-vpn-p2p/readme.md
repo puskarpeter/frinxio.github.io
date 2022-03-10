@@ -22,7 +22,7 @@ configuration window.
 
 ## Configuring the Workflow
 
-Fill the inputs with the following data:
+Input is pre-filled with following data:
 
 ```
 node01: IOS01
