@@ -15,7 +15,7 @@ To add new device to invetory, click on the **Add device** button in the
 To adding a new device toggle the "Blueprints" switch in the form and
 choose the blueprint that you want to use.
 
-New devices are added by JSON code snippets. They are similar to [Blueprints](../frinx-uniflow/blueprints)
+New devices are added by JSON code snippets. They are similar to [Blueprints](../blueprints)
 with one addition: **device_id** must be specified in the snippet.
 
 ### Cisco classic IOS (cli)
