@@ -28,12 +28,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.700651449387" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.700651739988" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.700651449387" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.700651739988" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.700651449387" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.700651449387" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.700651739988" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.700651739988" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -291,8 +291,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;: {
         &quot;patch-id&quot;: &quot;add-list-entries&quot;,
@@ -371,8 +370,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;: {
         &quot;patch-id&quot;: &quot;moving-list-entry&quot;,
@@ -410,8 +408,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;:{
         &quot;patch-id&quot;:&quot;insert-list-entries&quot;,
@@ -477,8 +474,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;:{
         &quot;patch-id&quot;:&quot;replace-list-entry-value&quot;,
@@ -517,8 +513,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;:{
         &quot;patch-id&quot;:&quot;merge-value-list-entry&quot;,
@@ -564,8 +559,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;:{
         &quot;patch-id&quot;:&quot;delete-list-entry&quot;,
@@ -601,8 +595,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;: {
         &quot;patch-id&quot;: &quot;remove-list-entry&quot;,
@@ -638,8 +631,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=vnf20/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;: {
         &quot;patch-id&quot;: &quot;rename-list-entry&quot;,
@@ -676,8 +668,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;: {
         &quot;patch-id&quot;: &quot;delete-list-entry&quot;,
@@ -727,8 +718,7 @@ If the data exist, return an error.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">PATCH request</div>
 <pre class="language-bash"><code v-pre class="language-bash">curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     &quot;yang-patch&quot;: {
         &quot;comment&quot;: &quot;insert-lists&quot;,
