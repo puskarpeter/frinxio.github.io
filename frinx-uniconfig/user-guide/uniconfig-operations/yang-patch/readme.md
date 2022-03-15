@@ -204,7 +204,7 @@ curl --location --request PATCH 'http://localhost:8181/rests/data/network-topolo
 
 ### Inserting new leaf-list entry
 
-The request inserts new leaf-list entries on a user defined position.
+The request inserts a new leaf-list entry on a user defined position.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=vnf20/frinx-uniconfig-topology:configuration/system:system/vnf-manager' \
