@@ -34,8 +34,7 @@ If the data exist, return an error.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch": {
         "patch-id": "add-list-entries",
@@ -111,8 +110,7 @@ The request moves an existing list entry on a user defined position.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch": {
         "patch-id": "moving-list-entry",
@@ -147,8 +145,7 @@ The request inserts new list entries on a user defined position.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch":{
         "patch-id":"insert-list-entries",
@@ -211,8 +208,7 @@ The request replaces an existing value in a list entry.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch":{
         "patch-id":"replace-list-entry-value",
@@ -248,8 +244,7 @@ The request merges an existing value in a list entry.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch":{
         "patch-id":"merge-value-list-entry",
@@ -292,8 +287,7 @@ The request deletes a list entry. If the data is missing, returns an error.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch":{
         "patch-id":"delete-list-entry",
@@ -326,8 +320,7 @@ The request removes a list entry.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch": {
         "patch-id": "remove-list-entry",
@@ -360,8 +353,7 @@ The request renames a list entry key.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=vnf20/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch": {
         "patch-id": "rename-list-entry",
@@ -395,8 +387,7 @@ The request to delete a list entry that is not present.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch": {
         "patch-id": "delete-list-entry",
@@ -443,8 +434,7 @@ The request is missing some data.
 
 ```bash PATCH request
 curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=dev1/frinx-uniconfig-topology:configuration/interfaces' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
+--header 'Content-Type: application/yang-patch+json' \
 --data-raw '{
     "yang-patch": {
         "comment": "insert-lists",
