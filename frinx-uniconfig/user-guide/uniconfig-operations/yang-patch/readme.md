@@ -202,6 +202,46 @@ curl --location --request PATCH 'http://localhost:8181/rests/data/network-topolo
 }
 ```
 
+### Inserting new leaf-list entry
+
+The request inserts new leaf-list entries on a user defined position.
+
+```bash PATCH request
+curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/network-topology:topology=uniconfig/network-topology:node=vnf20/frinx-uniconfig-topology:configuration/system:system/vnf-manager' \
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--header 'Content-Type: application/yang-patch+json' \
+--data-raw '{
+    "yang-patch": {
+        "patch-id": "insert-leaf-list-entry",
+        "comment": "Adding a leaf list entry",
+        "edit": [
+            {
+                "edit-id": "test-edit-1",
+                "operation": "insert",
+                "target": "/ip-addresses=192.168.101.4%2F32",
+                "where": "first",
+                "value": {
+                   "ip-addresses": [
+                    "192.168.101.4/32"
+                    ]
+                }
+            }
+        ]
+    }
+}'
+```
+
+```json PATCH response
+{
+    "ietf-yang-patch:yang-patch-status":{
+        "patch-id":"insert-list-entries",
+        "ok":[
+            null
+        ]
+    }
+}
+```
+
 ### Replacing list entry
 
 The request replaces an existing value in a list entry.
