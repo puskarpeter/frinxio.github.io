@@ -49,7 +49,7 @@ The translation framework allows translation units to:
 ## <a name="finding-mapping-between-device-and-the-model"></a>Finding mapping between device and the model
 
 
-Prefered YANG models for device config and operational data are [OpenConfig models](https://github.com/openconfig/public/tree/master/release/models).
+Preferred YANG models for device config and operational data are [OpenConfig models](https://github.com/openconfig/public/tree/master/release/models).
 
 These models usually represents configuration part in _container config_ and operational part in _container state_. Operational data is config data + operational data.
 
