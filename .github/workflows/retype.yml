@@ -17,6 +17,8 @@ jobs:
       - uses: retypeapp/action-build@v1
         with:
           license: ${{ secrets.RETYPE_SECRET }}
+        env:
+          version: 12.5.8
 
       - uses: retypeapp/action-github-pages@v1
         with:
