@@ -28,11 +28,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.701262396338" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.701262888482" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.701262396338" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.701262888482" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.701262396338" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.701262888482" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -327,7 +327,7 @@
         <span><a name="finding-mapping-between-device-and-the-model"></a>Finding mapping between device and the model</span>
     </h2>
 </doc-anchor-target>
-<p>Prefered YANG models for device config and operational data are <a href="https://github.com/openconfig/public/tree/master/release/models">OpenConfig models</a>.</p>
+<p>Preferred YANG models for device config and operational data are <a href="https://github.com/openconfig/public/tree/master/release/models">OpenConfig models</a>.</p>
 <p>These models usually represents configuration part in <em>container config</em> and operational part in <em>container state</em>. Operational data is config data + operational data.</p>
 <p>This site <a href="http://ops.openconfig.net/branches/master/">http://ops.openconfig.net/branches/master/</a> may be used for better browsing in OpenConfig YANG models. Another option is to generate YANG tree representation by using <em>generate_html.sh</em> in <a href="https://github.com/FRINXio/openconfig">https://github.com/FRINXio/openconfig</a>.</p>
 <p>YANG models used in UniConfig framework need to be located in <a href="https://github.com/FRINXio/openconfig">https://github.com/FRINXio/openconfig</a>. In case the desired functionality is not modeled yet, you can create new YANG with its own structure or it can augment existing OpenConfig models. Guideline, how to write OpenConfig models can be found at <a href="http://www.openconfig.net/docs/style-guide/">http://www.openconfig.net/docs/style-guide/</a>.</p>
