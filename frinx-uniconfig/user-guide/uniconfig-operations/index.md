@@ -37,6 +37,10 @@ This component is responsible for application of templates into UniConfig nodes.
 
 This component is responsible for tracking transactions.
 
+## UniConfig Queries
+
+Using this component it is possible to invoke JSONB-path queries on top of the stored configuration.
+
 ## Dedicated transaction (Immediate Commit Model)
 
 The immediate commit creates new transactions for every call of an RPC. The transaction is then closed so no lingering data will occur.
