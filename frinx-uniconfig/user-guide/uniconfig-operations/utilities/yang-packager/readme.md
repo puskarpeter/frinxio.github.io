@@ -25,7 +25,11 @@ a "-to-file" flag, which user can use when he wants to write a debug output to f
 * ```-d /path/to/default``` - optional argument. Sometimes some YANG files need additional dependencies that are not provided in source directories. In this case it is possible to use path to the 'default' directory which contains additional YANG files. If there is this missing YANG file, YANG packager will use it.
 * ```-s /path/to/skip-list``` - optional argument. User can define YANG file names in text file that he does not want to include in conversion process. This file must only contain module names without revision and .yang suffix.
 * ```-to-file``` - optional argument. When user uses this flag, then YANG packager also saves the debug output to a file. This file can be found on a same path as **output-directory**. It will contain suffix '-info' in its name. If the output directory is called 'output-directory', then the file will be called 'output-directory-info'.
-
+* ```-g``` - optional argument. Path to directory where generated Java sources with constants from YANG elements are saved. By default, generation of Java files is disabled.
+* ```-pn``` - optional argument. Custom package name of generated classes.
+* ```-px``` - optional argument. Flag that enables prefix for generated constants names inside generated classes.
+* ```-jd``` - optional argument. Flag that enables to generate java documentation on data elements.
+* ```-r``` - optional argument. Selection of repositories inside source directory with files or file with defined names of directories which contains files, from which constants will be generated.
 !!!
 Bash script ```./convertYangsToUniconfigSchema``` also includes simple help facility. There are two options how to show the help text:
  1. ```./convertYangsToUniconfigSchema -h```
