@@ -7,7 +7,7 @@ or snapshot.
 
 UniConfig exposes filtering and selection API using RPC 'query-config'. Filtering and selection of configuration
 is done only on the database side - UniConfig receives already narrowed configuration with only selected data.
-Since query is evaluated by the database, this feature is works only with already committed data (operational data).
+Since query is evaluated by the database, this feature works only with already committed data (operational data).
 
 The following sequence diagram captures the whole process of RPC execution in detail.
 
@@ -17,7 +17,7 @@ The following sequence diagram captures the whole process of RPC execution in de
 
 - **topology-id**: Identifier of network-topology/topology list entry. Currently, supported topologies, under which
   this RPC can be used, are: 'uniconfig', 'templates', 'unistore', and snapshot topologies.
-- **node-id**: Identifier of specific network-topology/node list entry which configuration is filtered using specified
+- **node-id**: Identifier of specific network-topology/node list entry whose configuration is filtered using specified
   jsonb-path-query.
 - **jsonb-path-query**: JSONB-path query used for selection and filtering of subtrees in the node configuration stored
   in the PostgreSQL. JSONB-path must start from root "frinx-uniconfig-topology:configuration" container
@@ -75,7 +75,7 @@ represents wrapping element for all root data elements that are stored in databa
 
 !!!
 Be aware that PostgreSQL requires escaping of special characters in the identifiers of JSON elements. For example,
-':' and '-' represents special characters. Because of this behaviour, it is always safer to put double quotes around
+':' and '-' represent special characters. Because of this behaviour, it is always safer to put double quotes around
 all identifiers as it is done in this example.
 !!!
 
@@ -198,7 +198,7 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/uniconfig
 
 ### Example: syntax error
 
-In case of invalid forma of input 'jsonb-path-query', UniConfig will return 400 status code with error-message
+In case of invalid form of input 'jsonb-path-query', UniConfig will return 400 status code with error-message
 describing syntax error.
 
 ```bash RPC Request
