@@ -29,6 +29,7 @@ frinx-openconfig-acl:acl/acl-sets/acl-set={{acl_name}},{{acl_type}}
                             "sequence-id": "{{acl_seq_id}}",
                             "frinx-acl-extension:term-name": "{{acl_term_name}}"
                         },
+                        "frinx-acl-extension:precedence": "{{acl_precedence}}",
                         "ipv4|ipv6": {
                             "config": {
                             	"protocol": {{acl_protocol}},
@@ -58,7 +59,7 @@ frinx-openconfig-acl:acl/acl-sets/acl-set={{acl_name}},{{acl_type}}
 				"frinx-acl-extension:destination-port-named": "{{destination-port-named}}"
                             }
                         },
-
+                        "frinx-acl-extension:option": "{{acl_option_enum}}"|{{acl_option_number}},
                         "actions": {
                             "config": {
                                 "forwarding-action": "{{acl_fwd_action}}",
@@ -75,6 +76,38 @@ frinx-openconfig-acl:acl/acl-sets/acl-set={{acl_name}},{{acl_type}}
 ```
 
 ## OS Configuration Commands
+
+### Cisco IOS Classic
+
+#### CLI
+
+<pre>
+ipv4|ipv6 access-list {{acl_name}} 
+	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {eq|neq|range {{acl_src_port}} }  {{acl_dst_addr}} {eq|neq|range {{acl_dst_port}} } {{acl_icmp_msg_type}} ttl range {{min_acl_ttl}} {{max_acl_ttl}} precedence {{acl_precedence}} option {{acl_option_enum}}|{{acl_option_number}}
+</pre>
+
+*ipv4|ipv6* is a conversion of {{acl_type}}  
+*eq|neq|range {{acl_src_port}}* is a conversion of {{acl_src_port}} or {{source-port-named}}, operation is selected by entered port range  
+*eq|neq|range {{acl_dst_port}}* is a conversion of {{acl_dst_port}} or {{destination-port-named}}, operatioons is selected by entered port range  
+*{{acl_option_enum}}|{{acloption_number}}* acl option could be defined by enumeration named options or by number in range 0-255  
+
+
+##### Examples
+
+<pre>
+ipv4 access-list test123
+	2 permit 4.4.4.4/32 7.7.7.7/32
+</pre>
+
+<pre>
+ipv4 access-list test123
+	3 permit tcp 1.1.1.1/32 range 1024 65535 2.2.2.2/32 range 0 1023
+</pre>
+
+<pre>
+ipv4 access-list test123
+	5 deny icmp 1.1.1.1/32 2.2.2.2/32 8 ttl range 0 10
+</pre>
 
 ### Cisco IOS XR 5.3.4
 
