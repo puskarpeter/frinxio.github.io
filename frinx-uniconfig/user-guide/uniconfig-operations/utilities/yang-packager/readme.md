@@ -30,7 +30,20 @@ a "-to-file" flag, which user can use when he wants to write a debug output to f
 * ```-px``` - optional argument. Flag that enables prefix for generated constants names inside generated classes.
 * ```-jd``` - optional argument. Flag that enables to generate java documentation on data elements.
 * ```-r``` - optional argument. Selection of repositories inside source directory with files or file with defined names of directories which contains files, from which constants will be generated.
-!!!
+* ```-enableSwagger``` - optional argument. Flag that enables openAPI generation. By default, it is disabled.
+* ```-server``` - optional argument. What server name should be used when the URL is built. By default, the value is **localhost**.
+* ```-port``` - optional argument. What port should be used when the URL is built. By default, the value is **8080**.
+* ```-basePath``` - optional argument. What base path should be used when the URL is built. By default, the value is empty. The value should contain a slash (e.g. **/rests**).
+* ```-depth``` - optional argument. What the maximum depth of YANG fields should be scanned. By default, the value is **999999**.
+* ```-securityScheme``` - optional argument. What security scheme is used. By default the value is **http**.
+* ```-outputExtension``` - optional argument. What the file extension of the generated file will be. By default, the value is **yaml**.
+* ```-mimeType``` - optional argument. What the MIME type will be when generating requests and responses. Default value is **application/json**.
+* ```-ignoreLeafContainers``` - optional argument. Flag that enables ignoring of requests that end only with leaves or leaf-lists.
+* ```-ignoreConfig``` - optional argument. Flag that enables ignoring of configuration fields in YANG schemas.
+* ```-ignoreOper``` - optional argument. Flag that disables ignoring of operational fields in YANG schemas.
+
+
+* !!!
 Bash script ```./convertYangsToUniconfigSchema``` also includes simple help facility. There are two options how to show the help text:
  1. ```./convertYangsToUniconfigSchema -h```
  2. ```./convertYangsToUniconfigSchema --help```
@@ -242,6 +255,32 @@ Number of source files:   515
 Number of valid files:    515
 Number of invalid files:  0
 Number of non-yang files: 0
+```
+
+### Usage with '-enableSwagger' flag
+
+In this example a path to a text-file with defined names of source directories is used. 
+A flag to print outputs to files and a flag to enable swagger for OpenAPI files generation.
+This file / files are generated per directory, and they are located in the output directory.
+The user can find output information files on paths /path/to/output/directory-1-info and 
+/path/to/output/directory-2-info.
+
+Open a terminal, go to the **../utils** directory. Run the command:
+
+```console
+./convertYangsToUniconfigSchema -i /path/to/text-file -o /path/to/output -to-file -enableSwagger
+```
+
+Additional parameters are available for swagger generation that further customise the OpenAPI file / files.
+These parameters are located at the beginning of the page.
+
+The output then looks like this:
+
+```console
+--------------- SWAGGER OUTPUT ---------------
+
+File name: file_name1.yaml  - file path: absolute/path/to/file/file_name1.yaml
+File name: file_name2.yaml  - file path: absolute/path/to/file/file_name2.yaml
 ```
 
 ### Error - source directory does not exist
