@@ -35,5 +35,4 @@ stores it as an actual state to the OPER DS.
 - [RPC replace-config-with-operational](../uniconfig-node-manager/rpc_replace-config-with-oper)
 - [RPC calculate-diff](../uniconfig-node-manager/rpc_calculate-diff)
 - [RPC calculate-git-like-diff](../uniconfig-node-manager/rpc_calculate-git-like-diff)
-- [RPC show-connection-status](../uniconfig-node-manager/rpc_show_connection_status)
 - [RPC health](../uniconfig-node-manager/rpc_health)
