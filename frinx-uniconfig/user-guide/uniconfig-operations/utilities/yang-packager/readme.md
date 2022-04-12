@@ -36,6 +36,7 @@ a "-to-file" flag, which user can use when he wants to write a debug output to f
 * ```-basePath``` - optional argument. What base path should be used when the URL is built. By default, the value is empty. The value should contain a slash (e.g. **/rests**).
 * ```-depth``` - optional argument. What the maximum depth of YANG fields should be scanned. By default, the value is **999999**.
 * ```-securityScheme``` - optional argument. What security scheme is used. By default the value is **http**.
+* ```-filePrefix``` - optional argument. What prefix the OpenAPI file will have. By default, the value is **swagger_output**.
 * ```-outputExtension``` - optional argument. What the file extension of the generated file will be. By default, the value is **yaml**.
 * ```-mimeType``` - optional argument. What the MIME type will be when generating requests and responses. Default value is **application/json**.
 * ```-ignoreLeafContainers``` - optional argument. Flag that enables ignoring of requests that end only with leaves or leaf-lists.
