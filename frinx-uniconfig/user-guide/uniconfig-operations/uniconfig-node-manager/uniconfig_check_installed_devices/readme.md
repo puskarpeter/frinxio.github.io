@@ -24,15 +24,8 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
 ```
 
 ```json RPC Response, Status: 200
-curl --location --request POST 'http://localhost:8181/rests/operations/connection-manager:check-installed-nodes' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "input": {
-        "target-nodes": {
-            "node": ["R1"]
-        }
-    }
+'{
+    "output": {}
 }'
 ```
 
