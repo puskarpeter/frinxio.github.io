@@ -443,7 +443,7 @@ Example: removal of subscription with ID '8e82453d-4ea8-4c26-a74e-50d855a721fa':
 curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-change-events:delete-data-change-subscription' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "output": {
+  "input": {
     "subscription-id": "8e82453d-4ea8-4c26-a74e-50d855a721fa"
   }
 }'
@@ -464,10 +464,10 @@ Example: showing information about
 curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-change-events:show-subscription-data' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "output": {
+  "input": {
     "subscription-id": "8e82453d-4ea8-4c26-a74e-50d855a721fa"
   }
-}'
+}
 ```
 
 ```json RPC response
