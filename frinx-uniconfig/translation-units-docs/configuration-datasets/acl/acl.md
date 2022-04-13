@@ -54,9 +54,10 @@ frinx-openconfig-acl:acl/acl-sets/acl-set={{acl_name}},{{acl_type}}
                         "transport": {
                             "config": {
                             	"source-port": "{{acl_src_port}}",
-                            	"destination-port": "{{acl_dst_port}}"
-				"frinx-acl-extension:source-port-named": "{{source-port-named}}"
-				"frinx-acl-extension:destination-port-named": "{{destination-port-named}}"
+                            	"destination-port": "{{acl_dst_port}}",
+				"frinx-acl-extension:source-port-named": "{{source-port-named}}",
+				"frinx-acl-extension:destination-port-named": "{{destination-port-named}}",
+				"frinx-acl-extension:established": {{established_state}} //true or false
                             }
                         },
                         "frinx-acl-extension:option": "{{acl_option_enum}}"|{{acl_option_number}},
@@ -83,13 +84,14 @@ frinx-openconfig-acl:acl/acl-sets/acl-set={{acl_name}},{{acl_type}}
 
 <pre>
 ipv4|ipv6 access-list {{acl_name}} 
-	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {eq|neq|range {{acl_src_port}} }  {{acl_dst_addr}} {eq|neq|range {{acl_dst_port}} } {{acl_icmp_msg_type}} ttl range {{min_acl_ttl}} {{max_acl_ttl}} precedence {{acl_precedence}} option {{acl_option_enum}}|{{acl_option_number}}
+	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {eq|neq|range {{acl_src_port}} }  {{acl_dst_addr}} {eq|neq|range {{acl_dst_port}} } {{acl_icmp_msg_type}} ttl range {{min_acl_ttl}} {{max_acl_ttl}} {{established}} precedence {{acl_precedence}} option {{acl_option_enum}}|{{acl_option_number}}
 </pre>
 
 *ipv4|ipv6* is a conversion of {{acl_type}}  
 *eq|neq|range {{acl_src_port}}* is a conversion of {{acl_src_port}} or {{source-port-named}}, operation is selected by entered port range  
 *eq|neq|range {{acl_dst_port}}* is a conversion of {{acl_dst_port}} or {{destination-port-named}}, operatioons is selected by entered port range  
 *{{acl_option_enum}}|{{acloption_number}}* acl option could be defined by enumeration named options or by number in range 0-255  
+*{{established}}* is a conversion of {{established_state}}, when true, value is "established", when false, there is empty value ""  
 
 
 ##### Examples
@@ -179,7 +181,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 
 <pre>
 ip access-list extend {{acl_name}}
-	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} }
+	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} } {{established}}
 </pre> 
 
 <pre>
@@ -187,6 +189,7 @@ ipv6 access-list {{acl_name}}
 	 {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} } sequence {{acl_seq_id}}
 </pre>
 
+*{{established}}* is a conversion of {{established_state}}, when true, value is "established", when false, there is empty value ""  
 
 ##### Examples
 
