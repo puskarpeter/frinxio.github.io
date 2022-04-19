@@ -30,19 +30,7 @@ a "-to-file" flag, which user can use when he wants to write a debug output to f
 * ```-px``` - optional argument. Flag that enables prefix for generated constants names inside generated classes.
 * ```-jd``` - optional argument. Flag that enables to generate java documentation on data elements.
 * ```-r``` - optional argument. Selection of repositories inside source directory with files or file with defined names of directories which contains files, from which constants will be generated.
-* ```-enableSwagger``` - optional argument. Flag that enables openAPI generation. By default, it is disabled.
-* ```-server``` - optional argument. What server name should be used when the URL is built. By default, the value is **localhost**.
-* ```-port``` - optional argument. What port should be used when the URL is built. By default, the value is **8080**.
-* ```-basePath``` - optional argument. What base path should be used when the URL is built. By default, the value is empty. The value should contain a slash (e.g. **/rests**).
-* ```-depth``` - optional argument. What the maximum depth of YANG fields should be scanned. By default, the value is **999999**.
-* ```-securityScheme``` - optional argument. What security scheme is used. By default the value is **http**.
-* ```-filePrefix``` - optional argument. What prefix the OpenAPI file will have. By default, the value is **swagger_output**.
-* ```-outputExtension``` - optional argument. What the file extension of the generated file will be. By default, the value is **yaml**.
-* ```-mimeType``` - optional argument. What the MIME type will be when generating requests and responses. Default value is **application/json**.
-* ```-ignoreLeafContainers``` - optional argument. Flag that enables ignoring of requests that end only with leaves or leaf-lists.
-* ```-ignoreConfig``` - optional argument. Flag that enables ignoring of configuration fields in YANG schemas.
-* ```-ignoreOper``` - optional argument. Flag that disables ignoring of operational fields in YANG schemas.
-
+* ```-enableSwagger``` - optional argument. Path to file that enables OpenAPI generation.
 
 * !!!
 Bash script ```./convertYangsToUniconfigSchema``` also includes simple help facility. There are two options how to show the help text:
@@ -262,14 +250,15 @@ Number of non-yang files: 0
 
 In this example a path to a text-file with defined names of source directories is used. 
 A flag to print outputs to files and a flag to enable swagger for OpenAPI files generation.
-This file / files are generated per directory, and they are located in the output directory.
-The user can find output information files on paths /path/to/output/directory-1-info and 
-/path/to/output/directory-2-info.
+The swagger configuration file is located at **../utils/config/swagger-config.json**.
+Swagger output file / files are generated per directory, and they are located in the output 
+directory. The user can find output information files on paths /path/to/output/directory-1-info 
+and /path/to/output/directory-2-info.
 
 Open a terminal, go to the **../utils** directory. Run the command:
 
 ```console
-./convertYangsToUniconfigSchema -i /path/to/text-file -o /path/to/output -to-file -enableSwagger
+./convertYangsToUniconfigSchema -i /path/to/text-file -o /path/to/output -to-file -enableSwagger /path/to/config
 ```
 
 Additional parameters are available for swagger generation that further customise the OpenAPI file / files.
