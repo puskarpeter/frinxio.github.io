@@ -156,7 +156,8 @@ frinx-openconfig-interfaces:interfaces/interface={{lag_ifc_name}}
                                     "id": "{{class_element}}",
                                     "config": {
                                         "id": "{{class_element}}",
-                                        "vtag-stack": "{{vtag}}" 
+                                        "vtag-stack": "{{vtag}}",
+                                        "vlan-untagged-data": {{untagged_data}} // true or false
                                     }
                                 }
                             ]
@@ -582,12 +583,13 @@ Link to github : [dasan-unit](https://github.com/FRINXio/cli-units/tree/master/d
 sub-port create sub-port {{subifc_name}} parent-port {{lag_ifc_name}} classifier-precedence {{sub_ifc_index}}
 sub-port set sub-port {{subifc_name}} ingress-l2-transform {{i_transform}}
 sub-port set sub-port {{subifc_name}} egress-l2-transform {{e_transform}}
-sub-port add sub-port {{subifc_name}} class-element {{class_element}} vtag-stack {{vtag}}
+sub-port add sub-port {{subifc_name}} class-element {{class_element}} vtag-stack {{vtag}} {{vlan-untagged-data}}
 pm create sub-port {{subifc_name}} pm-instance {{pm_instance_name}} profile-type BasicTxRx bin-count {{bin_count}}
 </pre>
 
 classifier-precedence is used as *{{sub_ifc_index}}*. This field is mandatory in Ciena and unique withing parent-port.  
-bin_count can be from "0" to "96". Default value is "32".
+bin_count can be from "0" to "96". Default value is "32".  
+*{{vlan-untagged-data}}* is a conversion of {{untagged_data}} when true.  
 
 ##### Unit
 
