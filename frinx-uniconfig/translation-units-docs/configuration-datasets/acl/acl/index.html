@@ -11,29 +11,29 @@
     <!-- Primary Meta Tags -->
     <title>Access Control List | Frinx Docs</title>
     <meta name="title" content="Access Control List | Frinx Docs">
-    <meta name="description" content="ipv4|ipv6 is a conversion of {{acl_type}}" />
+    <meta name="description" content="ipv4|ipv6 is a conversion of {{acl_type}} eq|neq|range {{acl_src_port}} is a conversion of {{acl_src_port}} or {{source-port-named}}, operation is..." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/translation-units-docs/configuration-datasets/acl/acl/">
     <meta property="og:title" content="Access Control List | Frinx Docs">
-    <meta property="og:description" content="ipv4|ipv6 is a conversion of {{acl_type}}">
+    <meta property="og:description" content="ipv4|ipv6 is a conversion of {{acl_type}} eq|neq|range {{acl_src_port}} is a conversion of {{acl_src_port}} or {{source-port-named}}, operation is...">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/translation-units-docs/configuration-datasets/acl/acl/">
     <meta property="twitter:title" content="Access Control List | Frinx Docs">
-    <meta property="twitter:description" content="ipv4|ipv6 is a conversion of {{acl_type}}">
+    <meta property="twitter:description" content="ipv4|ipv6 is a conversion of {{acl_type}} eq|neq|range {{acl_src_port}} is a conversion of {{acl_src_port}} or {{source-port-named}}, operation is...">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.701766728845" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.704221378452" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.701766728845" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.704221378452" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.701766728845" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.701766728845" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.704221378452" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.704221378452" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -271,6 +271,7 @@
                             &quot;sequence-id&quot;: &quot;{{acl_seq_id}}&quot;,
                             &quot;frinx-acl-extension:term-name&quot;: &quot;{{acl_term_name}}&quot;
                         },
+                        &quot;frinx-acl-extension:precedence&quot;: &quot;{{acl_precedence}}&quot;,
                         &quot;ipv4|ipv6&quot;: {
                             &quot;config&quot;: {
                             	&quot;protocol&quot;: {{acl_protocol}},
@@ -295,12 +296,13 @@
                         &quot;transport&quot;: {
                             &quot;config&quot;: {
                             	&quot;source-port&quot;: &quot;{{acl_src_port}}&quot;,
-                            	&quot;destination-port&quot;: &quot;{{acl_dst_port}}&quot;
-				&quot;frinx-acl-extension:source-port-named&quot;: &quot;{{source-port-named}}&quot;
-				&quot;frinx-acl-extension:destination-port-named&quot;: &quot;{{destination-port-named}}&quot;
+                            	&quot;destination-port&quot;: &quot;{{acl_dst_port}}&quot;,
+				&quot;frinx-acl-extension:source-port-named&quot;: &quot;{{source-port-named}}&quot;,
+				&quot;frinx-acl-extension:destination-port-named&quot;: &quot;{{destination-port-named}}&quot;,
+				&quot;frinx-acl-extension:established&quot;: {{established_state}} //true or false
                             }
                         },
-
+                        &quot;frinx-acl-extension:option&quot;: &quot;{{acl_option_enum}}&quot;|{{acl_option_number}},
                         &quot;actions&quot;: {
                             &quot;config&quot;: {
                                 &quot;forwarding-action&quot;: &quot;{{acl_fwd_action}}&quot;,
@@ -321,10 +323,10 @@
         <span>OS Configuration Commands</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="cisco-ios-xr-534">
+<doc-anchor-target id="cisco-ios-classic">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cisco-ios-xr-534">#</doc-anchor-trigger>
-        <span>Cisco IOS XR 5.3.4</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cisco-ios-classic">#</doc-anchor-trigger>
+        <span>Cisco IOS Classic</span>
     </h3>
 </doc-anchor-target>
 <doc-anchor-target id="cli">
@@ -335,12 +337,51 @@
 </doc-anchor-target>
 <pre>
 ipv4|ipv6 access-list {{acl_name}} 
-	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} } {{acl_icmp_msg_type}} ttl range {{min_acl_ttl}} {{max_acl_ttl}}
+	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {eq|neq|range {{acl_src_port}} }  {{acl_dst_addr}} {eq|neq|range {{acl_dst_port}} } {{acl_icmp_msg_type}} ttl range {{min_acl_ttl}} {{max_acl_ttl}} {{established}} precedence {{acl_precedence}} option {{acl_option_enum}}|{{acl_option_number}}
 </pre>
-<p><em>ipv4|ipv6</em> is a conversion of {{acl_type}}</p>
+<p><em>ipv4|ipv6</em> is a conversion of {{acl_type}}<br />
+<em>eq|neq|range {{acl_src_port}}</em> is a conversion of {{acl_src_port}} or {{source-port-named}}, operation is selected by entered port range<br />
+<em>eq|neq|range {{acl_dst_port}}</em> is a conversion of {{acl_dst_port}} or {{destination-port-named}}, operatioons is selected by entered port range<br />
+<em>{{acl_option_enum}}|{{acloption_number}}</em> acl option could be defined by enumeration named options or by number in range 0-255<br />
+<em>{{established}}</em> is a conversion of {{established_state}}, when true, value is &quot;established&quot;, when false, there is empty value &quot;&quot;</p>
 <doc-anchor-target id="examples">
     <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#examples">#</doc-anchor-trigger>
+        <span>Examples</span>
+    </h5>
+</doc-anchor-target>
+<pre>
+ipv4 access-list test123
+	2 permit 4.4.4.4/32 7.7.7.7/32
+</pre>
+<pre>
+ipv4 access-list test123
+	3 permit tcp 1.1.1.1/32 range 1024 65535 2.2.2.2/32 range 0 1023
+</pre>
+<pre>
+ipv4 access-list test123
+	5 deny icmp 1.1.1.1/32 2.2.2.2/32 8 ttl range 0 10
+</pre>
+<doc-anchor-target id="cisco-ios-xr-534">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cisco-ios-xr-534">#</doc-anchor-trigger>
+        <span>Cisco IOS XR 5.3.4</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="cli-1">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-1">#</doc-anchor-trigger>
+        <span>CLI</span>
+    </h4>
+</doc-anchor-target>
+<pre>
+ipv4|ipv6 access-list {{acl_name}} 
+	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} } {{acl_icmp_msg_type}} ttl range {{min_acl_ttl}} {{max_acl_ttl}}
+</pre>
+<p><em>ipv4|ipv6</em> is a conversion of {{acl_type}}</p>
+<doc-anchor-target id="examples-1">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#examples-1">#</doc-anchor-trigger>
         <span>Examples</span>
     </h5>
 </doc-anchor-target>
@@ -369,9 +410,9 @@ ipv4 access-list test123
         <span>Cisco IOS XR 6.6.2</span>
     </h3>
 </doc-anchor-target>
-<doc-anchor-target id="cli-1">
+<doc-anchor-target id="cli-2">
     <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-1">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-2">#</doc-anchor-trigger>
         <span>CLI</span>
     </h4>
 </doc-anchor-target>
@@ -380,9 +421,9 @@ ipv4|ipv6 access-list {{acl_name}}
     {{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} }
 </pre>
 <p><em>ipv4|ipv6</em> is a conversion of {{acl_type}}</p>
-<doc-anchor-target id="examples-1">
+<doc-anchor-target id="examples-2">
     <h5>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#examples-1">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#examples-2">#</doc-anchor-trigger>
         <span>Examples</span>
     </h5>
 </doc-anchor-target>
@@ -411,23 +452,24 @@ ipv6 access-list test123
         <span>Cisco IOS XE 15.4(2)S</span>
     </h3>
 </doc-anchor-target>
-<doc-anchor-target id="cli-2">
+<doc-anchor-target id="cli-3">
     <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-2">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-3">#</doc-anchor-trigger>
         <span>CLI</span>
     </h4>
 </doc-anchor-target>
 <pre>
 ip access-list extend {{acl_name}}
-	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} }
+	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} } {{established}}
 </pre> 
 <pre>
 ipv6 access-list {{acl_name}}
 	 {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} } sequence {{acl_seq_id}}
 </pre>
-<doc-anchor-target id="examples-2">
+<p><em>{{established}}</em> is a conversion of {{established_state}}, when true, value is &quot;established&quot;, when false, there is empty value &quot;&quot;</p>
+<doc-anchor-target id="examples-3">
     <h5>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#examples-2">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#examples-3">#</doc-anchor-trigger>
         <span>Examples</span>
     </h5>
 </doc-anchor-target>
@@ -455,9 +497,9 @@ ipv6 access-list TEST2
         <span>Junos 14.1X53-D40.8</span>
     </h3>
 </doc-anchor-target>
-<doc-anchor-target id="cli-3">
+<doc-anchor-target id="cli-4">
     <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-3">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-4">#</doc-anchor-trigger>
         <span>CLI</span>
     </h4>
 </doc-anchor-target>
@@ -483,9 +525,9 @@ set firewall family inet filter {{acl_name}} term {{acl_term_name}} then routing
         <span>Ciena SAOS 6.14</span>
     </h3>
 </doc-anchor-target>
-<doc-anchor-target id="cli-4">
+<doc-anchor-target id="cli-5">
     <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-4">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-5">#</doc-anchor-trigger>
         <span>CLI</span>
     </h4>
 </doc-anchor-target>

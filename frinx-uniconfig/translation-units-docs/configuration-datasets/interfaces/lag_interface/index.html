@@ -28,12 +28,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.701766728845" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.704221378452" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.701766728845" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.704221378452" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.701766728845" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.701766728845" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.704221378452" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.704221378452" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -398,7 +398,8 @@
                                     &quot;id&quot;: &quot;{{class_element}}&quot;,
                                     &quot;config&quot;: {
                                         &quot;id&quot;: &quot;{{class_element}}&quot;,
-                                        &quot;vtag-stack&quot;: &quot;{{vtag}}&quot; 
+                                        &quot;vtag-stack&quot;: &quot;{{vtag}}&quot;,
+                                        &quot;vlan-untagged-data&quot;: {{untagged_data}} // true or false
                                     }
                                 }
                             ]
@@ -902,11 +903,14 @@ Dasan supports two kinds of prefixes (Prefix is settled by lag type)</p>
 sub-port create sub-port {{subifc_name}} parent-port {{lag_ifc_name}} classifier-precedence {{sub_ifc_index}}
 sub-port set sub-port {{subifc_name}} ingress-l2-transform {{i_transform}}
 sub-port set sub-port {{subifc_name}} egress-l2-transform {{e_transform}}
-sub-port add sub-port {{subifc_name}} class-element {{class_element}} vtag-stack {{vtag}}
+sub-port add sub-port {{subifc_name}} class-element {{class_element}} vtag-stack {{vtag}}   // when set vtag-stack not possible to set vlan-untagged-data
+sub-port add sub-port {{subifc_name}} class-element {{class-element}} vlan-untagged-data   // when untagged_data set to true
 pm create sub-port {{subifc_name}} pm-instance {{pm_instance_name}} profile-type BasicTxRx bin-count {{bin_count}}
 </pre>
 <p>classifier-precedence is used as <em>{{sub_ifc_index}}</em>. This field is mandatory in Ciena and unique withing parent-port.<br />
-bin_count can be from &quot;0&quot; to &quot;96&quot;. Default value is &quot;32&quot;.</p>
+bin_count can be from &quot;0&quot; to &quot;96&quot;. Default value is &quot;32&quot;.<br />
+when <em>{{untagged_data}}</em> is set to true, then vlan-untagged-data is used in the the sub-port command.<br />
+there is not possible to set vlan-untagged-data and vtag-stack both.</p>
 <doc-anchor-target id="unit-10">
     <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#unit-10">#</doc-anchor-trigger>

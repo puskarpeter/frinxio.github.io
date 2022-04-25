@@ -9,18 +9,21 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>IETF L3VPN YANG | Frinx Docs</title>
-    <meta name="title" content="IETF L3VPN YANG | Frinx Docs">
+    <title>Operational data about transactions | Frinx Docs</title>
+    <meta name="title" content="Operational data about transactions | Frinx Docs">
+    <meta name="description" content="To have a better overview of UniConfig transactions, there are operational data about all open transactions." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/translation-units-docs/ietf-to-oc-mapping/ietf_l3vpn_to_oc/">
-    <meta property="og:title" content="IETF L3VPN YANG | Frinx Docs">
+    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/operational-data-about-transactions/">
+    <meta property="og:title" content="Operational data about transactions | Frinx Docs">
+    <meta property="og:description" content="To have a better overview of UniConfig transactions, there are operational data about all open transactions.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/translation-units-docs/ietf-to-oc-mapping/ietf_l3vpn_to_oc/">
-    <meta property="twitter:title" content="IETF L3VPN YANG | Frinx Docs">
+    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/operational-data-about-transactions/">
+    <meta property="twitter:title" content="Operational data about transactions | Frinx Docs">
+    <meta property="twitter:description" content="To have a better overview of UniConfig transactions, there are operational data about all open transactions.">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -227,190 +230,60 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="ietf-l3vpn-yang" class="break-words">
+<doc-anchor-target id="operational-data-about-transactions" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#ietf-l3vpn-yang">#</doc-anchor-trigger>
-        <span>IETF L3VPN YANG</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#operational-data-about-transactions">#</doc-anchor-trigger>
+        <span>Operational data about transactions</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="ietf-yang">
+<doc-anchor-target id="operational-data-about-transactions">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#ietf-yang">#</doc-anchor-trigger>
-        <span>IETF YANG</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#operational-data-about-transactions">#</doc-anchor-trigger>
+        <span>Operational data about transactions</span>
     </h2>
 </doc-anchor-target>
+<p>To have a better overview of UniConfig transactions,
+there are operational data about all open transactions.</p>
+<p><strong>Data about transactions contain:</strong></p>
+<ul>
+<li>identifier (uuid)</li>
+<li>creation time</li>
+<li>last access time</li>
+<li>idle timeout</li>
+<li>hard timeout</li>
+<li>list of changed nodes (incl. topologies)</li>
+<li>additional context (random string, text column)</li>
+</ul>
+<p>Data about transactions can be read using RESTCONF:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">{
-    &quot;l3vpn-svc&quot;: [
-        &quot;vpn-services&quot;: {
-            &quot;vpn-service&quot;: [
-                {
-                    &quot;vpn-id&quot;: &lt;vrf&gt;
-                    &quot;vpn-service-topology&quot;: any-to-any
-                }
-            ]
-        }
-        &quot;sites&quot;: {
-            &quot;site&quot;: [
-                {
-                    &quot;site-id&quot;: &lt;site-id&gt;
-                }
-                &quot;site-network-accesses&quot;: {
-                    &quot;site-network-access&quot;: [
-                        {
-                            &quot;site-network-access-id&quot;: &lt;site-network-access-id&gt;
-                            &quot;bearer&quot;: {
-                                &quot;bearer-reference&quot;: &lt;node-id&gt;/&lt;interface-id&gt;
-                            }
-                            &quot;routing-protocols&quot;: {
-                                &quot;routing-protocol&quot;: [
-                                    {
-                                        &quot;type&quot;: bgp
-                                        &quot;bgp&quot;: {
-                                            &quot;address-family&quot;: ipv4
-                                            &quot;autonomous-system&quot;: &lt;remote-as&gt;
-                                        }
-                                    }
-                                ]
-                            }
-                            &quot;ip-connection&quot;: [
-                                {
-                                    &quot;ipv4&quot;: {
-                                        &quot;addresses&quot;: {
-                                            &quot;provider-address&quot;: &lt;interface-ip&gt;
-                                            &quot;customer-address&quot;: &lt;neighbor-address&gt;
-                                            &quot;prefix-length&quot;: &lt;interface-mask&gt;
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
+<div class="codeblock-title">Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request GET 'http://localhost:8181/rests/data/transaction-data:transactions-data' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json'</code></pre>
+</doc-codeblock></div>
+<p>Example data about transactions:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;transactions-data&quot;: {
+    &quot;transaction-data&quot;: [
+      {
+        &quot;transaction-id&quot;: &quot;af668e97-a947-4dc5-9db5-f3e239bf6a1a&quot;,
+        &quot;idle-timeout&quot;: 300,
+        &quot;additional-context&quot;: &quot;uc client&quot;,
+        &quot;last-access-time&quot;: &quot;2022-Apr-13 07:25:29.876 +0000&quot;,
+        &quot;hard-timeout&quot;: 600,
+        &quot;creation-time&quot;: &quot;2022-Apr-13 07:25:29.792 +0000&quot;
+      },
+      {
+        &quot;transaction-id&quot;: &quot;e3721366-8f97-4777-b4bd-d164012af79e&quot;,
+        &quot;idle-timeout&quot;: 2,
+        &quot;additional-context&quot;: &quot;RESTCONF&quot;,
+        &quot;last-access-time&quot;: &quot;2022-Apr-13 07:25:58.269 +0000&quot;,
+        &quot;hard-timeout&quot;: 600,
+        &quot;creation-time&quot;: &quot;2022-Apr-13 07:25:52.607 +0000&quot;
+      }
     ]
-}</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="openconfig-yang">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#openconfig-yang">#</doc-anchor-trigger>
-        <span>OPENCONFIG YANG</span>
-    </h2>
-</doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">{
-    &quot;network-instance&quot;: [
-        {
-            &quot;config&quot;: {
-                &quot;name&quot;: &quot;&lt;vrf&gt;&quot;
-                &quot;type&quot;: &quot;L3VRF&quot; //matches vpws-instance-type in ietf
-                &quot;route-distinguisher&quot;: &quot;auto&quot;
-                &quot;enabled-address-families&quot;: &quot;ipv4&quot;
-                &quot;enabled&quot;: true
-            }
-            
-            &quot;interfaces&quot;: {
-                &quot;interface&quot;: [
-                    {
-                        &quot;config&quot;: {
-                            &quot;id&quot;: &lt;interface-id&gt;
-                        }
-                    }
-                ]
-            }
-
-            &quot;protocols&quot;: {
-                &quot;protocol&quot;: [
-                    {
-                        &quot;config&quot;: {
-                            &quot;identifier&quot;: &quot;BGP&quot;
-                            &quot;enabled&quot;: true
-                        }
-                        
-                        &quot;local-aggregates&quot;: {
-                            &quot;aggregate&quot;: [
-                                {
-                                    &quot;config&quot;: {
-                                        &quot;prefix&quot;: &quot;&lt;network-prefix&gt;&quot; // is a transformation of &lt;interface-ip&gt; and &lt;interface-mask&gt;
-                                    }
-                                }
-                            ]
-                        }
-                        
-                        &quot;bgp&quot;: {
-                            &quot;global&quot;: {
-                                &quot;as&quot;: &quot;&lt;as-number&gt;&quot; //to be filled out based on reconciliation
-                                &quot;router-id&quot;: &quot;&lt;router-id&gt;&quot; //to be filled out based on reconciliation
-                                &quot;afi-safis&quot;: {
-                                    &quot;afi-safi&quot;: [
-                                        &quot;config&quot;: {
-                                            &quot;afi-safi-name&quot;: &quot;ipv4&quot;
-                                            &quot;enabled&quot;: true
-                                        }
-                                    ]
-                                }
-                            }
-                            &quot;neighbors&quot;: {
-                                &quot;neighbor&quot;: [
-                                    {
-                                        &quot;config&quot;: {
-                                            &quot;neighbor-address&quot;: &quot;&lt;neighbor-address&gt;&quot;
-                                            &quot;enabled&quot;: true
-                                            &quot;peer-as&quot;: &quot;&lt;remote-as&gt;&quot;
-                                            &quot;afi-safis&quot;: {
-                                                &quot;afi-safi&quot;: [
-                                                    &quot;config&quot;: {
-                                                        &quot;afi-safi-name&quot;: &quot;ipv4&quot;
-                                                        &quot;enabled&quot;: true
-                                                    }
-                                                    &quot;apply-policy&quot;: {
-                                                        &quot;config&quot;: {
-                                                            &quot;import-policy&quot;: &quot;RPL_PASS_ALL&quot;
-                                                            &quot;export-policy&quot;: &quot;RPL_PASS_ALL&quot;
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                ]
-            }
-        }
-    ]
-}</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">frinx-openconfig-routing-policy:routing-policy/defined-sets&lt;vrf&gt;</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{
-    &quot;bgp-defined-sets&quot; {
-        ext-community-sets {
-            ext-community-set [
-                {            
-                    &quot;config&quot;: {
-                        &quot;ext-community-set-name&quot;: &quot;&lt;vrf&gt;-route-target-export-set&quot;
-                        &quot;ext-community-set-member&quot;: [
-                            {&lt;rt_exp_1&gt;} //autoprovisioning
-                        ]
-                    }
-                }
-                {            
-                    &quot;config&quot;: {
-                        &quot;ext-community-set-name&quot;: &quot;&lt;vrf&gt;-route-target-import-set&quot;
-                        &quot;ext-community-set-member&quot;: [
-                            {&lt;rt_imp_1&gt;} //autoprovisioning
-                        ]
-                    }
-                }
-            ]
-        }
-    }
+  }
 }</code></pre>
 </doc-codeblock></div>
 
@@ -424,20 +297,20 @@
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/translation-units-docs/ietf-to-oc-mapping/ietf_l2vpn_to_oc/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/kafka-notifications/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">IETF L2VPN YANG</span>
+                <span class="block mt-1">Kafka Notifications</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/translation-units-docs/operational-datasets/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/templates-manager/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Operational datasets</span>
+                <span class="block mt-1">Templates Manager</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -488,6 +361,6 @@
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "IETF L3VPN YANG", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Operational data about transactions", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>

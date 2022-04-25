@@ -9,18 +9,23 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>IETF L3VPN YANG | Frinx Docs</title>
-    <meta name="title" content="IETF L3VPN YANG | Frinx Docs">
+    <title>UniConfig Queries | Frinx Docs</title>
+    <meta name="title" content="UniConfig Queries | Frinx Docs">
+    <meta name="description" content="This module is responsible for execution of queries on the configuration of some device, template, UniStore node," />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/translation-units-docs/ietf-to-oc-mapping/ietf_l3vpn_to_oc/">
-    <meta property="og:title" content="IETF L3VPN YANG | Frinx Docs">
+    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-queries/">
+    <meta property="og:title" content="UniConfig Queries | Frinx Docs">
+    <meta property="og:description" content="This module is responsible for execution of queries on the configuration of some device, template, UniStore node,">
+    <meta property="og:image" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-queries/puml-rpc_query_config.svg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/translation-units-docs/ietf-to-oc-mapping/ietf_l3vpn_to_oc/">
-    <meta property="twitter:title" content="IETF L3VPN YANG | Frinx Docs">
+    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-queries/">
+    <meta property="twitter:title" content="UniConfig Queries | Frinx Docs">
+    <meta property="twitter:description" content="This module is responsible for execution of queries on the configuration of some device, template, UniStore node,">
+    <meta property="twitter:image" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-queries/puml-rpc_query_config.svg">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -227,189 +232,308 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="ietf-l3vpn-yang" class="break-words">
+<doc-anchor-target id="uniconfig-queries" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#ietf-l3vpn-yang">#</doc-anchor-trigger>
-        <span>IETF L3VPN YANG</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#uniconfig-queries">#</doc-anchor-trigger>
+        <span>UniConfig Queries</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="ietf-yang">
+<p>This module is responsible for execution of queries on the configuration of some device, template, UniStore node,
+or snapshot.</p>
+<doc-anchor-target id="rpc-query-config">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#ietf-yang">#</doc-anchor-trigger>
-        <span>IETF YANG</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-query-config">#</doc-anchor-trigger>
+        <span>RPC query-config</span>
     </h2>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">{
-    &quot;l3vpn-svc&quot;: [
-        &quot;vpn-services&quot;: {
-            &quot;vpn-service&quot;: [
-                {
-                    &quot;vpn-id&quot;: &lt;vrf&gt;
-                    &quot;vpn-service-topology&quot;: any-to-any
-                }
-            ]
-        }
-        &quot;sites&quot;: {
-            &quot;site&quot;: [
-                {
-                    &quot;site-id&quot;: &lt;site-id&gt;
-                }
-                &quot;site-network-accesses&quot;: {
-                    &quot;site-network-access&quot;: [
-                        {
-                            &quot;site-network-access-id&quot;: &lt;site-network-access-id&gt;
-                            &quot;bearer&quot;: {
-                                &quot;bearer-reference&quot;: &lt;node-id&gt;/&lt;interface-id&gt;
-                            }
-                            &quot;routing-protocols&quot;: {
-                                &quot;routing-protocol&quot;: [
-                                    {
-                                        &quot;type&quot;: bgp
-                                        &quot;bgp&quot;: {
-                                            &quot;address-family&quot;: ipv4
-                                            &quot;autonomous-system&quot;: &lt;remote-as&gt;
-                                        }
-                                    }
-                                ]
-                            }
-                            &quot;ip-connection&quot;: [
-                                {
-                                    &quot;ipv4&quot;: {
-                                        &quot;addresses&quot;: {
-                                            &quot;provider-address&quot;: &lt;interface-ip&gt;
-                                            &quot;customer-address&quot;: &lt;neighbor-address&gt;
-                                            &quot;prefix-length&quot;: &lt;interface-mask&gt;
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="openconfig-yang">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#openconfig-yang">#</doc-anchor-trigger>
-        <span>OPENCONFIG YANG</span>
-    </h2>
+<p>UniConfig exposes filtering and selection API using RPC &#x27;query-config&#x27;. Filtering and selection of configuration
+is done only on the database side - UniConfig receives already narrowed configuration with only selected data.
+Since query is evaluated by the database, this feature works only with already committed data (operational data).</p>
+<p>The following sequence diagram captures the whole process of RPC execution in detail.</p>
+<p><figure class="content-center">
+    <img src="puml-rpc_query_config.svg" alt="Execution of RPC query-config" />
+    <figcaption class="caption">Execution of RPC query-config</figcaption>
+</figure>
+</p>
+<doc-anchor-target id="rpc-input-fields">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-input-fields">#</doc-anchor-trigger>
+        <span>RPC input fields</span>
+    </h3>
 </doc-anchor-target>
+<ul>
+<li><strong>topology-id</strong>: Identifier of network-topology/topology list entry. Currently, supported topologies, under which
+this RPC can be used, are: &#x27;uniconfig&#x27;, &#x27;templates&#x27;, &#x27;unistore&#x27;, and snapshot topologies.</li>
+<li><strong>node-id</strong>: Identifier of specific network-topology/node list entry whose configuration is filtered using specified
+jsonb-path-query.</li>
+<li><strong>jsonb-path-query</strong>: JSONB-path query used for selection and filtering of subtrees in the node configuration stored
+in the PostgreSQL. JSONB-path must start from root &quot;frinx-uniconfig-topology:configuration&quot; container
+(it is always represented by absolute path).</li>
+</ul>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>JSONB-path query syntax is specified by PostgreSQL. You can find detailed description of all features with examples
+on the following link (version 14):
+<a href="https://www.postgresql.org/docs/14/functions-json.html#FUNCTIONS-SQLJSON-PATH">https://www.postgresql.org/docs/14/functions-json.html#FUNCTIONS-SQLJSON-PATH</a></p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="rpc-output-fields">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rpc-output-fields">#</doc-anchor-trigger>
+        <span>RPC output fields</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>config</strong>: List of selected and filtered JSON objects. Note that database may return multiple list entries,
+if the last element in the JSONB-path is represented by list/leaf-list YANG schema node. In other cases, only
+one or no JSON object is displayed on output based on fulfilling the filtering and selection criteria.</li>
+</ul>
+<doc-anchor-target id="example-selection-of-json-object">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example-selection-of-json-object">#</doc-anchor-trigger>
+        <span>Example: selection of JSON object</span>
+    </h3>
+</doc-anchor-target>
+<p>The following request demonstrated execution of simple selection query under the &#x27;dev01&#x27; from &#x27;uniconfig&#x27; topology.
+Response contains 1 JSON object - &#x27;ssh&#x27; container.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">{
-    &quot;network-instance&quot;: [
-        {
-            &quot;config&quot;: {
-                &quot;name&quot;: &quot;&lt;vrf&gt;&quot;
-                &quot;type&quot;: &quot;L3VRF&quot; //matches vpws-instance-type in ietf
-                &quot;route-distinguisher&quot;: &quot;auto&quot;
-                &quot;enabled-address-families&quot;: &quot;ipv4&quot;
-                &quot;enabled&quot;: true
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://127.0.0.1:8181/rests/operations/uniconfig-query:query-config' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;input&quot;: {
+        &quot;node-id&quot;: &quot;dev01&quot;,
+        &quot;topology-id&quot;: &quot;uniconfig&quot;,
+        &quot;jsonb-path-query&quot;: &quot;$.\&quot;frinx-uniconfig-topology:configuration\&quot;
+        .\&quot;system\&quot;
+        .\&quot;ssh\&quot;&quot;
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 200</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;output&quot;: {
+        &quot;config&quot;: [
+            {
+                &quot;keepalive-interval&quot;: 300,
+                &quot;max-retries&quot;: 0
             }
-            
-            &quot;interfaces&quot;: {
-                &quot;interface&quot;: [
-                    {
-                        &quot;config&quot;: {
-                            &quot;id&quot;: &lt;interface-id&gt;
-                        }
-                    }
-                ]
-            }
-
-            &quot;protocols&quot;: {
-                &quot;protocol&quot;: [
-                    {
-                        &quot;config&quot;: {
-                            &quot;identifier&quot;: &quot;BGP&quot;
-                            &quot;enabled&quot;: true
-                        }
-                        
-                        &quot;local-aggregates&quot;: {
-                            &quot;aggregate&quot;: [
-                                {
-                                    &quot;config&quot;: {
-                                        &quot;prefix&quot;: &quot;&lt;network-prefix&gt;&quot; // is a transformation of &lt;interface-ip&gt; and &lt;interface-mask&gt;
-                                    }
-                                }
-                            ]
-                        }
-                        
-                        &quot;bgp&quot;: {
-                            &quot;global&quot;: {
-                                &quot;as&quot;: &quot;&lt;as-number&gt;&quot; //to be filled out based on reconciliation
-                                &quot;router-id&quot;: &quot;&lt;router-id&gt;&quot; //to be filled out based on reconciliation
-                                &quot;afi-safis&quot;: {
-                                    &quot;afi-safi&quot;: [
-                                        &quot;config&quot;: {
-                                            &quot;afi-safi-name&quot;: &quot;ipv4&quot;
-                                            &quot;enabled&quot;: true
-                                        }
-                                    ]
-                                }
-                            }
-                            &quot;neighbors&quot;: {
-                                &quot;neighbor&quot;: [
-                                    {
-                                        &quot;config&quot;: {
-                                            &quot;neighbor-address&quot;: &quot;&lt;neighbor-address&gt;&quot;
-                                            &quot;enabled&quot;: true
-                                            &quot;peer-as&quot;: &quot;&lt;remote-as&gt;&quot;
-                                            &quot;afi-safis&quot;: {
-                                                &quot;afi-safi&quot;: [
-                                                    &quot;config&quot;: {
-                                                        &quot;afi-safi-name&quot;: &quot;ipv4&quot;
-                                                        &quot;enabled&quot;: true
-                                                    }
-                                                    &quot;apply-policy&quot;: {
-                                                        &quot;config&quot;: {
-                                                            &quot;import-policy&quot;: &quot;RPL_PASS_ALL&quot;
-                                                            &quot;export-policy&quot;: &quot;RPL_PASS_ALL&quot;
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                ]
-            }
-        }
-    ]
+        ]
+    }
 }</code></pre>
 </doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>JSONB-path query should always start with $.&quot;frinx-uniconfig-topology:configuration&quot; pattern because &#x27;configuration&#x27;
+represents wrapping element for all root data elements that are stored in database.</p>
+        </div>
+    </div>
+</div>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>Be aware that PostgreSQL requires escaping of special characters in the identifiers of JSON elements. For example,
+&#x27;:&#x27; and &#x27;-&#x27; represent special characters. Because of this behaviour, it is always safer to put double quotes around
+all identifiers as it is done in this example.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="example-filtering-list-of-json-objects">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example-filtering-list-of-json-objects">#</doc-anchor-trigger>
+        <span>Example: filtering list of JSON objects</span>
+    </h3>
+</doc-anchor-target>
+<p>The next query demonstrates filtering of &#x27;address&#x27; JSON objects using predicate based on &#x27;ipv4-address&#x27;
+(the first octet must have a value &#x27;80&#x27;). Addresses under all &#x27;controller&#x27; list entries are filtered.
+In this example, response contains multiple JSON objects representing &#x27;address&#x27; list entries.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">frinx-openconfig-routing-policy:routing-policy/defined-sets&lt;vrf&gt;</code></pre>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://127.0.0.1:8181/rests/operations/uniconfig-query:query-config' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;input&quot;: {
+        &quot;node-id&quot;: &quot;dev01&quot;,
+        &quot;topology-id&quot;: &quot;uniconfig&quot;,
+        &quot;jsonb-path-query&quot;: &quot;$.\&quot;frinx-uniconfig-topology:configuration\&quot;
+            .\&quot;system\&quot;
+            .\&quot;wan-connections\&quot;
+            .\&quot;endpoints\&quot;
+            .\&quot;controller\&quot;[*]
+            .\&quot;addresses\&quot;
+            .\&quot;address\&quot;[*] ? (@.\&quot;ipv4-address\&quot; like_regex \&quot;80\\..*\&quot;)&quot;
+    }
+}'</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{
-    &quot;bgp-defined-sets&quot; {
-        ext-community-sets {
-            ext-community-set [
-                {            
-                    &quot;config&quot;: {
-                        &quot;ext-community-set-name&quot;: &quot;&lt;vrf&gt;-route-target-export-set&quot;
-                        &quot;ext-community-set-member&quot;: [
-                            {&lt;rt_exp_1&gt;} //autoprovisioning
-                        ]
-                    }
-                }
-                {            
-                    &quot;config&quot;: {
-                        &quot;ext-community-set-name&quot;: &quot;&lt;vrf&gt;-route-target-import-set&quot;
-                        &quot;ext-community-set-member&quot;: [
-                            {&lt;rt_imp_1&gt;} //autoprovisioning
-                        ]
-                    }
-                }
-            ]
-        }
+<div class="codeblock-title">RPC Response, Status: 200</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;output&quot;: {
+        &quot;config&quot;: [
+            {
+                &quot;name&quot;: &quot;TestController1&quot;,
+                &quot;ipv4-address&quot;: &quot;80.80.1.2&quot;,
+                &quot;domains&quot;: [
+                    &quot;Internet&quot;
+                ]
+            },
+            {
+                &quot;name&quot;: &quot;TestController2&quot;,
+                &quot;ipv4-address&quot;: &quot;80.80.2.2&quot;,
+                &quot;domains&quot;: [
+                    &quot;Internet&quot;
+                ]
+            }
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="example-selection-of-leaf-list-content">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example-selection-of-leaf-list-content">#</doc-anchor-trigger>
+        <span>Example: selection of leaf-list content</span>
+    </h3>
+</doc-anchor-target>
+<p>The next request shows selection of all addresses under ethernet interfaces with type &#x27;vxlan&#x27; and &#x27;enabled&#x27; flag
+set to &#x27;true&#x27;. Response will contain aggregated array of strings, because &#x27;address&#x27; is represented by leaf-list.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://127.0.0.1:8181/rests/operations/uniconfig-query:query-config' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;input&quot;: {
+        &quot;node-id&quot;: &quot;dev01&quot;,
+        &quot;topology-id&quot;: &quot;uniconfig&quot;,
+        &quot;jsonb-path-query&quot;: &quot;$.\&quot;frinx-uniconfig-topology:configuration\&quot;
+            .\&quot;interfaces:interfaces\&quot;
+            .\&quot;ethernet\&quot;[*] ? (@.\&quot;type\&quot; == \&quot;vxlan\&quot;)
+            .\&quot;family\&quot;[*] ? (@.\&quot;enabled\&quot; == true)
+            .\&quot;address\&quot;&quot;
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 200</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;output&quot;: {
+        &quot;config&quot;: [
+            &quot;10.1.0.105/32&quot;,
+            &quot;10.2.0.105/32&quot;,
+            &quot;10.3.0.105/32&quot;,
+            &quot;10.4.0.105/32&quot;
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="example-non-existing-node">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example-non-existing-node">#</doc-anchor-trigger>
+        <span>Example: non-existing node</span>
+    </h3>
+</doc-anchor-target>
+<p>If node with specified identifier doesn&#x27;t exist under target topology, RPC will return 400 with corresponding
+error message.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://127.0.0.1:8181/rests/operations/uniconfig-query:query-config' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;input&quot;: {
+        &quot;node-id&quot;: &quot;test&quot;,
+        &quot;topology-id&quot;: &quot;uniconfig&quot;,
+        &quot;jsonb-path-query&quot;: &quot;$.\&quot;frinx-uniconfig-topology:configuration\&quot;
+            .\&quot;interfaces:interfaces\&quot;&quot;
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 400</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;errors&quot;: {
+        &quot;error&quot;: [
+            {
+                &quot;error-type&quot;: &quot;application&quot;,
+                &quot;error-message&quot;: &quot;Node with ID 'test' doesn't exist in the topology 'uniconfig'&quot;,
+                &quot;error-tag&quot;: &quot;invalid-value&quot;,
+                &quot;error-info&quot;: &quot;&lt;severity&gt;error&lt;/severity&gt;&quot;
+            }
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="example-syntax-error">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example-syntax-error">#</doc-anchor-trigger>
+        <span>Example: syntax error</span>
+    </h3>
+</doc-anchor-target>
+<p>In case of invalid form of input &#x27;jsonb-path-query&#x27;, UniConfig will return 400 status code with error-message
+describing syntax error.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Request</div>
+<pre class="language-bash"><code v-pre class="language-bash">curl --location --request POST 'http://127.0.0.1:8181/rests/operations/uniconfig-query:query-config' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;input&quot;: {
+        &quot;node-id&quot;: &quot;dev01&quot;,
+        &quot;topology-id&quot;: &quot;uniconfig&quot;,
+        &quot;jsonb-path-query&quot;: &quot;$.\&quot;frinx-uniconfig-topology:configuration\&quot;
+            .\&quot;interfaces:interfaces\&quot;
+            .&quot;
+    }
+}'</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">RPC Response, Status: 400</div>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;errors&quot;: {
+        &quot;error&quot;: [
+            {
+                &quot;error-type&quot;: &quot;application&quot;,
+                &quot;error-message&quot;: &quot;Failed to parse JSONB expression: PreparedStatementCallback; bad SQL grammar [SELECT jsonb_path_query(config,'$.\&quot;frinx-uniconfig-topology:configuration\&quot;\n                    .\&quot;interfaces:interfaces\&quot;\n                    .') AS config FROM node WHERE node_id = ?]; nested exception is ERROR: syntax error, unexpected $end at end of jsonpath input\n  Position: 32&quot;,
+                &quot;error-tag&quot;: &quot;invalid-value&quot;,
+                &quot;error-info&quot;: &quot;&lt;severity&gt;error&lt;/severity&gt;&quot;
+            }
+        ]
     }
 }</code></pre>
 </doc-codeblock></div>
@@ -424,20 +548,20 @@
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/translation-units-docs/ietf-to-oc-mapping/ietf_l2vpn_to_oc/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/restconf/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">IETF L2VPN YANG</span>
+                <span class="block mt-1">UniConfig - Sending and receiving data (RESTCONF)</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/translation-units-docs/operational-datasets/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/unistore-api/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Operational datasets</span>
+                <span class="block mt-1">UniStore API</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -488,6 +612,6 @@
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "IETF L3VPN YANG", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "UniConfig Queries", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>
