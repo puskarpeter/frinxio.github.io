@@ -152,7 +152,7 @@ latest OpenAPI version.
 **File can be found here:**
 
 ```
-/uniconfig-x.x.x.frinx/openapi
+/uniconfig-x.x.x/openapi
 ```
 
 [!ref text="OpenAPI"](../user-guide/operational-procedures/openapi/)
