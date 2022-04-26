@@ -120,7 +120,7 @@ docker stop uniconfig
 
 Click on the link to download a zip archive of the latest FRINX
 UniConfig:\
-[uniconfig-4.2.10.frinx.zip](https://license.frinx.io/download/uniconfig-4.2.10.frinx.zip)\
+[uniconfig-5.0.6.zip](https://license.frinx.io/download/uniconfig-5.0.6.zip)\
 By downloading the file you accept the FRINX software agreement:
 [EULA](https://frinx.io/eula)
 
