@@ -12,21 +12,21 @@
     <meta name="generator" content="Retype 2.0">
 
     <!-- Primary Meta Tags -->
-    <title>Open Shortest Path First v3 (OSPFv3) | Frinx Docs</title>
-    <meta name="title" content="Open Shortest Path First v3 (OSPFv3) | Frinx Docs">
-    <meta name="description" content="YANG models" />
+    <title>UniConfig 5.0.6 | Frinx Docs</title>
+    <meta name="title" content="UniConfig 5.0.6 | Frinx Docs">
+    <meta name="description" content="It would improve visibility what transactions are open on uniconfig instance - when these transactions have been open and what nodes have been..." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/translation-units-docs/configuration-datasets/network-instances/protocols/ospfv3/">
-    <meta property="og:title" content="Open Shortest Path First v3 (OSPFv3) | Frinx Docs">
-    <meta property="og:description" content="YANG models">
+    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/release-notes/uniconfig-5.0.6/">
+    <meta property="og:title" content="UniConfig 5.0.6 | Frinx Docs">
+    <meta property="og:description" content="It would improve visibility what transactions are open on uniconfig instance - when these transactions have been open and what nodes have been...">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/translation-units-docs/configuration-datasets/network-instances/protocols/ospfv3/">
-    <meta property="twitter:title" content="Open Shortest Path First v3 (OSPFv3) | Frinx Docs">
-    <meta property="twitter:description" content="YANG models">
+    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/release-notes/uniconfig-5.0.6/">
+    <meta property="twitter:title" content="UniConfig 5.0.6 | Frinx Docs">
+    <meta property="twitter:description" content="It would improve visibility what transactions are open on uniconfig instance - when these transactions have been open and what nodes have been...">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -36,7 +36,6 @@
     <script type="text/javascript" src="/resources/js/config.js?v=2.0.704468088474" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.0" defer data-turbo-track="reload"></script>
     <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.0.704468088474" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=2.0.704468088474" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -215,86 +214,147 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="open-shortest-path-first-v3-ospfv3" class="break-words">
+<doc-anchor-target id="uniconfig-506" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#open-shortest-path-first-v3-ospfv3">#</doc-anchor-trigger>
-        <span>Open Shortest Path First v3 (OSPFv3)</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#uniconfig-506">#</doc-anchor-trigger>
+        <span>UniConfig 5.0.6</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="url">
+<doc-anchor-target id="new-features">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#url">#</doc-anchor-trigger>
-        <span>URL</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#new-features">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2705;</span> New Features</span>
     </h2>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">frinx-openconfig-network-instance:network-instances/network-instance=default/protocols/protocol=frinx-openconfig-policy-types%3AOSPFv3,</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="openconfig-yang">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#openconfig-yang">#</doc-anchor-trigger>
-        <span>OPENCONFIG YANG</span>
-    </h2>
-</doc-anchor-target>
-<p><a href="https://github.com/FRINXio/openconfig/tree/master/ospf/src/main/yang">YANG models</a></p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">{
-   &quot;protocol&quot;: [
-        {
-            &quot;identifier&quot;: &quot;frinx-openconfig-policy-types:OSPFv3&quot;,
-            &quot;name&quot;: 
-            &quot;config&quot;: {
-                &quot;identifier&quot;: &quot;frinx-openconfig-policy-types:OSPFv3&quot;,
-                &quot;name&quot;: 
-            },
-            &quot;ospfv3&quot;: {
-                &quot;global&quot;: {
-                    &quot;stub-router&quot;: {
-                        &quot;config&quot;: {
-                            &quot;set&quot;: true,
-                            &quot;advertise-lsas-types&quot;: &quot;STUB_ROUTER_MAX_METRIC&quot;,
-                            &quot;always&quot;: true
-                        }
-                    }
-                }
-            }
-        }
-    ]
-}</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="os-configuration-commands">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#os-configuration-commands">#</doc-anchor-trigger>
-        <span>OS Configuration Commands</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="cisco-ios-xr-534">
+<doc-anchor-target id="expose-operational-data-about-transactions">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cisco-ios-xr-534">#</doc-anchor-trigger>
-        <span>Cisco IOS XR 5.3.4</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#expose-operational-data-about-transactions">#</doc-anchor-trigger>
+        <span>Expose operational data about transactions</span>
     </h3>
 </doc-anchor-target>
-<doc-anchor-target id="cli">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cli">#</doc-anchor-trigger>
-        <span>CLI</span>
-    </h4>
+<p>It would improve visibility what transactions are open on uniconfig instance - when these transactions have been open and what nodes have been changed in the transaction.</p>
+<p>Transaction data:</p>
+<ul>
+<li>identifier (uuid)</li>
+<li>trace id / different parameter (once we support tracing)</li>
+<li>creation time</li>
+<li>last access time</li>
+<li>idle timeout, hard timeout</li>
+<li>list of changed nodes (incl. topologies)</li>
+<li>additional context (random string, text column)</li>
+</ul>
+<doc-anchor-target id="implement-metric-collection-and-reporting-in-uniconfig">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#implement-metric-collection-and-reporting-in-uniconfig">#</doc-anchor-trigger>
+        <span>Implement metric collection and reporting in Uniconfig</span>
+    </h3>
 </doc-anchor-target>
-<pre>
-router ospfv3 
- stub-router router-lsa max-metric
-  always
-</pre>
-<p>value STUB_ROUTER_MAX_METRIC is to be converted to <em>max-metric</em><br />
-value STUB_ROUTER_R_BIT is to be converted to <em>r-bit</em><br />
-value STUB_ROUTER_V6_BIT is to be converted to <em>v6-bit</em></p>
-<doc-anchor-target id="unit">
-    <h5>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#unit">#</doc-anchor-trigger>
-        <span>Unit</span>
-    </h5>
+<p>Collect and report metrics such as:</p>
+<ul>
+<li>TX pre minute</li>
+<li>RPC calls per minute</li>
+<li>Task execution queue size</li>
+<li>Netconf msg sent count</li>
+<li>CLI command sent count</li>
+<li>…</li>
+</ul>
+<p>Reporting part could be just logging the state of metrics for the time being</p>
+<doc-anchor-target id="collect-open-transactions-data-in-collect_diag_infosh">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#collect-open-transactions-data-in-collect_diag_infosh">#</doc-anchor-trigger>
+        <span>Collect open transactions data in collect_diag_info.sh</span>
+    </h3>
 </doc-anchor-target>
-<p>Link to github : <a href="https://github.com/FRINXio/cli-units/tree/master/ios-xr/ospf">xr-unit</a></p>
+<p>Please enhance debug collection script to collect details of following</p>
+<ul>
+<li>Open Transaction , Read or Read-Write and if possible module which has opened the transaction</li>
+</ul>
+<p>For example, this is how NCS displays.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">sessionId=6 2022-03-25 04:51:53 system@0.0.0.0 system/system
+no locks set
+transactions:
+tid=1 db=running mode=read</code></pre>
+</doc-codeblock></div>
+<p>This could help in debugging slowness issues caused if there is any transaction leak.</p>
+<doc-anchor-target id="improvements">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#improvements">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F4A1;</span> Improvements</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="set-owasp-dependency-check-plugin-to-level-9">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#set-owasp-dependency-check-plugin-to-level-9">#</doc-anchor-trigger>
+        <span>Set OWASP dependency check plugin to level 9</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>decrease owasp level to 9 (in distribution/packaging/zip pom)</li>
+<li>fix all dependency issues so that uniconfig will successfully build</li>
+</ul>
+<doc-anchor-target id="cli-uc-shell---show-transaction-log-in-ordered-list--add-brief-option">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cli-uc-shell---show-transaction-log-in-ordered-list--add-brief-option">#</doc-anchor-trigger>
+        <span>CLI UC shell - show transaction log in ordered list &amp; add &quot;brief option&quot;</span>
+    </h3>
+</doc-anchor-target>
+<p>Currently we display the transaction log as a json without ordering.
+We should assume that the transaction log can become very large and should still be manageable to display.
+Hence we are proposing the following improvements:</p>
+<ul>
+<li>always show the transaction log as an ordered list. Order by transaction timestamp. The most recent transaction should be at the bottom of the list.</li>
+<li>add a &quot;brief&quot; option to that command and display only one line per transaction log. Similar like this</li>
+</ul>
+<doc-anchor-target id="bug-fixes">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#bug-fixes">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x274C;</span> Bug Fixes</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="openapi-yaml-file-generating-incorrectly">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#openapi-yaml-file-generating-incorrectly">#</doc-anchor-trigger>
+        <span>OpenAPI .yaml file generating incorrectly</span>
+    </h3>
+</doc-anchor-target>
+<p><a href="https://app.swaggerhub.com/apis-docs/Frinx/uniconfig/latest#/cli-unit-generic/rpc_cli-unit-generic%3Aexecute-and-read">Build, Collaborate &amp; Integrate APIs | SwaggerHub</a></p>
+<p>cli-unit-general API yaml seems incorrectly generated, URIs are wrong</p>
+<doc-anchor-target id="syst_-data-change-subscriptionscontentnonconfig-not-working">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#syst_-data-change-subscriptionscontentnonconfig-not-working">#</doc-anchor-trigger>
+        <span>SYST_ data-change-subscriptions?content=nonconfig not working</span>
+    </h3>
+</doc-anchor-target>
+<p>Based on documentation 
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">Kafka notifications</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/uniconfig-operations/kafka-notifications/#subscription-to-data-change-events</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/uniconfig-operations/kafka-notifications/#subscription-to-data-change-events" class="absolute block inset-0"></a>
+</div>
+</p>
+<p>test:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DEBUG    urllib3.connectionpool:connectionpool.py:428 http://127.0.0.1:8181 &quot;GET /rests/data/network-topology:network-topology/topology=uniconfig/node=versa_20/data-change-subscriptions?content=nonconfig HTTP/1.1&quot; 400 651</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DEBUG    uniconfig:uniconfig.py:183 response: 400 {&quot;errors&quot;:{&quot;error&quot;:[{&quot;error-message&quot;:&quot;Could not parse path 'network-topology:network-topology/topology=uniconfig/node=versa_20/data-change-subscriptions'. Offset: '92': Node with name 'data-change-subscriptions' cannot be found under node: (urn:TBD:params:xml:ns:yang:network-topology?revision=2013-10-21)node. Candidate data children nodes: crypto:hash, frinx-uniconfig-topology:status-message, node-id, frinx-uniconfig-topology:connection-status, termination-point, supporting-node, frinx-uniconfig-topology:configuration, frinx-configuration-metadata:configuration-metadata, crypto:crypto.&quot;,&quot;error-tag&quot;:&quot;unknown-element&quot;,&quot;error-type&quot;:&quot;protocol&quot;}]}}</code></pre>
+</doc-codeblock></div>
+<p>test here <a href="https://gerrit.frinx.io/c/system-tests/+/13155">https://gerrit.frinx.io/c/system-tests/+/13155</a></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">url = &quot;/data-change-subscriptions&quot;
+
+    response = uc_request(odl_ip, &quot;GET&quot;, &quot;uniconfig&quot;, node, url + &quot;?content=nonconfig&quot;, cookies={})
+    assert response.ok
+✘ kristina@kristina  ~/system-tests  ➦ 1858669 ±  pytest unative/notification_kafka/notification/t</code></pre>
+</doc-codeblock></div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -304,20 +364,20 @@ value STUB_ROUTER_V6_BIT is to be converted to <em>v6-bit</em></p>
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/translation-units-docs/configuration-datasets/network-instances/protocols/ospf/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/release-notes/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Open Shortest Path First (OSPF)</span>
+                                                <span class="block mt-1">Release notes</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/translation-units-docs/configuration-datasets/network-instances/protocols/static/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/release-notes/uniconfig-4.2.10/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Static Route</span>
+                                                <span class="block mt-1">Uni​Config 4.​2.​10</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -364,6 +424,6 @@ value STUB_ROUTER_V6_BIT is to be converted to <em>v6-bit</em></p>
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Open Shortest Path First v3 (OSPFv3)", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "UniConfig 5.0.6", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>
