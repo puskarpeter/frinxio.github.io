@@ -32,7 +32,7 @@ a "-to-file" flag, which user can use when he wants to write a debug output to f
 * ```-r``` - optional argument. Selection of repositories inside source directory with files or file with defined names of directories which contains files, from which constants will be generated.
 * ```-enableSwagger``` - optional argument. Path to file that enables OpenAPI generation.
 
-* !!!
+!!!
 Bash script ```./convertYangsToUniconfigSchema``` also includes simple help facility. There are two options how to show the help text:
  1. ```./convertYangsToUniconfigSchema -h```
  2. ```./convertYangsToUniconfigSchema --help```
