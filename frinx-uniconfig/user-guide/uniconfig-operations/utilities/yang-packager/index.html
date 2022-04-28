@@ -28,12 +28,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.2.704284537170" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.704442196386" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.704284537170" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.704442196386" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.704284537170" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.704284537170" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.704442196386" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.704442196386" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -262,33 +262,23 @@ where user wants to copy all valid YANG files. Other three arguments are optiona
 &quot;default&quot; directory which contains some default YANG files, second one is the path to the &quot;skip-list&quot; and last one is
 a &quot;-to-file&quot; flag, which user can use when he wants to write a debug output to file.</p>
 <ul>
-<li><p><code v-pre>-i /path/to/sources</code> - required argument. User has two options for where the path can be directed:</p>
+<li><code v-pre>-i /path/to/sources</code> - required argument. User has two options for where the path can be directed:
 <ol>
 <li>to the directory that contains YANG files and other sub-directories with YANG files</li>
 <li>to the text-file that contains defined names of directories. These defined directories have to be stored on the same path as text-file.</li>
 </ol>
 </li>
-<li><p><code v-pre>-o /path/to/output-directory</code> - required argument. User can define path where he wants to save valid YANG files. If the output directory exists, it will be replaced by a new one.</p>
-</li>
-<li><p><code v-pre>-d /path/to/default</code> - optional argument. Sometimes some YANG files need additional dependencies that are not provided in source directories. In this case it is possible to use path to the &#x27;default&#x27; directory which contains additional YANG files. If there is this missing YANG file, YANG packager will use it.</p>
-</li>
-<li><p><code v-pre>-s /path/to/skip-list</code> - optional argument. User can define YANG file names in text file that he does not want to include in conversion process. This file must only contain module names without revision and .yang suffix.</p>
-</li>
-<li><p><code v-pre>-to-file</code> - optional argument. When user uses this flag, then YANG packager also saves the debug output to a file. This file can be found on a same path as <strong>output-directory</strong>. It will contain suffix &#x27;-info&#x27; in its name. If the output directory is called &#x27;output-directory&#x27;, then the file will be called &#x27;output-directory-info&#x27;.</p>
-</li>
-<li><p><code v-pre>-g</code> - optional argument. Path to directory where generated Java sources with constants from YANG elements are saved. By default, generation of Java files is disabled.</p>
-</li>
-<li><p><code v-pre>-pn</code> - optional argument. Custom package name of generated classes.</p>
-</li>
-<li><p><code v-pre>-px</code> - optional argument. Flag that enables prefix for generated constants names inside generated classes.</p>
-</li>
-<li><p><code v-pre>-jd</code> - optional argument. Flag that enables to generate java documentation on data elements.</p>
-</li>
-<li><p><code v-pre>-r</code> - optional argument. Selection of repositories inside source directory with files or file with defined names of directories which contains files, from which constants will be generated.</p>
-</li>
-<li><p><code v-pre>-enableSwagger</code> - optional argument. Path to file that enables OpenAPI generation.</p>
-</li>
-<li>
+<li><code v-pre>-o /path/to/output-directory</code> - required argument. User can define path where he wants to save valid YANG files. If the output directory exists, it will be replaced by a new one.</li>
+<li><code v-pre>-d /path/to/default</code> - optional argument. Sometimes some YANG files need additional dependencies that are not provided in source directories. In this case it is possible to use path to the &#x27;default&#x27; directory which contains additional YANG files. If there is this missing YANG file, YANG packager will use it.</li>
+<li><code v-pre>-s /path/to/skip-list</code> - optional argument. User can define YANG file names in text file that he does not want to include in conversion process. This file must only contain module names without revision and .yang suffix.</li>
+<li><code v-pre>-to-file</code> - optional argument. When user uses this flag, then YANG packager also saves the debug output to a file. This file can be found on a same path as <strong>output-directory</strong>. It will contain suffix &#x27;-info&#x27; in its name. If the output directory is called &#x27;output-directory&#x27;, then the file will be called &#x27;output-directory-info&#x27;.</li>
+<li><code v-pre>-g</code> - optional argument. Path to directory where generated Java sources with constants from YANG elements are saved. By default, generation of Java files is disabled.</li>
+<li><code v-pre>-pn</code> - optional argument. Custom package name of generated classes.</li>
+<li><code v-pre>-px</code> - optional argument. Flag that enables prefix for generated constants names inside generated classes.</li>
+<li><code v-pre>-jd</code> - optional argument. Flag that enables to generate java documentation on data elements.</li>
+<li><code v-pre>-r</code> - optional argument. Selection of repositories inside source directory with files or file with defined names of directories which contains files, from which constants will be generated.</li>
+<li><code v-pre>-enableSwagger</code> - optional argument. Path to file that enables OpenAPI generation.</li>
+</ul>
 <div class="flex mb-6">
     <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -302,16 +292,14 @@ a &quot;-to-file&quot; flag, which user can use when he wants to write a debug o
             </svg>
         </div>
         <div class="pr-5 ml-3">
-        </div>
-    </div>
-</div>
-</li>
-</ul>
 <p>Bash script <code v-pre>./convertYangsToUniconfigSchema</code> also includes simple help facility. There are two options how to show the help text:</p>
 <ol>
 <li><code v-pre>./convertYangsToUniconfigSchema -h</code></li>
 <li><code v-pre>./convertYangsToUniconfigSchema --help</code></li>
 </ol>
+        </div>
+    </div>
+</div>
 <div class="flex mb-6">
     <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -325,10 +313,10 @@ a &quot;-to-file&quot; flag, which user can use when he wants to write a debug o
             </svg>
         </div>
         <div class="pr-5 ml-3">
-        </div>
-    </div>
-</div>
 <p>The user is responsible for the validity of YANG files in the default directory. These files are not checked by YANG package.</p>
+        </div>
+    </div>
+</div>
 <div class="flex mb-6">
     <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -342,24 +330,11 @@ a &quot;-to-file&quot; flag, which user can use when he wants to write a debug o
             </svg>
         </div>
         <div class="pr-5 ml-3">
-        </div>
-    </div>
-</div>
 <p>If compilation process detected some invalid YANG files then output directory will not be created.
 In this case, user has to fix invalid YANG files or use a combination of &quot;-d&quot; and &quot;-s&quot; arguments.</p>
-<div class="flex mb-6">
-    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
         </div>
-        <div class="pr-5 ml-3">
+    </div>
+</div>
 <doc-anchor-target id="example-use-case">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#example-use-case">#</doc-anchor-trigger>
@@ -655,9 +630,6 @@ directory-3</code></pre>
  - source '/path/to/directory-1' is empty
  - source '/path/to/directory-3' does not exist</code></pre>
 </doc-codeblock></div>
-        </div>
-    </div>
-</div>
 
 
 
