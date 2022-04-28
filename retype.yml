@@ -10,6 +10,9 @@ branding:
 
 meta:
   title: " | Frinx Docs"
+  
+search:
+  mode: full 
 
 links:
   - text: Home
