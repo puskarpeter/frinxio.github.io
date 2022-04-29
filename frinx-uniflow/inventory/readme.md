@@ -44,11 +44,15 @@ with one addition: **device_id** must be specified in the snippet.
     "netconf":{
         "netconf-node-topology:host":"10.0.0.1",
         "netconf-node-topology:port":830,
-        "netconf-node-topology:keepalive-delay":5,
         "netconf-node-topology:tcp-only":false,
         "netconf-node-topology:username":"USERNAME",
         "netconf-node-topology:password":"PASSWORD",
-        "netconf-node-topology:dry-run-journal-size":180,
+        "netconf-node-topology:session-timers": {
+            "netconf-node-topology:keepalive-delay":5
+        },
+        "netconf-node-topology:other-parameters": {
+            "netconf-node-topology:dry-run-journal-size":180
+        },
         "uniconfig-config:uniconfig-native-enabled":true,
         "uniconfig-config:blacklist":{
             "uniconfig-config:path":[
@@ -92,7 +96,9 @@ with one addition: **device_id** must be specified in the snippet.
     "netconf":{
         "netconf-node-topology:host":"10.19.0.16",
         "netconf-node-topology:port":830,
-        "netconf-node-topology:keepalive-delay":0,
+        "netconf-node-topology:session-timers": {
+            "netconf-node-topology:keepalive-delay":0
+        },
         "netconf-node-topology:tcp-only":false,
         "netconf-node-topology:username":"USERNAME",
         "netconf-node-topology:password":"PASSWORD",
@@ -113,7 +119,9 @@ with one addition: **device_id** must be specified in the snippet.
     "netconf":{
         "netconf-node-topology:host":"10.19.0.18",
         "netconf-node-topology:port":2830,
-        "netconf-node-topology:keepalive-delay":10,
+        "netconf-node-topology:session-timers": {
+            "netconf-node-topology:keepalive-delay":10
+        },
         "netconf-node-topology:tcp-only":false,
         "netconf-node-topology:username":"USERNAME",
         "netconf-node-topology:password":"PASSWORD",

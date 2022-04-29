@@ -87,9 +87,11 @@ Subsequent requests must set cookie if they want to be included in UniConfig tra
                                 "node-id":"n1",
                                 "netconf-node-topology:host":"10.19.0.235",
                                 "netconf-node-topology:port":830,
-                                "netconf-node-topology:keepalive-delay":10,
-                                "netconf-node-topology:connection-timeout-millis":100000,
-                                "netconf-node-topology:default-request-timeout-millis":100000,
+                                "netconf-node-topology:session-timers": {
+                                    "netconf-node-topology:keepalive-delay":10,
+                                    "netconf-node-topology:initial-connection-timeout":100,
+                                    "netconf-node-topology:request-transaction-timeout": 100
+                                },
                                 "netconf-node-topology:tcp-only":false,
                                 "netconf-node-topology:username":"sysadmin",
                                 "netconf-node-topology:password":"sysadmin",
@@ -147,9 +149,11 @@ This is a case when mount node request contains UniConfig transaction ID and Uni
                                 "node-id":"n1",
                                 "netconf-node-topology:host":"10.19.0.235",
                                 "netconf-node-topology:port":830,
-                                "netconf-node-topology:keepalive-delay":10,
-                                "netconf-node-topology:connection-timeout-millis":100000,
-                                "netconf-node-topology:default-request-timeout-millis":100000,
+                                "netconf-node-topology:session-timers": {
+                                    "netconf-node-topology:keepalive-delay":10,
+                                    "netconf-node-topology:initial-connection-timeout":100,
+                                    "netconf-node-topology:request-transaction-timeout": 100
+                                },
                                 "netconf-node-topology:tcp-only":false,
                                 "netconf-node-topology:username":"sysadmin",
                                 "netconf-node-topology:password":"sysadmin",

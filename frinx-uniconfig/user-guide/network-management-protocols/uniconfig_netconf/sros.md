@@ -44,10 +44,12 @@ curl -X PUT \
       "node-id": "sros",
       "netconf-node-topology:host": "10.19.0.18",
       "netconf-node-topology:port": 2830,
-      "netconf-node-topology:keepalive-delay": 10,
       "netconf-node-topology:tcp-only": false,
       "netconf-node-topology:username": "USERNAME",
       "netconf-node-topology:password": "PASSWORD",
+      "netconf-node-topology:session-timers" : {
+             "netconf-node-topology:keepalive-delay": 10
+      },
       "uniconfig-config:uniconfig-native-enabled": true,
       "uniconfig-config:install-uniconfig-node-enabled": true,
       "uniconfig-config:blacklist": {

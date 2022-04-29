@@ -5,6 +5,7 @@ module netconf-node-topology {
     import network-topology { prefix nt; revision-date 2013-10-21; }
     import yang-ext { prefix ext; revision-date "2013-07-09";}
     import ietf-inet-types { prefix inet; revision-date "2013-07-15"; }
+    import connection-manager { prefix cm; revision-date "2021-04-09"; }
 
     revision "2015-01-14" {
         description "Initial revision of Topology model";
@@ -64,6 +65,102 @@ module netconf-node-topology {
         }
     }
 
+    grouping common-session-timers {
+        leaf max-connection-attempts {
+            description "Maximum number of connection retries. Non positive value or null is interpreted as infinity.";
+            config true;
+            type uint32;
+            default 1;
+        }
+
+        leaf max-reconnection-attempts {
+            description "Maximum number of reconnect retries. Non positive value or null is interpreted as infinity.
+                         This is an optional parameter. If set, max-connection-attempts will be used only once, for the first connection attempts
+                         and for any subsequent disconnect-connect cycles, max-reconnect-attempts will be used.
+                         This enables users using different amount of reconnects for initial attempts vs subsequent reconnects.";
+            config true;
+            type uint32;
+            default 0;
+        }
+
+        leaf keepalive-delay {
+            config true;
+            type uint32;
+            default 120;
+            description "Netconf connector sends keepalive RPCs while the session is idle, this delay specifies the delay between keepalive RPC in seconds
+                         If a value <1 is provided, no keepalives will be sent";
+        }
+    }
+
+    grouping common-flags {
+        leaf enabled-notifications {
+            config true;
+            type boolean;
+            default true;
+            description "If it is set to 'true' and NETCONF device supports notifications, NETCONF mountpoint will
+                         expose NETCONF notification and subscription services.";
+        }
+
+        leaf reconnect-on-changed-schema {
+            config true;
+            type boolean;
+            default false;
+            description "If it is set to 'true', NETCONF notifications are supported by device, and NETCONF
+                         notifications are enabled ('enabled-notifications' flag), the connector would auto
+                         disconnect/reconnect when schemas are changed in the remote device. The connector subscribes
+                         (right after connect) to base netconf notifications and listens
+                         for netconf-capability-change notification";
+        }
+
+        leaf streaming-session {
+            description "NETCONF session is created and optimized for receiving of NETCONF notifications
+                         from remote server.";
+            config true;
+            default false;
+            type boolean;
+        }
+    }
+
+    grouping common-other-parameters {
+        leaf concurrent-rpc-limit {
+            config true;
+            type uint16;
+            default 0;
+            description "Limit of concurrent messages that can be send before reply messages are received.
+                         If value <1 is provided, no limit will be enforced";
+        }
+
+        leaf edit-config-test-option {
+            description "Specification of the test-option parameter in the netconf edit-config message.
+                         Possible values are 'set', 'test-then-set' or 'test-only'. If the edit-config-test-option is not
+                         explicitly specified in the mount request, then the default value will be used ('test-then-set').";
+            config true;
+            default test-then-set;
+            type enumeration {
+                enum set;
+                enum test-only;
+                enum test-then-set;
+            }
+        }
+
+        leaf dry-run-journal-size {
+            type uint16;
+            default 0;
+            description "Size of the DRY RUN netconf mountpoint journal. DRY RUN journal captures netconf RPCs that
+                         would be executed when reading/writing some configuration. However the RPCs are not actually
+                         sent to the device";
+        }
+    }
+
+    grouping common-netconf-parameters {
+
+        uses common-session-timers;
+
+        uses common-flags;
+
+        uses common-other-parameters;
+    }
+
     grouping netconf-node-connection-parameters {
 
         leaf host {
@@ -116,76 +213,6 @@ module netconf-node-topology {
             }
         }
 
-        leaf reconnect-on-changed-schema {
-            config true;
-            type boolean;
-            default false;
-            description "If true, the connector would auto disconnect/reconnect when schemas are changed in the remote device.
-                         The connector subscribes (right after connect) to base netconf notifications and listens for netconf-capability-change notification";
-        }
-
-        leaf connection-timeout-millis {
-            description "Specifies timeout in milliseconds after which connection must be established.";
-            config true;
-            type uint32;
-            default 20000;
-        }
-
-        leaf default-request-timeout-millis {
-            description "Timeout for blocking operations within transactions.";
-            config true;
-            type uint32;
-            default 60000;
-        }
-
-        leaf max-connection-attempts {
-            description "Maximum number of connection retries. Non positive value or null is interpreted as infinity.";
-            config true;
-            type uint32;
-            default 0; // retry forever
-        }
-
-        leaf between-attempts-timeout-millis {
-            description "Initial timeout in milliseconds to wait between connection attempts. Will be multiplied by sleep-factor with every additional attempt";
-            config true;
-            type uint16;
-            default 2000;
-        }
-
-        leaf sleep-factor {
-            config true;
-            type decimal64 {
-                fraction-digits 1;
-            }
-            default 1.5;
-        }
-
-        // Keepalive configuration
-        leaf keepalive-delay {
-            config true;
-            type uint32;
-            default 120;
-            description "Netconf connector sends keepalive RPCs while the session is idle, this delay specifies the delay between keepalive RPC in seconds
-                         If a value <1 is provided, no keepalives will be sent";
-        }
-
-        leaf concurrent-rpc-limit {
-            config true;
-            type uint16;
-            default 0;
-            description "Limit of concurrent messages that can be send before reply messages are received.
-                         If value <1 is provided, no limit will be enforced";
-        }
-
-        leaf actor-response-wait-time {
-                    config true;
-                    type uint16 {
-                      range "1..max";
-                    }
-                    default 5;
-                    description "Time that slave actor will wait for response from master.";
-        }
-
         container odl-hello-message-capabilities {
             config true;
             leaf-list capability {
@@ -193,6 +220,12 @@ module netconf-node-topology {
                 description "Certain devices are non-accepting of ODL's hello message.  This allows specification of
                              a custom ODL hello message based on a list of supported capabilities.";
             }
+        }
+
+        leaf parent-node-id {
+            type string;
+            config true;
+            description "Identifier of the parent node with which the current node shares the lifecycle.";
         }
     }
 
@@ -301,26 +334,164 @@ module netconf-node-topology {
         }
     }
 
-    grouping netconf-node-tracing-parameters {
-         leaf dry-run-journal-size {
-             type uint16;
-             default 0;
-             description "Size of the DRY RUN netconf mountpoint jounral. DRY RUN journal captures netconf RPCs that
-                          would be executed when reading/writing some configuration. However the RPCs are not actually
-                          sent to the device";
-         }
-    }
+    grouping old-format-of-netconf-parameters {
+        leaf connection-timeout-millis {
+            description "Specifies timeout in milliseconds after which connection must be established.";
+            config true;
+            type uint32;
+            default 20000;
+        }
 
-    grouping netconf-device-customization-factory {
+        leaf default-request-timeout-millis {
+            description "Timeout in milliseconds for blocking operations within transactions.";
+            config true;
+            type uint32;
+            default 60000;
+        }
+
+        leaf between-attempts-timeout-millis {
+            description "Initial timeout in milliseconds to wait between connection attempts. Will be multiplied by sleep-factor with every additional attempt";
+            config true;
+            type uint16;
+            default 2000;
+        }
+
+        leaf sleep-factor {
+            description "After each reconnection attempt, the delay between reconnection attempts is
+                         multiplied by this factor. By default, it is set to 1.5. This means that the next
+                         delay between attempts will be 3000 ms, then it will be 4500 ms, etc.";
+            config true;
+            type decimal64 {
+                fraction-digits 1;
+            }
+            default 1.5;
+        }
+
+        leaf confirm-timeout {
+            description "Timeout period in seconds to issued commit after confirmed-commit";
+            config true;
+            type uint32;
+            default 600;
+        }
+
+        leaf strict-parsing {
+            config true;
+            type boolean;
+            default true;
+            description "If this parameter is set to 'false', then parser should ignore unknown elements and not throw
+                         exception during parsing.";
+        }
+
         leaf customization-factory {
+            description "Specification of the custom NETCONF connector factory. For example,
+                        if device doesn't support candidate data-store, this parameter
+                        should be set to 'netconf-customization-alu-ignore-candidate' string.";
             config true;
             type string;
             default "default";
         }
+
+        uses common-netconf-parameters;
+    }
+
+    grouping session-timers-group {
+        leaf initial-connection-timeout {
+            description "Specifies timeout in seconds after which connection must be established.";
+            config true;
+            type uint32;
+            default 20;
+        }
+
+        leaf request-transaction-timeout {
+            description "Timeout in seconds for blocking operations within transactions.";
+            config true;
+            type uint32;
+            default 60;
+        }
+
+        leaf between-attempts-timeout {
+            description "Initial timeout in seconds to wait between connection attempts.
+                         Will be multiplied by reconenction-attempts-multiplier with every additional attempt";
+            config true;
+            type uint16;
+            default 2;
+        }
+
+        leaf confirm-commit-timeout {
+            description "Timeout period in seconds to issued commit after confirmed-commit";
+            config true;
+            type uint32;
+            default 600;
+        }
+
+        leaf reconnenction-attempts-multiplier {
+            description "After each reconnection attempt, the delay between reconnection attempts is
+                        multiplied by this factor. By default, it is set to 1.5. This means that the next
+                        delay between attempts will be 3000 ms, then it will be 4500 ms, etc.";
+            config true;
+            type decimal64 {
+                fraction-digits 1;
+            }
+            default 1.5;
+        }
+
+        uses common-session-timers;
+    }
+
+    grouping flags-group {
+        leaf enabled-strict-parsing {
+            config true;
+            type boolean;
+            default true;
+            description "If this parameter is set to 'false', then parser should ignore unknown elements and not throw
+                         exception during parsing.";
+        }
+
+        uses common-flags;
+    }
+
+    grouping other-parameters-group {
+        leaf custom-connector-factory {
+            description "Specification of the custom NETCONF connector factory. For example,
+                                    if device doesn't support candidate data-store, this parameter
+                                    should be set to 'netconf-customization-alu-ignore-candidate' string.";
+            config true;
+            type string;
+            default "default";
+        }
+
+        uses common-other-parameters;
+    }
+
+    grouping netconf-parameters-groups {
+
+        container session-timers {
+            uses session-timers-group;
+        }
+
+        container flags {
+            uses flags-group;
+        }
+
+        container other-parameters {
+            uses other-parameters-group;
+        }
+    }
+
+    grouping both-formats-of-netconf-default-parameters {
+        choice netconf-parameters {
+            default netconf-parameters-new-format;
+
+            case netconf-parameters-new-format {
+                uses netconf-parameters-groups;
+            }
+            case netconf-parameters-old-format {
+                uses old-format-of-netconf-parameters;
+            }
+        }
     }
 
     grouping netconf-node-fields {
-
         uses netconf-node-credentials;
 
         uses netconf-node-connection-parameters;
@@ -329,10 +500,11 @@ module netconf-node-topology {
 
         uses netconf-schema-storage;
 
-        uses netconf-device-customization-factory;
+        uses both-formats-of-netconf-default-parameters;
+    }
 
-        uses netconf-node-tracing-parameters;
-
+    container netconf-default-parameters {
+        uses netconf-parameters-groups;
     }
 
     rpc create-device {
@@ -359,4 +531,11 @@ module netconf-node-topology {
         uses netconf-node-fields;
     }
 
+    augment "/cm:install-node/cm:input/cm:netconf" {
+        uses netconf-node-fields;
+    }
+
+    augment "/cm:install-multiple-nodes/cm:input/cm:nodes/cm:netconf" {
+        uses netconf-node-fields;
+    }
 }

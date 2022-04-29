@@ -100,11 +100,15 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
                 "netconf": {
                     "netconf-node-topology:host": "192.168.1.211",
                     "netconf-node-topology:port": 830,
-                    "netconf-node-topology:keepalive-delay": 0,
                     "netconf-node-topology:tcp-only": false,
                     "netconf-node-topology:username": "cisco",
                     "netconf-node-topology:password": "cisco",
-                    "netconf-node-topology:dry-run-journal-size": 180
+                    "netconf-node-topology:session-timers": {
+                        "netconf-node-topology:keepalive-delay": 0
+                    },
+                    "netconf-node-topology:other-parameters": {
+                        "netconf-node-topology:dry-run-journal-size": 180
+                    }
                 }
             },
             {

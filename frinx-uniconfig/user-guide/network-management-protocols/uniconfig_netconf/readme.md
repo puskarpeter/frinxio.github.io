@@ -377,18 +377,17 @@ keepalive timeout, NETCONF launches reconnection strategy. To summarize
 it all, there are 3 configurable parameters that can be set in
 mount-request:
 
-1.  **Connection timeout [milliseconds]** - Specifies timeout in
+1.  **Initial connection timeout [seconds]** - Specifies timeout in
     milliseconds after which initial connection to the NETCONF server
-    must be established. By default, the value is set 20000 ms.
+    must be established. By default, the value is set 20 s.
 2.  **Keepalive delay [seconds]** - Delay between sending of keepalive
     RPC messages to the NETCONF server. Keepalive messages test state of
     the NETCONF session (application layer) - whether remote side is
     able to respond to RPC messages. Default keepalive delay is 120
     seconds.
-3.  **Request timeout [milliseconds]** - Timeout for blocking RPC
+3.  **Request transaction timeout [seconds]** - Timeout for blocking RPC
     operations within transactions. Southbound plugin stops to wait for
-    RPC reply after this timeout expires. By default, it is set to 60000
-    ms.
+    RPC reply after this timeout expires. By default, it is set to 60 s.
 
 Example with set keepalive parameters at creation of NETCONF mount-point
 (connection timeout, keepalive delay and request timeout):
@@ -398,9 +397,11 @@ Example with set keepalive parameters at creation of NETCONF mount-point
   "node": [
       {
           ...
-          "netconf-node-topology:connection-timeout-millis": 5000,
-          "netconf-node-topology:keepalive-delay": 60,
-          "netconf-node-topology:default-request-timeout-millis": 10000
+          "netconf-node-topology:session-timers": {
+              "netconf-node-topology:initial-connection-timeout-": 5,
+              "netconf-node-topology:keepalive-delay": 60,
+              "netconf-node-topology:request-transaction-timeout": 10
+          }
       }
   ]
 }
@@ -418,13 +419,13 @@ described by 3 configurable mount-request parameters:
 2.  **Maximum number of reconnection attempts [count]** - Maximum number
     of reconnection retries; when it is reached, the NETCONF won't try
     to reconnect to device anymore. By default, this value is set to 1.
-3.  **Initial timeout between attempts [milliseconds]** - The first
+3.  **Initial timeout between attempts [seconds]** - The first
     timeout between reconnection attempts in milliseconds. The default
     timeout value is set to 2000 ms.
-4.  **Sleep factor [factor]** - After each reconnection attempt, the
+4.  **Reconnection attempts multiplier [factor]** - After each reconnection attempt, the
     delay between reconnection attempts is multiplied by this factor. By
     default, it is set to 1.5. This means that the next delay between
-    attempts will be 3000 ms, then it will be 4500 ms, etc.
+    attempts will be 3 s, then it will be 4,5 s, etc.
 
 Example with set reconnection parameters at creation of NETCONF
 mount-point - maximum connection attempts, initial delay between
@@ -435,10 +436,12 @@ attempts and sleep factor:
   "node": [
       {
           ...
-          "netconf-node-topology:max-connection-attempts": 10,
-          "netconf-node-topology:max-reconnection-attempts": 10,
-          "netconf-node-topology:between-attempts-timeout-millis": 8000,
-          "netconf-node-topology:sleep-factor": 1.0
+          "netconf-node-topology:session-timers": {
+              "netconf-node-topology:max-connection-attempts": 10,
+              "netconf-node-topology:max-reconnection-attempts": 10,
+              "netconf-node-topology:between-attempts-timeout": 8,
+              "netconf-node-topology:reconnection-attempts-multiplier": 1.0
+          }
       }
   ]
 }

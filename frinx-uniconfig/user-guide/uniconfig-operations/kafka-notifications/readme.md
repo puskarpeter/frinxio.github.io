@@ -235,16 +235,20 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
         "netconf":{
             "netconf-node-topology:host":"10.103.5.202",
             "netconf-node-topology:port":2022,
-            "netconf-node-topology:keepalive-delay":5,
-            "netconf-node-topology:max-connection-attempts":1,
-            "netconf-node-topology:connection-timeout-millis":60000,
-            "netconf-node-topology:default-request-timeout-millis":60000,
+            "netconf-node-topology:session-timers": {
+                "netconf-node-topology:keepalive-delay": 5,
+                "netconf-node-topology:max-connection-attempts":1,
+                "netconf-node-topology:initial-connection-timeout":60,
+                "netconf-node-topology:request-transaction-timeout":60,
+                "netconf-node-topology:reconnection-attempts-multiplier":1.0
+            },
+            "netconf-node-topology:other-parameters": {
+                "netconf-node-topology:edit-config-test-option":"set"
+            },
             "netconf-node-topology:tcp-only":false,
             "netconf-node-topology:username":"admin",
             "netconf-node-topology:password":"versa123",
-            "netconf-node-topology:sleep-factor":1.0,
             "uniconfig-config:UniConfig-native-enabled":true,
-            "netconf-node-topology:edit-config-test-option":"set",
             "uniconfig-config:blacklist":{
                 "extension":[
                     "tailf:display-when false"

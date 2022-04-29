@@ -55,12 +55,16 @@ Output:
         "netconf": {
             "netconf-node-topology:host": "192.168.1.216",
             "netconf-node-topology:port": 830,
-            "netconf-node-topology:keepalive-delay": 0,
             "netconf-node-topology:tcp-only": false,
             "netconf-node-topology:username": "test",
             "netconf-node-topology:password": "test",
+            "netconf-node-topology:session-timers" : {
+                "netconf-node-topology:keepalive-delay": 0
+            },
+            "netconf-node-topology:other-parameters" : {
+                "netconf-node-topology:edit-config-test-option": "test-then-set"
+            },
             "uniconfig-config:uniconfig-native-enabled": true,
-            "netconf-node-topology:edit-config-test-option": "test-then-set",
             "uniconfig-config:blacklist": {
                 "uniconfig-config:path": [
                     "openconfig-interfaces:interfaces", "ietf-interfaces:interfaces", "openconfig-vlan:vlans", 
@@ -137,12 +141,16 @@ curl -X PUT \
           "netconf": {
               "netconf-node-topology:host": "192.168.1.214",
               "netconf-node-topology:port": 830,
-              "netconf-node-topology:keepalive-delay": 5,
               "netconf-node-topology:tcp-only": false,
               "netconf-node-topology:username": "test",
               "netconf-node-topology:password": "test",
               "uniconfig-config:uniconfig-native-enabled": true,
-              "netconf-node-topology:edit-config-test-option": "test-then-set",
+              "netconf-node-topology:session-timers" : {
+                  "netconf-node-topology:keepalive-delay": 5
+              },
+              "netconf-node-topology:other-parameters" : {
+                  "netconf-node-topology:edit-config-test-option": "test-then-set"
+              },
               "uniconfig-config:blacklist": {
                   "uniconfig-config:path": [
                       "openconfig-interfaces:interfaces", "ietf-interfaces:interfaces", "openconfig-vlan:vlans", 

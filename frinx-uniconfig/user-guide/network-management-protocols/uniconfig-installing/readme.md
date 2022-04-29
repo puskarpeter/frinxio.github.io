@@ -67,22 +67,28 @@ It is placed in config subdirectory together with lighty-uniconfig-config.json.
 ```json
 {
     "netconf-default-parameters" : {
-        "connection-timeout-millis": 20000,
-        "default-request-timeout-millis": 60000,
-        "between-attempts-timeout-millis" : 2000,
-        "max-connection-attempts": 1,
-        "max-reconnection-attempts": 0,
-        "reconnect-on-changed-schema" : false,
-        "keepalive-delay": 120,
-        "sleep-factor": 1.5,
-        "confirm-timeout" : 600,
-        "concurrent-rpc-limit" : 0,
-        "actor-response-wait-time" : 5,
-        "dry-run-journal-size" : 0,
-        "enabled-notifications" : true,
-        "customization-factory" : "default",
-        "edit-config-test-option" : "test-then-set",
-        "strict-parsing" : true
+        "session-timers" : {
+            "initial-connection-timeout": 20,
+            "request-transaction-timeout": 60,
+            "between-attempts-timeout" : 2,
+            "max-connection-attempts": 1,
+            "max-reconnection-attempts": 0,
+            "keepalive-delay": 120,
+            "reconnenction-attempts-multiplier": 1.5,
+            "confirm-commit-timeout" : 600
+        },
+        "flags": {
+            "enabled-notifications" : true,
+            "enabled-strict-parsing" : true,
+            "streaming-session" : false,
+            "reconnect-on-changed-schema" : false
+        },
+        "other-parameters" : {
+            "concurrent-rpc-limit" : 0,
+            "dry-run-journal-size" : 0,
+            "custom-connector-factory" : "default",
+            "edit-config-test-option" : "test-then-set"
+        }
     },
     "cli-default-parameters" : {
         "max-connection-attempts": 1,
@@ -127,22 +133,28 @@ curl --location --request PUT 'http://localhost:8181/rests/data/netconf-node-top
 --header 'Content-Type: application/json' \
 --data-raw '{
     "netconf-node-topology:netconf-default-parameters" : {
-        "netconf-node-topology:connection-timeout-millis": 20000,
-        "netconf-node-topology:default-request-timeout-millis": 20000,
-        "netconf-node-topology:between-attempts-timeout-millis" : 20000,
-        "netconf-node-topology:max-connection-attempts": 20,
-        "netconf-node-topology:max-reconnection-attempts": 3,
-        "netconf-node-topology:reconnect-on-changed-schema" : false,
-        "netconf-node-topology:keepalive-delay": 5,
-        "netconf-node-topology:sleep-factor": 1.0,
-        "netconf-node-topology:confirm-timeout" : 600,
-        "netconf-node-topology:concurrent-rpc-limit" : 0,
-        "netconf-node-topology:actor-response-wait-time" : 5,
-        "netconf-node-topology:dry-run-journal-size" : 0,
-        "netconf-node-topology:enabled-notifications" : true,
-        "netconf-node-topology:customization-factory" : "default",
-        "netconf-node-topology:edit-config-test-option" : "test-then-set",
-        "netconf-node-topology:strict-parsing" : true
+        "session-timers" : {
+            "initial-connection-timeout": 20,
+            "request-transaction-timeout": 60,
+            "between-attempts-timeout" : 2,
+            "max-connection-attempts": 1,
+            "max-reconnection-attempts": 0,
+            "keepalive-delay": 120,
+            "reconnenction-attempts-multiplier": 1.5,
+            "confirm-commit-timeout" : 600
+        },
+        "flags": {
+            "enabled-notifications" : true,
+            "enabled-strict-parsing" : true,
+            "streaming-session" : false,
+            "reconnect-on-changed-schema" : false
+        },
+        "other-parameters" : {
+            "concurrent-rpc-limit" : 0,
+            "dry-run-journal-size" : 0,
+            "custom-connector-factory" : "default",
+            "edit-config-test-option" : "test-then-set"
+        }
     }
 }'
 ```
@@ -416,22 +428,15 @@ The following parameters adjust timers that are related with maintaining
 of NETCONF session state. None of these parameters are mandatory
 (default values will be used).
 
-- **netconf-node-topology:connection-timeout-millis** - Specifies
-    timeout in milliseconds after which initial connection to the
-    NETCONF server must be established (default value: 20000 ms).
-- **netconf-node-topology:default-request-timeout-millis** - Timeout
-    for blocking RPC operations within transactions (default value:
-    60000 ms).
-- **netconf-node-topology:max-connection-attempts** - Maximum number
-    of initial connection attempts (default value: 1).
-- **netconf-node-topology:max-reconnection-attempts** - Maximum number
-    of reconnection attempts (default value: 1).
-- **netconf-node-topology:between-attempts-timeout-millis** - Initial
-    timeout between reconnection attempts (default value: 2000 ms).
-- **netconf-node-topology:sleep-factor** - Multiplier between
-    subsequent delays of reconnection attempts (default value: 1.5).
-- **netconf-node-topology:keepalive-delay** - Delay between sending of
-    keepalive RPC messages (default value: 120 sec).
+- **netconf-node-topology:initial-connection-timeout** - Specifies timeout in seconds after which initial connection to the NETCONF server must be established (default value: 20 s).
+- **netconf-node-topology:request-transaction-timeout** - Timeout for blocking RPC operations within transactions (default value: 60 s).
+- **netconf-node-topology:max-connection-attempts** - Maximum number of connection attempts (default value: 1).
+- **netconf-node-topology:max-reconnection-attempts** - Maximum number of reconnection attempts (default value: 0 - disabled).
+- **netconf-node-topology:between-attempts-timeout** - Initial timeout between reconnection attempts (default value: 2 s).
+- **netconf-node-topology:reconnenction-attempts-multiplier** - Multiplier between subsequent delays of reconnection attempts (default value: 1.5).
+- **netconf-node-topology:keepalive-delay** - Delay between sending of keepalive RPC messages (default value: 120 sec).
+- **netconf-node-topology:confirm-commit-timeout** - The timeout for confirming the configuration by "confirming-commit" that was configured by "confirmed-commit". Configuration will be automatically reverted by device if the "confirming-commit" is not issued within the timeout period. This parameter has effect only on NETCONF nodes. (default value: 600 sec).
+
 
 ### Capabilities
 
@@ -485,6 +490,14 @@ uniconfig-native support.
     of node. By default, this flag is set to 'true'. This parameter has
     effect only on NETCONF nodes.
 
+### Flags
+Non-mandatory flag parameters that can be added to mount-request.
+
+- **netconf-node-topology:enabled-strict-parsing** - Default value of enabled-strict-parsing parameter is set to 'true'. This may inflicts in throwing exception during parsing of received NETCONF messages in case of unknown elements. If this parameter is set to 'false', then parser should ignore unknown elements and not throw exception during parsing.
+- **netconf-node-topology:enabled-notifications** - Default value of enabled-notifications is set to 'true'. If it is set to 'true' and NETCONF device supports notifications, NETCONF mountpoint will expose NETCONF notification and subscription services.
+- **netconf-node-topology:reconnect-on-changed-schema** - Default value of reconnect-on-changed-schema is set to 'false'. If it is set to 'true', NETCONF notifications are supported by device, and NETCONF notifications are enabled ('enabled-notifications' flag), the connector would auto disconnect/reconnect when schemas are changed in the remote device. The connector subscribes (right after connect) to base netconf notifications and listens for netconf-capability-change notification
+- **netconf-node-topology:streaming-session** - Default value of streaming-session parameter is set to 'false'. NETCONF session is created and optimized for receiving of NETCONF notifications from remote server.
+
 ### Other parameters
 
 Other non-mandatory parameters that can be added to mount-request.
@@ -505,10 +518,10 @@ Other non-mandatory parameters that can be added to mount-request.
     mount-point and defines number of NETCONF RPCs in history for
     dry-run mount-point. Value 0 disables dry-run functionality (it is
     default value).
-- **netconf-node-topology:customization-factory** - Specification of
-    the custom NETCONF connector factory. For example, if device doesn't
-    support candidate data-store, this parameter should be set to
-    'netconf-customization-alu-ignore-candidate' string.
+- **netconf-node-topology:custom-connector-factory** - Specification of the custom NETCONF 
+    connector factory. For example, if device doesn't support candidate data-store, 
+    this parameter should be set to 'netconf-customization-alu-ignore-candidate' 
+    string (default value is "default").
 - **netconf-node-topology:edit-config-test-option** - Specification of
     the test-option parameter in the netconf edit-config message.
     Possible values are 'set', 'test-then-set' or 'test-only'. If the
@@ -516,12 +529,10 @@ Other non-mandatory parameters that can be added to mount-request.
     request, then the default value will be used ('test-then-set'). See
     [RFC-6241](https://tools.ietf.org/html/rfc6241#section-8.6) for more
     information about this feature.
-- **netconf-node-topology:confirm-timeout** - The timeout for
-    confirming the configuration by "confirming-commit" that was
-    configured by "confirmed-commit" (default value: 600 sec).
-    Configuration will be automatically reverted by device if the
-    "confirming-commit" is not issued within the timeout period. This
-    parameter has effect only on NETCONF nodes.
+- **netconf-node-topology:concurrent-rpc-limit** - Limit of concurrent messages 
+    that can be send before reply messages are received. If value <1 is provided, 
+    no limit will be enforced (default value is 0).
+
 
 !!!danger
 There are additional install parameters in our OpenAPI, they can all
@@ -541,11 +552,15 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
             "netconf":{
                 "netconf-node-topology:host":"10.0.0.1",
                 "netconf-node-topology:port":830,
-                "netconf-node-topology:keepalive-delay":5,
                 "netconf-node-topology:tcp-only":false,
                 "netconf-node-topology:username":"USERNAME",
                 "netconf-node-topology:password":"PASSWORD",
-                "netconf-node-topology:dry-run-journal-size":180,
+                "netconf-node-topology:session-timers" : {
+                    "netconf-node-topology:keepalive-delay": 5
+                },
+                "netconf-node-topology:other-parameters" : {
+                    "netconf-node-topology:dry-run-journal-size": 180
+                },
                 "uniconfig-config:uniconfig-native-enabled":true,
                 "uniconfig-config:blacklist":{
                     "uniconfig-config:path":[
