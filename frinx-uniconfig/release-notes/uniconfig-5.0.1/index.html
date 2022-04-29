@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HVGXQFHWX"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6HVGXQFHWX');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 2.0">
+
+    <!-- Primary Meta Tags -->
+    <title>UniConfig 5.0.1 | Frinx Docs</title>
+    <meta name="title" content="UniConfig 5.0.1 | Frinx Docs">
+    <meta name="description" content="Description" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/release-notes/uniconfig-5.0.1/">
+    <meta property="og:title" content="UniConfig 5.0.1 | Frinx Docs">
+    <meta property="og:description" content="Description">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/release-notes/uniconfig-5.0.1/">
+    <meta property="twitter:title" content="UniConfig 5.0.1 | Frinx Docs">
+    <meta property="twitter:description" content="Description">
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/static/favicon-32x32.png" rel="icon" />
+    <link href="/resources/css/retype.css?v=2.0.704541679411" rel="stylesheet" data-turbo-track="reload" />
+
+    <script type="text/javascript" src="/resources/js/config.js?v=2.0.704541679411" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/retype.js?v=2.0" defer data-turbo-track="reload"></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.0.704541679411" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between grow pr-6 md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="/" class="flex items-center leading-snug text-2xl">
+                            <span class="grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="/static/frinx_logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="/static/frinx_logo.png">
+                            </span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="md:mr-6">
+                                <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path fill-rule="evenodd" d="M11.03 2.59a1.5 1.5 0 011.94 0l7.5 6.363a1.5 1.5 0 01.53 1.144V19.5a1.5 1.5 0 01-1.5 1.5h-5.75a.75.75 0 01-.75-.75V14h-2v6.25a.75.75 0 01-.75.75H4.5A1.5 1.5 0 013 19.5v-9.403c0-.44.194-.859.53-1.144l7.5-6.363zM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v6.25h5v-9.403L12 3.734z"/>
+                                        </g>
+                                    </svg>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li class="md:mr-6">
+                                <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://frinx.io/" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path fill-rule="evenodd" d="M0 3.75C0 2.784.784 2 1.75 2h20.5c.966 0 1.75.784 1.75 1.75v16.5A1.75 1.75 0 0122.25 22H1.75A1.75 1.75 0 010 20.25V3.75zm1.75-.25a.25.25 0 00-.25.25V5.5h4v-2H1.75zM7 3.5v2h4v-2H7zm5.5 0v2h10V3.75a.25.25 0 00-.25-.25H12.5zm10 3.5h-21v13.25c0 .138.112.25.25.25h20.5a.25.25 0 00.25-.25V7z"/>
+                                        </g>
+                                    </svg>
+                                    <span>Webpage</span>
+                                </a>
+                            </li>
+                            <li class="md:mr-6">
+                                <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/FRINXio" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                        </g>
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                            </li>
+                            <li class="md:mr-6">
+                                <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://www.linkedin.com/company/frinx" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-.139 9.237c.209 4.617-3.234 9.765-9.33 9.765-1.854 0-3.579-.543-5.032-1.475 1.742.205 3.48-.278 4.86-1.359-1.437-.027-2.649-.976-3.066-2.28.515.098 1.021.069 1.482-.056-1.579-.317-2.668-1.739-2.633-3.26.442.246.949.394 1.486.411-1.461-.977-1.875-2.907-1.016-4.383 1.619 1.986 4.038 3.293 6.766 3.43-.479-2.053 1.08-4.03 3.199-4.03.943 0 1.797.398 2.395 1.037.748-.147 1.451-.42 2.086-.796-.246.767-.766 1.41-1.443 1.816.664-.08 1.297-.256 1.885-.517-.439.656-.996 1.234-1.639 1.697z"/>
+                                        </g>
+                                    </svg>
+                                    <span>LinkedIn</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+        
+                            <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                            style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search" />
+                        </div>
+        
+                        <!-- Mobile search button mock -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placehokder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button mock -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+                </div>
+            
+                <div class="pl-6 mb-4 mt-1">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/README.md">Home</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://frinx.io/">Webpage</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/FRINXio">GitHub</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://www.linkedin.com/company/frinx">LinkedIn</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="grow min-w-0 px-6 md:px-16">
+                        <main class="relative pt-6 pb-16">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="uniconfig-501" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#uniconfig-501">#</doc-anchor-trigger>
+        <span>UniConfig 5.0.1</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="new-features">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#new-features">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2705;</span> New Features</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="propagation-of-data-change-events-from-uniconfig--unistore-configuration">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#propagation-of-data-change-events-from-uniconfig--unistore-configuration">#</doc-anchor-trigger>
+        <span>Propagation of data-change-events from ‘uniconfig&#x27; / &#x27;unistore’ configuration</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Description</strong></p>
+<ul>
+<li>Implemented propagation of data-change-events into distinct Kafka topic. Data-change-events are currently supported per-node in ‘uniconfig&#x27; and &#x27;unistore&#x27; network-topologies.</li>
+<li>Using subscription, user specifies observed subtrees against data-changes. Afterwards, data-change-events are generated by UniConfig instances after some transaction is committed and committed changes contain subscribed subtrees.</li>
+</ul>
+<p><strong>API</strong></p>
+<ul>
+<li>Created new YANG module that defines data-change-events structure in form of YANG notifications and RPC calls for manipulation / reading of subscriptions:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">module data-change-events {
+    yang-version 1.1;
+    namespace http://frinx.io/yang:data-change-events;
+    prefix dce;
+    organization &quot;Frinx s.r.o.&quot;;
+    contact &quot;support@frinx.io&quot;;
+
+    import frinx-types {
+        prefix ft;
+        revision-date &quot;2021-04-09&quot;;
+    }
+    import network-topology {
+        prefix nt;
+        revision-date 2013-10-21;
+    }
+    import ietf-yang-types {
+        revision-date 2013-07-15;
+        prefix &quot;yang&quot;;
+    }
+
+    revision 2022-01-25 {
+        description &quot;Initial revision&quot;;
+    }
+
+    typedef data-tree-scope {
+        description &quot;Represents scope of data change (addition, replacement, deletion).&quot;;
+        type enumeration {
+            enum BASE {
+                description &quot;Represents only a direct change of the node, such as replacement of a node,
+                             addition or deletion.&quot;;
+            }
+            enum ONE {
+                description &quot;Represent a change (addition, replacement, or deletion) of the node or one
+                             of its direct children.&quot;;
+            }
+            enum SUBTREE {
+                description &quot;Represents a change of the node or any of or any of its child nodes, direct and nested.
+                             This scope is superset of ONE and BASE.&quot;;
+            }
+        }
+    }
+
+    grouping subtree-path {
+        leaf subtree-path {
+            type ft:rfc-8040-path;
+            mandatory true;
+            description &quot;Identifier of the subtree in the data-tree expressed as relative path.&quot;;
+        }
+    }
+
+    grouping subtree-identifier {
+        uses subtree-path;
+        leaf data-change-scope {
+            type data-tree-scope;
+            default &quot;SUBTREE&quot;;
+            description &quot;Scope of detected data-tree change events under specified path.&quot;;
+        }
+    }
+
+    grouping node-topology-identifier {
+        leaf node-id {
+            type nt:node-id;
+            mandatory true;
+            description &quot;Identifier of 'network-topology/topology/node' list entry.&quot;;
+        }
+        leaf topology-id {
+            type nt:topology-id;
+            mandatory true;
+            description &quot;Identifier of 'network-topology/topology' list entry.&quot;;
+        }
+    }
+
+    grouping node-subscriptions {
+        list data-change-subscriptions {
+            key &quot;subscription-id&quot;;
+            config false;
+            description &quot;List of active subscriptions to data-change events.&quot;;
+            uses subscription-identifier;
+            uses subtree-identifier;
+        }
+    }
+
+    grouping subscription-identifier {
+        leaf subscription-id {
+            type yang:uuid;
+            mandatory true;
+            description &quot;Unique identifier of the subscription.&quot;;
+        }
+    }
+
+    rpc create-data-change-subscription {
+        description &quot;Registration to data-tree change events under specific node and path.&quot;;
+        input {
+            uses node-topology-identifier;
+            uses subtree-identifier;
+        }
+        output {
+            uses subscription-identifier;
+        }
+    }
+
+    rpc delete-data-change-subscription {
+        description &quot;Unregistration from data-tree change events using provided subscription-id.&quot;;
+        input {
+            uses subscription-identifier;
+        }
+    }
+
+    rpc show-subscription-data {
+        input {
+            uses subscription-identifier;
+        }
+        output {
+            uses node-topology-identifier;
+            uses subtree-identifier;
+        }
+    }
+
+    augment &quot;/nt:network-topology/nt:topology/nt:node&quot; {
+        uses node-subscriptions;
+    }
+
+    notification data-change-event {
+        description &quot;Notification about created/deleted/updated data entries.&quot;;
+        uses subscription-identifier;
+        leaf transaction-id {
+            description &quot;Transaction in which modifications were made.&quot;;
+            type yang:uuid;
+            mandatory true;
+        }
+        list edit {
+            key &quot;subtree-path&quot;;
+            description &quot;List of edits made in the transaction.&quot;;
+            must &quot;data-before or data-after&quot;;
+            uses edit-content;
+        }
+    }
+
+    grouping edit-content {
+        uses subtree-path;
+        leaf data-before {
+            description &quot;JSON-formatted representation of original data.&quot;;
+            type string;
+        }
+        leaf data-after {
+            description &quot;JSON-formatted representation of updated data.&quot;;
+            type string;
+        }
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p><strong>Documentation</strong></p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">Kafka Notifications | Frinx Docs</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/uniconfig-operations/kafka-notifications/#data-change-events</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/uniconfig-operations/kafka-notifications/#data-change-events" class="absolute block inset-0"></a>
+</div>
+</p>
+<p><strong>Configuration</strong></p>
+<ul>
+<li>Added settings into lighty-uniconfig-config.json file:
+<ul>
+<li><code v-pre>dataChangeEventsEnabled</code> - turning on/off generation and distribution of data-change-events (by default, they are enabled)</li>
+<li><code v-pre>dataChangeEventsTopicName</code> - name of the Kafka topic (default identifier is &#x27;data-change-events&#x27;)</li>
+</ul>
+</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">// Grouped settings that are related to notifications.
+&quot;notifications&quot;: {
+    &quot;kafka&quot;: {
+        // Enabled collection and propagation of data-change-events into Kafka.
+        &quot;dataChangeEventsEnabled&quot;: true,
+        // Unique identifier of the Kafka topic used for distribution of data-change-events.
+        &quot;dataChangeEventsTopicName&quot;: &quot;data-change-events&quot;
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p><strong>Java client</strong></p>
+<p>Example, how to use data-change-events as triggers for callback inside UniConfig Java client:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">/*
+ * Copyright © 2022 Frinx and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.frinx.samples;
+
+import io.frinx.uniconfig.client.dce.api.DataChangeEventsService.DataChangeEventsListener;
+import io.frinx.uniconfig.client.dce.api.DataChangeEventsService.DataChangeEventsSubscription;
+import io.frinx.uniconfig.client.dce.impl.DataChange;
+import io.frinx.uniconfig.client.dce.impl.DataChangeEventsSubscriptionData.DataChangeEventsSubscriptionDataBuilder;
+import io.frinx.uniconfig.client.dce.impl.DataTreeScope;
+import io.frinx.uniconfig.client.dom.node.LeafNode;
+import io.frinx.uniconfig.client.services.Uniconfig;
+import io.frinx.uniconfig.client.services.Uniconfig.UniconfigBuilder;
+import io.frinx.uniconfig.client.services.config.KafkaSettings.KafkaBrokerLocation;
+import io.frinx.uniconfig.client.services.config.KafkaSettings.KafkaSettingsBuilder;
+import io.frinx.uniconfig.client.services.config.UniconfigServerSettings.UniconfigServerSettingsBuilder;
+import java.time.Instant;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public final class DataChangeEventsUseCase {
+    private static final Logger LOG = LoggerFactory.getLogger(DataChangeEventsUseCase.class);
+    private static final String YANG_REPOSITORY_NAME = &quot;system&quot;;
+    private static final String UNISTORE_NODE_ID = &quot;test&quot;;
+
+    public static void main(String[] args) throws InterruptedException {
+        final var uniconfig = new UniconfigBuilder()
+                .setUniconfigServerSettings(new UniconfigServerSettingsBuilder()
+                        .setUniconfigHostname(&quot;127.0.0.1&quot;)
+                        .setRestServerPort(8181)
+                        .setUsername(&quot;admin&quot;)
+                        .setPassword(&quot;admin&quot;)
+                        .build())
+                // Kafka settings - topic name is important
+                .setKafkaSettings(new KafkaSettingsBuilder()
+                        .setDataChangeEventsTopic(&quot;data-change-events&quot;)
+                        .setBrokers(Collections.singletonList(new KafkaBrokerLocation(&quot;127.0.0.1&quot;, 9092)))
+                        .build())
+                .build();
+
+        LOG.info(&quot;Writing initial configuration for testing purposes&quot;);
+        try (var rwTx = uniconfig.readWriteTransaction()) {
+            final var unistore = rwTx.unistore(UNISTORE_NODE_ID, YANG_REPOSITORY_NAME);
+            unistore.config()
+                    .containerNode(&quot;config&quot;, &quot;settings&quot;)
+                    .with(settings -&gt; {
+                        settings.container(&quot;ospf&quot;)
+                                .with(ospf -&gt; {
+                                    ospf.leaf(&quot;enabled&quot;).setBooleanValue(true);
+                                    ospf.leaf(&quot;process-id&quot;).setUint8Value((short) 10);
+                                    ospf.leaf(&quot;key-id&quot;).setUint8Value((short) 20);
+                                    ospf.container(&quot;remote&quot;)
+                                            .leaf(&quot;router-id&quot;).setStringValue(&quot;PCE-01234&quot;);
+                                });
+                        settings.list(&quot;process&quot;)
+                                .with(processList -&gt; {
+                                    processList.listEntry(LeafNode.of(&quot;uid&quot;).setStringValue(&quot;p1&quot;))
+                                            .with(listEntry -&gt; {
+                                                listEntry.leaf(&quot;uid&quot;).setStringValue(&quot;p1&quot;);
+                                                listEntry.container(&quot;address&quot;)
+                                                        .with(address -&gt; {
+                                                            address.leaf(&quot;bus-id&quot;).setStringValue(&quot;0x451FE&quot;);
+                                                            address.leaf(&quot;bus-size&quot;).setUint16Value(1024);
+                                                        });
+                                            });
+                                    processList.listEntry(LeafNode.of(&quot;uid&quot;).setStringValue(&quot;p2&quot;))
+                                            .leaf(&quot;uid&quot;).setStringValue(&quot;p2&quot;);
+                                });
+                    })
+                    .put();
+            rwTx.commit();
+        }
+
+        LOG.info(&quot;Creation of new subscription&quot;);
+        final var subscriptionInfo = new DataChangeEventsSubscriptionDataBuilder()
+                .toUnistoreTopology()
+                .setNodeId(UNISTORE_NODE_ID)
+                .setSubtreePath(&quot;/config:settings/process&quot;)
+                .setDataTreeScope(DataTreeScope.SUBTREE)
+                .build();
+
+        try (var processSubscription = uniconfig.dataChangeEventsService().subscribe(subscriptionInfo);
+             var ignored = processSubscription.registerListener(new DataChangeListener())) {
+            TimeUnit.SECONDS.sleep(10);
+            LOG.info(&quot;Created new subscription: {}&quot;, processSubscription.subscriptionData().getSubscriptionId());
+
+            updateProcessList(uniconfig);
+            TimeUnit.HOURS.sleep(1);
+
+            final var uuid = processSubscription.subscriptionData().getSubscriptionId();
+            uniconfig.dataChangeEventsService().findSubscription(uuid).ifPresent(DataChangeEventsSubscription::close);
+            
+        }
+    }
+
+    private static void updateProcessList(final Uniconfig uniconfig) {
+        LOG.info(&quot;Updating 'process' list&quot;);
+        try (var rwTx = uniconfig.readWriteTransaction()) {
+            // updating some leaves under 'p1'
+            rwTx.unistore(UNISTORE_NODE_ID).config()
+                    .containerPath(&quot;config&quot;, &quot;settings&quot;)
+                    .list(&quot;process&quot;)
+                    .listEntryPath(LeafNode.of(&quot;uid&quot;).setStringValue(&quot;p1&quot;))
+                    .container(&quot;address&quot;)
+                    .createDataNode()
+                    .with(address -&gt; {
+                        address.leaf(&quot;bus-id&quot;).setStringValue(&quot;0xFFFF&quot;);
+                        address.leaf(&quot;bus-size&quot;).setUint16Value(2048);
+                    })
+                    .merge();
+            // removal of list entry 'p2'
+            rwTx.unistore(UNISTORE_NODE_ID).config()
+                    .containerPath(&quot;config&quot;, &quot;settings&quot;)
+                    .list(&quot;process&quot;)
+                    .listEntryPath(LeafNode.of(&quot;uid&quot;).setStringValue(&quot;p2&quot;))
+                    .delete();
+            // creation of new list entry 'p3'
+            rwTx.unistore(UNISTORE_NODE_ID).config()
+                    .containerPath(&quot;config&quot;, &quot;settings&quot;)
+                    .list(&quot;process&quot;)
+                    .listEntryPath(LeafNode.of(&quot;uid&quot;).setStringValue(&quot;p3&quot;))
+                    .createDataNode()
+                    .put();
+            rwTx.commit();
+        }
+    }
+
+    private static final class DataChangeListener implements DataChangeEventsListener {
+        @Override
+        public void onDataChanged(final UUID transactionId, final Instant timestamp,
+                                  final List&lt;DataChange&gt; dataChangeList) {
+            LOG.info(&quot;{}: Captured data-change-event, committed transaction: {}&quot;, timestamp, transactionId);
+            dataChangeList.forEach(dataChange -&gt; {
+                LOG.info(&quot;Data before: {}&quot;, dataChange.getDataBefore());
+                LOG.info(&quot;Data after: {}&quot;, dataChange.getDataAfter());
+            });
+        }
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="added-config-option-to-disable-immediate-commit-model">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-config-option-to-disable-immediate-commit-model">#</doc-anchor-trigger>
+        <span>Added config option to disable immediate-commit model</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Description</strong></p>
+<ul>
+<li>Immediate-commit model is in some cases dangerous, because changes are automatically committed to managed network devices.</li>
+<li>Added option to disable immediate-commit model globally.</li>
+</ul>
+<p><strong>Configuration</strong></p>
+<p>New setting &#x27;isImmediateCommitEnabled&#x27; in the lighty-uniconfig-config.json:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">// Grouped settings that are related to Uniconfig transactions.
+&quot;transactions&quot;: {
+    /*
+    Boolean value if the Immediate Commit Model is enabled or not. Default value is true.
+    If disabled, only manually created transactions can exist.
+    */
+    &quot;isImmediateCommitEnabled&quot;: true
+}</code></pre>
+</doc-codeblock></div>
+<p>Default value is &#x27;true&#x27;.</p>
+<doc-anchor-target id="calling-replace-config-with-oper-after-sync-from-network-in-the-immediate-commit-model">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#calling-replace-config-with-oper-after-sync-from-network-in-the-immediate-commit-model">#</doc-anchor-trigger>
+        <span>Calling replace-config-with-oper after sync-from-network in the immediate-commit-model</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>In the immediate-commit-model, if user called sync-from-network operation, it behaved as &#x27;sync-to-network&#x27; operation:
+<ol>
+<li>reading configuration from device</li>
+<li>resolving diff between actual (device) and intended state (last saved configuration in database)</li>
+<li>sending resolved diff to operation - reverting changes, that have been done on device side</li>
+</ol>
+</li>
+</ul>
+<hr />
+<ul>
+<li>This dangerous if network device is configured manually by user or another tool.</li>
+<li>Fixed by calling replace-config-with-oper operation after called-sync-from-network operation and before committing temporary transaction created in the immediate-commit model session. It will result in storing of loaded configuration to database without performing any action on managed devices.</li>
+<li>This change alters only immediate-commit model. Build-and-commit model stays unaltered.</li>
+</ul>
+<doc-anchor-target id="making-default-cli-connection-parameters-configurable">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#making-default-cli-connection-parameters-configurable">#</doc-anchor-trigger>
+        <span>Making default CLI connection parameters configurable</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Description</strong></p>
+<ul>
+<li>There are couple of CLI connection parameters with some default values defined in cli-topology YANG module that can be specified at installation of device.</li>
+<li>This feature allows user to adjust these default parameters without repetitive adjustment in the install-node RPC request.</li>
+<li>Priority of using install parameters:
+<ul>
+<li>Parameter set in install RPC request</li>
+<li>Default parameter set in database</li>
+<li>Default parameter from YANG model</li>
+</ul>
+</li>
+</ul>
+<p><strong>Documentation</strong></p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">Device installation | Frinx Docs</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/network-management-protocols/uniconfig-installing/#default-parameters</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/network-management-protocols/uniconfig-installing/#default-parameters" class="absolute block inset-0"></a>
+</div>
+</p>
+<p><strong>API</strong></p>
+<p>Exposed default CLI settings into distinct container that is accessible using RESTCONF API (module cli-topology):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">container cli-default-parameters {
+    uses cli-node-keepalive-parameters;
+    uses cli-node-keepalive-strategy-parameters;
+    uses cli-node-lazy-strategy-parameters;
+    uses cli-node-tracing-parameters;
+    uses cli-node-parsing-parameters;
+}</code></pre>
+</doc-codeblock></div>
+<p>Exposed settings in the UniConfig shell - configuration mode / settings container.</p>
+<doc-anchor-target id="making-default-netconf-connection-parameters-configurable">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#making-default-netconf-connection-parameters-configurable">#</doc-anchor-trigger>
+        <span>Making default NETCONF connection parameters configurable</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Description</strong></p>
+<ul>
+<li>There are couple of NETCONF connection parameters with some default values defined in netconf-topology YANG module that can be specified at installation of device.</li>
+<li>This feature allows user to adjust these default parameters without repetitive adjustment in the install-node RPC request.</li>
+<li>Priority of using install parameters:
+<ul>
+<li>Parameter set in install RPC request</li>
+<li>Default parameter set in database</li>
+<li>Default parameter from YANG model</li>
+</ul>
+</li>
+</ul>
+<p><strong>Documentation</strong></p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">Device installation | Frinx Docs</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/network-management-protocols/uniconfig-installing/#default-parameters</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/network-management-protocols/uniconfig-installing/#default-parameters" class="absolute block inset-0"></a>
+</div>
+</p>
+<p><strong>API</strong></p>
+<p>Exposed default NETCONF settings into distinct container that is accessible using RESTCONF API (module netconf-node-topology):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">container netconf-default-parameters {
+    uses netconf-node-default-connection-parameters;
+    uses netconf-strict-parsing;
+    uses netconf-device-customization-factory;
+    uses netconf-node-tracing-parameters;
+}</code></pre>
+</doc-codeblock></div>
+<p>Exposed settings in the UniConfig shell - configuration mode / settings container.</p>
+<doc-anchor-target id="improvements">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#improvements">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F4A1;</span> Improvements</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="improved-displaying-of-children-nodes-of-datanode-in-java-client">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#improved-displaying-of-children-nodes-of-datanode-in-java-client">#</doc-anchor-trigger>
+        <span>Improved displaying of children nodes of DataNode in Java client</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Children nodes were organised under multiple levels of Map objects - it was not readable especially when user was debugging code.</li>
+<li>Now, children nodes are displayed directly under simple List collection:</li>
+</ul>
+<doc-anchor-target id="added-yang-based-documentation-to-java-client">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-yang-based-documentation-to-java-client">#</doc-anchor-trigger>
+        <span>Added YANG-based documentation to Java client</span>
+    </h3>
+</doc-anchor-target>
+<p>Added JavaDoc description to DataNode and DataNodePath sub-classes, how they are used in comparison to YANG schema tree.</p>
+<p><strong>Example:</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">/**
+ * Container that has only a single instance and can have multiple children nodes.
+ *
+ * &lt;pre&gt;{@code
+ * Example:
+ *
+ *  module mod1 {
+ *      namespace &quot;www.company.com/mod1&quot;;
+ *      prefix mod1;
+ *
+ *      grouping g1 {
+ *          container c1 {
+ *              leaf l1 {
+ *                  type string;
+ *              }
+ *          }
+ *      }
+ *  }
+ *
+ *  module mod2 {
+ *      namespace &quot;www.company.com/mod2&quot;;
+ *      prefix mod2;
+ *
+ *      import mod1 {
+ *         prefix mod1;
+ *      }
+ *
+ *      container c2 {
+ *          uses mod1:g1;
+ *      }
+ *  }
+ * }&lt;/pre&gt;
+ *
+ * &lt;p&gt;For provided yang {@link ContainerNode} can be created this way:&lt;/p&gt;
+ * &lt;pre&gt;{@code
+ *   ContainerNode c2 = ContainerNode.of(&quot;mod2&quot;, &quot;c2&quot;);
+ *   ContainerNode c1 = c2.container(&quot;mod1&quot;, &quot;c1&quot;);
+ * }&lt;/pre&gt;
+ */
+public final class ContainerNode extends CompositeDataNode&lt;ContainerNodePath, ContainerId, ContainerNode&gt;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="removed-redundant-module-name-prefixes-from-built-paths-in-java-client">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#removed-redundant-module-name-prefixes-from-built-paths-in-java-client">#</doc-anchor-trigger>
+        <span>Removed redundant module-name prefixes from built paths in Java client</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>RFC-8040 specifies that module-name prefix must be added only to the first augmented elements (transition to different namespace).</li>
+<li>Previously it worked non-optimally - module name was added to all elements of the path:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">PATH: /m1:element1/m1:element2/m2:element3/m2:element4</code></pre>
+</doc-codeblock></div>
+<p><strong>After improvement:</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">PATH: /m1:element1/element2/m2:element3/element4</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="added-option-to-enable-postgresql-driver-logs-in-uniconfig">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-option-to-enable-postgresql-driver-logs-in-uniconfig">#</doc-anchor-trigger>
+        <span>Added option to enable PostgreSQL driver logs in UniConfig</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Description</strong></p>
+<ul>
+<li>Logging connections and communication between UniConfig and PostgreSQL can be handy in case of debugging of some errors.</li>
+</ul>
+<p><strong>Configuration</strong></p>
+<ul>
+<li>To log detailed information about executed queries and PG connections, user should set <code v-pre>org.postgresql</code> logger level to <code v-pre>DEBUG</code> or <code v-pre>TRACE</code>.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">&lt;!-- used for automatic propagation of set logger level to JUL logging implementation --&gt;
+&lt;contextListener class=&quot;ch.qos.logback.classic.jul.LevelChangePropagator&quot;&gt;
+    &lt;resetJUL&gt;true&lt;/resetJUL&gt;
+&lt;/contextListener&gt;
+
+&lt;!-- PostgreSQL driver --&gt;
+&lt;logger name=&quot;org.postgresql&quot; level=&quot;INFO&quot;/&gt;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="added-transaction-id-also-to-both-restconf-requests-and-responses">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-transaction-id-also-to-both-restconf-requests-and-responses">#</doc-anchor-trigger>
+        <span>Added transaction-id also to both RESTCONF requests and responses</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Description</strong></p>
+<ul>
+<li>UniConfig transaction-id simplifies debugging of executed RESTCONF operations.</li>
+<li>Example (added &#x27;Uniconfig transaction&#x27; property):</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">08:51:21.508 TRACE org.opendaylight.restconf.nb.rfc8040.jersey.providers.logging.RestconfLoggingBroker - HTTP request:
+Message ID: 3
+Uniconfig transaction: b6639cb4-55f2-449e-a91e-d2ad490198d2
+HTTP method: POST
+URI: http://localhost:8181/rests/operations/logging:enable-device-logging
+Source address: 0:0:0:0:0:0:0:1
+Source port: 37472
+User ID: admin@sdn
+HTTP headers:
+    User-Agent: [curl/7.69.1]
+    Authorization: ***
+    Host: [localhost:8181]
+    Accept: [*/*]
+    Content-Length: [116]
+    Content-Type: [application/json]
+Request body:
+{
+  &quot;input&quot;: {
+    &quot;broker-identifier&quot;: &quot;netconf_notifications&quot;,
+    &quot;device-list&quot;: [
+      &quot;xr6&quot;,
+      &quot;xr7&quot;
+    ]
+  }
+}
+
+08:51:21.518 TRACE org.opendaylight.restconf.nb.rfc8040.jersey.providers.logging.RestconfLoggingBroker - HTTP response:
+Request message ID: 3
+Uniconfig transaction: b6639cb4-55f2-449e-a91e-d2ad490198d2
+Status code: 200
+HTTP headers:
+    Content-Type: [application/yang-data+json]
+Response body:
+{
+  &quot;output&quot;: {
+    &quot;message&quot;: &quot;Successfully updated logging broker [netconf_notifications]&quot;,
+    &quot;status&quot;: &quot;complete&quot;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p><strong>Documentation</strong></p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">Logging Framework | Frinx Docs</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/operational-procedures/logging/#restconf</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/operational-procedures/logging/#restconf" class="absolute block inset-0"></a>
+</div>
+</p>
+<doc-anchor-target id="hiding-sensitive-data-in-logs">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#hiding-sensitive-data-in-logs">#</doc-anchor-trigger>
+        <span>Hiding sensitive data in logs</span>
+    </h3>
+</doc-anchor-target>
+<p>In the UniConfig logs are shown sensitive data like PostgreSQL DB credentials, etc. This is a potential security hole.</p>
+<p><strong>Example:</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">10:33:30.365 INFO io.frinx.lighty_uniconfig.initializers.ConfigParsingUtils - dbPersistence configuration: {&quot;embeddedDatabase&quot;:{&quot;enabled&quot;:false,&quot;dataDir&quot;:&quot;./data/pg_dir&quot;,&quot;cleanDataDir&quot;:true},&quot;connection&quot;:{&quot;databaseLocations&quot;:[{&quot;host&quot;:&quot;uniconfig-postgres&quot;,&quot;port&quot;:5432}],&quot;dbName&quot;:&quot;uniconfig&quot;,&quot;username&quot;:&quot;postgres&quot;,&quot;password&quot;:&quot;postgres&quot;,&quot;initialDbPoolSize&quot;:5,&quot;maxDbPoolSize&quot;:100,&quot;maxIdleConnections&quot;:5,&quot;maxWaitTime&quot;:30000,&quot;enabledTls&quot;:false,&quot;tlsClientCert&quot;:&quot;/opt/uniconfig-frinx/./client.pks&quot;,&quot;tlsClientKey&quot;:&quot;/opt/uniconfig-frinx/./client.key&quot;,&quot;tlsCaCert&quot;:&quot;/opt/uniconfig-frinx/./ca.pks&quot;},&quot;uniconfigInstance&quot;:{&quot;instanceName&quot;:null,&quot;backupInstanceName&quot;:null},&quot;monitoring&quot;:{&quot;heartbeatInterval&quot;:1000,&quot;initialMonitoringDelay&quot;:5000,&quot;backupMonitoringInterval&quot;:10000,&quot;maxInstanceAge&quot;:5000}}</code></pre>
+</doc-codeblock></div>
+<p>Fixed by hiding JSON configuration parsing details from logs.</p>
+<doc-anchor-target id="bug-fixes">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#bug-fixes">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x274C;</span> Bug Fixes</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="fixed-invocation-of-device-discovery-rpc-multiple-times">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-invocation-of-device-discovery-rpc-multiple-times">#</doc-anchor-trigger>
+        <span>Fixed invocation of device-discovery RPC multiple times</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>RPC response contained also results from previous RPC invocation.</li>
+<li>Fixed by isolation of RPC results.</li>
+</ul>
+<doc-anchor-target id="fixed-setting-of-max-connection-attempts-during-device-installation-clinetconf">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-setting-of-max-connection-attempts-during-device-installation-clinetconf">#</doc-anchor-trigger>
+        <span>Fixed setting of max-connection attempts during device installation (CLI/NETCONF)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Description</strong></p>
+<ul>
+<li>Removed max-connection-attempts parameter from install-node RPC. It was clashing with parameters from southbound layers and introducing confusion.</li>
+<li>Fixed switched loading of max-connection-attempts and max-reconnection-attempts on NETCONF layer. It resulted in the infinite initial maximum connections attempts (by default, there should be 1 attempt).</li>
+<li>Setting default max-connection-attempts to 1 in YANG model (both CLI and NETCONF layers).</li>
+</ul>
+<p><strong>Documentation</strong></p>
+<p>Updated document:
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">Device installation| Frinx Docs</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/frinx-uniconfig/user-guide/network-management-protocols/uniconfig-installing/#device-installation</span>
+    </div>
+    <a href="/frinx-uniconfig/user-guide/network-management-protocols/uniconfig-installing/#device-installation" class="absolute block inset-0"></a>
+</div>
+</p>
+<p><strong>API</strong></p>
+<ul>
+<li>connection-manager - removed leaf <code v-pre>max-connection-attempts</code>:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">grouping mount-node-input-fields {
+    uses node-connection;
+
+-    leaf max-connection-attempts {
+-        type uint32;
+-        description &quot;Maximum number of connection attempts in southbound layer, before mounting process fails.
+-                     Value of this field doesn't override value from the mount request - it is used only as
+-                     a default value.&quot;;
+-        default 1;
+-    }
+}</code></pre>
+</doc-codeblock></div>
+<p>cli-topology - setting max-connection-attempts default value to 1:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">grouping cli-node-keepalive-parameters {
+    leaf max-connection-attempts {
+        type uint32;
+        default 1;
+        description &quot;Maximum number of connection attempts before connection initialization is marked as failed.
+                     Value 0 disables this limit.&quot;;
+    }</code></pre>
+</doc-codeblock></div>
+<p>netconf-node-topology - setting max-connection-attempts default value to 1:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">grouping netconf-node-default-connection-parameters {
+    leaf max-connection-attempts {
+        description &quot;Maximum number of connection retries. Non positive value or null is interpreted as infinity.&quot;;
+        config true;
+        type uint32;
+        default 1;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="fixed-stuck-uniconfig-api-because-of-interrupted-sql-operation">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-stuck-uniconfig-api-because-of-interrupted-sql-operation">#</doc-anchor-trigger>
+        <span>Fixed stuck UniConfig API because of interrupted SQL operation</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Description</strong></p>
+<ul>
+<li>Default socket-read-timeout for the PostgreSQL driver is 0 - UniConfig is waiting forever for result of some query. This causes blocking of other UniConfig operations on specific node, if connection between UniConfig and PG is dropped during execution of some query.</li>
+<li>Fixed by exposing <code v-pre>socketReadTimeout</code> parameter and setting its default value to 20 seconds.</li>
+</ul>
+<p><strong>Configuration</strong></p>
+<p>Added <code v-pre>socketReadTimeout</code> to database connection settings (lighty-uniconfig-config.json):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">&quot;dbPersistence&quot;: {
+    // Grouped settings related to database connection.
+    &quot;connection&quot;: {
+        /*
+        Timeout value used for socket read operations. If reading from the server takes longer than this value,
+        the connection is closed. This can be used as both a brute force global query timeout and a method of
+        detecting network problems. The timeout is specified in seconds and a value of 0 means that it is disabled.
+        */
+        &quot;socketReadTimeout&quot;: 20
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="fixed-propagation-of-error-on-disabled-templates">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-propagation-of-error-on-disabled-templates">#</doc-anchor-trigger>
+        <span>Fixed propagation of error on disabled templates</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>If templates are disabled, then user will get direct error message with 400 status code. Previously it failed on some parsing error or it didn’t fail at all and UniConfig just ignored unknown data.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{
+    &quot;errors&quot;: {
+        &quot;error&quot;: [
+            {
+                &quot;error-message&quot;: &quot;Templates are disabled in the config!&quot;,
+                &quot;error-tag&quot;: &quot;unknown-element&quot;,
+                &quot;error-type&quot;: &quot;application&quot;
+            }
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="fixed-pki-authentication-to-netconf-device-negative-cases">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-pki-authentication-to-netconf-device-negative-cases">#</doc-anchor-trigger>
+        <span>Fixed PKI authentication to NETCONF device (negative cases)</span>
+    </h3>
+</doc-anchor-target>
+<p>PKI authentication on device - attempt to install device with reference to not existing private key</p>
+<p><strong>Previously it failed with error:</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">DEBUG    uniconfig:uniconfig.py:297 response: 200 {&quot;output&quot;:{&quot;status&quot;:&quot;fail&quot;,&quot;error-message&quot;:&quot;Unified mountpoint 'versa' was not successfully created; connection-status: failed, status-message: cannot create southbound mountpoint (unable-to-connect). Maximum reconnection attempts reached. Cause : No more authentication methods available&quot;}}</code></pre>
+</doc-codeblock></div>
+<p>After fix it will fail with error message that private key with specified identifier doesn’t exist.</p>
+<p>PKI authentication on device - registering the password protected key with RPC netconf-keystore:add-keystore-entry - but providing bad password</p>
+<ul>
+<li>Fixed by validation of input password against key-store.</li>
+<li>If it is invalid, UniConfig will return error immediately and will not try to register such private key and afterwards use it during mounting process.</li>
+</ul>
+<doc-anchor-target id="netconf-edit-config-operation-with-insert-attribute-failed-because-of-aggregated--messages">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#netconf-edit-config-operation-with-insert-attribute-failed-because-of-aggregated--messages">#</doc-anchor-trigger>
+        <span>NETCONF edit-config operation with insert attribute failed because of aggregated <edit-config> messages</span>
+    </h3>
+</doc-anchor-target>
+<p>When insert attribute was used with value before/after, there was problem with NETCONF messages ordering in the aggregated <edit-config> message.</p>
+<p>Fixed by assuring that list entry specified by insert attribute is placed before actual list entry in the edit-config message sent to NETCONF server.</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results />
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/release-notes/uniconfig-5.0.2/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Uni​Config 5.​0.​2</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/release-notes/uniconfig-4.2.10/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Uni​Config 4.​2.​10</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="about.md">About</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2022. <a href="https://frinx.io/">Frinx.io</a> All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script>window.__DOCS__ = { "title": "UniConfig 5.0.1", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+</body>
+</html>
