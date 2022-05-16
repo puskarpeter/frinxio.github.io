@@ -49,12 +49,12 @@ order: 15
 
 ## :wrench: Other
 
--Upgrade sshd libs to version 2.8.0
+- Upgrade sshd libs to version 2.8.0
 
--Upgrade and cleanup usage of jaxb
+- Upgrade and cleanup usage of jaxb
 
--Upgrade jetty/jersey/jax-rs dependencies
+- Upgrade jetty/jersey/jax-rs dependencies
 
--Reorganisation of NETCONF connection parameters
+- Reorganisation of NETCONF connection parameters
 
--Renaming/reorganisation of NETCONF connection parameters
+- Renaming/reorganisation of NETCONF connection parameters
