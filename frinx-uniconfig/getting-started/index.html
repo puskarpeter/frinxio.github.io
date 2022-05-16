@@ -33,11 +33,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon-32x32.png" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.706011386949" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.706012034095" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706011386949" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706012034095" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706011386949" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706012034095" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -330,11 +330,11 @@ contact FRINX for more information.)</p>
 <p>Enter the following commands to download, activate and start UniConfig
 in a Docker container:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">docker pull frinx/uniconfig:5.0.6
+<pre class="language-none"><code v-pre class="language-none">docker pull frinx/uniconfig:5.0.7
 docker pull postgres:12.2
 TOKEN=[frinx-license_secret-token]
 docker run -it -d --hostname postgres --name postgres -p 26257:5432 -e POSTGRES_PASSWORD=unipass -e POSTGRES_USER=uniremote -e POSTGRES_DB=uniconfig postgres:12.2
-docker run -it --hostname uniconfig --name uniconfig -p 8181:8181 --network host frinx/uniconfig:5.0.6 -l $token</code></pre>
+docker run -it --hostname uniconfig --name uniconfig -p 8181:8181 --network host frinx/uniconfig:5.0.7 -l $token</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
@@ -377,7 +377,7 @@ docker run -it --hostname uniconfig --name uniconfig -p 8181:8181 --network host
 </doc-anchor-target>
 <p>Click on the link to download a zip archive of the latest FRINX
 UniConfig:<br />
-<a href="https://license.frinx.io/download/uniconfig-5.0.6.zip">uniconfig-5.0.6.zip</a><br />
+<a href="https://license.frinx.io/download/uniconfig-5.0.7.zip">uniconfig-5.0.7.zip</a><br />
 By downloading the file you accept the FRINX software agreement:
 <a href="https://frinx.io/eula">EULA</a></p>
 <doc-anchor-target id="activate-frinx-uniconfig">
