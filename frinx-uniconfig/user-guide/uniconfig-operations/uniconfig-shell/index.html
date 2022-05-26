@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HVGXQFHWX"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6HVGXQFHWX');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 2.2">
+
+    <!-- Primary Meta Tags -->
+    <title>UniConfig Shell | Frinx Docs</title>
+    <meta name="title" content="UniConfig Shell | Frinx Docs">
+    <meta name="description" content="UniConfig shell is a Command Line Interface for Uniconfig. Accessible over SSH, it allows users to interact with Uniconfig features including:" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-shell/">
+    <meta property="og:title" content="UniConfig Shell | Frinx Docs">
+    <meta property="og:description" content="UniConfig shell is a Command Line Interface for Uniconfig. Accessible over SSH, it allows users to interact with Uniconfig features including:">
+    <meta property="og:image" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-shell/scrolling_example.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-shell/">
+    <meta property="twitter:title" content="UniConfig Shell | Frinx Docs">
+    <meta property="twitter:description" content="UniConfig shell is a Command Line Interface for Uniconfig. Accessible over SSH, it allows users to interact with Uniconfig features including:">
+    <meta property="twitter:image" content="https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-shell/scrolling_example.png">
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/static/favicon-32x32.png" rel="icon" />
+    <link href="/resources/css/retype.css?v=2.2.706885059332" rel="stylesheet" data-turbo-track="reload" />
+
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706885059332" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706885059332" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=2.2.706885059332" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between grow pr-6 md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="/" class="flex items-center leading-snug text-2xl">
+                            <span class="grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="/static/frinx_logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="/static/frinx_logo.png">
+                            </span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="md:mr-6">
+                                <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path fill-rule="evenodd" d="M11.03 2.59a1.5 1.5 0 011.94 0l7.5 6.363a1.5 1.5 0 01.53 1.144V19.5a1.5 1.5 0 01-1.5 1.5h-5.75a.75.75 0 01-.75-.75V14h-2v6.25a.75.75 0 01-.75.75H4.5A1.5 1.5 0 013 19.5v-9.403c0-.44.194-.859.53-1.144l7.5-6.363zM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v6.25h5v-9.403L12 3.734z"/>
+                                        </g>
+                                    </svg>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li class="md:mr-6">
+                                <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://frinx.io/" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path fill-rule="evenodd" d="M0 3.75C0 2.784.784 2 1.75 2h20.5c.966 0 1.75.784 1.75 1.75v16.5A1.75 1.75 0 0122.25 22H1.75A1.75 1.75 0 010 20.25V3.75zm1.75-.25a.25.25 0 00-.25.25V5.5h4v-2H1.75zM7 3.5v2h4v-2H7zm5.5 0v2h10V3.75a.25.25 0 00-.25-.25H12.5zm10 3.5h-21v13.25c0 .138.112.25.25.25h20.5a.25.25 0 00.25-.25V7z"/>
+                                        </g>
+                                    </svg>
+                                    <span>Webpage</span>
+                                </a>
+                            </li>
+                            <li class="md:mr-6">
+                                <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/FRINXio" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                        </g>
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                            </li>
+                            <li class="md:mr-6">
+                                <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://www.linkedin.com/company/frinx" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-.139 9.237c.209 4.617-3.234 9.765-9.33 9.765-1.854 0-3.579-.543-5.032-1.475 1.742.205 3.48-.278 4.86-1.359-1.437-.027-2.649-.976-3.066-2.28.515.098 1.021.069 1.482-.056-1.579-.317-2.668-1.739-2.633-3.26.442.246.949.394 1.486.411-1.461-.977-1.875-2.907-1.016-4.383 1.619 1.986 4.038 3.293 6.766 3.43-.479-2.053 1.08-4.03 3.199-4.03.943 0 1.797.398 2.395 1.037.748-.147 1.451-.42 2.086-.796-.246.767-.766 1.41-1.443 1.816.664-.08 1.297-.256 1.885-.517-.439.656-.996 1.234-1.639 1.697z"/>
+                                        </g>
+                                    </svg>
+                                    <span>LinkedIn</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+        
+                            <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                            style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search" />
+                        </div>
+        
+                        <!-- Mobile search button mock -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placehokder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button mock -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+                </div>
+            
+                <div class="pl-6 mb-4 mt-1">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/README.md">Home</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://frinx.io/">Webpage</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/FRINXio">GitHub</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://www.linkedin.com/company/frinx">LinkedIn</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="grow min-w-0 px-6 md:px-16">
+                        <main class="relative pt-6 pb-16">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="uniconfig-shell" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#uniconfig-shell">#</doc-anchor-trigger>
+        <span>UniConfig Shell</span>
+    </h1>
+</doc-anchor-target>
+<p>UniConfig shell is a Command Line Interface for Uniconfig. Accessible over SSH, it allows users to interact with Uniconfig features including:</p>
+<ul>
+<li>reading operational data of devices</li>
+<li>manipulating device configuration</li>
+<li>manipulating configuration templates</li>
+<li>manipulating data stored in unistore</li>
+<li>invoking device or UniConfig operations</li>
+<li>manipulating global UniConfig settings</li>
+</ul>
+<p>Uniconfig shell is model driven and thus its interface is mostly auto-generated from YANG schemas (e.g., tree structure of data-nodes or available
+RPC/action operations).</p>
+<doc-anchor-target id="configuration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration">#</doc-anchor-trigger>
+        <span>Configuration</span>
+    </h2>
+</doc-anchor-target>
+<p>By default, UniConfig shell is disabled. To enable it, configuration parameter &#x27;cliShell/sshServer/enabled&#x27; must be set to &#x27;true&#x27;
+in the &#x27;config/lighty-uniconfig-config.json&#x27; file.</p>
+<p>All available settings and descriptions are displayed in the following JSON snippet.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">UniConfig shell configuration (config/lighty-uniconfig-config.json)</div>
+<pre class="language-json"><code v-pre class="language-json">    &quot;cliShell&quot;: {
+        &quot;sshServer&quot;: {
+            // Flag that determines if ssh server will be started or not.
+            &quot;enabled&quot;: false,
+            // Port bind to ssh server.
+            &quot;port&quot;: 2022,
+            // IP address bind to ssh server.
+            &quot;inetAddress&quot;: &quot;127.0.0.1&quot;,
+            // Basic username + password authentication.
+            &quot;usernamePasswordAuth&quot;: {
+                &quot;username&quot;: &quot;admin&quot;,
+                &quot;password&quot;: &quot;secret&quot;
+            }
+        },
+        // Flag that determines if uniconfig-shell provides scrolling of output
+        &quot;enableScrolling&quot;: false,
+        // Number of history items to keep in memory
+        &quot;historySize&quot;: 500,
+        // Number of history items to keep in the history file
+        &quot;historyFileSize&quot;: 1000
+    }</code></pre>
+</doc-codeblock></div>
+<p>After starting UniConfig, SSH server will listen for connections on port 2022 and loopback interface.</p>
+<doc-anchor-target id="navigation-in-the-shell">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#navigation-in-the-shell">#</doc-anchor-trigger>
+        <span>Navigation in the shell</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Every command line starts with command prompt that ends with &#x27;&gt;&#x27; character. Identifier of the command prompt changes
+based on current shell mode and state of the execution in this mode.</li>
+<li>Commands &#x27;exit&#x27; and &#x27;quit&#x27; appear in all shell modes. Command &#x27;exit&#x27; returns state to the parent state, command &#x27;quit&#x27;
+returns state to the nearest parent mode (e.g., configuration mode, root mode, operational show mode). If the current
+state of shell represents some mode, commands &#x27;quit&#x27; and &#x27;exit&#x27; have the same effect - returning to the parent mode.</li>
+<li>Typed command can be sent to the UniConfig using ENTER key. After that, UniConfig processes the command and may
+send response to the console depending on the command behaviour. All commands are processed synchronously - user
+cannot execute multiple commands in parallel in the same SSH session.</li>
+<li>CTRL-A and CTRL-E can be used for moving cursor on the current line to the beginning of the line, or the end of the
+line, respectively.</li>
+<li>CTRl-L is used for clearing of the shell screen.</li>
+<li>Arrow keys UP/DOWN are used for loading of the previous or more recent command in the command history.</li>
+<li>To cancel current line and moving to the blank line, user can use CTRL+C shortcut.</li>
+<li>Key TAB can be used for loading of the available suggestions in the current context. By hitting TAB again, user can
+navigate through suggested commands using arrow keys and select some of them using ENTER. Submode with suggestions
+can be left using CTRL-E shortcut. Text in the brackets contain description of the next command.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Loading available suggestions under &#x27;show uniconfig iosxr&#x27; command</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig iosxr
+&gt;                                                                            (output to file)
+evpn                                       (Top level configuration containers for EVPN data)
+interfaces        (Top level container for interfaces, including configuration
+and state data.)
+logging                                               (Enclosing container for logging data.)
+network-instances                       (The L2, L3, or L2+L3 forwarding instances that are…)
+oam                                 (Top level configuration container for ethernet OAM data)
+snmp                                    (Enclosing container for snmp interface-specific
+data.)
+|</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>If displayed output is longer than the current length of command-line window, output is displayed with scrolling
+capability. ENTER is used for displaying next line, while SPACE is used for displaying next page. Character &#x27;q&#x27;
+can be used to leave scrolling mode. It is possible to scroll only in the one direction - towards end of output.</li>
+</ul>
+<p><figure class="content-center">
+    <img src="scrolling_example.png" alt="Scrolling through long output" />
+    <figcaption class="caption">Scrolling through long output</figcaption>
+</figure>
+</p>
+<doc-anchor-target id="root-mode">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#root-mode">#</doc-anchor-trigger>
+        <span>Root mode</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Root mode represents initial mode that is available to a user after successful authentication.</li>
+<li>Example: login into UniConfig shell:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Connecting to UniConfig shell using SSH client</div>
+<pre class="language-bash"><code v-pre class="language-bash">Connection to 127.0.0.1 closed.
+[jtoth@JT-WORK ~]$ ssh admin@127.0.0.1 -p 2022
+Password authentication
+(admin@127.0.0.1) Password:
+uniconfig&gt;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Root mode overview</div>
+<pre class="language-bash"><code v-pre class="language-bash">uniconfig&gt;
+configuration-mode      (opening configuration mode)
+exit
+request                          (execution of RPCs)
+show                      (reading data from device)
+show-history (show history [max number of commands])</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Command &#x27;exit&#x27; is used for exiting UniConfig shell interface altogether (disconnecting SSH client).</li>
+<li>Example - exiting UniConfig shell:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Leaving UniConfig shell</div>
+<pre class="language-bash"><code v-pre class="language-bash">uniconfig&gt;exit
+Console closed. Press any key to exit!
+Connection to 127.0.0.1 closed by remote host.
+Connection to 127.0.0.1 closed.</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>Currently, only username/password single-user authentication is supported according to configuration
+in the &#x27;config/lighty-uniconfig-config.json&#x27;.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="accessing-sub-modes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#accessing-sub-modes">#</doc-anchor-trigger>
+        <span>Accessing sub-modes</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Root mode acts as a gateway for opening configuration, show, and request operational modes.</li>
+<li>Example - switching into Configuration mode:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Opening configuration mode</div>
+<pre class="language-bash"><code v-pre class="language-bash">uniconfig&gt;configuration-mode
+config&gt;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="show-command-history">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#show-command-history">#</doc-anchor-trigger>
+        <span>Show command history</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Command &#x27;show-history&#x27; is used for displaying list of N last invoked commands.</li>
+<li>Example - show executed last 5 commands:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Show history</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show-history 5
+----- History of commands -----
+10-05-2022 14:48:14 : configuration-mode
+10-05-2022 14:48:16 : request
+10-05-2022 14:48:17 : exitr
+10-05-2022 14:48:18 : exit
+10-05-2022 14:48:24 : show-history 5</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>This command is also available from the Configuration mode.</li>
+</ul>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>List of invoked commands are persisted across UniConfig restarts and SSH connections.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="configuration-mode">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration-mode">#</doc-anchor-trigger>
+        <span>Configuration mode</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Configuration mode provides access to:</li>
+</ul>
+<ol>
+<li>CRUD operations on top of persisted uniconfig, unistore and template nodes.</li>
+<li>CRUD operations on top of persisted UniConfig settings.</li>
+<li>UniConfig RPC operations such as commit or calculate-diff.</li>
+</ol>
+<ul>
+<li>After opening Configuration mode, a new UniConfig transaction is created. All operations that are invoked from
+the configuration mode are executed in scope of created transaction.</li>
+<li>Transaction is automatically closed after leaving the Configuration mode (&#x27;exit&#x27; or &#x27;quit&#x27; command).</li>
+<li>If user invokes &#x27;commit&#x27; or &#x27;checked-commit&#x27;, transaction is automatically refreshed (user stays in the configuration
+mode with a newly created transaction).</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Configuration mode overview</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;
+others
+delete                                     (delete operation)
+exit                                  (return to parent mode)
+quit                                    (return to root mode)
+request                                   (execution of RPCs)
+set                                           (set operation)
+show                                         (show operation)
+show-history          (show history [max number of commands])
+aliases
+diff (alias for 'request calculate-diff target-nodes/node *')</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="show-configuration">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#show-configuration">#</doc-anchor-trigger>
+        <span>Show configuration</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>Show operation can be used to display selected subtrees.</p>
+</li>
+<li><p>Subtree path can be constructed interactively with help of shell suggestions / auto-completion mechanism.
+Construction of the path works the same way in the Show, Delete, and Set operations.</p>
+</li>
+<li><p>Example - displaying configuration of selected container:</p>
+</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Show operation: available topologies or root configuration containers</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show
+settings            (settings)   uniconfig (uniconfig topology)
+template   (template topology)   unistore   (unistore topology)</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Show operation: selection of installed node</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig
+nodes
+iosxr    iosxr2</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Show operation: selection of root data container</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig iosxr
+&gt;                                                                            (output to file)
+evpn                                       (Top level configuration containers for EVPN data)
+interfaces        (Top level container for interfaces, including configuration
+and state data.)
+logging                                               (Enclosing container for logging data.)
+network-instances                       (The L2, L3, or L2+L3 forwarding instances that are…)
+oam                                 (Top level configuration container for ethernet OAM data)
+snmp                                    (Enclosing container for snmp interface-specific
+data.)</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Show operation: selection of interface id</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig iosxr interfaces interface
+&gt;     (output to file)   GigabitEthernet0/0/0/2   MgmtEth0/0/CPU0/0
+GigabitEthernet0/0/0/0   GigabitEthernet0/0/0/3   |               (pipe)
+GigabitEthernet0/0/0/1   GigabitEthernet0/0/0/4</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Show operation: invocation of command</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 config
+{
+  &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
+  &quot;enabled&quot;: false,
+  &quot;name&quot;: &quot;GigabitEthernet0/0/0/0&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="delete-configuration">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#delete-configuration">#</doc-anchor-trigger>
+        <span>Delete configuration</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Delete operation removes a selected subtree.</li>
+<li>Example - removal of a container:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Construction of path with help from suggestions</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;delete uniconfig iosxr
+evpn                                       (Top level configuration containers for EVPN data)
+interfaces        (Top level container for interfaces, including configuration
+and state data.)
+logging                                               (Enclosing container for logging data.)
+network-instances                       (The L2, L3, or L2+L3 forwarding instances that are…)
+oam                                 (Top level configuration container for ethernet OAM data)
+snmp                                    (Enclosing container for snmp interface-specific
+data.)</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Delete &#x27;config&#x27; container under &#x27;network-instance&#x27; with key value &#x27;default&#x27;</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;delete uniconfig iosxr network-instances network-instance default config
+config&gt;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Verify state of &#x27;network-instance&#x27;</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig iosxr network-instances network-instance default
+{
+  &quot;name&quot;: &quot;default&quot;,
+  &quot;protocols&quot;: {
+    &quot;protocol&quot;: [
+      {
+        &quot;identifier&quot;: &quot;frinx-openconfig-policy-types:STATIC&quot;,
+        &quot;name&quot;: &quot;default&quot;,
+        &quot;config&quot;: {
+          &quot;identifier&quot;: &quot;frinx-openconfig-policy-types:STATIC&quot;,
+          &quot;name&quot;: &quot;default&quot;
+        }
+      }
+    ]
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="set-configuration">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#set-configuration">#</doc-anchor-trigger>
+        <span>Set configuration</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Set operation can be used for:</li>
+</ul>
+<ol>
+<li>Setting value of a single leaf.</li>
+<li>Setting values of multiple leaves in a single shell operation.</li>
+<li>Setting list of values for a leaf-list.</li>
+<li>Replacing the whole subtree using a JSON snippet.</li>
+</ol>
+<ul>
+<li>Example - setting value of a single leaf:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Providing datatype hints at selected leaf</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;set uniconfig iosxr lacp config system-priority
+(type: uint16, constraints: [Range: [[0..65535]]])</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Setting value of LACP &#x27;system-priority&#x27; to &#x27;100&#x27;</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;set uniconfig iosxr lacp config system-priority 100
+config&gt;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Displaying changed LACP configuration</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig iosxr lacp config
+{
+  &quot;system-priority&quot;: 100
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Example - setting values of multiple leaves: under &#x27;hold-time&#x27; container:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Displaying hint for value of the leaf &#x27;up&#x27;</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-time config up
+(type: uint32, constraints: [Range: [[0..4294967295]]])</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Setting value of the leaf &#x27;up&#x27; and displaying hint for value of the leaf &#x27;down&#x27;</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-time config up 20 down
+(type: uint32, constraints: [Range: [[0..4294967295]]])</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Setting values of the leaves &#x27;up&#x27; and &#x27;down&#x27;</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-time config up 20 down 15
+config&gt;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Verification of the &#x27;hold-time&#x27; configuration</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-time
+{
+  &quot;config&quot;: {
+    &quot;up&quot;: 20,
+    &quot;down&quot;: 15
+  }
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>JSON snippet can be written to a selected data-tree node by entering &#x27;json&#x27; sub-mode. In the &#x27;json&#x27; su-mode, user can type
+multiple lines that must represent a well-formed JSON document. At the end, user can confirm the set operation
+using pattern &#x27;w!&#x27; + newline or to cancel the set operation with &#x27;q!&#x27; + newline pattern.</li>
+<li>Example - replacing configuration of an interface using a JSON snippet:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Replacing &#x27;config&#x27; container under interface using provided JSON snippet</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1 config json
+{
+&gt;   &quot;config&quot;: {
+&gt;     &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
+&gt;     &quot;enabled&quot;: true,
+&gt;     &quot;name&quot;: &quot;GigabitEthernet0/0/0/1&quot;
+&gt;   }
+&gt; }
+w!</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Verification of Set operation</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1
+{
+  &quot;name&quot;: &quot;GigabitEthernet0/0/0/1&quot;,
+    &quot;config&quot;: {
+    &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
+    &quot;enabled&quot;: true,
+    &quot;name&quot;: &quot;GigabitEthernet0/0/0/1&quot;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Example - leaving &#x27;json&#x27; sub-mode without execution of Set operation:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Cancellation of the Set operation and leaving &#x27;json&#x27; sub-mode</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1 config json
+{
+&gt;   &quot;config&quot;: {
+&gt;     &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
+&gt;     &quot;enabled&quot;: true,
+&gt;     &quot;name&quot;: &quot;GigabitEthernet0/0/0/1&quot;
+&gt;   }
+&gt; }
+q!</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Verification of the cancelled Set operation</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1
+{
+  &quot;name&quot;: &quot;GigabitEthernet0/0/0/1&quot;,
+  &quot;config&quot;: {
+    &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
+    &quot;enabled&quot;: false,
+    &quot;name&quot;: &quot;GigabitEthernet0/0/0/1&quot;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="execute-uniconfig-operation">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#execute-uniconfig-operation">#</doc-anchor-trigger>
+        <span>Execute UniConfig operation</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Command &#x27;request&#x27; is used to execute UniConfig operations such as &#x27;commit&#x27; or &#x27;calculate-diff&#x27;
+in the UniConfig transaction.</li>
+<li>User can fill in input parameters and values interactively or via provided JSON snippet.</li>
+</ul>
+<ul>
+<li>Example - execution of UniConfig RPCs in the scope of open UniConfig transaction:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Displaying available &#x27;commit&#x27; RPC parameters</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;request commit
+&gt;                                                                            (output to file)
+do-rollback (Controls whether to roll back successfully configured devices in case of failu…)
+do-validate (Option to enable/disable validation at commit. Default value is true - validate)
+json                                                                             (JSON input)
+target-nodes/node
+|                                                                                      (pipe)</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Execution of &#x27;calculate-diff&#x27; RPC with 1 argument - target node</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;request calculate-diff target-nodes/node iosxr
+{
+  &quot;node-results&quot;: {
+    &quot;node-result&quot;: [
+      {
+        &quot;node-id&quot;: &quot;iosxr&quot;,
+        &quot;status&quot;: &quot;complete&quot;,
+        &quot;created-data&quot;: [
+          {
+            &quot;path&quot;: &quot;/network-topology:network-topology/topology=uniconfig/node=iosxr/frinx-uniconfig-topology:configuration/frinx-openconfig-system:system&quot;,
+            &quot;data&quot;: &quot;{
+              &quot;frinx-openconfig-system:system&quot;: {
+                &quot;frinx-huawei-global-config-extension:banner&quot;: {
+                  &quot;config&quot;: {
+                    &quot;banner-text&quot;: &quot;Test banner&quot;
+                  }
+                }
+              }
+            }&quot;
+          }
+        ]
+      }
+    ]
+  },
+  &quot;overall-status&quot;: &quot;complete&quot;
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Displaying available &#x27;sync-from-network&#x27; RPC paramaters:</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;request sync-from-network
+&gt;                                                                            (output to file)
+check-timestamp (Perform timestamp comparison(last known to Uniconfig vs current timestamp …)
+json                                                                             (JSON input)
+target-nodes/node
+|                                                                                      (pipe)</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Execution of &#x27;sync-from-network&#x27; RPC with 2 arguments - target node and &#x27;check-timestamp&#x27; flag</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;request sync-from-network check-timestamp true target-nodes/node iosxr
+{
+  &quot;node-results&quot;: {
+    &quot;node-result&quot;: [
+      {
+        &quot;node-id&quot;: &quot;iosxr&quot;,
+        &quot;status&quot;: &quot;complete&quot;
+      }
+    ]
+  },
+  &quot;overall-status&quot;: &quot;complete&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="show-operational-mode">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#show-operational-mode">#</doc-anchor-trigger>
+        <span>Show operational mode</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Show mode allows users to:</li>
+</ul>
+<ol>
+<li>Display operational data of UniConfig itself - e.g., logging status, list of open transactions, or list of acquired
+subscriptions.</li>
+<li>Display operational data of network devices.</li>
+</ol>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Overview of Show operational mode</div>
+<pre class="language-bash"><code v-pre class="language-bash">show&gt;
+others
+cli                    (reading data from CLI device)
+exit                          (return to parent mode)
+logging-status               (reading logging status)
+netconf            (reading data from NETCONF device)
+netconf-subscriptions (reading netconf subscriptions)
+notifications                 (reading notifications)
+quit                            (return to root mode)
+show-history  (show history [max number of commands])
+snapshots-metadata       (reading snapshots metadata)
+transaction-log             (reading transaction log)
+transactions               (reading transaction data)
+aliases
+lbr      (alias for 'logging-status broker restconf')</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>After opening Show mode, a new UniConfig transaction is opened. Transaction is closed after leaving this mode.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Opening Show operational mode</div>
+<pre class="language-bash"><code v-pre class="language-bash">uniconfig&gt;show
+show&gt;</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Example - displaying configuration of selected subtree:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Display configuration of GigabitEthernet0/0/0/0 interface</div>
+<pre class="language-bash"><code v-pre class="language-bash">show&gt;cli iosxr interfaces(frinx-openconfig-interfaces) interface GigabitEthernet0/0/0/0
+{
+  &quot;name&quot;: &quot;GigabitEthernet0/0/0/0&quot;,
+  &quot;config&quot;: {
+    &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
+    &quot;enabled&quot;: false,
+    &quot;name&quot;: &quot;GigabitEthernet0/0/0/0&quot;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Example - displaying selected system configuration:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Display list of open UniConfig transactions</div>
+<pre class="language-bash"><code v-pre class="language-bash">show&gt;transactions transaction-data
+[
+  {
+    &quot;transaction-id&quot;: &quot;5d9c8819-5b05-4c7a-b7e5-3c84478aeeb0&quot;,
+    &quot;idle-timeout&quot;: 300,
+    &quot;last-access-time&quot;: &quot;2022-May-16 07:02:31.501 +0000&quot;,
+    &quot;hard-timeout&quot;: 1800,
+    &quot;creation-time&quot;: &quot;2022-May-16 07:02:31.501 +0000&quot;
+  },
+  {
+    &quot;transaction-id&quot;: &quot;80091b4b-5432-41cd-9277-1b18ae77b45f&quot;,
+    &quot;idle-timeout&quot;: 300,
+    &quot;last-access-time&quot;: &quot;2022-May-16 07:02:42.747 +0000&quot;,
+    &quot;hard-timeout&quot;: 1800,
+    &quot;creation-time&quot;: &quot;2022-May-16 07:02:42.747 +0000&quot;
+  }
+]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="request-operational-mode">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#request-operational-mode">#</doc-anchor-trigger>
+        <span>Request operational mode</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Request mode allows users to:</li>
+</ul>
+<ol>
+<li>Invoke selected UniConfig requests that read or alter UniConfig settings.</li>
+<li>Invoke RPCs or actions that are provided by network devices or other southbound mount-points.</li>
+</ol>
+<ul>
+<li>User can fill in input parameters and values interactively or via provided JSON snippet.</li>
+<li>After opening Request mode, a new UniConfif transaction is open. Transaction is closed after leaving this mode.</li>
+</ul>
+<ul>
+<li>Example - invocation of RPC &#x27;execute-and-read&#x27; with typed input parameters:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Displaying available RPCs provided by device &#x27;iosxr&#x27;</div>
+<pre class="language-bash"><code v-pre class="language-bash">request&gt;cli iosxr
+operations
+clear-journal
+execute (Simple execution of single or multiple commands on remote terminal. Multiple comma…)
+execute-and-expect (Form of the 'execute-and-read' RPC that can contain 'expect(..)' patter…)
+execute-and-read (Execution of the sequence of commands specified in the input. These comma…)
+execute-and-read-until
+read-journal</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Displaying available &#x27;execute-and-read&#x27; RPC parameters</div>
+<pre class="language-bash"><code v-pre class="language-bash">request&gt;cli iosxr execute-and-read
+&gt;                                                                            (output to file)
+command        (Input configuration snippet (one or multiple commands separated by newline).)
+json                                                                             (JSON input)
+wait-for-output-timer (If no output is received during this time, then execute next command…)
+|                                                                                      (pipe)</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Execution of &#x27;execute-and-read&#x27; RPC with two arguments - &#x27;wait-for-output-timer&#x27; and &#x27;command&#x27;</div>
+<pre class="language-bash"><code v-pre class="language-bash">request&gt;cli iosxr execute-and-read wait-for-output-timer 2 command &quot;show users&quot;
+{
+   &quot;output&quot;: &quot;Mon May 16 07:28:30.405 UTC
+   Line            User                 Service  Conns   Idle        Location
+*  vty0            cisco                ssh          0  00:00:00     192.168.1.42&quot;
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Example - execution of the same RPC &#x27;execute-and-read&#x27; using input JSON:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Execution of &#x27;execute-and-read&#x27; RPC with input JSON snippet:</div>
+<pre class="language-bash"><code v-pre class="language-bash">request&gt;cli iosxr execute-and-read json
+  {
+&gt;     &quot;input&quot;: {
+&gt;         &quot;command&quot;: &quot;show users&quot;,
+&gt;         &quot;wait-for-output-timer&quot;: 2
+&gt;     }
+&gt; }
+w!
+{
+   &quot;output&quot;: &quot;Mon May 16 07:37:55.256 UTC
+   Line            User                 Service  Conns   Idle        Location
+*  vty0            cisco                ssh          0  00:00:00     192.168.1.42&quot;
+}</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>UniConfig shell doesn&#x27;t support interactive typing of input arguments for RPC/action that contains &#x27;list&#x27; YANG element.
+Such operations must be executed using input JSON.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="pipe-operations">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#pipe-operations">#</doc-anchor-trigger>
+        <span>Pipe operations</span>
+    </h2>
+</doc-anchor-target>
+<p>UniConfig shell supports pipe operations that are similar to unix shell/bash pipes.
+When a command is followed by pipe sign: |, output of that command will be passed to a selected pipe operation.</p>
+<ul>
+<li>Example:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Execution of grep pipe operation:</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig R1 interface-configurations interface-configuration | grep netmask
+
+    &quot;netmask&quot;: &quot;255.255.255.0&quot;</code></pre>
+</doc-codeblock></div>
+<p>Supported pipe operations are:</p>
+<ol>
+<li>grep - shows only lines that match supplied regex</li>
+<li>match - same as grep but can be used with optional parameters to show also lines before and after matched line</li>
+<li>context-match - same as grep but shows also parent structure</li>
+<li>brief - displays root elements in the short table format</li>
+</ol>
+<doc-anchor-target id="redirection-of-output">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#redirection-of-output">#</doc-anchor-trigger>
+        <span>Redirection of output</span>
+    </h2>
+</doc-anchor-target>
+<p>Result of a command execution can be redirected to a file using &quot;&gt;&quot; sign followed by file name.</p>
+<ul>
+<li>Example</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Redirection of output to file</div>
+<pre class="language-bash"><code v-pre class="language-bash">config&gt;show uniconfig R1 interface-configurations interface-configuration act\ GigabitEthernet0/0/0/1 &gt; '/home/output.txt' </code></pre>
+</doc-codeblock></div>
+<p>In this case output in console is empty but content of output.txt file could look like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Redirection output</div>
+<pre class="language-none"><code v-pre class="language-none">{
+  &quot;active&quot;: &quot;act&quot;,
+  &quot;interface-name&quot;: &quot;GigabitEthernet0/0/0/1&quot;,
+  &quot;shutdown&quot;: [
+    null
+  ]
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="aliases">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#aliases">#</doc-anchor-trigger>
+        <span>Aliases</span>
+    </h2>
+</doc-anchor-target>
+<p>It is possible to define aliases in UniConfig shell. For this purpose, there is a json file named shell-aliases in the
+UniConfig distribution. This file can be found under Uniconfig/distribution/packaging/zip/target/uniconfig-x.x.x/config
+after unpacking of the UniConfig distribution. This file contains some sample aliases.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">shell-aliases.json with default samples</div>
+<pre class="language-none"><code v-pre class="language-none">/*
+Example: &quot;alias&quot;: &quot;command1 command2 * command3 *&quot;
+Alias name must be a simple word without spaces
+Asterisk symbol is a placeholder. We can dynamically add an alias value
+*/
+{
+  &quot;configuration-mode&quot;: {
+    &quot;diff&quot;: &quot;request calculate-diff target-nodes/node *&quot;
+  },
+  &quot;request&quot;: {
+    &quot;shh&quot;: &quot;show-history&quot;
+  },
+  &quot;show&quot;: {
+    &quot;lbr&quot;: &quot;logging-status broker restconf&quot;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="aliases-creation">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#aliases-creation">#</doc-anchor-trigger>
+        <span>Aliases creation</span>
+    </h3>
+</doc-anchor-target>
+<p>It is not possible to create aliases dynamically, only before Uniconfig is started. Creation of aliases
+has some rules:</p>
+<ol>
+<li>Alias name has to be unique and cannot contain whitespaces</li>
+<li>Command can contain a wildcard (*). In this case user will be prompted to add value</li>
+<li>Alias is only visible in the mode under which it was defined</li>
+</ol>
+<doc-anchor-target id="examples">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#examples">#</doc-anchor-trigger>
+        <span>Examples</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Example - execution of the alias &#x27;diff xr5&#x27;:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">uniconfig&gt;configuration-mode 
+config&gt;diff xr5
+{
+  &quot;node-results&quot;: {
+    &quot;node-result&quot;: [
+      {
+        &quot;node-id&quot;: &quot;xr5&quot;,
+        &quot;status&quot;: &quot;complete&quot;
+      }
+    ]
+  },
+  &quot;overall-status&quot;: &quot;complete&quot;
+}
+config&gt;</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Example - execution of the alias &#x27;lbr&#x27;:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">uniconfig&gt;show
+show&gt;lbr 
+{
+  &quot;broker-identifier&quot;: &quot;restconf&quot;,
+  &quot;is-logging-broker-enabled&quot;: false
+}
+show&gt;
+</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Example - execution of the alias &#x27;shh&#x27;:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">uniconfig&gt;request
+request&gt;show-history 
+----- History of commands -----
+18-05-2022 14:13:09 : show
+18-05-2022 14:13:18 : lbr
+18-05-2022 14:17:43 : exit
+18-05-2022 14:17:48 : request
+18-05-2022 14:17:57 : shcs
+18-05-2022 14:18:10 : shcs n1
+18-05-2022 14:18:25 : show-history
+request&gt;
+</code></pre>
+</doc-codeblock></div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results />
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-queries/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Uni​Config Queries</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/frinx-uniconfig/user-guide/uniconfig-operations/unistore-api/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Uni​Store API</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="about.md">About</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2022. <a href="https://frinx.io/">Frinx.io</a> All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script>window.__DOCS__ = { "title": "UniConfig Shell", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+</body>
+</html>
