@@ -529,10 +529,8 @@ Other non-mandatory parameters that can be added to mount-request.
     request, then the default value will be used ('test-then-set'). See
     [RFC-6241](https://tools.ietf.org/html/rfc6241#section-8.6) for more
     information about this feature.
-- **netconf-node-topology:concurrent-rpc-limit** - Limit of concurrent messages 
-    that can be send before reply messages are received. If value <1 is provided, 
-    no limit will be enforced (default value is 0).
-
+- **netconf-node-topology:concurrent-rpc-limit** - Defines maximum number 
+    of concurrent RPCs, where 0 indicates no limit (it is default value).
 
 !!!danger
 There are additional install parameters in our OpenAPI, they can all
@@ -594,4 +592,45 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
         "connection-type": "netconf"
     }
 }'
+```
+
+## Installation of device without mounpoint creation
+It is possible to install device partially. In this case installation request data are saved to database
+and device installation can be later completed using sync-from-notwork RPC.
+
+The only difference in installation is create-mountpoint parameter. It is true by default.
+- Example:
+```bash
+curl --location --request POST 'http://localhost:8181/rests/operations/connection-manager:install-node' \
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+        "input":{
+            "node-id":"xr1",
+            "create-mountpoint":"false",
+            "netconf":{
+                "netconf-node-topology:host":"10.0.0.1",
+                "netconf-node-topology:port":830,
+                "netconf-node-topology:keepalive-delay":5,
+                "netconf-node-topology:tcp-only":false,
+                "netconf-node-topology:username":"USERNAME",
+                "netconf-node-topology:password":"PASSWORD",
+                "netconf-node-topology:dry-run-journal-size":180,
+                "uniconfig-config:uniconfig-native-enabled":true,
+                "uniconfig-config:blacklist":{
+                    "uniconfig-config:path":[
+                        "openconfig-interfaces:interfaces",
+                        "ietf-interfaces:interfaces",
+                        "openconfig-vlan:vlans",
+                        "openconfig-routing-policy:routing-policy",
+                        "openconfig-lldp:lldp",
+                        "Cisco-IOS-XR-l2vpn-cfg:l2vpn",
+                        "Cisco-IOS-XR-group-cfg:groups",
+                        "openconfig-acl:acl",
+                        "openconfig-network-instance:network-instances"
+                    ]
+                }
+            }
+        }
+    }'
 ```
