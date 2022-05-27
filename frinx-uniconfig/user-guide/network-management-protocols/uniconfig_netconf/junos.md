@@ -19,10 +19,12 @@ curl -X PUT \
      "node-id": "junos",
      "netconf-node-topology:host": "10.10.199.47",
      "netconf-node-topology:port": 830,
-     "netconf-node-topology:keepalive-delay": 50000,
      "netconf-node-topology:tcp-only": false,
      "netconf-node-topology:username": "USERNAME",
      "netconf-node-topology:password": "PASSWORD",
+     "netconf-node-topology:session-timers" : {
+         "netconf-node-topology:keepalive-delay": 50000
+     },
      "uniconfig-config:uniconfig-native-enabled": true,
      "uniconfig-config:install-uniconfig-node-enabled": true,
      "uniconfig-config:blacklist": {

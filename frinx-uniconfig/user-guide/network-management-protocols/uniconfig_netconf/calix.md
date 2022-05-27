@@ -17,10 +17,12 @@ curl -X PUT \
      "node-id": "calix",
      "netconf-node-topology:host": "10.19.0.16",
      "netconf-node-topology:port": 830,
-     "netconf-node-topology:keepalive-delay": 0,
      "netconf-node-topology:tcp-only": false,
      "netconf-node-topology:username": "USERNAME",
      "netconf-node-topology:password": "PASSWORD",
+     "netconf-node-topology:session-timers" : {
+         "netconf-node-topology:keepalive-delay": 0
+     },
      "uniconfig-config:uniconfig-native-enabled": true,
      "uniconfig-config:install-uniconfig-node-enabled": true,
      "uniconfig-config:blacklist": {

@@ -222,12 +222,14 @@ Session timers
 
 The following parameters adjust timers that are related with maintaining of NETCONF session state. None of these parameters are mandatory (default values will be used).
 
-* **netconf-node-topology:connection-timeout-millis** - Specifies timeout in milliseconds after which initial connection to the NETCONF server must be established (default value: 20000 ms).
-* **netconf-node-topology:default-request-timeout-millis** - Timeout for blocking RPC operations within transactions (default value: 60000 ms).
-* **netconf-node-topology:max-connection-attempts** - Maximum number of connection attempts (default value: 0 - disabled).
-* **netconf-node-topology:between-attempts-timeout-millis** - Initial timeout between reconnection attempts (default value: 2000 ms).
-* **netconf-node-topology:sleep-factor** - Multiplier between subsequent delays of reconnection attempts (default value: 1.5).
+* **netconf-node-topology:initial-connection-timeout** - Specifies timeout in seconds after which initial connection to the NETCONF server must be established (default value: 20 s).
+* **netconf-node-topology:request-transaction-timeout** - Timeout for blocking RPC operations within transactions (default value: 60 s).
+* **netconf-node-topology:max-connection-attempts** - Maximum number of connection attempts (default value: 1).
+* **netconf-node-topology:max-reconnection-attempts** - Maximum number of reconnection attempts (default value: 0 - disabled).
+* **netconf-node-topology:between-attempts-timeout** - Initial timeout between reconnection attempts (default value: 2 s).
+* **netconf-node-topology:reconnenction-attempts-multiplier** - Multiplier between subsequent delays of reconnection attempts (default value: 1.5).
 * **netconf-node-topology:keepalive-delay** - Delay between sending of keepalive RPC messages (default value: 120 sec).
+* **netconf-node-topology:confirm-commit-timeout** - The timeout for confirming the configuration by "confirming-commit" that was configured by "confirmed-commit". Configuration will be automatically reverted by device if the "confirming-commit" is not issued within the timeout period. This parameter has effect only on NETCONF nodes. (default value: 600 sec).
 
 Capabilities
 ############
@@ -259,6 +261,16 @@ Parameters related to installation of NETCONF or CLI nodes with uniconfig-native
 
 .. _RST Other parameters:
 
+Flags
+################
+
+Non-mandatory flag parameters that can be added to mount-request.
+
+* **netconf-node-topology:enabled-strict-parsing** - Default value of enabled-strict-parsing parameter is set to 'true'. This may inflicts in throwing exception during parsing of received NETCONF messages in case of unknown elements. If this parameter is set to 'false', then parser should ignore unknown elements and not throw exception during parsing.
+* **netconf-node-topology:enabled-notifications** - Default value of enabled-notifications is set to 'true'. If it is set to 'true' and NETCONF device supports notifications, NETCONF mountpoint will expose NETCONF notification and subscription services.
+* **netconf-node-topology:reconnect-on-changed-schema** - Default value of reconnect-on-changed-schema is set to 'false'. If it is set to 'true', NETCONF notifications are supported by device, and NETCONF notifications are enabled ('enabled-notifications' flag), the connector would auto disconnect/reconnect when schemas are changed in the remote device. The connector subscribes (right after connect) to base netconf notifications and listens for netconf-capability-change notification
+* **netconf-node-topology:streaming-session** - Default value of streaming-session parameter is set to 'false'. NETCONF session is created and optimized for receiving of NETCONF notifications from remote server.
+
 Other parameters
 ################
 
@@ -270,10 +282,9 @@ Other non-mandatory parameters that can be added to mount-request.
     #. Direct usage of the 'custom' NETCONF cache directory stored in the UniConfig 'cache' directory by name. This 'custom' directory must exist, must not be empty and also can not use the 'netconf-node-topology:yang-module-capabilities' parameter, because capability names will be generated from yang schemas stored in the 'custom' directory.
 
 * **netconf-node-topology:dry-run-journal-size** - Creates dry-run mount-point and defines number of NETCONF RPCs in history for dry-run mount-point. Value 0 disables dry-run functionality (it is default value).
-* **netconf-node-topology:customization-factory** - Specification of the custom NETCONF connector factory. For example, if device doesn't support candidate data-store, this parameter should be set to 'netconf-customization-alu-ignore-candidate' string.
+* **netconf-node-topology:custom-connector-factory** - Specification of the custom NETCONF connector factory. For example, if device doesn't support candidate data-store, this parameter should be set to 'netconf-customization-alu-ignore-candidate' string (default value is "default").
 * **netconf-node-topology:edit-config-test-option** - Specification of the test-option parameter in the netconf edit-config message. Possible values are 'set', 'test-then-set' or 'test-only'. If the edit-config-test-option is not explicitly specified in the mount request, then the default value will be used ('test-then-set'). See `RFC-6241 <https://tools.ietf.org/html/rfc6241#section-8.6>`_ for more information about this feature.
-* **netconf-node-topology:confirm-timeout** - The timeout for confirming the configuration by "confirming-commit" that was configured by "confirmed-commit" (default value: 600 sec). Configuration will be automatically reverted by device if the "confirming-commit" is not issued within the timeout period. This parameter has effect only on NETCONF nodes.
-* **netconf-node-topology:strict-parsing** - Default value of strict-parsing parameter is set to 'true'. This may inflicts in throwing exception during parsing of received NETCONF messages in case of unknown elements. If this parameter is set to 'false', then parser should ignore unknown elements and not throw exception during parsing.
+* **netconf-node-topology:concurrent-rpc-limit** - Limit of concurrent messages that can be send before reply messages are received. If value <1 is provided, no limit will be enforced (default value is 0).
 
 .. note::
 
@@ -305,11 +316,15 @@ This example shows how to mount JUNOS device on address '10.10.199.65' that has 
                     "node-id": "junos",
                     "netconf-node-topology:host": "10.10.199.65",
                     "netconf-node-topology:port": 830,
-                    "netconf-node-topology:keepalive-delay": 10,
                     "netconf-node-topology:tcp-only": false,
                     "netconf-node-topology:username": "root",
                     "netconf-node-topology:password": "root",
-                    "netconf-node-topology:dry-run-journal-size": 100
+                    "netconf-node-topology:session-timers" : {
+                        "netconf-node-topology:keepalive-delay": 10
+                    },
+                    "netconf-node-topology:other-parameters" : {
+                        "netconf-node-topology:dry-run-journal-size": 100
+                    }
                 }
             ]
         }'
@@ -332,11 +347,15 @@ This example shows mounting of NETCONF device that doesn't report all YANG model
                 "netconf-node-topology:tcp-only": false,
                 "netconf-node-topology:username": "admin",
                 "netconf-node-topology:password": "admin",
-                "netconf-node-topology:keepalive-delay": 10,
-                "netconf-node-topology:connection-timeout-millis": 60000,
-                "netconf-node-topology:default-request-timeout-millis": 60000,
-                "netconf-node-topology:sleep-factor": 1,
-                "netconf-node-topology:customization-factory": "netconf-customization-alu-ignore-candidate",
+                "netconf-node-topology:session-timers" : {
+                    "netconf-node-topology:keepalive-delay": 10,
+                    "netconf-node-topology:initial-connection-timeout": 60,
+                    "netconf-node-topology:request-transaction-timeout": 60,
+                    "netconf-node-topology:reconnection-attempts-multiplier": 1
+                },
+                "netconf-node-topology:other-parameters" : {
+                    "netconf-node-topology:customization-factory": "netconf-customization-alu-ignore-candidate"
+                },
                 "netconf-node-topology:yang-module-capabilities": {
                     "capability": [
                         "urn:ietf:params:xml:ns:yang:ietf-inet-types?module=ietf-inet-types&amp;revision=2010-09-24",
@@ -366,12 +385,16 @@ This example shows mounting of NETCONF device that doesn't report all YANG model
                 "node-id": "xr6",
                 "netconf-node-topology:host": "192.168.1.216",
                 "netconf-node-topology:port": 830,
-                "netconf-node-topology:keepalive-delay": 0,
                 "netconf-node-topology:tcp-only": false,
                 "netconf-node-topology:username": "cisco",
                 "netconf-node-topology:password": "cisco",
+                "netconf-node-topology:session-timers" : {
+                    "netconf-node-topology:keepalive-delay": 0
+                },
+                "netconf-node-topology:other-parameters" : {
+                    "netconf-node-topology:edit-config-test-option": "set"
+                },
                 "uniconfig-config:uniconfig-native-enabled": true,
-                "netconf-node-topology:edit-config-test-option": "set",
                 "netconf-node-topology:schema-cache-directory": "folder_name"
             }
         }'
@@ -391,10 +414,12 @@ For mounting of NETCONF device with uniconfig-native support, it is necessary to
                 "node-id": "R1",
                 "netconf-node-topology:host": "192.168.1.214",
                 "netconf-node-topology:port": 830,
-                "netconf-node-topology:keepalive-delay": 0,
                 "netconf-node-topology:tcp-only": false,
                 "netconf-node-topology:username": "USERNAME",
                 "netconf-node-topology:password": "PASSWORD",
+                "netconf-node-topology:session-timers" : {
+                    "netconf-node-topology:keepalive-delay": 0
+                },
                 "uniconfig-config:uniconfig-native-enabled": true,
                 "uniconfig-config:sequence-read-active": true,
                 "uniconfig-config:blacklist": {
