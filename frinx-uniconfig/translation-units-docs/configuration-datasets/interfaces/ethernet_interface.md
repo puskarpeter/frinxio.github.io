@@ -719,9 +719,9 @@ flow access-control set port {{eth_ifc_name}} max-dynamic-macs {{max_macs}}
 *port disable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *false*   
 {{eth_phy_type}} can be "default" or "rj45" or "sfp"  
 *vs-ingress-filter on* is a conversion of {{eth_vif}} set *true*  
-*vs-ingress-filter off* is a conversion of {{eth_vif}} set *false*
+*vs-ingress-filter off* is a conversion of {{eth_vif}} set *false*  
 {{eth_aft}} can be "all", "tagged-only", "untagged-only"  
-{{eth_iteq}} can be "Default-RCOS" or "NNI-NNI"
+{{eth_iteq}} can be "Default-RCOS" or "NNI-NNI"  
 *forward-unlearned on* is a conversion of {{fwd_un}} set *true*  
 *forward-unlearned off* is a conversion of {{fwd_un}} set *false*  
 *resolved-cos-remark-l2 true* is a conversion of {{eth_rcrl2}} set *true*  
