@@ -760,7 +760,6 @@ rstp disable port {{eth_ifc_name}} is a conversion of {{rstp_enabled}} set to fa
 mstp enable port {{eth_ifc_name}} is a conversion of {{mstp_enabled}} set to true  
 mstp disable port {{eth_ifc_name}} is a conversion of {{mstp_enabled}} set to false
 
-
 ##### Unit
 
 Link to github : [saos-unit]()
