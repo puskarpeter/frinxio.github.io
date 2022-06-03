@@ -112,7 +112,7 @@ frinx-openconfig-interfaces:interfaces/interface={{lag_ifc_name}}
                             "frinx-cer-if-aggregate-extension:metric": "{{metric_value}}",
                             "frinx-cer-if-aggregate-extension:level-type": "{{level_type}}",
                             "frinx-cer-if-aggregate-extension:cost": "{{ospf_cost}}"
-                        ,
+                        },
                         "frinx-openconfig-if-ip:ipv4": {
                             "addresses": {
                                 "address": [
@@ -609,10 +609,6 @@ Link to github : [saos-unit](https://github.com/FRINXio/cli-units/tree/master/sa
   isis wide-metric {{value}} {{level_type}}
   ip ospf cost {{cost}}
 </pre>
-
-{{value}} is conversion of {{metric_value}}  
-{{level_type}} is conversion of {{level_type}}   
-{{cost}} is conversion of {{ospf_cost}}
 
 ##### Unit
 
