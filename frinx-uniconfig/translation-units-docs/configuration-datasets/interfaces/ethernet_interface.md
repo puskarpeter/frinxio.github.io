@@ -249,26 +249,6 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
 
 ## OS Configuration Commands
 
-### Arris CER (Arris E6000)
-
-#### CLI
-
----
-<pre>
-interface {{eth_ifc_name}}  
- description {{eth_description}}  
- shutdown | no shutdown  
- link-aggregate {{eth_link_aggregate}}  
-</pre>
----
-
-*no shutdown* is a conversion of {{eth_enabled}} set *true*  
-*shutdown* is a conversion of {{eth_enabled}} set *false*  
-
-##### Unit
-
-Link to github : [cer-unit](https://github.com/FRINXio/cli-units/tree/master/cer/interface)
-
 ### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
 
 #### CLI
@@ -766,3 +746,23 @@ l2-cft disable port {{eth_ifc_name}} is a conversion of {{cft_enabled}} set to f
 ##### Unit
 
 Link to github : [saos-unit]()
+
+### Arris CER (Arris E6000)
+
+#### CLI
+
+---
+<pre>
+interface {{eth_ifc_name}}  
+ description {{eth_description}}  
+ shutdown | no shutdown  
+ link-aggregate {{eth_link_aggregate}}  
+</pre>
+---
+
+*no shutdown* is a conversion of {{eth_enabled}} set *true*  
+*shutdown* is a conversion of {{eth_enabled}} set *false*
+
+##### Unit
+
+Link to github : [cer-unit](https://github.com/FRINXio/cli-units/tree/master/cer/interface)
