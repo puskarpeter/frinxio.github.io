@@ -168,7 +168,8 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                     "frinx-openconfig-if-aggregate:aggregate-id": "{{lag_ifc_name}}",
                     "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
                     "frinx-lacp-lag-member:interval": "{{lacp_interval}}",
-                    "frinx-if-aggregate-extension:admin-key": "{{lacp_admin_key}}"
+                    "frinx-if-aggregate-extension:admin-key": "{{lacp_admin_key}}",
+                    "frinx-arris-if-extension:link-aggregate": {{eth_link_aggregate}}
                 },
                 "frinx-openconfig-vlan:switched-vlan" : {
                     "config" : {
@@ -763,3 +764,23 @@ mstp disable port {{eth_ifc_name}} is a conversion of {{mstp_enabled}} set to fa
 ##### Unit
 
 Link to github : [saos-unit]()
+
+### Arris CER (Arris E6000)
+
+#### CLI
+
+---
+<pre>
+interface {{eth_ifc_name}}  
+ description {{eth_description}}  
+ shutdown | no shutdown  
+ link-aggregate {{eth_link_aggregate}}  
+</pre>
+---
+
+*no shutdown* is a conversion of {{eth_enabled}} set *true*  
+*shutdown* is a conversion of {{eth_enabled}} set *false*
+
+##### Unit
+
+Link to github : [cer-unit](https://github.com/FRINXio/cli-units/tree/master/cer/interface)
