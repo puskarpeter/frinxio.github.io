@@ -249,7 +249,7 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
 
 ## OS Configuration Commands
 
-### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
+### Arris CER (Arris E6000)
 
 #### CLI
 
