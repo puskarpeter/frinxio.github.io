@@ -124,18 +124,6 @@ additionally contains Set-Cookie header with UNICONFIGTXID key and
 corresponding value - transaction identifier that conforms RFC-4122
 Universally Unique IDentifier (UUID) format.
 
-Create-transaction RPC can be used with optional query parameter called timeout.
-This parameter is used to override global idle timeout for transaction created 
-by this RPC call. After transaction inactivity for specified time transaction will be
-automatically cleaned. Value of this parameter is whole number and defines
-time in seconds.
-
-### Example request with timeout parameter
-```URL
-http://localhost:8181/rests/operations/uniconfig-manager:create-transaction?timeout=100
-```
-
-
 Process of transaction creation is depicted by following sequence
 diagram.
 
@@ -193,6 +181,34 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 
 ``` RPC Response, Status: 500
 
+```
+
+### Transaction idle-timeout
+
+Create-transaction RPC can be used with optional query parameter called timeout.
+This parameter is used to override global idle timeout for transaction created
+by this RPC call. After transaction inactivity for specified time transaction will be
+automatically cleaned. Value of this parameter is whole number and defines
+time in seconds.
+
+```URL Example request with timeout parameter
+http://localhost:8181/rests/operations/uniconfig-manager:create-transaction?timeout=100
+```
+
+### Dedicated session to device
+
+By default, UniConfig shares southbound session to network device, if multiple UniConfig transactions
+use the same device via same management protocol. This behaviour can be disabled using 'dedicatedDeviceSession'
+query parameter which accepts boolean value. Afterwards, UniConfig transaction will create dedicated session
+to device which is used only by one transaction and closed immediately after committing or closing the transaction.
+
+Dedicated sessions to device are useful when:
+* Device is not able to process requests in parallel via same session.
+* Device is able to process requests in parallel via same session, but it doesn't process them in parallel
+  - decreasing processing performance.
+
+```URL Setting dedicated device sessions
+http://127.0.0.1:8181/rests/operations/uniconfig-manager:create-transaction?dedicatedDeviceSession=true
 ```
 
 ## Invocation of CRUD operation in transaction
