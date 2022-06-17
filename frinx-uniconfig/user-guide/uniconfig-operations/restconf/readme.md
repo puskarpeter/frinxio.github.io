@@ -1479,3 +1479,32 @@ curl --location --request DELETE 'http://localhost:8181/rests/data/network-topol
 
 If checkForReferences parameter is set to false or is not provided UniConfig will
 not perform leafref validation and there will be no leafref validation error.
+
+## Hide Empty Data Nodes
+
+Configuration setting hides empty data nodes in response to GET call on device configuration. 
+Data nodes that contain only attribute tag are considered to be empty too. It can be enabled 
+(set to true) in the 'config/lighty-uniconfig-config.json' file. Setting is disabled (set to false), by default.
+
+```json Configuration of hideEmptyDataNodes
+        // Flag that determines if the data node that is empty(means node contains only attribute tag) should be hidden
+        // during GET operation
+        "hideEmptyDataNodes": false,
+```
+
+### Example: Empty Data Node with and without tag
+
+``` json Empty container
+"monitor:monitor-group": {
+    "@": {
+        "template-tags:operation": "replace"
+    }
+}
+
+or
+
+"monitor:monitor-group": {
+
+    }
+}
+```
