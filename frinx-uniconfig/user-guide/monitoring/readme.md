@@ -5,6 +5,21 @@ Output can be in form of plaintext log messages in the log file **metrics.log** 
 or in the form of raw data in CSV format from which it can be further processed by the 3rd party visualization tools.
 CSV files are located in the **metrics** directory in the **root** of the distribution.
 
+## Types of metrics
+- Gauge - reports instantanious value at a point in time (for example queue size)
+- Meter - measures total count of event occurences, total mean rate, mean rates for past 1, 5 and 15 minutes time windows 
+
+## List of notable metrics exposed by Uniconfig
+
+- **Gauges**
+    - io.frinx.uniconfig.manager.impl.task.TaskExecutorImpl.queue_size - The number of tasks in the queue waiting for execution
+    - org.apache.sshd.server.SshServer.active_sessions - The number of active CLI sessions
+    - org.opendaylight.controller.uniconfig.transaction.manager.api.UniconfigTransactionManager.open_transaction_count - The number of open transactions
+- **Meters**
+    - org.opendaylight.yangtools.yang.common.RpcResult.rpc_invoke - All the invoked RPCs by Uniconfig
+    - org.opendaylight.controller.uniconfig.transaction.manager.impl.UniconfigTransactionManagerImpl.transaction_invoke - All the invoked transactions in Uniconfig
+    - io.frinx.uniconfig.shell.cli.SshTerminal.cli_message - All the invoked commands in Uniconfig CLI shell
+
 ## Configuration
 
 Configuration is done via a section in "uniconfig-lighty-config.json" file:
@@ -22,7 +37,7 @@ Configuration is done via a section in "uniconfig-lighty-config.json" file:
 
 ## Example output
 
-### CSV file
+- metrics/org.opendaylight.controller.uniconfig.transaction.manager.impl.UniconfigTransactionManagerImpl.transaction_invoke.csv
 
 ```csv
 t,count,mean_rate,m1_rate,m5_rate,m15_rate,rate_unit
@@ -35,7 +50,7 @@ t,count,mean_rate,m1_rate,m5_rate,m15_rate,rate_unit
 1650612500,3,0.055825,0.283420,0.516425,0.570738,events/second
 ```
 
-### metrics.log
+- log/metrics.log
 
 ```log
 09:27:12.007 INFO io.frinx.uniconfig.metrics.impl.ReporterImpl - Starting SFL4J reporter
