@@ -53,6 +53,8 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                 "frinx-huawei-if-extension:flow-stat-interval": "{{flow_stat_interval}}",
                 "frinx-huawei-if-extension:ip-binding-vpn-instance": "{{vrf_name}}",
                 "frinx-huawei-if-extension:trust-dscp": "{{trust_dscp}}",
+                "frinx-saos-if-extension:speed-type": "{{speed_type}}",
+                "frinx-saos-if-extension:negotiation-auto": "{{negotiation_auto}}",
             },
             "hold-time": {
                 "config": {
@@ -119,6 +121,7 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                                 "direction": "{{direction}}"
                             },
                             "frinx-huawei-if-extension:ip-binding-vpn-instance": "{{vrf_name}}",
+                            "name": "{{sub_ifc_name}}",
                         },
                         "frinx-openconfig-vlan:vlan": {
                             "config": {
@@ -145,6 +148,12 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                         "frinx-cisco-if-extension:statistics": {
                             "config": {
                                 "load-interval": "{{eth_sub_load_interval}}"
+                            }
+                        },
+                        "frinx-saos-if-extension:relay-agent": {
+                            "config": {
+                                "cid-string": "{{cid_string_value}}",
+                                "virtual-switch-name": "{{virtual_switch_name}}"
                             }
                         }
                     }
@@ -239,8 +248,20 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                             },
                     }
                 ]
+            },
+            "frinx-saos-if-extension:pm-instances": {
+                "pm-instance": [
+                    {
+                        "name": "{{port_queue_group_name}}",
+                        "config": {
+                            "name": "{{pm_instance_name}}",
+                            "port-type": "{{port_type}}",
+                            "bin-count": "{{bin_count_value}}",
+                            "profile-type": "{{profile_type}}"
+                        }
+                    }
+                ]
             }
-
         }
     ]
 }
@@ -742,6 +763,45 @@ l2-cft disable port {{eth_ifc_name}}
 l2-cft enable port {{eth_ifc_name}} is a conversion of {{cft_enabled}} set to true  
 l2-cft disable port {{eth_ifc_name}} is a conversion of {{cft_enabled}} set to false
 
+<pre>
+port set port {{eth_ifc_name}} auto-neg on
+port set port {{eth_ifc_name}} auto-neg off
+port set port {{eth_ifc_name}} speed {{speed_type}}
+</pre>
+
+port set port {{eth_ifc_name}} auto-neg on is a conversion of {{negotiation_auto}} set to true  
+port set port {{eth_ifc_name}} auto-neg off is a conversion of {{negotiation_auto}} set to false  
+{{speed_type}} can be auto, ten, hundred, gigabit, ten-gig
+
 ##### Unit
 
-Link to github : [saos-unit]()
+Link to github : [saos-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos-6/saos-6-interface)
+
+### Ciena SAOS 8
+
+#### CLI
+
+<pre>
+dhcp l2-relay-agent set sub-port {{sub_ifc_name}} vs {{virtual_switch_name}} cid-string {{cid_string_value}}
+</pre>
+
+<pre>
+pm create {{port_type}} {{port_queue_group_name}} pm-instance {{pm_instance_name}} profile-type {{profile_type}} bin-count {{bin_count_value}}
+</pre>
+
+{{bin_count_value}} can be between 0 and 96
+
+<pre>
+port set port {{eth_ifc_name}} auto-neg on
+port set port {{eth_ifc_name}} auto-neg off
+port set port {{eth_ifc_name}} speed {{speed_type}}
+</pre>
+
+port set port {{eth_ifc_name}} auto-neg on is a conversion of {{negotiation_auto}} set to true  
+port set port {{eth_ifc_name}} auto-neg off is a conversion of {{negotiation_auto}} set to false  
+{{speed_type}} can be auto, ten, hundred, gigabit, ten-gig, forty-gig, hundred-gig  
+
+
+##### Unit
+
+Link to github : [saos-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos-6/saos-8-interface)
