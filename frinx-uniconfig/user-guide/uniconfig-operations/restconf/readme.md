@@ -1479,3 +1479,80 @@ curl --location --request DELETE 'http://localhost:8181/rests/data/network-topol
 
 If checkForReferences parameter is set to false or is not provided UniConfig will
 not perform leafref validation and there will be no leafref validation error.
+
+## Hide Empty Data Nodes
+
+Configuration setting hides empty data nodes in response to GET call on device configuration. 
+Data nodes that contain only attribute tag are considered to be empty too. It can be enabled 
+(set to true) in the 'config/lighty-uniconfig-config.json' file. Setting is disabled (set to false), by default.
+
+```json Configuration of hideEmptyDataNodes
+        // Flag that determines if the data node that is empty(means node contains only attribute tag) should be hidden
+        // during GET operation
+        "hideEmptyDataNodes": false,
+```
+
+### Example: Empty Data Node with and without tag
+
+``` json Empty container
+"monitor:monitor-group": {
+    "@": {
+        "template-tags:operation": "replace"
+    }
+}
+
+or
+
+"monitor:monitor-group": {
+
+    }
+}
+```
+## Escaping keys in URI
+
+Following characters must be escaped, if they are contained in a list key value:
+':', '/', '?', '#', '[', ']', '@', '!', '$', '&', '\'', '(', ')', '*', '+', ',', ';', '='.
+
+There are 2 ways how to escape special characters in a key value: by encoding reserved UTF-8 characters using '%HH'
+patten or using key delimiter.
+
+### Encoding reserved characters
+
+RESTCONF RFC-8040 natively allows to specify reserved characters in a key value, if they are encoded using
+'%HH' pattern, where 'HH' refers to hexadecimal representation of UTF-8 character.
+
+The following request demonstrates encoding of special characters in the 'ge0/0/1' interface name.
+
+```shell Read interface (escaped interface name)
+    curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=device/configuration/frinx-openconfig-interfaces:interfaces/interface=ge0%2F0%2F1 \
+--header 'Accept: application/json'
+```
+
+!!!
+Mappings between special characters and UTF-8 codes can be found on following site:
+https://www.urlencoder.org/
+!!!
+
+### Demarcation of key using delimiter
+
+UniConfig allows to specify delimiter used for demarcation of list key value. Afterwards, all special characters
+inside key are automatically escaped.
+
+By default, key delimiter is disabled. It must be specified in the 'config/lighty-uniconfig-config.json' file:
+
+```json Configuration of keyDelimiter
+    // RESTCONF and web server settings
+    "restconf": {
+        // delimiter used for escaping of list keys in URI (for example, '%22')
+        // if it is set to 'null' (default), keys cannot be escaped and must be directly encoded according to RFC-8040
+        "keyDelimiter": "%22"
+    }
+```
+
+The following request demonstrates demarcation of interface name 'ge0/0/1' using '%22' delimiter.
+
+```shell Read interface (escaped interface name)
+curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=device/configuration/frinx-openconfig-interfaces:interfaces/interface=%22ge0/0/1%22 \
+--header 'Accept: application/json'
+```>>>>>>> b208d862 (Encoding key values)
+```

@@ -29,6 +29,9 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                 "frinx-saos-if-extension:ingress-to-egress-qmap": "{{eth_iteq}}",
                 "frinx-saos-if-extension:forward-unlearned": "{{fwd_un}}",
                 "frinx-saos-if-extension:max-dynamic-macs": "{{max_macs}}",
+                "frinx-saos-if-extension:resolved-cos-remark-l2": "{{eth_rcrl2}}",
+                "frinx-saos-if-extension:rstp-enabled": "{{rstp_enabled}}",
+                "frinx-saos-if-extension:mstp-enabled": "{{mstp_enabled}}",
                 "frinx-cisco-if-extension:l2-protocols": [
                     "{{l2-protocols}}"
                 ],
@@ -174,7 +177,8 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                     "frinx-openconfig-if-aggregate:aggregate-id": "{{lag_ifc_name}}",
                     "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
                     "frinx-lacp-lag-member:interval": "{{lacp_interval}}",
-                    "frinx-if-aggregate-extension:admin-key": "{{lacp_admin_key}}"
+                    "frinx-if-aggregate-extension:admin-key": "{{lacp_admin_key}}",
+                    "frinx-arris-if-extension:link-aggregate": {{eth_link_aggregate}}
                 },
                 "frinx-openconfig-vlan:switched-vlan" : {
                     "config" : {
@@ -727,6 +731,7 @@ port
       set port {{eth_ifc_name}} vs-ingress-filter {{eth_vif}}
       set port {{eth_ifc_name}} acceptable-frame-type {{eth_aft}}
       set port {{eth_ifc_name}} ingress-to-egress-qmap {{eth_iteq}}
+      set port {{eth_ifc_name}} resolved-cos-remark-l2 {{eth_rcrl2}}
 
 flow access-control set port {{eth_ifc_name}} forward-unlearned {{fwd_un}}
 flow access-control set port {{eth_ifc_name}} max-dynamic-macs {{max_macs}}
@@ -740,7 +745,9 @@ flow access-control set port {{eth_ifc_name}} max-dynamic-macs {{max_macs}}
 {{eth_aft}} can be "all", "tagged-only", "untagged-only"  
 {{eth_iteq}} can be "Default-RCOS" or "NNI-NNI"  
 *forward-unlearned on* is a conversion of {{fwd_un}} set *true*  
-*forward-unlearned off* is a conversion of {{fwd_un}} set *false*
+*forward-unlearned off* is a conversion of {{fwd_un}} set *false*  
+*resolved-cos-remark-l2 true* is a conversion of {{eth_rcrl2}} set *true*  
+*resolved-cos-remark-l2 false* is a conversion of {{eth_rcrl2}} set *false*
 
 <pre>
 vlan add vlan {{vlan_ids}} port {{eth_ifc_name}}
@@ -762,6 +769,18 @@ l2-cft disable port {{eth_ifc_name}}
 
 l2-cft enable port {{eth_ifc_name}} is a conversion of {{cft_enabled}} set to true  
 l2-cft disable port {{eth_ifc_name}} is a conversion of {{cft_enabled}} set to false
+
+<pre>
+rstp enable port {{eth_ifc_name}}
+rstp disable port {{eth_ifc_name}}
+mstp enable port {{eth_ifc_name}}
+mstp disable port {{eth_ifc_name}}
+</pre>
+
+rstp enable port {{eth_ifc_name}} is a conversion of {{rstp_enabled}} set to true  
+rstp disable port {{eth_ifc_name}} is a conversion of {{rstp_enabled}} set to false  
+mstp enable port {{eth_ifc_name}} is a conversion of {{mstp_enabled}} set to true  
+mstp disable port {{eth_ifc_name}} is a conversion of {{mstp_enabled}} set to false
 
 <pre>
 port set port {{eth_ifc_name}} auto-neg on
@@ -805,3 +824,23 @@ port set port {{eth_ifc_name}} auto-neg off is a conversion of {{negotiation_aut
 ##### Unit
 
 Link to github : [saos-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos-6/saos-8-interface)
+
+### Arris CER (Arris E6000)
+
+#### CLI
+
+---
+<pre>
+interface {{eth_ifc_name}}  
+ description {{eth_description}}  
+ shutdown | no shutdown  
+ link-aggregate {{eth_link_aggregate}}  
+</pre>
+---
+
+*no shutdown* is a conversion of {{eth_enabled}} set *true*  
+*shutdown* is a conversion of {{eth_enabled}} set *false*
+
+##### Unit
+
+Link to github : [cer-unit](https://github.com/FRINXio/cli-units/tree/master/cer/interface)

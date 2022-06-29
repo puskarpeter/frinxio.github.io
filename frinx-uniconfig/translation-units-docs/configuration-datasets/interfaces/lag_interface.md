@@ -108,7 +108,10 @@ frinx-openconfig-interfaces:interfaces/interface={{lag_ifc_name}}
                             "description": "{{lag_sub_description}}",
                             "frinx-juniper-if-extension:rpm-type": "{{rpm_type}}",
                             "frinx-if-aggregate-extension:subinterface-name": "{{subifc_name}}",
-                            "enabled": {{lag_sub_enabled}}
+                            "enabled": {{lag_sub_enabled}},
+                            "frinx-cer-if-aggregate-extension:metric": "{{metric_value}}",
+                            "frinx-cer-if-aggregate-extension:level-type": "{{level_type}}",
+                            "frinx-cer-if-aggregate-extension:cost": "{{ospf_cost}}"
                         },
                         "frinx-openconfig-if-ip:ipv4": {
                             "addresses": {
@@ -596,3 +599,17 @@ there is not possible to set vlan-untagged-data and vtag-stack both.
 ##### Unit
 
 Link to github : [saos-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos8/saos-8-interface)
+
+### Arris CER
+
+#### CLI
+
+<pre>
+ interface {{subifc_name}}
+  isis wide-metric {{value}} {{level_type}}
+  ip ospf cost {{cost}}
+</pre>
+
+##### Unit
+
+Link to github : [cer-unit](https://github.com/FRINXio/cli-units/tree/master/cer/interface)
