@@ -274,13 +274,16 @@ To completely understand installing of node see [Device installation](https://do
 
 - Returns a data node from the Config datastore.
 - \<identifier\> points to a data node that must be retrieved.
+- Value 'config' represents default value of content query parameter - it doesn't have to be specified,
+  if user would like to read intended/uncommitted changes from Config datastore.
+- Request GET '/rests/data/\<identifier\>' would return the same data.
 
 #### GET /rests/data/\<identifier\>?content=nonconfig
 
 - Returns the value of the data node from the Operational datastore.
 - \<identifier\> points to a data node that must be retrieved.
 
-#### GET /rests/data/\<identifier\>
+#### GET /rests/data/\<identifier\>?content=all
 
 - Returns a data node from both Config and Operational datastores. The
     outputs from both datastores are merged into one output.
