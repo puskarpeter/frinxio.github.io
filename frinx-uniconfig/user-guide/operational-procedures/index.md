@@ -33,4 +33,11 @@ UniConfig supports encryption and hashing of values in RESTCONF and
 UniConfig shell API and managing of confidential data during transfer
 between UniConfig database and network devices.
 
-[!ref text="OpenAPI"](../operational-procedures/data-security-models)
+[!ref text="Data Security Models"](../operational-procedures/data-security-models)
+
+## UniConfig Clustering
+
+UniConfig stateless architecture allows deployment of the system in cluster in order to assure
+horizontal scalability and high availability properties.
+
+[!ref text="UniConfig Clustering"](../operational-procedures/uniconfig-clustering)
