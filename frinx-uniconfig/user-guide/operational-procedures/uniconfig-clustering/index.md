@@ -298,3 +298,56 @@ Values of all traefik labels should be same on all nodes in the cluster - scalin
 The similar configuration, like the presented one with Traefik, can be achieved using other load-balancer tools,
 such as HAProxy.
 !!!
+
+## Clustering of NETCONF subscriptions and notifications
+
+When device is installed with stream property set, subscriptions for all
+provided streams are created in database. These subscriptions are always
+created with UniConfig instance id set to null, so they can be acquired
+by any UniConfig from cluster. Each UniConfig instance in cluster uses
+its own monitoring system to acquire free subscriptions. Monitoring
+system uses specialized transaction to lock subscriptions which prevents
+more UniConfig instances to lock same subscriptions. While locking
+subscription, UniConfig instance writes its id to subscription table to
+currently locked subscription and which means that this subscription is
+already acquired by this UniConfig instance. Other instances of
+UniConfig will not find this subscription as free anymore.
+
+### Optimal subscription count and rebalancing
+
+With multiple UniConfig instances working in a cluster, each instance
+calculates an optimal range of subscriptions to manage.
+
+```
+OPTIMAL_RANGE_LOW = (NUMBER_OF_ALL_SUBSCRIPTIONS / NUMBER_OF_LIVE_UC_NODES_IN_CLUSTER) * OPTIMAL_NETCONF_SUBSCRIPTIONS_APPROACHING_MARGIN
+OPTIMAL_RANGE_HIGH = (NUMBER_OF_ALL_SUBSCRIPTIONS / NUMBER_OF_LIVE_UC_NODES_IN_CLUSTER) * OPTIMAL_NETCONF_SUBSCRIPTIONS_REACHED_MARGIN
+# Example: optimal range for 5000 subscriptions with 3 nodes in the cluster and margins set to 0.05 and 0.10 = (1750, 1834)
+```
+
+Based on optimal range and a number of currently opened subscriptions,
+each UniConfig node (while performing a monitoring system iteration)
+decides whether it should:
+
+- Acquire additional subscriptions before optimal range is reached
+- Stay put and not acquire additional subscriptions in case optimal range is reached
+- Release some of its subscriptions to trigger rebalancing until optimal range is reached
+
+When an instance goes down, all of its subscriptions will be immediately
+released and the optimal range for the other living nodes will change
+and thus the subscriptions will be reopened by the rest of the cluster.
+
+!!!
+There is a grace period before the other nodes take over the
+subscriptions. So in case a node goes down and up quickly, it will
+restart the subscriptions on its own.
+!!!
+
+Following example illustrates a timeline of a 3 node cluster and how
+many subscriptions each node handles:
+
+![notifications-in-cluster-rebalancing](netconf_subs_rebalancing.svg)
+
+!!!
+The hard limit still applies in clustered environment and it will never
+be crossed, regardless of the optimal range.
+!!!
