@@ -2,25 +2,31 @@
 
 ## Introduction
 
-UniConfig can be easily deployed in the cluster because of its stateless and transaction-based architecture:
+UniConfig can be easily deployed in the cluster thanks to its stateless architecture and transaction isolation:
 
-* stateless architecture - UniConfig nodes in the cluster don't keep any state that would have to be synced directly
-  with other nodes in the cluster. All network-topology configuration and state information are stored inside
-  PostgreSQL database that must be reachable from all UniConfig nodes in the same zone.
-* transaction-based architecture - Load-balancing is based on allocation of UniConfig transactions to nodes
-  in the cluster. The same UniConfig transaction cannot span multiple UniConfig nodes in the cluster.
-  Sessions used for management of devices are temporary - they are created when UniConfig needs to access device
-  on the network, and they are closed when UniConfig transactions, that used corresponding sessions, is closed.
+* stateless architecture - UniConfig nodes in the cluster don't keep any state that would have to be communicated directly
+  to other Uniconfig nodes in a cluster. All network-topology configuration and state information are stored inside
+  a PostgreSQL database that must be reachable from all UniConfig nodes in the same zone. All Uniconfig nodes share the
+  same database, making the database single source of truth for Uniconfig cluster.
+* transaction isolation - Load-balancing is based on mapping UniConfig transactions to Uniconfig nodes
+  in a cluster (transactions are sticky). One UniConfig transaction cannot span multiple UniConfig nodes in a cluster.
+  Southbound sessions used for device management are ephemeral - they are created when UniConfig needs to access device
+  on the network (like pushing cnfiguration updates) and they are closed as soon as a UniConfig transactions is committed or closed.
 
 There are several advantages of clustered deployment of UniConfig nodes:
 
 * horizontal scalability - Increasing number of units that can process UniConfig transactions in parallel.
-  Single UniConfig node tend to have limited processing and networking resources - by increasing number of nodes in the
-  cluster, this constraint can be mitigated. Number of connected UniConfig nodes in the cluster can also be adjusted
-  at the runtime.
+  Single UniConfig node tends to have limited processing and networking resources - by increasing number of nodes in the
+  cluster, this constraint can be mitigated. The more Uniconfig nodes in a cluster, the more transactions can be executed in parallel.
+  Number of connected UniConfig nodes in the cluster can also be adjusted at the runtime.
 * high-availability - Single UniConfig node doesn't represent single point of failure. If UniConfig node crashes,
   only UniConfig transactions that are processed by corresponding node, are cancelled. Application can retry failed
   transaction, and it will be processed by next node in the cluster.
+
+There also are a couple limitations to be considered:
+
+* Parallel execution of transactions is subject to a locking mechanism, where 2 transactions cannot manipulate the same device at the same time.
+* Single transaction is always executed by a single Uniconfig node. This means that a scope of a single transaction is limited by the number devices and   their configuration a single Uniconfig node can handle.
 
 ## Deployments
 
@@ -33,29 +39,27 @@ Components of the single-zone deployment and connections between them are depict
 
 Description of components:
 * UniConfig controllers - Network controllers that use common PostgreSQL system for persistence of data, communicate
-  with network devices using NETCONF/GNMi/CLI management protocols, and propagate notifications into Kafka topics
+  with network devices using NETCONF/GNMi/CLI management protocols and propagate notifications into Kafka topics
   (UniConfig nodes act only as Kafka producers). UniConfig nodes do not communicate with each other directly,
-  their operation can only be coordinated by  operational data stored in the database in case of NETCONF streams.
+  their operation can only be coordinated using data stored in the database.
 * Database storage - PostgreSQL is used for persistence of network-topology configuration, mountpoints settings,
-  and selected operational data. PostgreSQL database can also be deployed in the cluster.
+  and selected operational data. PostgreSQL database can also be deployed in the cluster (outside of scope).
 * Message and notification channels - Kafka cluster is used for propagation of notifications that are generated
-  from UniConfig nodes themselves (e.g., audit and transaction notifications) or from devices and only propagated
+  by UniConfig itself (e.g., audit and transaction notifications) or from network devices and only propagated
   by UniConfig controller.
-* Load-balancers - Load-balancer is used for distribution of transactions (HTTP traffic) and SSH sessions
-  from applications to UniConfig nodes. From the view of load-balancer, all UniConfig nodes in the cluster can process
-  transactions and operations in the transactions equally. Currently, only round-robin load-balancing strategy
-  is supported. Load-balancers can also be connected in the cluster to improve high-availability of this layer 
-  in the deployment.
+* Load-balancers - Load-balancer is used for distributing transactions (HTTP traffic) and SSH sessions
+  from applications to UniConfig nodes. From the view of load-balancer, all UniConfig nodes in a cluster are equall.
+  Currently, only round-robin load-balancing strategy is supported.
 * Managed network devices - Devices that are managed using NETCONF/GNMi/CLI protocols by UniConfig nodes or generate
-  notifications to UniConfig nodes. Sessions between UniConfig nodes and devices are either on-demand/temporary
+  notifications to UniConfig nodes. Sessions between UniConfig nodes and devices are either on-demand/emphemeral
   (configuration of devices) or long-term (distribution of notifications over streams).
-* HTTP / SSH clients & Kafka consumers - Application layer that may contain workflow management systems or directly
-  end-user systems. RESTCONF API is exposed using HTTP protocol, SSH server is exposing UniConfig shell,
-  and Kafka brokers allows Kafka consumers to listen to the events on subscribed topics.
+* HTTP / SSH clients & Kafka consumers - Application layer such as workflow management systems or end-user systems.
+  RESTCONF API is exposed using HTTP protocol, SSH server is exposing UniConfig shell
+  and Kafka brokers allow Kafka consumers to listen to the events on subscribed topics.
 
 ### Multi-zone deployment
 
-In this type of deployment there are multiple zones that manage separated sets of devices because of several reasons:
+In this type of deployment there are multiple zones that manage separate sets of devices because:
 
 * network reachability issues - groups of devices are only reachable and thus manageable from some part
   of the network (zone) but not from others
@@ -63,41 +67,38 @@ In this type of deployment there are multiple zones that manage separated sets o
 * legal issues - some devices must be managed separately with split storage, for example, because of the regional
    restrictions
 
-The following diagrams represents the sample deployment with 2 zones. The first zone contains of 3 UniConfig nodes,
-the second zone contains only from 2 UniConfig nodes. Zones share the Kafka cluster; database systems are split.
+The following diagrams represents a sample deployment with 2 zones. The first zone contains 3 UniConfig nodes
+while the second zone contains only 2 UniConfig nodes.
+Multiple zones might share a single Kafka cluster but database instances need to be split (could be running in a single postgres server).
 
 ![Deployment with multiple zones](multi-zone-architecture.svg)
 
 Description of multi-zone areas:
 
-* applications - In comparison to single-zone deployment there is additionally database that contains device-zone
-  mappings - based on this information application decides with which zone communication happens.
-* isolated zones - Zones contain set of UniConfig nodes, managed network devices, and load-balancers  
-  connected in the isolated clusters. Communication between UniConfig cluster and applications is proxied
-  by load-balancers the same way as within single-zone deployment.
-* PostgreSQL databases - It is recommended to use dedicated database per zone, especially, if deployment requires
-  working device notification streams. Otherwise, subscription allocation would not work since UniConfig nodes
-  from different zones may try to establish sessions to unreachable devices placed in the neighbouring zone.
-* Kafka cluster - Kafka cluster can be shared by multiple zones or there could be single Kafka cluster per zone.
-  Notifications from different zones can be safely pushed to the common topics since there cannot be any
-  conflicts between Kafka publishers. However, it is also possible to achieve isolation of published messages
-  in the single-cluster Kafka deployment by setting different topic names in different zones.
+* Applications - The application layer is responsible for managing mapping between network segments and Uniconfig zones.
+  Typically this is achieved by deploying/using an additional inventory database that contains device <-> zone
+  mappings - based on this information the application decides which zone to use. 
+* Isolated zones - A zone contains one or more UniConfig nodes, load-balancers and managed network devices.
+  The clusters in isolated zones share 0 information.
+* PostgreSQL databases - It is necessary to use dedicated database per zone.
+* Kafka cluster - Kafka cluster can be shared by multiple clusters in different zones or there could be single Kafka cluster per zone.
+  Notifications from different zones can be safely pushed to the common topics since there can be no possible
+  conflicts between Kafka publishers. However it is also possible to achieve isolation of published messages
+  in a shared Kafka deployment by setting different topic names in different zones.
 
 ### Load-balancer operation
 
-The responsibility of load-balancer is to allocate UniConfig transaction on one of the UniConfig nodes in the cluster.
+The responsibility of a load-balancer is to allocate UniConfig transaction on one of the UniConfig nodes in the cluster.
 It is done by forwarding requests without UniConfig transaction header to one of the UniConfig nodes
-(using round-robin strategy) and appending used backed identifier to the create-transaction RPC response in form
-of the additional Cookie header ('sticky session' concept). Afterwards, it is responsibility of the application
-to assure that requests that belong  to the same transaction contains also same backend identifier.
+(using round-robin strategy) and afterwards appending a backed identifier to the create-transaction RPC response in form
+of an additional Cookie header ('sticky session' concept). Afterwards, it is the responsibility of an application
+to assure that all requests that belong to the same transaction contain the same backend identifier.
 
 !!!
-It is recommended to use load-balancer deployment that is stateless based on 'sticky cookie' - it does not store
-mappings between transactions and context. It makes deployment more straightforward and scalability
-of load-balancers more robust.
+The application is responsible for preserving transaction and backend identifier cookies throught a transaction lifetime.
 !!!
 
-The next sequence diagram captures process of creation and usage of 2 UniConfig transactions with focus
+The next sequence diagram captures a process of creating and using 2 UniConfig transactions with focus
 on load-balancer operation.
 
 ![Load-balancing UniConfig transactions](load-balancing-transactions.svg)
@@ -333,7 +334,7 @@ decides whether it should:
 - Release some of its subscriptions to trigger rebalancing until optimal range is reached
 
 When an instance goes down, all of its subscriptions will be immediately
-released and the optimal range for the other living nodes will change
+released and the optimal range for the other living nodes will changemanaged network devices
 and thus the subscriptions will be reopened by the rest of the cluster.
 
 !!!
