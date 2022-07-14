@@ -1485,32 +1485,54 @@ not perform leafref validation and there will be no leafref validation error.
 
 ## Hide Empty Data Nodes
 
-Configuration setting hides empty data nodes in response to GET call on device configuration. 
-Data nodes that contain only attribute tag are considered to be empty too. It can be enabled 
-(set to true) in the 'config/lighty-uniconfig-config.json' file. Setting is disabled (set to false), by default.
+Query parameter 'hideEmptyDataNodes' is used to hide empty composite data-tree nodes in response to GET call.
+Data nodes that contain only attribute tag are considered to be empty too. Default value is 'false' - empty nodes
+are displayed in the GET response.
 
-```json Configuration of hideEmptyDataNodes
-        // Flag that determines if the data node that is empty(means node contains only attribute tag) should be hidden
-        // during GET operation
-        "hideEmptyDataNodes": false,
+### Example
+
+``` bash GET request without 'hideEmptyDataNodes' parameter
+curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=templates/node=t1/configuration/system' \
+--header 'Accept: application/json'
 ```
 
-### Example: Empty Data Node with and without tag
-
-``` json Empty container
-"monitor:monitor-group": {
-    "@": {
-        "template-tags:operation": "replace"
-    }
-}
-
-or
-
-"monitor:monitor-group": {
-
+``` json GET response with empty data-tree nodes
+{
+    "system:system": {
+        "routing": "enabled",
+        "setting": {
+            "keepalive-timeout": 10,
+            "response-timeout": 50
+        },
+        "flags": [],
+        "state": {},
+        "users": {
+            "@": {
+                "template-tags:operation": "merge"
+            },
+            "#": []
+        }
     }
 }
 ```
+
+``` bash GET request with set 'hideEmptyDataNodes' parameter to 'true'
+curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=templates/node=t1/configuration/system?hideEmptyDataNodes=true' \
+--header 'Accept: application/json'
+```
+
+``` json GET response with hidden empty data nodes
+{
+    "system:system": {
+        "routing": "enabled",
+        "setting": {
+            "keepalive-timeout": 10,
+            "response-timeout": 50
+        }
+    }
+}
+```
+
 ## Escaping keys in URI
 
 Following characters must be escaped, if they are contained in a list key value:
