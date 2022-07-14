@@ -174,6 +174,8 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
             "frinx-openconfig-if-ethernet:ethernet": {
                 "config": {
                     "port-speed": "{{eth_speed}}",
+                    "frinx-cisco-if-extension:lacp-rate": "{{lacp_rate}}", // "FAST" or "NORMAL"
+                    "frinx-cisco-if-extension:lacp-port-priority": {{port_priority}}, // Values between 0 and 65535
                     "frinx-openconfig-if-aggregate:aggregate-id": "{{lag_ifc_name}}",
                     "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
                     "frinx-lacp-lag-member:interval": "{{lacp_interval}}",
@@ -352,6 +354,8 @@ interface {{eth_ifc_name}}
  channel-group {{lag_ifc_id}} mode {{lacp_mode}}
  media-type {{eth_phy_type}} 
  speed {{eth_speed}}
+ lacp port-priority {{port_priority}}
+ lacp rate normal | fast
  shutdown | no shutdown
  storm-control {{storm_control_address}} level {{storm_control_level}}
  lldp transmit | no lldp transmit
@@ -371,6 +375,8 @@ interface {{eth_ifc_name}}
 {{eth_subnet}} is a conversion of {{eth_prefix_length}}  
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
+*normal* is a conversion of "{{lacp_rate}}" set *"NORMAL"*  
+*fast* is a conversion of "{{lacp_rate}}" set *"FAST"*  
 *lldp transmit* is a conversion of {{lldp-transmit}} set *true*  
 *no lldp transmit* is a conversion of {{lldp-transmit}} set *false*  
 *lldp receive* is a conversion of {{lldp-receive}} set *true*  
