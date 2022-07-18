@@ -1423,15 +1423,16 @@ definitions with a 'deprecated status' attribute.
 }
 ```
 
-### Unhide Parameter for READ Operation
+### Unhide Parameter for READ/WRITE Operations
 
 RESTCONF supports the 'unhide' query parameter for the GET requests to
-include hidden definitions into the response. This parameter value can
+include hidden definitions into the response and for PUT/POST/PATCH requests to
+accept hidden definitions in the input. This parameter value can
 be populated with a comma-separated list of extensions to unhide or the
 keyword 'all' to include all possible hidden definitions in the
 response.
 
-Example of using the 'unhide' parameter for the GET request.
+Example of using the 'unhide' parameter for the GET and PUT/POST/PATCH requests.
 
 **Using unhide with a list of extensions**
 
