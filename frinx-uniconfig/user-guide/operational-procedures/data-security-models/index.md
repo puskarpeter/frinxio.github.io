@@ -220,6 +220,12 @@ Example:
   Together, 'netconfReferenceModuleName' and 'netconfEncryptedPathsModuleName' can be used for auto-loading
   of encrypted paths for different versions of devices.
 
+!!!
+If 'default' YANG repository contains module with encrypted-paths without defined YANG revision and device
+does not already provide encryption capability, then encrypted-paths module is used as the last resort during
+installation of device ('netconfReferenceModuleName' and matching of revisions are ignored).
+!!!
+
 ### Device installation
 
 There are 2 settings related to encryption in the 'install-node' RPC request:
