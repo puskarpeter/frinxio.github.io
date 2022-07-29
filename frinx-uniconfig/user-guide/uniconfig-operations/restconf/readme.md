@@ -144,7 +144,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 }
 ```
 
-In this request we are using parameter **content=nonconfig**, this means
+In this reqeust we are using parameter **content=nonconfig**, this means
 we are reading running NETCONF datastore. Value **nonconfig** is
 translated into get NETCONF RPC. We can compare it with data directly
 from device using show running-config command.
@@ -1581,51 +1581,4 @@ The following request demonstrates demarcation of interface name 'ge0/0/1' using
 curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=device/configuration/frinx-openconfig-interfaces:interfaces/interface=%22ge0/0/1%22 \
 --header 'Accept: application/json'
 ```>>>>>>> b208d862 (Encoding key values)
-```
-
-## Hide Attributes
-
-Query parameter 'hideAttributes' is used to hide composite data-tree nodes attributes in response to GET call.
-Default value is 'false' - nodes attributes are displayed in the GET response.
-
-### Example
-
-``` bash GET request without 'hideAttributes' parameter
-curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=templates/node=tmpl/configuration/service-node-groups' \
---header 'Accept: application/json'
-```
-
-``` json GET response with empty data-tree nodes
-{
-   "sfc:service-node-groups": {
-       "@": {
-           "template-tags:operation": "replace"
-       },
-       "service-node-group": [
-           {
-               "@": {
-                   "template-tags:operation": "update"
-               },
-               "name": "service-node-group-test-name"
-           }
-       ]
-   }
-}
-```
-
-``` bash GET request with set 'hideAttributes' parameter to 'true'
-curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=templates/node=tmpl/configuration/service-node-groups?hideAttributes=true' \
---header 'Accept: application/json'
-```
-
-``` json GET response with hidden attributes
-{
-   "sfc:service-node-groups": {
-       "service-node-group": [
-           {
-               "name": "service-node-group-test-name"
-           }
-       ]
-   }
-}
 ```
