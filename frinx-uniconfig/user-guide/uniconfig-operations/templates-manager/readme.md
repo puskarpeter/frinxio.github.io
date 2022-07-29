@@ -1018,3 +1018,278 @@ curl --location --request PUT 'http://localhost:8181/rests/operations/template-m
     }
 }
 ```
+
+## RPC create-multiple-templates
+
+One or more new templates can be created by this RPC. Templates are parsing in parallel for better performance.
+
+Description of input RPC fields:
+
+- **template-node-id**:Name of the input template.
+- **yang-repository**: Yang schema repository used for parsing of template configuration.
+- **template-configuration**: Whole template configuration.
+
+All three input fields are mandatory.
+
+### Examples
+
+Successful creation of templates.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:create-multiple-templates' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "nodes": [
+            {
+                "template-node-id": "Template-name1",
+                "yang-repository": "schemas-1",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name2",
+                "yang-repository": "schemas-2",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name3",
+                "yang-repository": "schemas-3",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            }
+        ]
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "overall-status": "complete",
+        "node-result": [
+            {
+                "node-id": "Template-name1",
+                "status": "complete"
+            },
+            {
+                "node-id": "Template-name2",
+                "status": "complete"
+            },
+            {
+                "node-id": "Template-name3",
+                "status": "complete"
+            }
+        ]
+    }
+}
+```
+
+Failed - Missing template node id value.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:create-multiple-templates' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "nodes": [
+            {
+                "template-node-id": "",
+                "yang-repository": "schemas-1",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name2",
+                "yang-repository": "schemas-2",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name3",
+                "yang-repository": "schemas-3",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            }
+        ]
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "overall-status": "fail",
+        "node-result": [
+            {
+                "node-id": "",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            },
+            {
+                "node-id": "Template-name2",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            },
+            {
+                "node-id": "Template-name3",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            }
+        ],
+        "error-message": "Invocation of create-multiple-templates RPC failed - Empty element: template-node-id."
+    }
+}
+```
+
+Failed - Duplicated template node id value.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:create-multiple-templates' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "nodes": [
+            {
+                "template-node-id": "Template-name1",
+                "yang-repository": "schemas-1",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name1",
+                "yang-repository": "schemas-2",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name3",
+                "yang-repository": "schemas-3",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            }
+        ]
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "overall-status": "fail",
+        "node-result": [
+            {
+                "node-id": "Template-name1",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            },
+            {
+                "node-id": "Template-name3",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            }
+        ],
+        "error-message": "Invocation of create-multiple-templates RPC failed - Duplicated template-node-id: [Template-name1]"
+    }
+}
+```
+
+Failed - Missing yang repository value.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:create-multiple-templates' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "nodes": [
+            {
+                "template-node-id": "Template-name1",
+                "yang-repository": "",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name2",
+                "yang-repository": "schemas-2",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name3",
+                "yang-repository": "",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            }
+        ]
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "overall-status": "fail",
+        "node-result": [
+            {
+                "node-id": "Template-name1",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            },
+            {
+                "node-id": "Template-name2",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            },
+            {
+                "node-id": "Template-name3",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            }
+        ],
+        "error-message": "Invocation of create-multiple-templates RPC failed - Empty element: yang-repository."
+    }
+}
+```
+
+Failed to find(load) schema repository in cache repository.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:create-multiple-templates' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "nodes": [
+            {
+                "template-node-id": "Template-name1",
+                "yang-repository": "schemas-11",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name2",
+                "yang-repository": "schemas-22",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            },
+            {
+                "template-node-id": "Template-name3",
+                "yang-repository": "schemas3",
+                "template-configuration": "{ \"frinx-uniconfig-topology:configuration\": { \"confd-dyncfg:confdConfig\": { \"@\": { \"template-tags:operation\": \"replace\" } } } }"
+            }
+        ]
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "overall-status": "fail",
+        "node-result": [
+            {
+                "node-id": "Template-name1",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            },
+            {
+                "node-id": "Template-name2",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            },
+            {
+                "node-id": "Template-name3",
+                "error-type": "uniconfig-error",
+                "status": "fail"
+            }
+        ],
+        "error-message": "[Invocation of create-multiple-templates RPC failed - Failed to find schema repository: schemas-11, schemas-22]"
+    }
+}
+```
