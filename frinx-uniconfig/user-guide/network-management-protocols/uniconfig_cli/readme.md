@@ -375,8 +375,8 @@ must equal to original command-prompt.
     commands that are not followed by 'expect(..)' pattern. It is
     possible to mix interactive and non-interactive commands in input
     command snippet.
-- If 'expect' pattern doesn't match previous output, CLI session will
-    be dropped on timeout.
+- If 'expect' pattern doesn't match previous output, Execute-and-expect RPC will 
+  fail on timeout (fixed 3 seconds) for reading next input and CLI session will drop immediately.
 
 #### Example
 
