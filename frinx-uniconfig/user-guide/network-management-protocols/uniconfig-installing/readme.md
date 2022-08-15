@@ -206,9 +206,9 @@ Following parameters adjust maintaining of CLI session state.
 None of these parameters are mandatory (default values will be used).
 
 -   **cli-topology:max-connection-attempts** - Maximum number of initial connection attempts 
-    (default value: 1). In a case, we have unstable devices in our network it might be useful 
+    (default value: 1). If there are unstable devices in the network it might be useful 
     to provide `max-connection-attempts` higher than the default value. It would try to connect
-    `n` times before throwing an ssh connection error.
+    `n` times before throwing an ssh connection exception.
 -   **cli-topology:max-reconnection-attempts** - Maximum number of reconnection attempts
     (default value: 1). `max-reconnection-attempts` is not that necessary to set. Uniconfig does
     not keep idle sessions open longer than it is necessary.
@@ -245,6 +245,10 @@ some devices might have a large config. We would set these parameters:
     keepalive-timeout=120
 ```
 
+Connection attempts would give us more flexibility if we work with unstable devices. It would
+try to ssh 3 times instead of 1 (default value). We should also keep in mind that the process of
+connecting to a device would take longer because of extra ssh attempts.
+
 Keepalive commands can be set less than time of the installation, because keepalive commands can
 fit in between of the installation process. An important thing to keep in mind is to set sum of
 keepalive-delay and keepalive-timeout parameters higher than time of execution of the configuration
@@ -253,10 +257,6 @@ For each type of device it is a different command (`configuration show brief` fo
 `show run` for Cisco devices, etc.). 
 Assumption is that it should not take more than 240 seconds (sum of keepalive params) to show the
 whole configuration. This can be appropriately adjusted to our circumstances.
-
-Connection attempts would give us more flexibility if we work with unstable devices. It would
-try to ssh 3 times instead of 1 (default value). We should also keep in mind that the process of
-connecting to a device would take longer because of extra ssh attempts.
 
 **2. Lazy reconnection strategy**
 
