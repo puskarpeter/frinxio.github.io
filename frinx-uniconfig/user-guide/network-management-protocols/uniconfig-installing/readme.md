@@ -205,22 +205,58 @@ from single group. By default, keepalive strategy is used.
 Following parameters adjust maintaining of CLI session state. 
 None of these parameters are mandatory (default values will be used).
 
--   **cli-topology:max-connection-attempts** - Maximum number of initial connection attempts (default value: 1).
--   **cli-topology:max-reconnection-attempts** - Maximum number of reconnection attempts (default value: 1).
+-   **cli-topology:max-connection-attempts** - Maximum number of initial connection attempts 
+    (default value: 1). If there are unstable devices in the network it might be useful 
+    to provide `max-connection-attempts` higher than the default value. It would try to connect
+    `n` times before throwing an ssh connection exception.
+-   **cli-topology:max-reconnection-attempts** - Maximum number of reconnection attempts
+    (default value: 1). `max-reconnection-attempts` is not that necessary to set. Uniconfig does
+    not keep idle sessions open longer than it is necessary.
 
 ### Keepalive strategies
 
 **1. Keepalive reconnection strategy**
 
 -   **cli-topology:keepalive-delay** - Delay between sending of
-     keepalive messages over CLI session. Default value: 60 seconds.
+     keepalive messages over CLI session. The value should not be set higher than 
+     the execution of the longest operation. Default value: 60 seconds.
 -   **cli-topology:keepalive-timeout** - This parameter defines how
-     much time CLI layer should wait for response to keepalive message
+     much time the CLI layer should wait for a response to keepalive message
      before the session is closed. Default value: 60 seconds.
 -   **cli-topology:keepalive-initial-delay** - This parameter defines
      how much time CLI layer waits for establishment of new CLI session
      before the first reconnection attempt is launched. Default value:
      120 seconds.
+
+The keepalive parameters have two main functions:
+
+-   keep the idle session open
+-   timeout commands which would block the session forever
+
+### Example of using the connection and keepalive parameters together
+
+For this example let us assume that we are dealing with a prod-like device, which would mean that
+some devices might have a large config. We would set these parameters:
+
+```
+    max-connection-attempts=3
+    max-reconnection-attempts=3
+    keepalive-delay=120
+    keepalive-timeout=120
+```
+
+Connection attempts would give us more flexibility if we work with unstable devices. It would
+try to ssh 3 times instead of 1 (default value). We should also keep in mind that the process of
+connecting to a device would take longer because of extra ssh attempts.
+
+Keepalive commands can be set less than time of the installation, because keepalive commands can
+fit in between of the installation process. An important thing to keep in mind is to set sum of
+keepalive-delay and keepalive-timeout parameters higher than time of execution of the configuration
+show command. Otherwise, it could time out during writing out of the configuration to the console.
+For each type of device it is a different command (`configuration show brief` for Ciena devices,
+`show run` for Cisco devices, etc.). 
+Assumption is that it should not take more than 240 seconds (sum of keepalive params) to show the
+whole configuration. This can be appropriately adjusted to our circumstances.
 
 **2. Lazy reconnection strategy**
 
