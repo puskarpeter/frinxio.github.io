@@ -601,6 +601,8 @@ Supported pipe operations are:
 2. match - same as grep but can be used with optional parameters to show also lines before and after matched line
 3. context-match - same as grep but shows also parent structure
 4. brief - displays root elements in the short table format
+5. hide-empty-data-nodes - hides data nodes without any child node. 
+6. hide-attributes - hides attributes of data nodes.
 
 ## Redirection of output
 Result of a command execution can be redirected to a file using ">" sign followed by file name.
