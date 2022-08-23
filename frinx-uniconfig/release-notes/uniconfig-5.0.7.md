@@ -47,8 +47,6 @@ order: 15
 
 - Fix all owasp sec issues level 8
 
-## :wrench: Other
-
 - Upgrade sshd libs to version 2.8.0
 
 - Upgrade and cleanup usage of jaxb
@@ -57,4 +55,3 @@ order: 15
 
 - Reorganisation of NETCONF connection parameters
 
-- Renaming/reorganisation of NETCONF connection parameters

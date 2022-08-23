@@ -2,6 +2,8 @@
  
 ## :white_check_mark: New Features 
  
+ - Add jsonb-filter in UC client
+ 
  - Automation of adding release notes to documetation
  
  - API for bulk addition of templates
@@ -12,7 +14,11 @@
  
  - JSONB filtering core
  
+ - Upgrade-from-network as part of sync-from-network
+ 
 ## :x: Bug Fixes 
+ 
+ - Cancellation of initial NETCONF RPCs after request timeout
  
  - Fixed parsing XML-endoded leaf with instance-identifier to list
  
@@ -49,14 +55,6 @@
  - Swagger: inclusion of action endpoints
  
  - YangPackager does not catch broken submodules
- 
-## :wrench: Other 
- 
- - Add jsonb-filter in UC client
- 
- - Upgrade-from-network as part of sync-from-network
- 
- - Cancellation of initial NETCONF RPCs after request timeout
  
  - Refresh schema context for netconf southbound if device was upgraded
  
