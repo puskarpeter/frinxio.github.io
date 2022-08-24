@@ -1,5 +1,9 @@
 name: Publish Retype powered website to GitHub Pages
 on:
+  push:
+    paths:
+      - 'frinx-uniconfig/release-notes/index.md'
+
   workflow_dispatch:
 
 jobs:
