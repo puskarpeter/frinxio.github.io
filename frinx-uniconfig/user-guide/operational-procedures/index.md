@@ -13,11 +13,18 @@ set marker in the logs.
 
 ## TLS
 
-TLS, is a widely adopted security protocol designed to facilitate
+TLS is a widely adopted security protocol designed to facilitate
 privacy and data security for communications over the Internet. In the
 default version of UniConfig TLS authentication is disabled.
 
 [!ref text="TLS"](../operational-procedures/tls)
+
+## TLS for Postgres database
+
+By default, Uniconfig communicates with the database without TLS, therefore all traffic is not encrypted. When the database is deployed separately from Uniconfig, it is advised to enable the TLS encryption.
+
+
+[!ref text="TLS for Postgres database"](../operational-procedures/postgres-tls)
 
 ## OpenAPI
 
