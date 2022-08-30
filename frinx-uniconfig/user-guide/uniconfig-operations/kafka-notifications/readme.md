@@ -80,6 +80,44 @@ Response body does not need to be included in notification. It can be
 configured using *includeResponseBody* parameter in
 lighty-uniconfig-config.json file.
 
+## Shell notifications
+
+This type of notifications is generated after each shell operation.
+
+**It contains:**
+
+- transaction id
+- request data
+    - source-address
+    - source-port
+    - prompt
+    - executed command
+- response data
+    - output
+  
+```json
+{
+  "eventTime":"2022-08-08 17:45:26.62239+00",
+  "nodeId":"UC-5b4d0cec-6493-4e3d-bd1c-348a3ce83600",
+  "streamName":"SHELL",
+  "identifier":"shell-notification",
+  "body":{
+    "request": {
+      "host": {
+        "source-port": 2022,
+        "source-address": "127.0.0.1"
+      },
+      "prompt": "show-netconf>",
+      "executed-command": "abcd interfaces abc abc-1"
+    },
+    "response": {
+      "output": "{  \"name\": \"abc-1\",  \"enable\": true}"
+    },
+    "transaction-id": "2d090dc4-9ee9-4a14-abb9-506a7ff1d414"
+  }
+}
+```
+
 ## Data-change events
 
 User must perform subscription step before data-change-events are generated and published into Kafka.
