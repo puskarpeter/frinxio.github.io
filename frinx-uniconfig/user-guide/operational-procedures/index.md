@@ -21,7 +21,7 @@ default version of UniConfig TLS authentication is disabled.
 
 ## TLS for Postgres database
 
-By default, Uniconfig communicates with the database without TLS, therefore all traffic is not encrypted. When the database is deployed separately from Uniconfig, it is advised to enable the TLS encryption.
+By default, UniConfig communicates with the database without TLS, therefore all traffic is not encrypted. When the database is deployed separately from UniConfig, it is advised to enable the TLS encryption.
 
 
 [!ref text="TLS for Postgres database"](../operational-procedures/postgres-tls)

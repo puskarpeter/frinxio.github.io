@@ -1,7 +1,7 @@
 # TLS encryption for Postgres database
 
 By default all the communication to the database is not encrypted.
-In deployments where Uniconfig is running separately from database, the traffic might be visible to unwanted eyes. Here are the steps to enabling TLS encryption for communication with the database.
+In deployments where UniConfig is running separately from database, the traffic might be visible to unwanted eyes. Here are the steps to enabling TLS encryption for communication with the database.
 
 ## Generating self-signed certificate using OpenSSL
 
