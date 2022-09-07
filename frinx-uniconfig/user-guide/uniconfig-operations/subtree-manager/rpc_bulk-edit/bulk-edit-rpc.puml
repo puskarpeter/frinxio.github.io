@@ -1,0 +1,45 @@
+@startuml
+title "Execution of bulk-edit RPC"
+
+actor Application
+boundary SubtreeManager
+entity UniconfigTransaction
+control SchemaContextProvider
+
+activate SubtreeManager
+activate UniconfigTransaction
+activate SchemaContextProvider
+
+Application ->> SubtreeManager: send bulk-edit RPC
+
+opt node-id list is not specified
+    SubtreeManager -> UniconfigTransaction: read list of nodes
+    UniconfigTransaction -->> SubtreeManager: list of nodes
+end
+
+loop for each target node
+    SubtreeManager -> UniconfigTransaction: read node configuration
+    UniconfigTransaction -->> SubtreeManager: node configuration
+    SubtreeManager -> SubtreeManager: verify node existence
+    loop for each edit
+        par execute in parallel
+            SubtreeManager -> SchemaContextProvider: find node schema context
+            SchemaContextProvider -->> SubtreeManager: schema context
+            SubtreeManager -> SubtreeManager: parse path and data using schema context
+            alt operation == merge
+                SubtreeManager -> UniconfigTransaction: merge with data on path
+                UniconfigTransaction -->> SubtreeManager: ack
+            else operation == replace
+                SubtreeManager -> UniconfigTransaction: replace data on path
+                UniconfigTransaction -->> SubtreeManager: ack
+            else operation == remove
+                SubtreeManager -> UniconfigTransaction: remove data on path
+                UniconfigTransaction -->> SubtreeManager: ack
+            end
+        end
+    end
+    SubtreeManager -> SubtreeManager: construct RPC response
+end
+
+SubtreeManager -->> Application: RPC response
+@enduml

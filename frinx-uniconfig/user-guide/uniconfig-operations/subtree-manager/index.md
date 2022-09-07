@@ -55,3 +55,8 @@ Provides a list of supported operations on subscriptions, includes
 request examples and workflow diagrams.
 
 [!ref text="RPC calculate-subtree-git-like-diff"](../subtree-manager/rpc_calculate-subtree-git-like-diff)
+
+## RPC bulk-edit
+
+Operation used for application of multiple modifications to list of target nodes.
+[!ref text="RPC bulk-edit"](../subtree-manager/rpc_bulk-edit)

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="1008px" preserveAspectRatio="none" style="width:752px;height:1008px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 752 1008" width="752px" zoomAndPan="magnify">
+    <defs/>
+    <g>
+        <rect height="29.0679" style="stroke:#00000000;stroke-width:1.0;fill:none;" width="186" x="284.5" y="10"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+              textLength="176" x="289.5" y="29.9659">Execution of bulk-edit RPC
+        </text>
+        <rect fill="#FFFFFF" height="781.4961" style="stroke:#181818;stroke-width:1.0;" width="10" x="182"
+              y="134.1358"/>
+        <rect fill="#FFFFFF" height="781.4961" style="stroke:#181818;stroke-width:1.0;" width="10" x="460"
+              y="134.1358"/>
+        <rect fill="#FFFFFF" height="781.4961" style="stroke:#181818;stroke-width:1.0;" width="10" x="628"
+              y="134.1358"/>
+        <rect height="83.118" style="stroke:#000000;stroke-width:1.5;fill:none;" width="433" x="117" y="172.8419"/>
+        <rect height="605.9661" style="stroke:#000000;stroke-width:1.5;fill:none;" width="659" x="87" y="269.9599"/>
+        <rect height="419.436" style="stroke:#000000;stroke-width:1.5;fill:none;" width="639" x="97" y="404.784"/>
+        <rect height="385.73" style="stroke:#000000;stroke-width:1.5;fill:none;" width="619" x="107" y="431.49"/>
+        <rect height="243.9059" style="stroke:#000000;stroke-width:1.5;fill:none;" width="433" x="117" y="566.314"/>
+        <line style="stroke:#181818;stroke-width:0.5;fill:none;stroke-dasharray:5.0,5.0;" x1="46" x2="46" y1="124.1358"
+              y2="924.632"/>
+        <line style="stroke:#181818;stroke-width:0.5;fill:none;stroke-dasharray:5.0,5.0;" x1="187" x2="187"
+              y1="124.1358" y2="924.632"/>
+        <line style="stroke:#181818;stroke-width:0.5;fill:none;stroke-dasharray:5.0,5.0;" x1="465" x2="465"
+              y1="124.1358" y2="924.632"/>
+        <line style="stroke:#181818;stroke-width:0.5;fill:none;stroke-dasharray:5.0,5.0;" x1="633" x2="633"
+              y1="124.1358" y2="924.632"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="5"
+              y="120.0339">Application
+        </text>
+        <ellipse cx="46" cy="53.5679" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+        <path d="M46,61.5679 L46,88.5679 M33,69.5679 L59,69.5679 M46,88.5679 L33,103.5679 M46,88.5679 L59,103.5679 "
+              fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="5"
+              y="938.5979">Application
+        </text>
+        <ellipse cx="46" cy="951.1999" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+        <path d="M46,959.1999 L46,986.1999 M33,967.1999 L59,967.1999 M46,986.1999 L33,1001.1999 M46,986.1999 L59,1001.1999 "
+              fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="127"
+              y="120.0339">SubtreeManager
+        </text>
+        <path d="M166.5,77.0679 L166.5,101.0679 M166.5,89.0679 L183.5,89.0679 " fill="none"
+              style="stroke:#181818;stroke-width:0.5;"/>
+        <ellipse cx="195.5" cy="89.0679" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="127"
+              y="938.5979">SubtreeManager
+        </text>
+        <path d="M166.5,946.6999 L166.5,970.6999 M166.5,958.6999 L183.5,958.6999 " fill="none"
+              style="stroke:#181818;stroke-width:0.5;"/>
+        <ellipse cx="195.5" cy="958.6999" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="144" x="390"
+              y="120.0339">UniconfigTransaction
+        </text>
+        <ellipse cx="465" cy="89.0679" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+        <line style="stroke:#181818;stroke-width:0.5;" x1="453" x2="477" y1="103.0679" y2="103.0679"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="144" x="390"
+              y="938.5979">UniconfigTransaction
+        </text>
+        <ellipse cx="465" cy="958.6999" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+        <line style="stroke:#181818;stroke-width:0.5;" x1="453" x2="477" y1="972.6999" y2="972.6999"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="160" x="550"
+              y="120.0339">SchemaContextProvider
+        </text>
+        <ellipse cx="633" cy="89.0679" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+        <polygon fill="#181818" points="629,77.0679,635,72.0679,633,77.0679,635,82.0679,629,77.0679"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="160" x="550"
+              y="938.5979">SchemaContextProvider
+        </text>
+        <ellipse cx="633" cy="958.6999" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+        <polygon fill="#181818" points="629,946.6999,635,941.6999,633,946.6999,635,951.6999,629,946.6999"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <rect fill="#FFFFFF" height="781.4961" style="stroke:#181818;stroke-width:1.0;" width="10" x="182"
+              y="134.1358"/>
+        <rect fill="#FFFFFF" height="781.4961" style="stroke:#181818;stroke-width:1.0;" width="10" x="460"
+              y="134.1358"/>
+        <rect fill="#FFFFFF" height="781.4961" style="stroke:#181818;stroke-width:1.0;" width="10" x="628"
+              y="134.1358"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="170" y1="157.8419" y2="153.8419"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="170" y1="157.8419" y2="161.8419"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="46" x2="181" y1="157.8419" y2="157.8419"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112" x="53"
+              y="152.0328">send bulk-edit RPC
+        </text>
+        <path d="M117,172.8419 L183,172.8419 L183,182.5479 L173,192.5479 L117,192.5479 L117,172.8419 " fill="#EEEEEE"
+              style="stroke:#000000;stroke-width:1.5;"/>
+        <rect fill="none" height="83.118" style="stroke:#000000;stroke-width:1.5;" width="433" x="117" y="172.8419"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="21" x="132" y="187.7389">opt
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing"
+              textLength="148" x="198" y="186.6008">[node-id list is not specified]
+        </text>
+        <polygon fill="#181818" points="448,212.2539,458,216.2539,448,220.2539,452,216.2539"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="192" x2="454" y1="216.2539" y2="216.2539"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102" x="199"
+              y="210.4449">read list of nodes
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="247.9599" y2="243.9599"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="247.9599" y2="251.9599"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="192" x2="459" y1="247.9599"
+              y2="247.9599"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="72" x="209"
+              y="242.1509">list of nodes
+        </text>
+        <path d="M87,269.9599 L159,269.9599 L159,279.6659 L149,289.6659 L87,289.6659 L87,269.9599 " fill="#EEEEEE"
+              style="stroke:#000000;stroke-width:1.5;"/>
+        <rect fill="none" height="605.9661" style="stroke:#000000;stroke-width:1.5;" width="659" x="87" y="269.9599"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="27" x="102" y="284.8569">loop
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing"
+              textLength="116" x="174" y="283.7188">[for each target node]
+        </text>
+        <polygon fill="#181818" points="448,309.3719,458,313.3719,448,317.3719,452,313.3719"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="192" x2="454" y1="313.3719" y2="313.3719"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="145" x="199"
+              y="307.5629">read node configuration
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="345.0779" y2="341.0779"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="345.0779" y2="349.0779"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="192" x2="459" y1="345.0779"
+              y2="345.0779"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115" x="209"
+              y="339.2689">node configuration
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="192" x2="234" y1="376.784" y2="376.784"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="234" x2="234" y1="376.784" y2="389.784"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="234" y1="389.784" y2="389.784"/>
+        <polygon fill="#181818" points="203,385.784,193,389.784,203,393.784,199,389.784"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="126" x="199"
+              y="370.975">verify node existence
+        </text>
+        <path d="M97,404.784 L169,404.784 L169,414.49 L159,424.49 L97,424.49 L97,404.784 " fill="#EEEEEE"
+              style="stroke:#000000;stroke-width:1.5;"/>
+        <rect fill="none" height="419.436" style="stroke:#000000;stroke-width:1.5;" width="639" x="97" y="404.784"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="27" x="112" y="419.681">loop
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing"
+              textLength="74" x="184" y="418.5429">[for each edit]
+        </text>
+        <path d="M107,431.49 L172,431.49 L172,441.196 L162,451.196 L107,451.196 L107,431.49 " fill="#EEEEEE"
+              style="stroke:#000000;stroke-width:1.5;"/>
+        <rect fill="none" height="385.73" style="stroke:#000000;stroke-width:1.5;" width="619" x="107" y="431.49"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="20" x="122" y="446.387">par
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing"
+              textLength="103" x="187" y="445.2489">[execute in parallel]
+        </text>
+        <polygon fill="#181818" points="616,470.902,626,474.902,616,478.902,620,474.902"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="192" x2="622" y1="474.902" y2="474.902"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="155" x="199"
+              y="469.093">find node schema context
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="506.608" y2="502.608"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="506.608" y2="510.608"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="192" x2="627" y1="506.608"
+              y2="506.608"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="95" x="209"
+              y="500.799">schema context
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="192" x2="234" y1="538.314" y2="538.314"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="234" x2="234" y1="538.314" y2="551.314"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="234" y1="551.314" y2="551.314"/>
+        <polygon fill="#181818" points="203,547.314,193,551.314,203,555.314,199,551.314"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="254" x="199"
+              y="532.505">parse path and data using schema context
+        </text>
+        <path d="M117,566.314 L177,566.314 L177,576.0201 L167,586.0201 L117,586.0201 L117,566.314 " fill="#EEEEEE"
+              style="stroke:#000000;stroke-width:1.5;"/>
+        <rect fill="none" height="243.9059" style="stroke:#000000;stroke-width:1.5;" width="433" x="117" y="566.314"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="15" x="132" y="581.2111">alt
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing"
+              textLength="112" x="192" y="580.073">[operation == merge]
+        </text>
+        <polygon fill="#181818" points="448,605.7261,458,609.7261,448,613.7261,452,609.7261"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="192" x2="454" y1="609.7261" y2="609.7261"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="148" x="199"
+              y="603.9171">merge with data on path
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="641.4321" y2="637.4321"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="641.4321" y2="645.4321"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="192" x2="459" y1="641.4321"
+              y2="641.4321"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="209"
+              y="635.6231">ack
+        </text>
+        <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="117" x2="550" y1="650.4321"
+              y2="650.4321"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing"
+              textLength="116" x="122" y="662.191">[operation == replace]
+        </text>
+        <polygon fill="#181818" points="448,686.12,458,690.12,448,694.12,452,690.12"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="192" x2="454" y1="690.12" y2="690.12"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123" x="199"
+              y="684.311">replace data on path
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="721.826" y2="717.826"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="721.826" y2="725.826"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="192" x2="459" y1="721.826"
+              y2="721.826"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="209"
+              y="716.017">ack
+        </text>
+        <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="117" x2="550" y1="730.826"
+              y2="730.826"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing"
+              textLength="118" x="122" y="742.5849">[operation == remove]
+        </text>
+        <polygon fill="#181818" points="448,766.5139,458,770.5139,448,774.5139,452,770.5139"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="192" x2="454" y1="770.5139" y2="770.5139"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="126" x="199"
+              y="764.7049">remove data on path
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="802.2199" y2="798.2199"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="203" y1="802.2199" y2="806.2199"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="192" x2="459" y1="802.2199"
+              y2="802.2199"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="209"
+              y="796.4109">ack
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="192" x2="234" y1="854.926" y2="854.926"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="234" x2="234" y1="854.926" y2="867.926"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="234" y1="867.926" y2="867.926"/>
+        <polygon fill="#181818" points="203,863.926,193,867.926,203,871.926,199,867.926"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="142" x="199"
+              y="849.117">construct RPC response
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="47" x2="57" y1="906.632" y2="902.632"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="47" x2="57" y1="906.632" y2="910.632"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="46" x2="181" y1="906.632"
+              y2="906.632"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="63"
+              y="900.823">RPC response
+        </text><!--MD5=[d032d0e85bc8c06680be88190e62c683]
+@startuml
+title "Execution of bulk-edit RPC"
+
+actor Application
+boundary SubtreeManager
+entity UniconfigTransaction
+control SchemaContextProvider
+
+activate SubtreeManager
+activate UniconfigTransaction
+activate SchemaContextProvider
+
+Application ->> SubtreeManager: send bulk-edit RPC
+
+opt node-id list is not specified
+    SubtreeManager -> UniconfigTransaction: read list of nodes
+    UniconfigTransaction - ->> SubtreeManager: list of nodes
+end
+
+loop for each target node
+    SubtreeManager -> UniconfigTransaction: read node configuration
+    UniconfigTransaction - ->> SubtreeManager: node configuration
+    SubtreeManager -> SubtreeManager: verify node existence
+    loop for each edit
+        par execute in parallel
+            SubtreeManager -> SchemaContextProvider: find node schema context
+            SchemaContextProvider - ->> SubtreeManager: schema context
+            SubtreeManager -> SubtreeManager: parse path and data using schema context
+            alt operation == merge
+                SubtreeManager -> UniconfigTransaction: merge with data on path
+                UniconfigTransaction - ->> SubtreeManager: ack
+            else operation == replace
+                SubtreeManager -> UniconfigTransaction: replace data on path
+                UniconfigTransaction - ->> SubtreeManager: ack
+            else operation == remove
+                SubtreeManager -> UniconfigTransaction: remove data on path
+                UniconfigTransaction - ->> SubtreeManager: ack
+            end
+        end
+    end
+    SubtreeManager -> SubtreeManager: construct RPC response
+end
+
+SubtreeManager - ->> Application: RPC response
+@enduml
+
+PlantUML version 1.2022.6(Tue Jun 21 19:34:49 CEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+-->
+    </g>
+</svg>
