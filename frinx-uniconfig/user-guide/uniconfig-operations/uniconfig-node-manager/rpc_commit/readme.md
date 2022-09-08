@@ -18,7 +18,7 @@ The configuration of nodes consists of the following phases:
     the view of constraints and consistency.
     This phase can be skipped with "do-validate" flag.
 4. Confirmed commit - It is used for locking of device configuration,
-    so no other transaction can touch this device.
+    so no other transaction can touch this device. This phase can be skipped with "do-confirmed-commit" flag.
 5. Confirming commit (submit configuration) - Persisting all changes on
     devices and in the PostgreSQL database. UniConfig transaction is
     closed.
@@ -149,6 +149,45 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 {
     "output": {
         "overall-status": "complete"
+    }
+}
+```
+
+### Successful Example
+
+RPC commit input has 2 target nodes and the flag to disable confirmed-commit phase. The output describes the result
+of the commit.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "do-confirmed-commit": false,
+        "target-nodes": {
+            "node": ["IOSXR","IOSXRN"]
+        }
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "overall-status": "complete",
+        "node-results": {
+            "node-result": [
+                {
+                    "node-id": "IOSXRN",
+                    "configuration-status": "complete"
+                },
+                {
+                    "node-id": "IOSXR",
+                    "configuration-status": "complete"
+                }
+            ]
+        },
     }
 }
 ```
