@@ -137,7 +137,11 @@ Example with essential settings:
     "password": "unipass",
     // initial size of the connection pool (pre-initialized connections)
     "initialDbPoolSize": 5,
+    // maximum size of connections for internal usage
+    "maxInternalDbConnections" : 2,
     // maximum size of the connection pool, before creation of next connections are blocked
+    // It includes 'maxInternalDbConnections'. Subtraction of 'maxInternalDbConnections' from 'maxDbPoolSize'
+    // is maximum of open user transactions
     "maxDbPoolSize": 20,
     // maximum number of idle connections before next idle connections are cleaned
     "maxIdleConnections": 5,

@@ -171,7 +171,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 
 The most common reason for failed creation of UniConfig transaction is
 reached maximum number of open transactions that is limited by
-'maxDbPoolSize' database connection pool setting. In that case,
+('maxDbPoolSize' - 'maxInternalDbConnections') database connection pool setting. In that case,
 UniConfig returns response with 500 status code.
 
 ```bash RPC Request
@@ -179,8 +179,20 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 --header 'Accept: application/json'
 ```
 
-``` RPC Response, Status: 500
 
+```json RPC Response, Status: 500
+{
+    "errors": {
+        "error": [
+            {
+                "error-type": "protocol",
+                "error-message": "Failed to create Uniconfig transaction",
+                "error-tag": "operation-failed",
+                "error-info": "Maximum open transactions created by User was reached"
+            }
+        ]
+    }
+}
 ```
 
 ### Transaction idle-timeout
