@@ -22,6 +22,11 @@ The configuration of nodes consists of the following phases:
 5. Confirming commit (submit configuration) - Persisting all changes on
     devices and in the PostgreSQL database. UniConfig transaction is
     closed.
+6. Rollback - It is used for restoring of configuration to previous state, if the configuration process fails.
+   When configuring more devices in a single transaction and the process fails on one particular device, 
+   the rollback procedure will be applied to all touched devices. This is done by auto rollback procedure, 
+   which is by default turned on. It can be switched off by setting up 'do-rollback' flag in input of  
+   Commit RPC request. Then only failed devices will be rollbacked. 
 
 ![RPC commit](RPC_commit-RPC_commit.svg)
 
@@ -450,6 +455,53 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
                 }
             ]
         }
+    }
+}
+```
+
+### Failed Example
+
+RPC commit input has 2 target nodes and the output describes the result
+of the commit. One node has failed because of wrong configuration (R2). 
+In this case validation, confirm-commit and auto-rollback was switched off. 
+Because auto-rollback is switched off, configuration of R1 device was successful. 
+However this can be done only, if validation and confirm-commit phase was successful or skipped, 
+otherwise configuration of R1 device would also fail.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "target-nodes": {
+            "node": ["R1", "R2"]
+        },
+        "do-rollback" : false,
+        "do-validate" : false,
+        "do-confirmed-commit" : false
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "node-results": {
+            "node-result": [
+                {
+                    "node-id": "R1",
+                    "configuration-status": "complete"
+                },
+                {
+                    "node-id": "R2",
+                    "configuration-status": "fail",
+                    "error-message": "RemoteDevice{vnf212}: RPC during tx failed. Error messages: [/alias[name='^new']/expansion is not configured]\n",
+                    "error-type": "uniconfig-error"
+                }
+            ]
+        },
+        "overall-status": "fail"
     }
 }
 ```

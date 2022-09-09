@@ -39,7 +39,8 @@ from device and also manually updated using dedicated RPC:
 
 Yes, all onboarded devices have full rollback implemented. But it is
 also possible to disable auto-rollback in UniConfig, so that
-successfully configured devices will keep their configuration.
+successfully configured devices will keep their configuration. 
+This can be done with setting up the 'do-rollback' flag to False in input of Commit RPC.
 
 ---
 
