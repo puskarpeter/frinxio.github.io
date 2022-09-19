@@ -16,6 +16,11 @@ mount-point parameters. It is possible to use it for both NETCONF and CLI nodes.
 Parameters of the installed devices can be displayed using a GET request on the node. It is necessary to use the right
 topology. It should return the current node settings. See the following examples:
 
+!!!
+By default, both NETCONF and CLI topologies have the password parameter encrypted. This can be changed
+in the corresponding yang schema by adding/removing the extension flag "frinx-encrypt:encrypt".
+!!!
+
 **CLI node**
 ```bash
 curl -X GET \
@@ -33,7 +38,7 @@ Output:
             "cli-topology:transport-type": "ssh",
             "cli-topology:dry-run-journal-size": 150,
             "cli-topology:username": "test",
-            "cli-topology:password": "test",
+            "cli-topology:password": "rsa_lfOgcqEIl/d2E5SxZ5xFJY0hzwrauUu6l...",
             "cli-topology:journal-size": 150,
             "cli-topology:port": 22,
             "cli-topology:device-version": "6.2.3",
@@ -57,7 +62,7 @@ Output:
             "netconf-node-topology:port": 830,
             "netconf-node-topology:tcp-only": false,
             "netconf-node-topology:username": "test",
-            "netconf-node-topology:password": "test",
+            "netconf-node-topology:password": "rsa_lfOgcqEIl/d2E5SxZ5xFJY0hzwrauUu6l...",
             "netconf-node-topology:session-timers" : {
                 "netconf-node-topology:keepalive-delay": 0
             },
@@ -81,6 +86,8 @@ Output:
 To update node installation parameters it is possible to use a PUT request with updated request body that is copied
 from the GET request from the previous section. It is also possible to update single parameter with direct PUT call to
 specific parameter.
+
+If the password parameter is set to be encrypted, changing it will encrypt the input value.
 
 **CLI node**
 
