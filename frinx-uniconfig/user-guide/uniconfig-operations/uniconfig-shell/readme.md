@@ -705,3 +705,208 @@ request>show-history
 request>
 
 ```
+
+## Callbacks
+
+Callbacks include sending POST and GET requests to the remote server and invoking user scripts from the UniConfig shell.
+
+For using callbacks it is needed:
+
+1. Necessary YANG modules - YANG modules that are required for the correct callbacks working.
+2. Configuration - update 'config/lighty-uniconfig-config.json'.
+3. Update repository - add 'necessary YANG modules' from point 1 into 'latest' or specific 'user-repository' and
+define remote endpoints and scripts in some YANG file or create new one for callbacks. For definition of remote 
+endpoints 'frinx-callpoint@2022-06-22.yang' extension must be used.
+4. UniStore node - create UniStore node with using 'latest' or specific 'user-repository' that should contain
+'necessary YANG modules' from point 1 and YANG file with defined endpoints and scripts.
+
+### Necessary YANG modules
+
+These YANG modules are required:
+
+* frinx-callpoint@2022-06-22.yang (not needed for scripts)
+* tailf-common@2018-11-12.yang
+* tailf-meta-extensions@2017-03-08.yang
+* tailf-cli-extensions@2018-09-15.yang
+
+### Configuration
+
+By default, callbacks are disabled and remote server URI is empty. To enable it, configuration parameter 
+'callbacks/enabled' must be set to 'true' and remote server URI must be set in the 'config/lighty-uniconfig-config.json' 
+file.
+
+All available settings and descriptions are displayed in the following JSON snippet.
+
+```json UniConfig callbacks configuration (config/lighty-uniconfig-config.json)
+    "callbacks": {
+        // flag that determines whether callbacks will work
+        "enabled": true,
+        // remote server settings
+        "remoteServer": {
+            // remote server uri
+            "serverUri": "https://remote.server.io",
+            // basic authentication that will be used in http requests
+            "username": "admin",
+            "password": "admin"
+        }
+    }
+```
+
+### Update repository
+
+First it is needed to create or update YANG repository by using 'frinx-callpoint@2022-06-22.yang' extension that is 
+displayed in the following snippet. There is just one extension 'url' with argument 'point'.
+
+``` frinx-callpoint@2022-06-22.yang
+module frinx-callpoint {
+    yang-version 1.1;
+    namespace "http://frinx.io/callpoint";
+    prefix callpoint;
+
+    revision 2022-06-22 {
+        description "Initial revision";
+    }
+
+    extension url {
+        argument point;
+    }
+}
+```
+
+#### Add call-point (GET request)
+
+In the following snippet it is possible to see how to create a call-point in the frinx-test YANG file with using 
+'frinx-callpoint@2022-06-22.yang' extension.
+
+``` example of using of the frinx-callpoint@2022-06-22.yang in YANG file
+module frinx-test {
+    yang-version 1.1;
+    namespace "http://frinx.io/frinx-test";
+
+    import frinx-callpoint { prefix "fcal"; }
+
+    container test {
+        container get-request {
+            fcal:url /data/from/remote;
+        }
+    }
+```
+
+Argument of the 'url' extension is '/data/from/remote'. It will be joined on the end of the remote server URI that is 
+configured in the 'config/lighty-uniconfig-config.json'. Final address for remote call-point will be 
+'https://remote.server.io/data/from/remote'.
+
+#### Add action (POST request)
+
+In the following snippet it is possible to see how to create an action in the frinx-test YANG file with using
+'frinx-callpoint@2022-06-22.yang' extension. Here it is also needed to import 'tailf-common.yang'. Action consists of:
+
+1. action name defined by 'tailf:action'.
+2. suffix of the remote endpoint defined by 'fcal:url'.
+3. input that contains body of the request. It is optional.
+
+``` example of using of the frinx-callpoint@2022-06-22.yang in YANG file
+module frinx-test {
+    yang-version 1.1;
+    namespace "http://frinx.io/frinx-test";
+
+    import frinx-callpoint { prefix "fcal"; }
+    import tailf-common { prefix "tailf"; }
+
+    container post-request {
+        tailf:action test-action {
+            fcal:url /invoke/remote/test-action;
+            input {
+                container body {
+                    leaf data {
+                        type string;
+                    }
+                }
+            }
+        }
+    }
+```
+
+#### Add script
+
+In the following snippet it is possible to see how to create a script in the frinx-test YANG file with using
+'tailf-common.yang'. Here it is not needed to import 'frinx-callpoint@2022-06-22.yang' extension. Script consists of:
+
+1. script name defined by 'tailf:action'.
+2. path to the script defined by 'tailf:exec'.
+3. arguments of the script that is defined by 'tailf:exec'.
+
+Arguments can be dynamic (user can pass value to them) or static (flags). The following conventions must be followed 
+when creating arguments:
+
+1. Each argument has to contain name (e.g. -n, -j).
+2. Dynamic argument must be closed in the '$(...)'. E.g. '$(name)'.
+3. Flags are simple words without white spaces. E.g. VIP, UPPER, upper, ...
+
+``` example of using of the frinx-callpoint@2022-06-22.yang in YANG file
+module frinx-test {
+    yang-version 1.1;
+    namespace "http://frinx.io/frinx-test";
+
+    import tailf-common { prefix "tailf"; }
+
+    container script {
+        tailf:action test-script {
+            tailf:exec '/tmp/test_script.sh' {
+                tailf:args '-n $(name) -j $(job) -v VIP';
+            }
+        }
+    }
+```
+
+### UniStore node
+
+UniStore node can be created by RestConf or UniConfig shell. When user explicit define repository by using query 
+parameter '?uniconfig-schema-repository=repository-name', then this repository has to contain all necessary YANG 
+modules. When user does not define repository name during creation of UniStore node, then all necessary YANG modules 
+has to be in the 'latest' schema repository.
+
+### Examples
+
+- Example - call-point invocation in the shell:
+
+``` call-point invocation
+uniconfig>show
+show>unistore node1 test get-request
+{
+  "response": {
+    "value": "some-value"
+  }
+}
+show>
+```
+
+- Example - action invocation in the shell:
+
+``` action invocation
+uniconfig>request 
+request>unistore node1 post-request test-action body data "some-data"
+{
+  "response": {
+    "value": "some-data was processed"
+  }
+}
+request>
+```
+
+- Example - user script execution in the shell:
+
+``` user script execution
+uniconfig>request 
+request>unistore node1 script test-script /tmp/test_script.sh 
+VIP    job    name
+request>unistore node1 script test-script /tmp/test_script.sh job "FRINX" 
+VIP    name
+unistore node1 script test-script /tmp/test_script.sh job "FRINX" VIP
+Name: 
+Job: Frinx
+is VIP
+
+Exit code: 0
+request>
+```
