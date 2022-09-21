@@ -1050,7 +1050,9 @@ curl --location --request PUT 'http://localhost:8181/rests/operations/template-m
 ## RPC create-multiple-templates
 
 One or more new templates can be created by this RPC. Templates are parsed and written in parallel
-for better performance. If specified templates already exist, their configuration is replaced. 
+for better performance. If specified templates already exist, their configuration is replaced.
+Execution of RPC is atomic - either all templates are successfully created or no changes are made
+in the UniConfig transaction.
 
 Description of input RPC fields:
 
@@ -1190,11 +1192,6 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/template-
 }
 ```
 
-!!!
-Template 'Template-name2' contains valid YANG repository, but process failed before starting writing of templates -
-there is also status 'fail'.
-!!!
-
 Failed to parse template configuration.
 
 ```bash RPC Request
@@ -1237,7 +1234,8 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/template-
         "node-result": [
             {
                 "node-id": "Template-name1",
-                "status": "complete"
+                "status": "fail",
+                "error-type": "uniconfig-error"
             },
             {
                 "node-id": "Template-name2",
@@ -1249,12 +1247,6 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/template-
     }
 }
 ```
-
-!!!
-Template 'Template-name1' has already been written to transaction - because of this reason, its status is 'complete'.
-UniConfig does not revert successfully created/replaced templates since this RPC is executed in the scope
-of transaction.
-!!!
 
 Creation of 2 templates with separately specified template tags - 'replace' tag is added to '/acl/category' and
 '/services/group=default/types' elements, while 'create' is added to '/services' element.
