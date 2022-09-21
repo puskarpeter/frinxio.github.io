@@ -1057,6 +1057,8 @@ Description of input RPC fields:
 - **template-name**:Name of the created template.
 - **yang-repository**: YANG schema repository used for parsing of template configuration. Default value: 'latest'.
 - **template-configuration**: Whole template configuration.
+- **tags**: List of template tags that are written on the specified paths in all created templates.
+  Specified tag type must be prefixed with 'template-tags' module name based on RFC-8040 formatting of identityref.
 
 Only template-name and template-configuration are mandatory fields.
 
@@ -1253,3 +1255,83 @@ Template 'Template-name1' has already been written to transaction - because of t
 UniConfig does not revert successfully created/replaced templates since this RPC is executed in the scope
 of transaction.
 !!!
+
+Creation of 2 templates with separately specified template tags - 'replace' tag is added to '/acl/category' and
+'/services/group=default/types' elements, while 'create' is added to '/services' element.
+
+```bash RPC request
+curl --location --request POST 'http://127.0.0.1:8181/rests/operations/template-manager:create-multiple-templates' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "input": {
+    "templates": [
+      {
+        "template-name": "Template-name1",
+        "yang-repository": "schema1",
+        "template-configuration": {
+          "acl": {
+            "rules": [
+              {
+                "name": "test-name",
+                "category": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "template-name": "Template-name2",
+        "template-configuration": {
+          "services": {
+            "group": [
+              {
+                "name": "default",
+                "id": 0,
+                "type": "internal",
+                "types": [
+                  "test"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "tags": [
+      {
+        "tag": "template-tags:replace",
+        "paths": [
+          "/acl/category",
+          "/services/group=default/types"
+        ]
+      },
+      {
+        "tag": "template-tags:create",
+        "paths": [
+          "/services"
+        ]
+      }
+    ]
+  }
+}
+```
+
+```json RPC response
+{
+  "output": {
+    "overall-status": "complete",
+    "node-result": [
+      {
+        "node-id": "Template-name1",
+        "status": "complete"
+      },
+      {
+        "node-id": "Template-name2",
+        "status": "complete"
+      }
+    ]
+  }
+}
+```
