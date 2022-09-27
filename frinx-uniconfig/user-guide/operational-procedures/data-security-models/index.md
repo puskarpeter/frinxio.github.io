@@ -293,9 +293,9 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/data/network-topolog
 
 ### Format of encrypted data
 
-- Encrypted values are stored and displayed via RESTCONF or UniConfig shell with appended 'rsa_' prefix. This prefix
-  is used by UniConfig to find out if posted data is already encrypted or if it must be encrypted.
-- Encrypted string is encoded using Base64 encoding.
+- Encrypted values are stored and displayed via RESTCONF or UniConfig shell with the 'rsa_' prefix. The prefix
+  is used by UniConfig to see if posted data is encrypted already or needs to be encrypted.
+- The encrypted string is encoded using Base64 encoding.
 
 ```bash GET request: reading encrypted leaf
 curl --location --request POST 'http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=dev01/config/secret' \
