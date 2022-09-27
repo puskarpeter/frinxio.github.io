@@ -707,6 +707,35 @@ curl --location --request POST 'http://localhost:8181/rests/operations/template-
 }'
 ```
 
+### Auto-upgrading of templates
+
+This feature is used for automatic upgrading of all stored templates, that use old YANG repository,
+to the latest YANG repository with help from version-drop procedure. In order to make auto-upgrading process working,
+the latest YANG repository must already be configured.
+Upgrading process must be explicitly enabled in the configuration file and happens at staring of UniConfig.
+
+There is also an option to back up templates before upgrading happens with standard rotation procedure.
+Names of backed up templates follow pattern '{template-name}_backup_{index}', where '{template-name}' represents name
+of the original template and '{index}' represents backup index. The most recent backup index is always '0', older
+backups are rotated by incrementing of corresponding index. If some backed up template reaches configured
+limit of maximum number of backups, it is permanently removed from database.
+
+Overview of available settings ('config/lighty-uniconfig-config.json'):
+
+```json default auto-upgrading settings
+{
+    "templates": {
+        "enabledTemplatesUpgrading": false,
+        "backupTemplatesLimit": 7
+    }
+}
+```
+
+- **enabledTemplatesUpgrading** - Enabled auto-upgrading process at UniConfig startup. If it is disabled, the next
+  setting other setting is ignored.
+- **backupTemplatesLimit** - Maximum number of stored backup templates before older templates are removed during
+  rotation procedure. By setting 0, templates are not backed up at all.
+
 ## Application of template
 
 Template can be applied to UniConfig nodes using 'apply-template' RPC.
