@@ -149,28 +149,28 @@ Before running L3VPN, run **Allocate_Root_Pool / 1** workflow and check if lab-v
 
 ![FRINX Machine dashboard](create_vpn_service.png)
 
-    • Click “Save changes”
-    • You will be redirected to previous page.
+- Click “Save changes”
+- You will be redirected to previous page.
 
 ![FRINX Machine dashboard](vpn_services.png)
 
-    • Click on “Commit changes” and in the pop-up window as well. After committing you will see all executed tasks and sub-workflows. You can click on “Go to detail” and review all the individual processes.
+- Click on “Commit changes” and in the pop-up window as well. After committing you will see all executed tasks and sub-workflows. You can click on “Go to detail” and review all the individual processes.
 
 ![FRINX Machine dashboard](l3vpn_status.png)
 
 ### Step 1.
 
-    • Return to L3VPN Automation site
-    • Click on “Sites”
-    • Look for test_site_3b9UQL4i
+- Return to L3VPN Automation site
+- Click on “Sites”
+- Look for test_site_3b9UQL4i
 
 ![FRINX Machine dashboard](sites.png)
 
-    • In the test_site_3b9UQL4i click on “Manage” and then on “Site network access”
+- In the test_site_3b9UQL4i click on “Manage” and then on “Site network access”
 
 ![FRINX Machine dashboard](sites_network_accesses.png)
 
-    • Click on “Add network access”
+- Click on “Add network access”
 
 ### Step 2.
 
