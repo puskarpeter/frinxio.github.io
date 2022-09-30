@@ -142,10 +142,10 @@ Before running L3VPN, run **Allocate_Root_Pool / 1** workflow and check if lab-v
 
 ![FRINX Machine dashboard](allocate_root_pool_workflow.png)
 
-    • When in the FRINX Dashboard, click on the drop-down menu in the left top corner and click on L3VPN Automation
-    • Click on “Services”
-    • Click on “+ Add service”
-    • Fill the information as below. VPN ID is generated automatically by clicking on “chain button”.
+- When in the FRINX Dashboard, click on the drop-down menu in the left top corner and click on L3VPN Automation
+- Click on “Services”
+- Click on “+ Add service”
+- Fill the information as below. VPN ID is generated automatically by clicking on “chain button”.
 
 ![FRINX Machine dashboard](create_vpn_service.png)
 
@@ -179,9 +179,13 @@ Add these settings:
 **General and Service**
 
 **VPN Attachment:** GNS00001002
+
 **BTM Circuit Reference:** CES00000000-05
+
 **Devices:** Pick one of the CPE devices
+
 **SVC Input Bandwith (Mbsp):** 1000
+
 **SVC Output Bandwith (Mbps):** 1000
 
 ![FRINX Machine dashboard](create_site_network_access.png)
