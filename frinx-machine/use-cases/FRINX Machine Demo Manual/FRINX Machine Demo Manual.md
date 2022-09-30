@@ -195,9 +195,13 @@ Add these settings:
 - click on + Create Static Protocol
 
 **Static Routing LAN:** 10.0.0.0/8
+
 **Static Routing Next Hop:** 10.0.0.1
+
 **Static Routing Lan Tag:** 999
+
 **Bgp Profiles:** 300ms
+
 **Maximum Routes:** 2000
 
 ![FRINX Machine dashboard](routing_protocol.png)
