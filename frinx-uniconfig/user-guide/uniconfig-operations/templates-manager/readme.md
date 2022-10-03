@@ -709,16 +709,16 @@ curl --location --request POST 'http://localhost:8181/rests/operations/template-
 
 ### Auto-upgrading of templates
 
-This feature is used for automatic upgrading of all stored templates, that use old YANG repository,
-to the latest YANG repository with help from version-drop procedure. In order to make auto-upgrading process working,
+This feature is used to automatically upgrade all stored templates using the old YANG repository
+to the latest YANG repository with help from the version-drop procedure. For the auto-upgrading process to work,
 the latest YANG repository must already be configured.
-Upgrading process must be explicitly enabled in the configuration file and happens at staring of UniConfig.
+The upgrade process must be explicitly enabled in the configuration file and occurs when UniConfig is started.
 
-There is also an option to back up templates before upgrading happens with standard rotation procedure.
-Names of backed up templates follow pattern '{template-name}_backup_{index}', where '{template-name}' represents name
-of the original template and '{index}' represents backup index. The most recent backup index is always '0', older
-backups are rotated by incrementing of corresponding index. If some backed up template reaches configured
-limit of maximum number of backups, it is permanently removed from database.
+There is also an option to back up templates before the upgrade with the standard rotation procedure.
+The names of backed-up templates follow the pattern '{template-name}_backup_{index}', where '{template-name}' represents the name
+of the original template and '{index}' represents the backup index. The most recent backup index is always '0' and older
+ones are rotated by incrementing the corresponding index. If a backed-up template reaches the configured
+limit (maximum number of backups), it is permanently removed from the database.
 
 Overview of available settings ('config/lighty-uniconfig-config.json'):
 
@@ -731,10 +731,9 @@ Overview of available settings ('config/lighty-uniconfig-config.json'):
 }
 ```
 
-- **enabledTemplatesUpgrading** - Enabled auto-upgrading process at UniConfig startup. If it is disabled, the next
-  setting other setting is ignored.
-- **backupTemplatesLimit** - Maximum number of stored backup templates before older templates are removed during
-  rotation procedure. By setting 0, templates are not backed up at all.
+- **enabledTemplatesUpgrading** - Enables the auto-upgrading process at UniConfig startup. If disabled, the other setting is ignored.
+- **backupTemplatesLimit** - Maximum number of stored backup templates. If exceeded, older templates are removed during the
+  rotation procedure. If set to 0, templates are not backed up at all.
 
 ## Application of template
 
