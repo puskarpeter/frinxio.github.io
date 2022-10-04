@@ -416,6 +416,251 @@ curl --location --request PATCH 'http://localhost:8181/rests/data/network-topolo
 }'
 ```
 
+#### PATCH /rests/data/\<identifier\>?apply-tags=true
+
+- The patch request with parameter apply-tags=true allows to use tags.
+- Tags allows us to use differrent operation for separate elements instead of
+    merging whole content as without tags.
+- The following tags are supported: merge, replace, delete, create and update.
+- Usage of these tags are explained in Templates manager : [here](https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/templates-manager/#tags).
+
+The following example shows PATCH request used for modification of interfaces
+on IOS XE device including creating, deleting, and replacing interface configuration.
+
+```bash PATCH RPC Request with apply-tags parameter
+curl --location --request PATCH 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=ASR920/configuration/interfaces?apply-tags=true' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "frinx-openconfig-interfaces:interfaces": {
+        "interface": [
+            {
+                "name": "Loopback0",
+                "config": {
+                    "type": "iana-if-type:softwareLoopback",
+                    "enabled": true,
+                    "name": "Loopback0"
+                },
+                "@": {
+                    "operation": "delete"
+                }
+            },
+            {
+                "name": "Loopback1",
+                "config": {
+                    "type": "iana-if-type:softwareLoopback",
+                    "enabled": true,
+                    "name": "Loopback1"
+                },
+                "@": {
+                    "operation": "replace"
+                }
+            },
+            {
+                "name": "Loopback2",
+                "config": {
+                    "type": "iana-if-type:softwareLoopback",
+                    "enabled": true,
+                    "name": "Loopback2"
+                },
+                "@": {
+                    "operation": "create"
+                }
+            },
+            {
+                "name": "Loopback61",
+                "config": {
+                    "type": "iana-if-type:softwareLoopback",
+                    "enabled": false,
+                    "name": "Loopback61"
+                }
+            },
+            {
+                "name": "GigabitEthernet1",
+                "config": {
+                    "type": "iana-if-type:ethernetCsmacd",
+                    "enabled": true,
+                    "name": "GigabitEthernet1"
+                },
+                "subinterfaces": {
+                    "subinterface": [
+                        {
+                            "index": 0,
+                            "frinx-openconfig-if-ip:ipv4": {
+                                "addresses": {
+                                    "address": [
+                                        {
+                                            "ip": "192.168.1.253",
+                                            "config": {
+                                                "prefix-length": 24,
+                                                "ip": "192.168.1.253"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "GigabitEthernet2",
+                "config": {
+                    "type": "iana-if-type:ethernetCsmacd",
+                    "enabled": false,
+                    "name": "GigabitEthernet2"
+                }
+            }
+        ]
+    }
+}'
+```
+
+```bash GET RPC Request before PATCH
+http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=ASR920/configuration/interfaces
+```
+
+``` bash Response
+    {
+        "frinx-openconfig-interfaces:interfaces": {
+            "interface": [
+                {
+                    "name": "Loopback0",
+                    "config": {
+                        "type": "iana-if-type:softwareLoopback",
+                        "enabled": true,
+                        "name": "Loopback0"
+                    }
+                },
+                {
+                    "name": "Loopback1",
+                    "config": {
+                        "type": "iana-if-type:softwareLoopback",
+                        "enabled": false,
+                        "name": "Loopback1"
+                    }
+                },
+                {
+                    "name": "Loopback61",
+                    "config": {
+                        "type": "iana-if-type:softwareLoopback",
+                        "enabled": false,
+                        "name": "Loopback61"
+                    }
+                },
+                {
+                    "name": "GigabitEthernet1",
+                    "config": {
+                        "type": "iana-if-type:ethernetCsmacd",
+                        "enabled": true,
+                        "name": "GigabitEthernet1"
+                    },
+                    "subinterfaces": {
+                        "subinterface": [
+                            {
+                                "index": 0,
+                                "frinx-openconfig-if-ip:ipv4": {
+                                    "addresses": {
+                                        "address": [
+                                            {
+                                                "ip": "192.168.1.253",
+                                                "config": {
+                                                    "prefix-length": 24,
+                                                    "ip": "192.168.1.253"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "GigabitEthernet2",
+                    "config": {
+                        "type": "iana-if-type:ethernetCsmacd",
+                        "enabled": false,
+                        "name": "GigabitEthernet2"
+                    }
+                }
+            ]
+        }
+    }
+```
+
+```bash GET RPC Request after PATCH
+http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=ASR920/configuration/interfaces
+```
+
+``` bash Response
+    {
+        "frinx-openconfig-interfaces:interfaces": {
+            "interface": [
+                {
+                    "name": "Loopback1",
+                    "config": {
+                        "type": "iana-if-type:softwareLoopback",
+                        "enabled": true,
+                        "name": "Loopback1"
+                    }
+                },
+                {
+                    "name": "Loopback61",
+                    "config": {
+                        "type": "iana-if-type:softwareLoopback",
+                        "enabled": false,
+                        "name": "Loopback61"
+                    }
+                },
+                {
+                    "name": "Loopback2",
+                    "config": {
+                        "type": "iana-if-type:softwareLoopback",
+                        "enabled": true,
+                        "name": "Loopback2"
+                    }
+                },
+                {
+                    "name": "GigabitEthernet2",
+                    "config": {
+                        "type": "iana-if-type:ethernetCsmacd",
+                        "enabled": false,
+                        "name": "GigabitEthernet2"
+                    }
+                },
+                {
+                    "name": "GigabitEthernet1",
+                    "config": {
+                        "type": "iana-if-type:ethernetCsmacd",
+                        "enabled": true,
+                        "name": "GigabitEthernet1"
+                    },
+                    "subinterfaces": {
+                        "subinterface": [
+                            {
+                                "index": 0,
+                                "frinx-openconfig-if-ip:ipv4": {
+                                    "addresses": {
+                                        "address": [
+                                            {
+                                                "ip": "192.168.1.253",
+                                                "config": {
+                                                    "prefix-length": 24,
+                                                    "ip": "192.168.1.253"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+```
+
 #### POST /rests/operations/\<moduleName\>:\<rpcName\>
 
 - Invokes RPC on the specified path.
