@@ -142,15 +142,17 @@ if ($.lambdaValue >= 10000 && $.lambdaValue < 10005) {
 }
 ```
 
-![FRINX Machine dashboard](lambda_1_body.png)
+![FRINX Machine dashboard](lambda_1_body.PNG)
 
 5) **decision**. Decision task robí rozhodnutie, avšak nie úplne tak isto ako lambda spomínaná vyššie. Decision sa spáva ako výhybka na kolajisku, pošle vlak jednou alebo druhou traťou. Nič viac. Na to však potrebuje údaje - tie ktoré nám dodala lambda. V záložke Input parameters zmažeme defaultný parameter foo s hodnotou bar a ponecháme iba parameter param do ktorého vložíme miesto true ${lambda_IkSu.output.result.value} - pozor IkSu ako sa spomínalo vyššie je generované pre odlíšenie jednotlivých taskov a WFs preto ho treba prepísať na aktuálne podmienky. `${lambda_IkSu.output.result.value}` znamená: zober hodnotu z lambda_xyzq ktorá je na výstupe (output) v outpute nájdi result a v ňom value.
 
 ak vstupná hodnota pre decision bude other, pošle flow smerom k Device_identification a ak bude false tak smerom k terminate. Presne ako sme si pospájali bunky v workflow builderovi.
 
-![FRINX Machine dashboard](decision_1_body.png)
+![FRINX Machine dashboard](decision_1_body.PNG)
 
 6) **terminated**. V tomto tasku si v tabe Input parameters do kolónky Termination status vložíme "COMPLETED" (prípadne FAILED - podľa uváženia) a do poľa Expected workflow output napíšeme ľubovoľnú hlášku, napr: This device is not supported.
+
+![FRINX Machine dashboard](terminated_1_body.PNG)
 
 7) **Device_identification** v tabe Input parameters vložíme:
 management_ip: sample-topology - toto je názov topológie v tejto instalácii, v produkcii je potrebné použiť názov topológie podľa reálneho mena.
@@ -166,10 +168,12 @@ password -> ${workflow.input.password}
 
 jednoduché. :) My sa však v tomto demo WF držíme predpokladu že všade sú rovnaké prihlasovacie údaje a tak tam môžeme napísať údaje napriamo - je to však na rozhodnutí každého.
 
+![FRINX Machine dashboard](device_identification_1_body.PNG)
+
 8) teraz si pridáme ďalľie bunky, v ľavom stĺpci v sekcii System tasks pridáme ďalšiu lambdu a v sekcii Workflows si nájdeme Read_journal_cli_device.
 Umiestnime ich vedľa seba za Device_identification a pospájame ich. Ako je vidno na obrázku
 
-FOTO
+![FRINX Machine dashboard](new_lambda_and_read_journal.PNG)
 
 9) **druhá lambda** do lambda value napíšeme `${Device_identificationRef_f7I6.output}` - čiže v preklade "zober výstup z predošlého tasku Device_identification a s tým pracuj"
 
@@ -185,13 +189,25 @@ if ($.lambdaValue.sw == 'saos') {
 
 preklad do ľudského jazyka čo sa vo vnútri deje je: "ak identifikované zariadenie je typu saos, z výstupnej správy predošlého tasku vyextrahuj meno (čiže saos, zmeň písmená na veľké, vyextrahuj z výstupnej správy predošlého tasku verziu zlep ich dokopy a pridaj ešte `_1` - lebo tak sú nazvané zariadenia v tejto demo topológii"
 
-
+![FRINX Machine dashboard](lambda_2_body.PNG)
 
 10) **Read_journal_cli_device** tu si v tabe Input parameters do poľa device_id vpíšeme `${lambda_ZW66.output.result}` 
 
+![FRINX Machine dashboard](read_journal_body.PNG)
+
 11) output z Read_journal_cli_device spojíme s END, rovnako aj OUTPUT z terminated spojíme s END a tým sme uzavreli náš custom WF.
 
-12) spustíme
+![FRINX Machine dashboard](custom_task_final.PNG)
+![FRINX Machine dashboard](custom_task_final_all.PNG)
+
+
+
+12) uložíme a spustíme
+
+![FRINX Machine dashboard](save_and_run.PNG)
+![FRINX Machine dashboard](save_and_run_2.PNG)
+
+
 
 
 
