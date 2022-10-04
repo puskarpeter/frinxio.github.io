@@ -99,6 +99,103 @@ The output (demo Latin JSON) of the workflow in the Slack:
 
 You can visit Slack directly via https://join.slack.com/t/frinx-community/shared_invite/zt-1esnmbq4l-ui9xLCS4zKGHUXZxz~PdrQ to see your own message. We recommend to use the browser version.
 
+## How to create new custom workflow
+
+Now we will take a look at how to create a new workflow. The new workflow will be created from scratch.
+
+1) The easiest way to create a new workflow is to click on **Create** button in the main page of FRINX Machine.
+
+FOTO
+
+2) In the **Name** type the name of your workflow (please keep in mind that name of the workflow cannot be later changed). **Description** stands for additional info of the workflow - you can leave it blank. Once the workflow is created **Label** can help you find your workflow in **Explore workflows** faster but you can leave it blank as well. After inserting all data click on **Save changes**.
+
+FOTO
+
+3) Click + on the **lambda**, **decision** and **terminate** under **System tasks** and **Device_identification** under **Workflows**. All tasks and subworkflows are added on same place in the canvas so you need to move them to actually see them. For connecting all parts of the workflow hower over OUT/IN where + sign will appear. Connect all parts in this way: START - lambda - decision - (other) with Device_identification and default with terminate. As you can see each task and workflow has its own set of characters after its name - these are reference aliases and work as unique identifier.
+
+![FRINX Machine dashboard](custom_wf_001.png)
+
+Above every task/workflow you can see 2 squares:
+
+**Update:**
+
+![FRINX Machine dashboard](update.png)
+
+**Remove/Expand:**
+
+![FRINX Machine dashboard](remove_expand.png)
+
+4) **lambda**. tento task bude robiť rozhodnutie, aký status má zaujať na základa vloženého portu. V tomto príklade budeme uvažovať iba s portami od 10000 do 10004, všetky ostatné budeme ignorovať. LAmbda task ako taký nám umožňuje do workflow builderu vložiť malý kód (lambda - funkcia bez mena)
+
+V tomto prípade, ak je zadaná port vyšší alebo rovný 10000 a zároveň menší ako 10005 - zaujmi status "pracuj ďalej" inak / v opačnom pípade zaujmi status - "koniec". Tento status bude výstupom lambdy a vstupom pre ďalší task alebo subworkflow.
+
+-- subworkflov nieje nič iné než klasický workflow s tým rozdielom, že sa daný workflow nachádza vo vnútri iného workflowu. Aj tento workflow ktorý vytvárame môže byť v budúcnosti použitý ako stavebný kameň iného workflowu a stane sa v danom FW subWF... a takto môžeme vrstviť nami už vytvorené workflovy a recyklovať ich :)
+
+v tabe Input parameters vložíme do poľa Lambda value: "${workflow.input.port}" čo v preklade znamená pracuj s tým, čo sa v tomto WF na inpute zadalo do kolónky **port** (viac si o tom povieme neskôr, odsek 7)
+
+do vstupu **Script expression** vložíme malú funkciu ktorej činnosť sme si popísali vyššie.
+```
+if ($.lambdaValue >= 10000 && $.lambdaValue < 10005) { 
+  return {value: 'other'}
+} else { 
+  return {value: false}
+}
+```
+
+![FRINX Machine dashboard](lambda_1_body.png)
+
+5) **decision**. Decision task robí rozhodnutie, avšak nie úplne tak isto ako lambda spomínaná vyššie. Decision sa spáva ako výhybka na kolajisku, pošle vlak jednou alebo druhou traťou. Nič viac. Na to však potrebuje údaje - tie ktoré nám dodala lambda. V záložke Input parameters zmažeme defaultný parameter foo s hodnotou bar a ponecháme iba parameter param do ktorého vložíme miesto true ${lambda_IkSu.output.result.value} - pozor IkSu ako sa spomínalo vyššie je generované pre odlíšenie jednotlivých taskov a WFs preto ho treba prepísať na aktuálne podmienky. `${lambda_IkSu.output.result.value}` znamená: zober hodnotu z lambda_xyzq ktorá je na výstupe (output) v outpute nájdi result a v ňom value.
+
+ak vstupná hodnota pre decision bude other, pošle flow smerom k Device_identification a ak bude false tak smerom k terminate. Presne ako sme si pospájali bunky v workflow builderovi.
+
+![FRINX Machine dashboard](decision_1_body.png)
+
+6) **terminated**. V tomto tasku si v tabe Input parameters do kolónky Termination status vložíme "COMPLETED" (prípadne FAILED - podľa uváženia) a do poľa Expected workflow output napíšeme ľubovoľnú hlášku, napr: This device is not supported.
+
+7) **Device_identification** v tabe Input parameters vložíme:
+management_ip: sample-topology - toto je názov topológie v tejto instalácii, v produkcii je potrebné použiť názov topológie podľa reálneho mena.
+
+port: `${workflow.input.port}` - ak by sme tam ručne napísali napr. 10001, pri spustení WF by sa más nič nepýtal, avšak my chceme aby pri každom spustení si užívaťeľ mohol zvoliť port, ktorý ho zaújima... To isté platí aj pre management_ip a ostatné polia. S týmto sme už pracovali v tasku lambda odsek 4)
+
+username & password: v tomto demo príklade počítame s tým že na všetkých zariadeniach sú použité prihlasovacie údaje username: frinx, password: frinx
+
+ako som spomínal vyššie, ak ich tam napíšeme napriamo, pri spustení sa nás na prihlasovacie údaje WF pýtať nebude, ak by sme pracovali so zariadeniami kde sú použité rôzne prihlasovacie údaje, potrebovali by sme ich vedieť meniť / zadať pri každom spustení. To by sme dosiahli podobným spôsobom, ako sme to spravili s port-om.
+Vyzeralo by to nasledovne:
+username -> ${workflow.input.username}
+password -> ${workflow.input.password}
+
+jednoduché. :) My sa však v tomto demo WF držíme predpokladu že všade sú rovnaké prihlasovacie údaje a tak tam môžeme napísať údaje napriamo - je to však na rozhodnutí každého.
+
+8) teraz si pridáme ďalľie bunky, v ľavom stĺpci v sekcii System tasks pridáme ďalšiu lambdu a v sekcii Workflows si nájdeme Read_journal_cli_device.
+Umiestnime ich vedľa seba za Device_identification a pospájame ich. Ako je vidno na obrázku
+
+FOTO
+
+9) **druhá lambda** do lambda value napíšeme `${Device_identificationRef_f7I6.output}` - čiže v preklade "zober výstup z predošlého tasku Device_identification a s tým pracuj"
+
+do jej tela vložíme:
+```
+if ($.lambdaValue.sw == 'saos') { 
+  var data = $.lambdaValue.sw.toUpperCase()+$.lambdaValue.sw_version+'_1'
+  return data
+} else { 
+  return { value: false }
+}
+```
+
+preklad do ľudského jazyka čo sa vo vnútri deje je: "ak identifikované zariadenie je typu saos, z výstupnej správy predošlého tasku vyextrahuj meno (čiže saos, zmeň písmená na veľké, vyextrahuj z výstupnej správy predošlého tasku verziu zlep ich dokopy a pridaj ešte `_1` - lebo tak sú nazvané zariadenia v tejto demo topológii"
+
+
+
+10) **Read_journal_cli_device** tu si v tabe Input parameters do poľa device_id vpíšeme `${lambda_ZW66.output.result}` 
+
+11) output z Read_journal_cli_device spojíme s END, rovnako aj OUTPUT z terminated spojíme s END a tým sme uzavreli náš custom WF.
+
+12) spustíme
+
+
+
+
 ## Demo “Create loopback address on devices stored in the inventory”
 
 This workflow creates a loopback interface on all devices that are installed in the inventory or on all devices filtered by labels. Labels are marks that serves as a differentiator.
