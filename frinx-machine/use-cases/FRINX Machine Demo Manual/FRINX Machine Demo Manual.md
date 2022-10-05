@@ -327,7 +327,7 @@ For auto-generating provider and customer address click on:
 
 ![FRINX Machine dashboard](ico_chain.png)
 
-**BGP Profile:** 500ms
+**BFD Profile:** 500ms
 
 ![FRINX Machine dashboard](bgb_profile.png)
 
