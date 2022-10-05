@@ -105,7 +105,7 @@ Now we will take a look at how to create a new workflow. The new workflow will b
 
 1) The easiest way to create a new workflow is to click on **Create** button in the main page of FRINX Machine.
 
-FOTO
+![FRINX Machine dashboard](WorkFlow_Manager.png)
 
 2) In the **Name** type the name of your workflow (please keep in mind that name of the workflow cannot be later changed). **Description** stands for additional info of the workflow - you can leave it blank. Once the workflow is created **Label** can help you find your workflow in **Explore workflows** faster but you can leave it blank as well. After inserting all data click on **Save changes**.
 
@@ -113,23 +113,23 @@ FOTO
 
 3) Click + on the **lambda**, **decision** and **terminate** under **System tasks** and **Device_identification** under **Workflows**. All tasks and subworkflows are added on same place in the canvas so you need to move them to actually see them. For connecting all parts of the workflow hower over OUT/IN where + sign will appear. Connect all parts in this way: START - lambda - decision - (other) with Device_identification and default with terminate. As you can see each task and workflow has its own set of characters after its name - these are reference aliases and work as unique identifier.
 
-![FRINX Machine dashboard](custom_wf_001.png)
+![FRINX Machine dashboard](custom_wf_001.PNG)
 
 Above every task/workflow you can see 2 squares:
 
 **Update:**
 
-![FRINX Machine dashboard](update.png)
+![FRINX Machine dashboard](update.PNG)
 
 **Remove/Expand:**
 
-![FRINX Machine dashboard](remove_expand.png)
+![FRINX Machine dashboard](remove_expand.PNG)
 
-4) **lambda**. tento task bude robiť rozhodnutie, aký status má zaujať na základa vloženého portu. V tomto príklade budeme uvažovať iba s portami od 10000 do 10004, všetky ostatné budeme ignorovať. LAmbda task ako taký nám umožňuje do workflow builderu vložiť malý kód (lambda - funkcia bez mena)
+4) **lambda**. tento task bude robiť rozhodnutie, aký status má zaujať na základa vloženého portu. V tomto príklade budeme uvažovať iba s portami od 10000 do 10004, všetky ostatné budeme ignorovať. Lambda task ako taký nám umožňuje do workflow builderu vložiť malý kód (lambda - funkcia bez mena)
 
-V tomto prípade, ak je zadaná port vyšší alebo rovný 10000 a zároveň menší ako 10005 - zaujmi status "pracuj ďalej" inak / v opačnom pípade zaujmi status - "koniec". Tento status bude výstupom lambdy a vstupom pre ďalší task alebo subworkflow.
+V tomto prípade, ak je zadaný port vyšší alebo rovný 10000 a zároveň menší ako 10005 - zaujmi status "pracuj ďalej" inak / v opačnom pípade zaujmi status - "koniec". Tento status bude výstupom lambdy a vstupom pre ďalší task alebo subworkflow.
 
--- subworkflov nieje nič iné než klasický workflow s tým rozdielom, že sa daný workflow nachádza vo vnútri iného workflowu. Aj tento workflow ktorý vytvárame môže byť v budúcnosti použitý ako stavebný kameň iného workflowu a stane sa v danom FW subWF... a takto môžeme vrstviť nami už vytvorené workflovy a recyklovať ich :)
+-- subworkflov nieje nič iné než klasický workflow s tým rozdielom, že sa daný workflow nachádza vo vnútri iného workflowu. Aj tento workflow ktorý vytvárame môže byť v budúcnosti použitý ako stavebný kameň iného workflowu a stane sa v danom WF subWF... a takto môžeme vrstviť nami už vytvorené workflovy a recyklovať ich :)
 
 v tabe Input parameters vložíme do poľa Lambda value: "${workflow.input.port}" čo v preklade znamená pracuj s tým, čo sa v tomto WF na inpute zadalo do kolónky **port** (viac si o tom povieme neskôr, odsek 7)
 
