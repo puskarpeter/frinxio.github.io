@@ -119,11 +119,11 @@ Above every task/workflow you can see 2 squares:
 
 **Update:**
 
-![FRINX Machine dashboard](update.PNG)
+![FRINX Machine dashboard](update.png)
 
 **Remove/Expand:**
 
-![FRINX Machine dashboard](remove_expand.PNG)
+![FRINX Machine dashboard](remove_expand.png)
 
 4) **lambda**. tento task bude robiť rozhodnutie, aký status má zaujať na základa vloženého portu. V tomto príklade budeme uvažovať iba s portami od 10000 do 10004, všetky ostatné budeme ignorovať. Lambda task ako taký nám umožňuje do workflow builderu vložiť malý kód (lambda - funkcia bez mena)
 
