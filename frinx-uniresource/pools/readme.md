@@ -22,7 +22,7 @@ Example pools:
 
 Depending on resource type and user’s requirements, pools need to be
 capable of allocating resources based on various criteria / algorithms.
-Currently, following pool types are supported by UniResource:
+Currently, following pool types are supported by Resource Manager:
 
 ## SetPool
 
@@ -50,7 +50,7 @@ SingletonPool serves just a single resource for every request.
 This type of pool can be utilized in special uses cases such as serving
 a globally unique single AS number of an ISP. Instead of hardcoding the
 AS number as a constant in e.g. workflows, it can be “managed” and
-stored in the UniResource.
+stored in the Resource Manager.
 
 Properties of SingletonPool
 
@@ -67,7 +67,7 @@ This type of pool allows users to define a custom allocation logic,
 attach it to the pool and have use-case specific resource allocations
 available. Important feature of this pool type is the ability to accept
 new allocation logic from users in the form of a script without having
-to rebuild the UniResource in any way.
+to rebuild the Resource Manager in any way.
 
 This type of pool can be used when
 
@@ -102,7 +102,7 @@ Example AllocationPools:
 
 ## Nested pool
 
-UniResource allows to create nested pools. Nested pools provide possibility to create subgroups from already existing pools. With these subgroups it is easier to reason about topology.
+Resource Manager allows to create nested pools. Nested pools provide possibility to create subgroups from already existing pools. With these subgroups it is easier to reason about topology.
 
 ### How to create nested pool
 
@@ -142,7 +142,7 @@ Allocation strategy also gets access to a
 
 ### Pool hierarchies
 
-UniResource allows pools to be organized into hierarchies e.g.
+Resource Manager allows pools to be organized into hierarchies e.g.
 
 ![Pool hierarchies](rm_hierarchy.png)
 

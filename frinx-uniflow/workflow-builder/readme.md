@@ -1,6 +1,6 @@
 # Workflow Builder
 
-Workflow Builder is the graphical interface of UniFlow used to create, modify and manage workflows.
+Workflow Builder is the graphical interface for Workflow Manager and is used to create, modify and manage workflows.
 
 ## Creating new workflow
 

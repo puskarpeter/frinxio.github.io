@@ -1,13 +1,13 @@
 # Creating a Layer 2 VPN Point-to-Point Connection
 
 This section details how to find and execute a prebuilt workflow that
-creates a Layer 2 VPN Point-to-Point connection within UniFlow.
+creates a Layer 2 VPN Point-to-Point connection within Workflow Manager.
 
-## Navigating through UniFlow
+## Navigating through Workflow Manager
 
 From the FRINX Machine dashboard you can either select
-`UniFlow` --> `Explore Workflows` --> `Explore`, or select the menu tab in
-the upper left-hand corner and select `UniFlow`.
+`Workflow Manager` --> `Explore Workflows` --> `Explore`, or select the menu tab in
+the upper left-hand corner and select `Workflow Manager`.
 
 You can then search for **Create_L2VPN_P2P_OC_uniconfig** or scroll
 down to find it within the inventory of prebuilt workflows.

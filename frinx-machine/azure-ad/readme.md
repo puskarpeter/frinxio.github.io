@@ -21,7 +21,7 @@ Set platform redirect URIs on the Authentication page. The table below shows exa
 | Syntax                | Platform configuration  | Redirect URI                                    |
 | ---                   | ---                     | ---                                             |
 | Frontend Login        | Single-page application | https://<**IP/DNS**>/ ,e.g. https://localhost/  |
-| Uniflow docs (swager) | Web                     | https://<**IP/DNS**>/oauth2-redirect.html       |
+| Workflow Manager docs (swager) | Web                     | https://<**IP/DNS**>/oauth2-redirect.html       |
 | Cloud swagger         | Web                     | https://editor.swagger.io/oauth2-redirect.html  |
 | Local Postman         | Web                     | https://oauth.pstmn.io/v1/callback              |
 | Cloud Postman         | Web                     | https://getpostman.com/oauth2/callback          |
@@ -76,7 +76,7 @@ Example of encoded JWT token with claims. These claims are transferred to the re
 
 Super user is defined in .env file via **ADMIN_GROUP** variable.
 
-### Uniflow
+### Workflow Manager
 
 RBAC proxy adds 2 features on top of tenant proxy:
 * Ensures user authorization to access certain endpoints
@@ -117,7 +117,7 @@ Regular users will only be able to use GET REST API requests.
 |Admin (Superuser)   | true                 | true                 |
 |Regular user        | true                 | false                |
 
-### Uniresource
+### Resource Manager
 
 A simple RBAC model is implemented where only super-users (based on their role and user groups) can manipulate resource types, resource pools and labels. Regular users will only be able to read the above entities, allocate and free resources.
 

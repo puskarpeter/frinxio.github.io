@@ -3,7 +3,7 @@
 Once you add multiple devices to your inventory, it can get tedious to install all of them individually. To make things easier, we built a workflow that will install all
 devices present in the inventory. To use this workflow, follow these instructions:
 
-On landing page go to `UniFlow` section, click `Explore` button and search for the workflow called **Install_all_from_inventory**.
+On landing page go to `Workflow Manager` section, click `Explore` button and search for the workflow called **Install_all_from_inventory**.
 
 ![Search for install_all_from_inventory](install_all_from_inventory_search.png)
 

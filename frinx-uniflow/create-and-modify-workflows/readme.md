@@ -199,11 +199,11 @@ Now just start fm-workflows and you're good to go:
 ```
 
 If you did everything correctly, you will now see your new task in Frinx
-Machine. Go to **UniFlow -> Tasks -> Search**:
+Machine. Go to **Workflow Manager -> Tasks -> Search**:
 
 ![Search integers](fm_search_integers_task.png)
 
-Now you can create workflow that uses this task. **UniFlow** -> **"+ New"**:
+Now you can create workflow that uses this task. **Workflow Manager** -> **"+ New"**:
 
 [!embed](https://www.youtube.com/embed/dB_yR1GhBGU)
 

@@ -2,27 +2,27 @@
 order: 2
 ---
 
-# UniResource Architecture
+# Resource Manager architecture
 
-Following diagram outlines the high level architecture of UniResource.
+Following diagram outlines the high level architecture of Resource Manager.
 
 ![Architecture](rm_arch.png)
 
 User authentication and authorization as well as user and tenant
-management is outside of UniResource. UniResource is typically deployed
+management is outside of Resource Manager. Resource Manager is typically deployed
 behind an api-gateway that handles authentication and authorization
 relying on an external Identity Managmenet system.
 
 The only aspect of tenancy management that needs to be handled by
-UniResource is: per tenant database creation and removal. Each tenant
+Resource Manager is: per tenant database creation and removal. Each tenant
 has its own database in database server.
 
 ## Technology stack
 
 This section provides details on intended technologies to develop
-UniResource with.
+Resource Manager with.
 
-UniResource will rely on technologies used by the Inventory project
+Resource Manager will rely on technologies used by the Inventory project
 currently residing at: <https://github.com/facebookincubator/magma>
 since both projects are similar and have similar requirements.
 
@@ -38,7 +38,7 @@ since both projects are similar and have similar requirements.
             used in the future
 - Backend server
     - GraphQL
-        - Primary API of UniResource will be exposed over GraphQL
+        - Primary API of Resource Manager will be exposed over GraphQL
             (over HTTP)
         - [Gqlgen](https://gqlgen.com/getting-started/)
             - Gqlgen is a graphql framework for go
@@ -49,11 +49,11 @@ since both projects are similar and have similar requirements.
         - Separate process
         - Isolated and limited for safety and performance
 - AAA
-    - Tenant and user management is out of scope of UniResource and
+    - Tenant and user management is out of scope of Resource Manager and
         will be handled by an external identity management system.
 
 ## Entity model
 
-Following diagram outlines the core entity model for UniResource:
+Following diagram outlines the core entity model for Resource Manager:
 
 ![Entities](rm_entity.png)

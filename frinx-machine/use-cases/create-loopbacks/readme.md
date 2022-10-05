@@ -17,7 +17,7 @@ By default, this workflow doesn't work on Junos, **IOSXR653**, **IOSXR663** and 
 In the next step, we execute a workflow that creates loopback on
 every installed device in UniConfig.
 
-In the `UniFlow` section, click on the `Explore` button. A list of all workflows will appear. Search for a workflow called **Create_loopback_all_in_uniconfig**.
+In the `Workflow Manager` section, click on the `Explore` button. A list of all workflows will appear. Search for a workflow called **Create_loopback_all_in_uniconfig**.
 
 As for the input, the only thing you need to input is "loopback_id", the name of the loopback interface e.g., **77**.
 After executing, click on the numeric link that appears to see workflow progression and results.

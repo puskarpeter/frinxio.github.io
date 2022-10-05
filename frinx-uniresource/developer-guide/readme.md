@@ -7,11 +7,11 @@ order: 1
 ## Dependency on symphony
 
 !!!warning
-UniResource currently depends on a project called symphony.
+Resource Manager currently depends on a project called symphony.
 !!!
 
 This project is not publicly accessible and without access to it,
-UniResource cannot be built. In that case, use pre built docker images
+Resource Manager cannot be built. In that case, use pre built docker images
 from dockerhub.
 
 ## Folder structure
@@ -35,21 +35,21 @@ from dockerhub.
 - [api-tests](https://github.com/FRINXio/resource-manager/tree/master/api-tests)
     - integration tests
 - [pkg](https://github.com/FRINXio/resource-manager/tree/master/pkg) -
-    helm chart for UniResource
+    helm chart for Resource Manager
 
 ## Build
 
-It is advised to build UniResource as a docker image using
+It is advised to build Resource Manager as a docker image using
 [Dockerfile](https://github.com/FRINXio/resource-manager/blob/master/Dockerfile)
 and run it as a docker container.
 
-The reason is that UniResource uses wasmer and pre built js and python
+The reason is that Resource Manager uses wasmer and pre built js and python
 engines for wasm. These are not part of the codebase and thus simply
-running UniResource would fail, unless you provide these resources e.g.
-by copying them out of UniResource built docker image.
+running Resource Manager would fail, unless you provide these resources e.g.
+by copying them out of Resource Manager built docker image.
 
 !!!warning
-UniResource utilizes wire to generate wiring code between major
+Resource Manager utilizes wire to generate wiring code between major
 !!!
 
 components. Regenerating wiring is not part of standard build process !
@@ -61,13 +61,13 @@ After modifying any of the **wire.go** files perform:
 
 ## GraphQL schema
 
-UniResource exposes graphQL API and this is the
+Resource Manager exposes graphQL API and this is the
 [schema](https://github.com/FRINXio/resource-manager/blob/master/graph/graphql/schema/schema.graphql).
 
 ## Built in strategies
 
-UniResource provides a number of built in strategies for built in
-resource types and are loaded into UniResource at startup.
+Resource Manager provides a number of built in strategies for built in
+resource types and are loaded into Resource Manager at startup.
 
 [Built in strategies code
 base](https://github.com/FRINXio/resource-manager/tree/master/pools/allocating_strategies/strategies)
@@ -75,7 +75,7 @@ base](https://github.com/FRINXio/resource-manager/tree/master/pools/allocating_s
 [Built in strategies unit
 tests](https://github.com/FRINXio/resource-manager/tree/master/pools/allocating_strategies/strategies/src/tests)
 
-These strategies need to be tested/built and packaged for UniResource.
+These strategies need to be tested/built and packaged for Resource Manager.
 This test/build process in scrips section of
 [package.json](https://github.com/FRINXio/resource-manager/blob/master/pools/allocating_strategies/strategies/package.json)
 while the packaging part can be found in
@@ -98,7 +98,7 @@ There's a number of [api
 tests](https://github.com/FRINXio/resource-manager/tree/master/api-tests)
 available and can be executed using
 [integration-test.sh](https://github.com/FRINXio/resource-manager/blob/master/integration-test.sh).
-These tests need to be executed against UniResource running as a black
+These tests need to be executed against Resource Manager running as a black
 box (ideally as a container).
 
 ### Wasmer

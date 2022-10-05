@@ -13,5 +13,5 @@ collection](https://www.getpostman.com/collections/514d68c6e43f1628d715).
 
 ## UI
 
-See UniResource frontend project on
-[github](https://github.com/FRINXio/frinx-frontend/tree/main/packages/frinx-uniresource-ui)
+See the Resource Manager frontend project on
+[GitHub](https://github.com/FRINXio/frinx-frontend/tree/main/packages/frinx-uniresource-ui)

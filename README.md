@@ -21,15 +21,15 @@ and monitoring of complex workflows using FRINX UniConfig.
 FRINX UniConfig is a suite of applications aimed at network
 configuration management.
 
-## FRINX UniFlow
+## FRINX Workflow Manager
 
 
-FRINX UniFlow enables customers to create automated, repeatable, digital
+FRINX Workflow Manager allows customers to create automated and repeatable digital
 processes to build, grow and operate their digital communication
 infrastructure.
 
-## FRINX UniResource
+## FRINX Resource Manager
 
 
-FRINX UniResource was developed for network operators and infrastructure
-engineers to manage their physical and logical assets and resources.
+FRINX Resource Manager helps network operators and infrastructure engineers
+manage their physical and logical assets and resources.
