@@ -139,21 +139,29 @@ Sample data-change-event captured by Kafka console consumer:
         "edit": [
             {
                 "subtree-path": "/process=p3",
-                "data-after": "{\n  \"process\": [\n    {\n      \"uid\": \"p3\"\n    }\n  ]\n}"
+                "data-after": "{\n  \"process\": [\n    {\n      \"uid\": \"p3\"\n    }\n  ]\n}",
+                "operation":"CREATE",
+                "node-id": "node"
             },
             {
                 "subtree-path": "/process=p2",
-                "data-before": "{\n  \"process\": [\n    {\n      \"uid\": \"p2\"\n    }\n  ]\n}"
+                "data-before": "{\n  \"process\": [\n    {\n      \"uid\": \"p2\"\n    }\n  ]\n}",
+                "operation":"DELETE",
+                "node-id": "node"
             },
             {
                 "subtree-path": "/process=p1/address/bus-size",
                 "data-after": "{\n  \"config:bus-size\": 2048\n}",
-                "data-before": "{\n  \"config:bus-size\": 1024\n}"
+                "data-before": "{\n  \"config:bus-size\": 1024\n}",
+                "operation":"UPDATE",
+                "node-id": "node"
             },
             {
                 "subtree-path": "/process=p1/address/bus-id",
                 "data-after": "{\n  \"config:bus-id\": \"0xFFFF\"\n}",
-                "data-before": "{\n  \"config:bus-id\": \"0x451FE\"\n}"
+                "data-before": "{\n  \"config:bus-id\": \"0x451FE\"\n}",
+                "operation":"UPDATE",
+                "node-id": "node"
             }
         ]
     }
@@ -178,6 +186,8 @@ Edit entry fields:
   represents created data.
 - data-after: JSON representation of subtree data including done changes. If this fields is not present, then
  'data-before' represents removed data.
+- operation: Represents operation type of data change event. 
+- node-id: Node identifier of data change event.
 
 ## Connection notifications
 
@@ -375,7 +385,8 @@ is done, UniConfig starts to listen to data-change-events on selected nodes and 
 messages to dedicated Kafka topic.
 
 RPC input contains:
-- node-id: Identifier of node from which data-change-events are generated.
+- node-id: Identifier of node from which data-change-events are generated. This field is optional. If it is missing,
+  then creates global subscription and generates data-change-events for all nodes under topology.
 - topology-id: Identifier of topology where specified node is placed.
 - subtree-path: Path to subtree from which user would like to receive data-change-events. Default path equals to '/'
 - captured data-change-events from whole node configuration. 
@@ -414,6 +425,29 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-chan
 {
   "output": {
     "subscription-id": "8e82453d-4ea8-4c26-a74e-50d855a721fa"
+  }
+}
+```
+
+Example: creation of subscription to topology 'uniconfig' and to whole configuration
+subtree '/interfaces'.
+
+```bash RPC Request
+curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-change-events:create-data-change-subscription' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "topology-id": "uniconfig",
+        "subtree-path": "/interfaces",
+        "data-change-scope": "SUBTREE"
+    }
+}'
+```
+
+```json RPC response
+{
+  "output": {
+    "subscription-id": "1920770c-671d-4d2e-8126-6309ab73ff10"
   }
 }
 ```
@@ -470,7 +504,7 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-chan
 }
 ```
 
-It is also possible to fetch all created subscriptions under specific node by sending GET request
+It is also possible to fetch all created subscriptions under specific node or topology by sending GET request
 to 'data-change-subscriptions' list under 'node' list item (operational data).
 
 Example (there are 2 subscriptions under 'device1' node):
@@ -492,6 +526,28 @@ curl --location --request GET 'http://127.0.0.1:8181/rests/data/network-topology
             "subscription-id": "3b3ad917-f1a1-4cc4-83b9-3c8b62929b81",
             "subtree-path": "/ospf",
             "data-change-scope": "ONE"
+        }
+    ]
+}
+```
+
+```bash GET request
+curl --location --request GET 'http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=uniconfig/data-change-subscriptions?content=nonconfig' \
+--header 'Accept: application/json'
+```
+
+```json GET response
+{
+    "data-change-events:data-change-subscriptions": [
+        {
+            "subscription-id": "4058acac-1a2a-4c49-abe9-bcdbd14fe933",
+            "subtree-path": "/events:event",
+            "data-change-scope": "SUBTREE"
+        },
+        {
+            "subscription-id": "a2561773-c02e-403c-a090-fe6542926fed",
+            "subtree-path": "/events:event",
+            "data-change-scope": "BASE"
         }
     ]
 }
