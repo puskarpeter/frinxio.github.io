@@ -125,11 +125,13 @@ Above every task/workflow you can see 2 squares:
 
 ![FRINX Machine dashboard](remove_expand.png)
 
-4) **lambda**. tento task bude robiť rozhodnutie, aký status má zaujať na základa vloženého portu. V tomto príklade budeme uvažovať iba s portami od 10000 do 10004, všetky ostatné budeme ignorovať. Lambda task ako taký nám umožňuje do workflow builderu vložiť malý kód (lambda - funkcia bez mena)
+4) **lambda**. tento task bude robiť rozhodnutie, aký status má zaujať na základa vloženého portu. V tomto príklade budeme uvažovať iba s portami od 10000 do 10004, všetky ostatné budeme ignorovať.
+
+> Lambda task ako taký nám umožňuje do workflow builderu vložiť malý kód (lambda - funkcia bez mena).
 
 V tomto prípade, ak je zadaný port vyšší alebo rovný 10000 a zároveň menší ako 10005 - zaujmi status "pracuj ďalej" inak / v opačnom pípade zaujmi status - "koniec". Tento status bude výstupom lambdy a vstupom pre ďalší task alebo subworkflow.
 
--- subworkflov nieje nič iné než klasický workflow s tým rozdielom, že sa daný workflow nachádza vo vnútri iného workflowu. Aj tento workflow ktorý vytvárame môže byť v budúcnosti použitý ako stavebný kameň iného workflowu a stane sa v danom WF subWF... a takto môžeme vrstviť nami už vytvorené workflovy a recyklovať ich :)
+> subworkflov nieje nič iné než klasický workflow s tým rozdielom, že sa daný workflow nachádza vo vnútri iného workflowu. Aj tento workflow ktorý vytvárame môže byť v budúcnosti použitý ako stavebný kameň iného workflowu a stane sa v danom WF subWF... a takto môžeme vrstviť nami už vytvorené workflovy a recyklovať ich.
 
 v tabe Input parameters vložíme do poľa Lambda value: "${workflow.input.port}" čo v preklade znamená pracuj s tým, čo sa v tomto WF na inpute zadalo do kolónky **port** (viac si o tom povieme neskôr, odsek 7)
 
