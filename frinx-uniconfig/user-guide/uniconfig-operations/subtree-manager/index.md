@@ -58,5 +58,5 @@ request examples and workflow diagrams.
 
 ## RPC bulk-edit
 
-Operation used for application of multiple modifications to list of target nodes.
+Applies multiple modifications to a list of target nodes.
 [!ref text="RPC bulk-edit"](../subtree-manager/rpc_bulk-edit)
