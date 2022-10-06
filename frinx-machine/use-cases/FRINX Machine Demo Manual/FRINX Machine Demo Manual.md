@@ -210,7 +210,7 @@ the translation into human language of what is happening inside is: "if the iden
 As you can see, under different ports are different device with another run commands in memory
 
 ![FRINX Machine dashboard](output_journal_commands.png)
-![FRINX Machine dashboard](output_journal_commands_2.png)
+![FRINX Machine dashboard](output_journal_commands_3.png)
 
 ## Demo “Create loopback address on devices stored in the inventory”
 
