@@ -73,7 +73,7 @@ in the **URI** and leave other columns unchanged. This set of data will get data
 
 5) **lambda - adjustment**. Click on **Input parameters** and in the **Lambda value** insert:
 ```${NAME_OF_HTTP_TASK.output.body}```
-In our example the name is **http_1cc1**. In the **Script expression** copy-paste: return JSON.parse($.lambdaValue). Lambda takes data from previous http task and returns parsed data (message text) from JSON. Click on **Save Changes**.
+In our example the name is **http_1cc1**. In the **Script expression** copy-paste: `return JSON.parse($.lambdaValue)`. Lambda takes data from previous http task and returns parsed data (message text) from JSON. Click on **Save Changes**.
 
 ![FRINX Machine dashboard](lambda_task.png)
 
@@ -146,7 +146,7 @@ if ($.lambdaValue >= 10000 && $.lambdaValue < 10005) {
 
 ![FRINX Machine dashboard](lambda_1_body.PNG)
 
-5) **decision**. The decision task makes a decision, but not quite the same as the lambda mentioned above. Decision sleeps like a switch on a track, it sends the train one way or the other. Nothing more. But it needs data to do that - the data supplied by the lambda. In the Input parameters tab, we delete the default parameter foo with the value bar and leave only the param parameter into which we insert ${lambda_IkSu.output.result.value} instead of true - note IkSu as mentioned above is generated to differentiate individual tasks and workflows so it needs to be rewritten for the current conditions. The `${lambda_IkSu.output.result.value}` means: take the value from lambda_xyzq which is in the output, find the result in the output and the value in it.
+5) **decision**. The decision task makes a decision, but not quite the same as the lambda mentioned above. Decision sleeps like a switch on a track, it sends the train one way or the other. Nothing more. But it needs data to do that - the data supplied by the lambda. In the Input parameters tab, we delete the default parameter foo with the value bar and leave only the param parameter into which we insert `${lambda_IkSu.output.result.value}`instead of true - note IkSu as mentioned above is generated to differentiate individual tasks and workflows so it needs to be rewritten for the current conditions. The `${lambda_IkSu.output.result.value}` means: take the value from lambda_xyzq which is in the output, find the result in the output and the value in it.
 
 If the input value for decision is other, it will send the flow towards device_identification and if it is false, it will send the flow towards terminate. Exactly how we have connected the cells in the workflow builder.
 
@@ -164,16 +164,18 @@ port: `${workflow.input.port}` - if we would manually type in 10001, for example
 username & password: in this demo example we assume that the login credentials username: frinx, password: frinx are used on all devices
 
 As I mentioned above, if we type them in directly, the workflow will not ask us for login credentials at startup, if we were working with devices where different login credentials are used, we would need to be able to change/enter them at each startup. We would achieve this in a similar way to what we did with the port.
+
 It would look like this:
-username -> ${workflow.input.username}
-password -> ${workflow.input.password}
+
+username -> `${workflow.input.username}`
+
+password -> `${workflow.input.password}`
 
 Simple. :) However, in this demo workflow, we stick to the assumption that the login credentials are the same everywhere, so we can type the credentials in directly - but it's up to everyone's decision.
 
 ![FRINX Machine dashboard](device_identification_1_body.PNG)
 
-8) Now we'll add more tasks, in the left column in the System tasks section we'll add another lambda and in the Workflows section we'll find Read_journal_cli_device.
-Let's place them next to each other after Device_identification and concatenate them. As you can see in the figure:
+8) Now we'll add more tasks, in the left column in the System tasks section we'll add another lambda and in the Workflows section we'll find Read_journal_cli_device. Let's place them next to each other after Device_identification and concatenate them. As you can see in the figure:
 
 ![FRINX Machine dashboard](new_lambda_and_read_journal.PNG)
 
@@ -206,6 +208,12 @@ the translation into human language of what is happening inside is: "if the iden
 
 ![FRINX Machine dashboard](save_and_run.png)
 ![FRINX Machine dashboard](save_and_run_2.png)
+
+In next steps:
+
+Find your new workflow and run it with multiple different inputs, like 10 000, 10 002, 10 012 etc.
+
+![FRINX Machine dashboard](find_demo_workflow.png)
 
 As you can see, under different ports are different device with another run commands in memory
 
