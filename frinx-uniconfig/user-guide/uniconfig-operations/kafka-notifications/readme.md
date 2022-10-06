@@ -2,55 +2,53 @@
 
 ## Introduction
 
-NETCONF devices are capable of generating NETCONF notifications.
-UniConfig is able to collect these notifications and creates its own
-UniConfig notifications about specific events. Kafka is used for
-publishing of these notifications from NETCONF devices and UniConfig.
-Currently, there are these types of notifications:
-- NETCONF notifications
-- notifications about transactions
-- audit logs (RESTCONF notifications)
-- data-change-events
-- connection notifications
+NETCONF devices are able to produce NETCONF notifications.
+UniConfig can collect these notifications and create its own
+UniConfig notifications about specific events. Kafka is used to publish
+these notifications from NETCONF devices and UniConfig.
 
-Each type of notifications is stored in its own topic in kafka. Besides
-that, all notifications are stored in one table in database.
+The following notification types are available:
+- NETCONF notifications
+- Notifications about transactions
+- Audit logs (RESTCONF notifications)
+- Data-change events
+- Connection notifications
+
+Each notification type is stored in its own topic in Kafka. Additionally,
+all notifications are stored in one table in the database.
 
 ![notifications-in-cluster](cluster.svg)
 
 ## Kafka
 
-Apache Kafka is a publish-subscribe based durable messaging system. A
-messaging system sends messages between processes, applications, and
-servers. Apache Kafka is a software where topics can be defined (think
-of a topic as a category), applications can add, process and reprocess
-records.
+Apache Kafka is a publish–subscribe-based, durable messaging system
+that sends messages between processes, applications and servers.
+Within Kafka, you can define topics (think categories) and applications
+can add, process and reprocess records.
 
-In our specific case UniConfig is publisher of notifications. Each type
-of notifications is stored in separate topic and therefore can be
-subscribed to independently. Names of topics and connection data are
-configurable in lighty-uniconfig-config.json file.
+In our specific case, UniConfig is publishes notifications. Each type
+of notification is stored in a separate topic and therefore can be
+subscribed to independently. The names of topics and connection data are
+configurable in the *lighty-uniconfig-config.json* file.
 
 ## NETCONF notifications
 
-[RFC 5277](https://tools.ietf.org/html/rfc5277) document defines a
-mechanism where the NETCONF client indicates interest in receiving event
-notifications from a NETCONF server by creating a subscription to
-receive event notifications. The NETCONF server replies to indicate
+[RFC 5277](https://tools.ietf.org/html/rfc5277) defines a
+mechanism where the NETCONF client indicates an interest in receiving event
+notifications from a NETCONF server by subscribing to
+receive event notifications. The NETCONF server replies
 whether the subscription request was successful and, if it was
-successful, begins sending the event notifications to the NETCONF client
-as the events occur within the system. These event notifications will
-continue to be sent until either the NETCONF session is terminated or
-the subscription terminates for some other reason. 
+successful, starts sending event notifications to the NETCONF client
+as events occur within the system. These event notifications are
+sent until either the NETCONF session or the subscription is terminated. 
 
-NETCONF notifications have categories called streams. While subscribing
-it is required to choose which streams should be received. Default
-stream is called NETCONF.
+NETCONF notifications are categorised as so-called streams. The subscriber
+must choose which streams to receive. The default stream is named *NETCONF*.
 
 ## Notifications about transactions
 
-This type of notifications is generated after each commit in UniConfig.
-It contains:
+This type of notification is generated after each commit in UniConfig.
+It contains the following:
 
 -   transaction id
 -   calculate diff result
@@ -58,7 +56,7 @@ It contains:
 
 ## Audit logs (RESTCONF notifications)
 
-This type of notifications is generated after each RESTCONF operation.
+This type of notification is generated after each RESTCONF operation.
 
 **It contains:**
 
@@ -76,13 +74,13 @@ This type of notifications is generated after each RESTCONF operation.
     - query-parameters
     - body
 
-Response body does not need to be included in notification. It can be
-configured using *includeResponseBody* parameter in
-lighty-uniconfig-config.json file.
+The response body does not need to be included in notifications. It can be
+configured using the *includeResponseBody* parameter in
+the *lighty-uniconfig-config.json* file.
 
 ## Shell notifications
 
-This type of notifications is generated after each shell operation.
+This type of notification is generated after each shell operation.
 
 **It contains:**
 
@@ -173,7 +171,7 @@ Body contains:
 
 - subscription-id: Identifier of the subscription that triggers generation of data-change-event.
   Subscription identifier makes association of subscriptions and received data-changes-events easier than using
-  combination of multiple fields such as node identifier, topology identifier, and subtree path.
+  combination of multiple fields such as node identifier, topology identifier and subtree path.
 - transaction-id: Identifier of committed transaction that triggered data-change-event after commit or checked-commit
   UniConfig operations.
 - edit - List of captured modifications done in the committed transaction.
@@ -186,8 +184,8 @@ Edit entry fields:
   represents created data.
 - data-after: JSON representation of subtree data including done changes. If this fields is not present, then
  'data-before' represents removed data.
-- operation: Represents operation type of data change event. 
-- node-id: Node identifier of data change event.
+- operation: Operation type of the data change event. 
+- node-id: Node identifier of the data change event.
 
 ## Connection notifications
 
@@ -364,7 +362,7 @@ lighty-uniconfig-config.json file.
 
 NETCONF device may have the :interleave capability that indicates
 support to interleave other NETCONF operations within a notification
-subscription. This means the NETCONF server can receive, process, and
+subscription. This means the NETCONF server can receive, process and
 respond to NETCONF requests on a session with an active notification
 subscription. However, not all devices support this capability, so the
 common approach for devices \'with\' and \'without\' interleave
@@ -378,15 +376,15 @@ corresponding subscription is closed.
 
 ## Subscription to data-change events
 
-### Creation of new subscription
+### Creating a new subscription
 
 Subscription to data-change-events can be created using 'create-data-change-subscription' RPC. After subscription
-is done, UniConfig starts to listen to data-change-events on selected nodes and subtrees, and distribute corresponding
+is done, UniConfig starts to listen to data-change-events on selected nodes and subtrees and distribute corresponding
 messages to dedicated Kafka topic.
 
 RPC input contains:
-- node-id: Identifier of node from which data-change-events are generated. This field is optional. If it is missing,
-  then creates global subscription and generates data-change-events for all nodes under topology.
+- node-id: Identifier for the node from which data-change-events are generated. This field is optional. If not given,
+  a global subscription is created and data-change-events are generated for all nodes under the topology.
 - topology-id: Identifier of topology where specified node is placed.
 - subtree-path: Path to subtree from which user would like to receive data-change-events. Default path equals to '/'
 - captured data-change-events from whole node configuration. 
@@ -429,8 +427,8 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-chan
 }
 ```
 
-Example: creation of subscription to topology 'uniconfig' and to whole configuration
-subtree '/interfaces'.
+Example: Creating a subscription to the *uniconfig* topology and to the whole */interfaces* configuration
+subtree.
 
 ```bash RPC Request
 curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-change-events:create-data-change-subscription' \
@@ -452,7 +450,7 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-chan
 }
 ```
 
-### Removal of subscription
+### Removing a subscription
 
 Existing subscription can be removed using 'delete-data-change-subscription' RPC and provided subscription-id.
 After subscription is removed, UniConfig stops generation of new data-change-events related to subscribed path.
@@ -477,7 +475,7 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-chan
 The RPC 'show-subscription-data' can be used for displaying information about created subscription. RPC input contains
 identifier of target subscription.
 
-RPC output for existing subscription contains 'topology-id', 'node-id', 'subtree-path', and 'data-change-scope' - the
+RPC output for existing subscription contains 'topology-id', 'node-id', 'subtree-path' and 'data-change-scope' - the
 same fields that can also be specified in the 'create-data-change-subscription' RPC input.
 If subscription with specified ID doesn't exist, RPC will return 404 status code with standard RESTCONF error container.
 
@@ -504,8 +502,8 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/data-chan
 }
 ```
 
-It is also possible to fetch all created subscriptions under specific node or topology by sending GET request
-to 'data-change-subscriptions' list under 'node' list item (operational data).
+It is also possible to fetch all created subscriptions under a specific node or topology by sending a GET request
+to the 'data-change-subscriptions' list under the 'node' list item (operational data).
 
 Example (there are 2 subscriptions under 'device1' node):
 
@@ -652,7 +650,7 @@ environment:**
 - deliveryTimeout - configuration of the upper bound on the time to report
   success or failure after a call to **send()** returns (in ms). This limits
   the total time that a record will be delayed prior to sending, the
-  time to await acknowledgement from the broker (if expected), and the
+  time to await acknowledgement from the broker (if expected) and the
   time allowed for retriable send failures.
 
 **There are two properties related to the thread pool executor which is needed to
