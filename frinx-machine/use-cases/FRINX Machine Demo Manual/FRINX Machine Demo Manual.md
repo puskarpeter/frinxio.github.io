@@ -261,9 +261,10 @@ This is the final task that actually commits the intended configuration to the d
 
 ## Demo “L3VPN”
 
-Before running L3VPN, run **Allocate_Root_Pool / 1** workflow and check if lab-vmx1 (device) is already installed.
+<!-- Before running L3VPN, run **Allocate_Root_Pool / 1** workflow and check if lab-vmx1 (device) is already installed.
 
 ![FRINX Machine dashboard](allocate_root_pool_workflow.png)
+-->
 
 - When in the FRINX Dashboard, click on the drop-down menu in the left top corner and click on L3VPN Automation
 - Click on “Services”
