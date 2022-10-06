@@ -87,7 +87,7 @@ Frinx-conductor repository is available at https://github.com/FRINXio/conductor
 The workflows are defined using a JSON based domain specific language
 (DSL) by wiring a set of tasks together. The tasks are either control
 tasks (fork, conditional, etc.) or application tasks (i.e. encoding a
-file) that are executed on a remote device.
+file) that are executed on a remote devices.
 
 The FRINX Machine distribution comes pre-loaded with a number of
 standardized workflows
