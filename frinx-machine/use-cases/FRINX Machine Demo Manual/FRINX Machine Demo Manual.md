@@ -35,6 +35,7 @@ To revert the changes:
 
 Workflow Builder is the graphical interface of WorkFlow Manager used to create, modify and manage workflows. Workflows are groups of tasks and/or subworkflows that can be used for multiple purposes such as installing/deleting devices, creating loopback interfaces on devices, sending messages and much more. You can create your own workflows or edit existing workflows by adding or removing tasks or subworkflows. Every task and subworkflow placed in workflow has its unique reference alias and you cannot have 2 workflows with same name and version.
 
+<!--
 ### Creating a new workflow
 
 Now we will take a look at how to create a new workflow. The new workflow will be created from template workflow called **http_example_01 / 1** which can be found under explore workflows. If you dont wish to create workflow you can just execute this workflow in explore workflows.
@@ -98,6 +99,7 @@ The output (demo Latin JSON) of the workflow in the Slack:
 ![FRINX Machine dashboard](slack_creenshot.png)
 
 You can visit Slack directly via https://join.slack.com/t/frinx-community/shared_invite/zt-1esnmbq4l-ui9xLCS4zKGHUXZxz~PdrQ to see your own message. We recommend to use the browser version.
+-->
 
 ## How to create a new custom workflow
 
