@@ -4,7 +4,7 @@ Open your browser (avoid Mozila) and go to the following URL:
 
 https://services.frinx.io/frinxui/
 
-Press the “login” button in the upper right of the screen and authenticate yourself. For credentials please contact "info@frinx.io" to access the FRINX Machine instance.
+Click on the “login” button in the upper right corner of the screen and authenticate yourself. For credentials please contact "info@frinx.io".
 
 You will see the following **FRINX Machine dashboard**:
 
@@ -99,19 +99,19 @@ The output (demo Latin JSON) of the workflow in the Slack:
 
 You can visit Slack directly via https://join.slack.com/t/frinx-community/shared_invite/zt-1esnmbq4l-ui9xLCS4zKGHUXZxz~PdrQ to see your own message. We recommend to use the browser version.
 
-## How to create new custom workflow
+## How to create a new custom workflow
 
 Now we will take a look at how to create a new workflow. The new workflow will be created from scratch.
 
-1) The easiest way to create a new workflow is to click on **Create** button in the main page of FRINX Machine.
+1) The easiest way to create a new workflow is to click on **Create** button on the main page of the FRINX Machine.
 
 ![FRINX Machine dashboard](WorkFlow_Manager.png)
 
-2) In the **Name** type the name of your workflow (please keep in mind that name of the workflow cannot be later changed). **Description** stands for additional info of the workflow - you can leave it blank. Once the workflow is created **Label** can help you find your workflow in **Explore workflows** faster but you can leave it blank as well. After inserting all data click on **Save changes**.
+2) As the **Name** type the name of your workflow (please keep in mind that the name of the workflow cannot be later changed). **Description** stands for additional info of the workflow - you can leave it blank. Once the workflow is created **Label** can help you find your workflow in **Explore workflows** faster but you can leave it blank as well. After entering all data click on **Save changes**.
 
 ![FRINX Machine dashboard](new_wf_name.png)
 
-3) Click + on the **lambda**, **decision** and **terminate** under **System tasks** and **Device_identification** under **Workflows**. All tasks and subworkflows are added on same place in the canvas so you need to move them to actually see them. For connecting all parts of the workflow hower over OUT/IN where + sign will appear. Connect all parts in this way: START - lambda - decision - (other) with Device_identification and default with terminate. As you can see each task and workflow has its own set of characters after its name - these are reference aliases and work as unique identifier.
+3) Click + on the **lambda**, **decision** and **terminate** under **System tasks** and **Device_identification** under **Workflows**. All tasks and subworkflows will be added in the same place on the canvas so you need to move them to actually see them. For connecting all parts of the workflow hover over OUT/IN where + sign will appear. Connect all parts this way: START - lambda - decision - (other) with Device_identification and default with terminate. As you can see each task and workflow has its own set of characters after its name - these are reference aliases and work as unique identifiers.
 
 ![FRINX Machine dashboard](custom_wf_001.PNG)
 
@@ -125,17 +125,17 @@ Above every task/workflow you can see 2 squares:
 
 ![FRINX Machine dashboard](remove_expand.png)
 
-4) **lambda**. this task will make a decision on what status to take based on the embedded port. In this example we will only consider ports 10000 to 10004, all others will be ignored.
+4) **lambda**. this task will make a decision on what status to take based on the embedded port. In this example we will only consider ports 10000 to 10004, others will be ignored.
 
-> As such, the lambda task allows us to insert a small code (lambda - function without name) into the workflow builder.
+> As such, the lambda task allows us to enter a small code (lambda - function without name) into the workflow builder.
 
 In this case, if the specified port is greater than or equal to 10000 and at the same time less than 10005 - take the status "keep working", otherwise take the status - "end". This status will be the output of the lambda and the input for the next task or subworkflow.
 
-> Subworkflows are no different than a classic workflow with the difference that the workflow is inside another workflow. Also this workflow that we create can be used in the future as a building block of another workflow and become a subworkflow in that workflow and this way we can layer workflows that we have already created and recycle them.
+> Subworkflows are not different from a classic workflow, just that the subworkflow is inside another workflow. Also this workflow that we create can be used in the future as a building block of another workflow and become a subworkflow. This way we can layer workflows that we have already created and reuse them.
 
-In the Input parameters tab we put in the Lambda value field `${workflow.input.port}` which means work with what was entered in the **port** field in this workflow on the input (we'll talk more about this later, paragraph 7)
+In the Input parameters tab in the Lambda value field, we enter: `${workflow.input.port}` which means work with what was entered in the **port** field in this workflow in the input (we'll talk more about this later, paragraph 7)
 
-into the **Script expression** input we insert a small function whose operation we have described above.
+into the **Script expression** input we enter a small function, which we described above.
 ```
 if ($.lambdaValue >= 10000 && $.lambdaValue < 10005) { 
   return {value: 'other'}
@@ -146,7 +146,7 @@ if ($.lambdaValue >= 10000 && $.lambdaValue < 10005) {
 
 ![FRINX Machine dashboard](lambda_1_body.PNG)
 
-5) **decision**. The decision task makes a decision, but not quite the same as the lambda mentioned above. Decision sleeps like a switch on a track, it sends the train one way or the other. Nothing more. But it needs data to do that - the data supplied by the lambda. In the Input parameters tab, we delete the default parameter foo with the value bar and leave only the param parameter into which we insert `${lambda_IkSu.output.result.value}`instead of true - note IkSu as mentioned above is generated to differentiate individual tasks and workflows so it needs to be rewritten for the current conditions. The `${lambda_IkSu.output.result.value}` means: take the value from lambda_xyzq which is in the output, find the result in the output and the value in it.
+5) **decision**. The decision task makes a decision, but not quite the same as the lambda mentioned above. Decision works like a switch on a track, it sends the train one way or another. Nothing more. But it needs data to do that - the data supplied by the lambda. In the Input parameters tab, we delete the default parameter foo with the value bar and leave only the param parameter into which we enter `${lambda_IkSu.output.result.value}`instead of true - note IkSu as mentioned above is generated to differentiate individual tasks and workflows so it needs to be rewritten with the current conditions. The `${lambda_IkSu.output.result.value}` means: take the value from lambda_xyzq which is in the output, find the result in the output and the value in it.
 
 If the input value for decision is other, it will send the flow towards device_identification and if it is false, it will send the flow towards terminate. Exactly how we have connected the cells in the workflow builder.
 
@@ -157,11 +157,11 @@ If the input value for decision is other, it will send the flow towards device_i
 ![FRINX Machine dashboard](terminated_1_body.PNG)
 
 7) **Device_identification** in the Input parameters tab insert:
-management_ip: sample-topology - this is the name of the topology in this installation, in production you need to use the topology name by real name.
+management_ip: sample-topology - this is the name of the topology in this installation, in production you need to use the topology name as real name.
 
-port: `${workflow.input.port}` - if we would manually type in 10001, for example, it wouldn't ask you anything when starting the workflow, but we want the user to be able to select the port he is interested in... The same goes for management_ip and other fields. We have already worked with this in the lambda bag paragraph 4)
+port: `${workflow.input.port}` - if we would manually type in 10001, for example, it wouldn't ask you anything when starting the workflow, but we want the user to be able to select the port he is interested in... The same goes for management_ip and other fields. We have already worked with this in the lambda paragraph 4)
 
-username & password: in this demo example we assume that the login credentials username: frinx, password: frinx are used on all devices
+username & password: in this demo example we assume that the login credentials - username: frinx, password: frinx are used on all devices
 
 As I mentioned above, if we type them in directly, the workflow will not ask us for login credentials at startup, if we were working with devices where different login credentials are used, we would need to be able to change/enter them at each startup. We would achieve this in a similar way to what we did with the port.
 
@@ -181,7 +181,7 @@ Simple. :) However, in this demo workflow, we stick to the assumption that the l
 
 9) **Second lambda** write `${Device_identificationRef_f7I6.output}` into lambda value - that means "take the output from the previous Device_identification task and work with it"
 
-we insert into its body:
+we enter into its body:
 ```
 if ($.lambdaValue.sw == 'saos') { 
   var data = $.lambdaValue.sw.toUpperCase()+$.lambdaValue.sw_version+'_1'
@@ -191,7 +191,7 @@ if ($.lambdaValue.sw == 'saos') {
 }
 ```
 
-the translation into human language of what is happening inside is: "if the identified device is of type saos, extract the name from the output message of the previous task, change the letters to uppercase, extract the version from the output message of the previous task, glue them together and add `_1` - because that's what the devices in this demo topology are called".
+the translation into human language of what is happening inside is: "if the identified device is type "saos", extract the name from the output message of the previous task, change the letters to uppercase, extract the version from the output message of the previous task, glue them together and add `_1` - because that's what the devices in this demo topology are called".
 
 ![FRINX Machine dashboard](lambda_2_body.PNG)
 
@@ -215,7 +215,7 @@ Find your new workflow and run it with multiple different inputs, like 10 000, 1
 
 ![FRINX Machine dashboard](find_demo_workflow.png)
 
-As you can see, under different ports are different device with another run commands in memory
+As you can see, under different ports are different devices with another run commands in memory
 
 ![FRINX Machine dashboard](output_journal_commands.png)
 ![FRINX Machine dashboard](output_journal_commands_3.png)
