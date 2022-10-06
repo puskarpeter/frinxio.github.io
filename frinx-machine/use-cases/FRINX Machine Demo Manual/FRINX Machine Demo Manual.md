@@ -177,7 +177,7 @@ Let's place them next to each other after Device_identification and concatenate 
 
 ![FRINX Machine dashboard](new_lambda_and_read_journal.PNG)
 
-9) **druhá lambda** write `${Device_identificationRef_f7I6.output}` into lambda value - that means "take the output from the previous Device_identification task and work with it"
+9) **Second lambda** write `${Device_identificationRef_f7I6.output}` into lambda value - that means "take the output from the previous Device_identification task and work with it"
 
 we insert into its body:
 ```
@@ -204,9 +204,13 @@ the translation into human language of what is happening inside is: "if the iden
 
 12) Save & run
 
-![FRINX Machine dashboard](save_and_run.PNG)
-![FRINX Machine dashboard](save_and_run_2.PNG)
+![FRINX Machine dashboard](save_and_run.png)
+![FRINX Machine dashboard](save_and_run_2.png)
 
+As you can see, under different ports are different device with another run commands in memory
+
+![FRINX Machine dashboard](output_journal_commands.png)
+![FRINX Machine dashboard](output_journal_commands_2.png)
 
 ## Demo “Create loopback address on devices stored in the inventory”
 
