@@ -4,7 +4,7 @@ Open your browser (avoid Mozila) and go to the following URL:
 
 https://services.frinx.io/frinxui/
 
-Press the “login” button in the upper right of the screen and authenticate yourself. For credential please contact "info@frinx.io" to access the FRINX Machine instance.
+Press the “login” button in the upper right of the screen and authenticate yourself. For credentials please contact "info@frinx.io" to access the FRINX Machine instance.
 
 You will see the following **FRINX Machine dashboard**:
 
