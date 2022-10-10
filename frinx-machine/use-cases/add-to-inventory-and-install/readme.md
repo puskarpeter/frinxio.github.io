@@ -9,7 +9,7 @@ To add new device to invetory, click on the **Add device** button in the
 
 ## JSON examples
 
-New devices are added to inventory by JSON code snippets. They are similar to [Blueprints](/frinx-uniflow/blueprints)
+New devices are added to inventory by JSON code snippets. They are similar to [Blueprints](/frinx-workflow-manager/blueprints)
 with one addition: **device_id** must be specified in the snippet.
 
 To add a new device from Blueprint, toggle the "Blueprints" switch in the form and
