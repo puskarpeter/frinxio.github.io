@@ -1,4 +1,4 @@
-# Databse JSONB Filtering
+# Database JSONB Filtering
 
 !!!
 The example of using the jsonb-filter query parameter: **parent-path?jsonb-filter=expression**
