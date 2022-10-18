@@ -24,6 +24,8 @@
  
 ## :bulb: Improvements 
  
+ - Add request timeout to gnmi session
+ 
  - Create modulesWithIgnoredNamespace list
  
  - Support install-multiple-nodes for gnmi
