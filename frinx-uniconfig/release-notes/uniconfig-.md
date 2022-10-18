@@ -6,6 +6,8 @@
  
 ## :x: Bug Fixes 
  
+ - Swagger - Fix GET operation generation for list nodes
+ 
  - Bump protobuf-java to 3.21.7
  
  - Changed order of executed commands for saos8 (#280)
