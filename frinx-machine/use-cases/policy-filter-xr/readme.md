@@ -5,7 +5,7 @@ of some of our system tasks. It filters through the interfaces of the
 device, returns the name of the interface based on its description
 provided by the user and applies chosen policy on that interface.
 
-**Supported device**: ios-xr
+**Supported device**: ios-xr -> IOSXR653_1, IOSXR653_2 & IOSXR663_1 not IOS01 & IOS02
 
 !!!danger
 Policy creation isn't part of this workflow. The chosen policy must
@@ -67,7 +67,7 @@ apply a policy to the interface filtered based on its description.
 
 ## Example input
 
-![Input](policy_filter_input.png)
+![Input](policy_filter_input_data.png)
 
 ## Execution flow
 
@@ -75,4 +75,7 @@ apply a policy to the interface filtered based on its description.
 
 ## Run of the workflow
 
-![Running the workflow](policy_filter_run.gif)
+![Running the workflow](run_wf_uniconfig_policy_filter_XR.gif)
+
+IOSXR653_1
+test_map_custom
