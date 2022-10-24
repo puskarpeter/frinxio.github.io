@@ -7,10 +7,9 @@ On landing page go to `Workflow Manager` section, click `Explore` button and sea
 
 ![Search for install_all_from_inventory](install_all_from_inventory_search.png)
 
-Once searched click on `Execute` button (blue play icon). Window will pop up, where you would usually fill input parameters. This workflow however, doesn't take any input. So just click `Execute` again
-and the workflow will start.
+After searching, click the `Execute` button (blue play icon). A window will appear where you can enter the input parameter. This workflow does not require any input if you want to install all uninstalled devices. If you specified a device label while adding devices, you can use it to determine which devices should be bulk installed. So just click "Execute" again.
 
-![Execute install_all_from_inventory](install_all_from_inventory_execute.png)
+![Execute install_all_from_inventory](install_all_from_inventory_pop_up_window.png)
 
 Once you execute, numeric link will appear left to the `Execute` button. It will take you to a page where you can see individual tasks of this workflow, its inputs/output and wheter it was successful or unsuccessful. In the "Input/Output" tab you can see both the devices that were installed as a result of this workflow and those that were already installed.
 
