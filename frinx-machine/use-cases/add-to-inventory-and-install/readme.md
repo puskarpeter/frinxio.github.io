@@ -5,7 +5,7 @@
 To add new device to invetory, click on the **Add device** button in the
 **Device inventory** tab.
 
-![Add device to inventory](fm_install.gif)
+![Add device to inventory](add_and_install_device.gif)
 
 ## JSON examples
 
@@ -19,17 +19,17 @@ choose the blueprint that you want to use.
 
 ```json
 {
-    "cli":{
-        "cli-topology:host":"192.168.1.25",
-        "cli-topology:port":"22",
-        "cli-topology:transport-type":"ssh",
-        "cli-topology:device-type":"ios",
-        "cli-topology:device-version":"15.4",
-        "cli-topology:username":"USERNAME",
-        "cli-topology:password":"PASSWORD",
-        "cli-topology:journal-size":500,
-        "cli-topology:dry-run-journal-size":180,
-        "cli-topology:parsing-engine":"tree-parser"
+    "cli": {
+        "cli-topology:host": "sample-topology",
+        "cli-topology:port": "10009",
+        "cli-topology:transport-type": "ssh",
+        "cli-topology:device-type": "ios",
+        "cli-topology:device-version": "15.4",
+        "cli-topology:password": "cisco",
+        "cli-topology:username": "cisco",
+        "cli-topology:journal-size": 500,
+        "cli-topology:dry-run-journal-size": 180,
+        "cli-topology:parsing-engine": "tree-parser"
     }
 }
 ```
@@ -39,8 +39,8 @@ choose the blueprint that you want to use.
 ```json
 {
     "netconf":{
-        "netconf-node-topology:host":"10.0.0.1",
-        "netconf-node-topology:port":830,
+        "netconf-node-topology:host":"sample-topology",
+        "netconf-node-topology:port":17200,
         "netconf-node-topology:tcp-only":false,
         "netconf-node-topology:username":"USERNAME",
         "netconf-node-topology:password":"PASSWORD",
@@ -68,20 +68,21 @@ choose the blueprint that you want to use.
 }
 ```
 
-### JUNOS (cli)
+### Huawei (cli)
 
 ```json
 {
     "cli":{
-        "cli-topology:host":"10.103.5.208",
-        "cli-topology:port":"22",
+        "cli-topology:host":"sample-topology",
+        "cli-topology:port":"10008",
+        "cli-topology:password":"huawei",
+        "cli-topology:username":"huawei",
+        "cli-topology:device-type":"vrp",
+        "cli-topology:journal-size":500,
+        "cli-topology:device-version":"*",
+        "cli-topology:parsing-engine":"tree-parser",
         "cli-topology:transport-type":"ssh",
-        "cli-topology:device-type":"junos",
-        "cli-topology:device-version":"17.3",
-        "cli-topology:username":"USERNAME",
-        "cli-topology:password":"PASSWORD",
-        "cli-topology:journal-size":150,
-        "uniconfig-config:install-uniconfig-node-enabled":false
+        "cli-topology:dry-run-journal-size":180
     }
 }
 ```
@@ -91,20 +92,20 @@ choose the blueprint that you want to use.
 ```json
 {
     "netconf":{
-        "netconf-node-topology:host":"10.19.0.16",
-        "netconf-node-topology:port":830,
-        "netconf-node-topology:session-timers": {
-            "netconf-node-topology:keepalive-delay":0
-        },
-        "netconf-node-topology:tcp-only":false,
-        "netconf-node-topology:username":"USERNAME",
-        "netconf-node-topology:password":"PASSWORD",
-        "uniconfig-config:uniconfig-native-enabled":true,
-        "uniconfig-config:install-uniconfig-node-enabled":true,
+        "netconf-node-topology:host":"sample-topology",
+        "netconf-node-topology:port":17001,
         "uniconfig-config:blacklist":{
             "uniconfig-config:path":[],
             "uniconfig-config:extension":[]
-        }
+        },
+        "netconf-node-topology:password":"PASSWORD",
+        "netconf-node-topology:tcp-only":false,
+        "netconf-node-topology:username":"USERNAME",
+        "netconf-node-topology:session-timers":{
+            "netconf-node-topology:keepalive-delay":0
+        },
+        "uniconfig-config:uniconfig-native-enabled":true,
+        "uniconfig-config:install-uniconfig-node-enabled":true
     }
 }
 ```
@@ -114,8 +115,8 @@ choose the blueprint that you want to use.
 ```json
 {
     "netconf":{
-        "netconf-node-topology:host":"10.19.0.18",
-        "netconf-node-topology:port":2830,
+        "netconf-node-topology:host":"sample-topology",
+        "netconf-node-topology:port":17001,
         "netconf-node-topology:session-timers": {
             "netconf-node-topology:keepalive-delay":10
         },
@@ -128,32 +129,8 @@ choose the blueprint that you want to use.
             "uniconfig-config:path":[]
         },
         "netconf-node-topology:yang-module-capabilities":{
-            "capability":[
-                "urn:ietf:params:xml:ns:yang:ietf-inet-types?module=ietf-inet-types&amp;revision=2010-09-24",
-                "urn:ietf:params:xml:ns:netconf:base:1.0?module=ietf-netconf&amp;revision=2011-06-01"
-            ]
-        },
-        "netconf-node-topology:customization-factory":"netconf-customization-alu"
-    }
-}
-```
-
-### Ciena (cli)
-
-```json
-{
-    "cli":{
-        "cli-topology:host":"localhost",
-        "cli-topology:port":"51022",
-        "cli-topology:transport-type":"ssh",
-        "cli-topology:device-type":"saos",
-        "cli-topology:device-version":"8",
-        "cli-topology:username":"USERNAME",
-        "cli-topology:password":"PASSWORD",
-        "cli-topology:journal-size":150,
-        "cli-topology:dry-run-journal-size":180,
-        "cli-topology:keepalive-delay":45,
-        "cli-topology:keepalive-timeout":45
+            "capability":[]
+        }
     }
 }
 ```
