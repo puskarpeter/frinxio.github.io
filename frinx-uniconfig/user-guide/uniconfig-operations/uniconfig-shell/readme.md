@@ -711,15 +711,20 @@ request>
 Callbacks include sending POST and GET requests to the remote server and invoking user scripts from UniConfig shell.
 
 Requirements for using callbacks:
-For using callbacks it is needed:
 
 1. Necessary YANG modules - YANG modules that are required for the correct callbacks.
 2. Configuration - Update 'config/lighty-uniconfig-config.json'.
-3. Update repository - Add the necessary YANG modules (see 1.) into 'latest' or a specific 'user-repository', and
+3. Update repository - Add the necessary YANG modules (see 1.) into at least one YANG repository, and
 define remote endpoints and scripts in a YANG file or create a new one for callbacks. For definition of remote 
 endpoints, the 'frinx-callpoint@2022-06-22.yang' extension must be used.
-4. UniStore node - Create a UniStore node using 'latest' or a specific 'user-repository' containing
-the necessary YANG modules (see 1.) and a YANG file with defined endpoints and scripts.
+4. UniStore node - Create a UniStore node using a YANG repository that contains the necessary YANG modules (see 1.) 
+and a YANG file with defined endpoints and scripts.
+
+!!!
+Point 4 is optional in UniConfig shell, because UniConfig creates dummy UniStore nodes for all repositories 
+that meet the conditions set out in point 3. In this case, the dummy UniStore node name is the same as the YANG repository name. In 
+RestConf, point 4 is mandatory.
+!!!
 
 ### Necessary YANG modules
 
@@ -792,8 +797,8 @@ module frinx-test {
     }
 ```
 
-The argument for the 'url' extension is '/data/from/remote', which appended to the remote server URI 
-configured in the 'config/lighty-uniconfig-config.json'. The final address for the remote callpoint is 
+The argument for the 'url' extension is '/data/from/remote', which is appended to the remote server URI 
+configured in 'config/lighty-uniconfig-config.json'. Thus the final address for the remote callpoint is 
 'https://remote.server.io/data/from/remote'.
 
 #### Add action (POST request)
@@ -836,7 +841,7 @@ The following snippet shows how to create a script in the frinx-test YANG file u
 2. Path to the script defined by 'tailf:exec'.
 3. Arguments of the script defined by 'tailf:exec'.
 
-Arguments can be dynamic (i.e., the user can pass values to them) or static (flags). Arguments should be created following
+Arguments can be dynamic (i.e., the user can pass values to them) or static (flags). Arguments should follow
 these conventions:
 
 1. Each argument must contain a name (e.g. -n, -j).

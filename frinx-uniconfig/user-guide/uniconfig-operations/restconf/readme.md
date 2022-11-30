@@ -142,7 +142,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 }
 ```
 
-In this reqeust we are using parameter **content=nonconfig**, this means
+In this request we are using parameter **content=nonconfig**, which means that
 we are reading running NETCONF datastore. Value **nonconfig** is
 translated into get NETCONF RPC. We can compare it with data directly
 from device using show running-config command.
@@ -1740,7 +1740,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 ### Callbacks (http-client)
 
 Callbacks include sending GET (call-point) and POST (action) requests to the remote server. They are implemented mainly for UniConfig Shell,
-but it is also possible to use the RESTCONF for UniStore nodes with the URI prefix:
+but it is also possible to use RESTCONF for UniStore nodes with the URI prefix:
 
 ``` Http-client
 http://localhost:8181/rests/http-client/...
