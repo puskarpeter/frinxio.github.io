@@ -203,11 +203,11 @@ reconciliation on the CLI layer when using Uniconfig.
 
 ## RPCs provided by CLI layer
 
-There are multiple RPCs that can be used for sending of commands to CLI
-session and optionally waiting for command output. CLI layer also provides
-one additional RPC for computation of configuration coverage by cli-units. 
-To use all of these RPCs, it is required to have installed CLI device in 
-'Connected' state.
+There are multiple RPCs that can be used to send commands to a CLI
+session and optionally wait for command output. The CLI layer also provides
+one additional RPC for computing configuration coverage by cli-units. 
+To use all of these RPCs, it is required to have an installed CLI device in 
+the 'Connected' state.
 
 ### RPC: Execute-and-read
 
@@ -538,18 +538,22 @@ RPC reply - output contains just status message:
 
 - RPC reads the entire device configuration, determines the coverage 
   of the configuration by translation units and returns simple or 
-  complex output. User sets preferred output in RPC input. Simple output 
-  is default.
+  complex output. The user can define a preferred output in RPC input.
+  The default is simple output.
 - Simple output contains one string that consists of all lines of the 
   device configuration. Each line starts with '+' if it is covered or
-  '-' if not and end with '\n' marker.
-- Complex output contains a list of commands where each entry of the list
-  contains fields 'command' with specific command, flag 'covered' that
-  can be true or false and 'non-parsable-parts' that is visible only 
-  in the case that command is not covered and contains list of command
-  parts that are not covered. If all parts of the command are not covered,
-  then list contains just one word 'ALL' what means that whole command
-  is not covered.
+  '-' if not and ends with a '\n' marker.
+- Complex output contains a list of commands. Each entry in the list
+  includes the following fields:
+
+  * 'covered', which indicates whether the entire command is covered or not. 
+  Can be either 'true' or 'false'.
+
+  * 'non-parsable-parts', which is visible only if the entire command is not 
+  covered. Contains a list of those command parts that are not covered. If 
+  no parts of the command are covered, only contains the word 'ALL'.
+
+  * 'command', which includes the entire command.
 
 #### Simple output example
 

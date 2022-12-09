@@ -1740,7 +1740,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 ### Callbacks (http-client)
 
 Callbacks include sending GET (call-point) and POST (action) requests to the remote server. They are implemented mainly for UniConfig Shell,
-but it is also possible to use RESTCONF for UniStore nodes with the URI prefix:
+but can also be used by RESTCONF for UniStore nodes by using the URI prefix:
 
 ``` Http-client
 http://localhost:8181/rests/http-client/...
@@ -1787,4 +1787,4 @@ Response:
 }
 ```
 
-Callbacks must be configured before use. For more details, see our [User guide](https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-shell/#callbacks).
+Callbacks must be configured before use. For more details, see [Callbacks](https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-shell/#callbacks).

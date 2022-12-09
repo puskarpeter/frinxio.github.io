@@ -708,22 +708,22 @@ request>
 
 ## Callbacks
 
-Callbacks include sending POST and GET requests to the remote server and invoking user scripts from UniConfig shell.
+Callbacks include sending POST and GET requests to the remote server and invoking user scripts from the UniConfig shell.
 
-Requirements for using callbacks:
+The following are required to use callbacks:
 
-1. Necessary YANG modules - YANG modules that are required for the correct callbacks.
-2. Configuration - Update 'config/lighty-uniconfig-config.json'.
-3. Update repository - Add the necessary YANG modules (see 1.) into at least one YANG repository, and
-define remote endpoints and scripts in a YANG file or create a new one for callbacks. For definition of remote 
-endpoints, the 'frinx-callpoint@2022-06-22.yang' extension must be used.
-4. UniStore node - Create a UniStore node using a YANG repository that contains the necessary YANG modules (see 1.) 
-and a YANG file with defined endpoints and scripts.
+1. Necessary YANG modules - YANG modules that are required by the callbacks.
+2. Configuration - Enable callbacks in 'config/lighty-uniconfig-config.json' and set the remote server and access token.
+3. Update repository - Add the necessary YANG modules from step 1 into at least one YANG repository in the cache
+directory, and either define remote endpoints and scripts in a YANG file or create a new one for callbacks. For definition of 
+remote endpoints, use the 'frinx-callpoint@2022-06-22.yang' extension.
+4. UniStore node - Create a UniStore node using the YANG repository containing the necessary YANG modules 
+from step 1 and a YANG file with defined endpoints and scripts.
 
 !!!
-Point 4 is optional in UniConfig shell, because UniConfig creates dummy UniStore nodes for all repositories 
-that meet the conditions set out in point 3. In this case, the dummy UniStore node name is the same as the YANG repository name. In 
-RestConf, point 4 is mandatory.
+Step 4 is optional in UniConfig shell, as UniConfig creates dummy UniStore nodes for all repositories 
+that meet the conditions in step 3. In this case, the dummy UniStore node name is identical to the YANG repository name. In 
+RestConf, step 4 is mandatory.
 !!!
 
 ### Necessary YANG modules
@@ -737,30 +737,93 @@ The following YANG modules are required:
 
 ### Configuration
 
-By default, callbacks are disabled and the remote server URI is empty. To enable callbacks, set the configuration parameter 
-'callbacks/enabled' to 'true' and set the remote server URI in the 'config/lighty-uniconfig-config.json' file.
+By default, callbacks are disabled and the host and port for the remote server are empty in 'config/lighty-uniconfig-config.json'. 
+To enable callbacks, the configuration parameter 'callbacks/enabled' must be set to 'true'. It is also necessary to set the host and port 
+for the remote server and store an access token in the UniConfig database. 
 
-All available settings and descriptions are displayed in the following JSON snippet.
+The host and port for the remote server can be set in three ways:
+
+1. Before starting Uniconfig, in the 'config/lighty-uniconfig-config.json' file. The port number is optional:
+
+```json UniConfig callbacks/remote-server configuration (config/lighty-uniconfig-config.json)
+...
+// remote server settings
+"remoteServer": {
+    // remote server hostname / IP address
+    "host": "127.0.0.1",
+    // port on which remote server listens
+    "port": 9000
+}
+...
+```
+
+2. After starting UniConfig, with a PUT request:
+
+```update remote server by PUT request
+  curl --location --request PUT 'http://127.0.0.1:8181/rests/data/callbacks:callbacks-settings' \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+      "callbacks-settings": {
+          "remote-server": {
+              "host": "127.0.0.5",
+              "port": 9000
+          }
+      }
+  }'
+```
+
+3. After starting UniConfig, with cli-shell:
+
+```update remote server by cli-shell
+  uniconfig>configuration-mode 
+  config>set settings callbacks-settings remote-server host 127.0.0.5 port 9000
+  config>request commit 
+```
+
+The access token can be stored in the UniConfig database in two ways:
+
+1. After starting UniConfig, with a PUT request:
+
+```update access token by PUT request
+  curl --location --request PUT 'http://127.0.0.1:8181/rests/data/callbacks:callbacks-settings/access-token' \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+      "access-token": "token"
+  }'
+```
+
+2. After starting UniConfig, with cli-shell:
+
+```update access token by cli-shell
+  uniconfig>configuration-mode 
+  config>set settings callbacks-settings access-token token
+  config>request commit
+```
+
+Available settings and descriptions for callbacks are displayed in the following JSON snippet.
 
 ```json UniConfig callbacks configuration (config/lighty-uniconfig-config.json)
-    "callbacks": {
-        // flag that determines whether callbacks will work
-        "enabled": true,
-        // remote server settings
-        "remoteServer": {
-            // remote server uri
-            "serverUri": "https://remote.server.io",
-            // basic authentication that will be used in http requests
-            "username": "admin",
-            "password": "admin"
-        }
+"callbacks": {
+    // flag that determines whether callbacks will work
+    "enabled": true,
+    // remote server settings
+    "remoteServer": {
+        // remote server hostname / IP address
+        "host": "127.0.0.1",
+        // port on which remote server listens
+        "port": 9000
     }
+}
 ```
 
 ### Update repository
 
 First, create or update the YANG repository by using the 'frinx-callpoint@2022-06-22.yang' extension 
-displayed in the following snippet. There is only one extension 'url' with the argument 'point'.
+displayed in the following snippet. There is only one extension, 'url', with the argument 'point'.
 
 ``` frinx-callpoint@2022-06-22.yang
 module frinx-callpoint {
@@ -778,9 +841,9 @@ module frinx-callpoint {
 }
 ```
 
-#### Add callpoint (GET request)
+#### Add call-point (GET request)
 
-The following snippet shows how to create a callpoint in the frinx-test YANG file using the 
+The following snippet shows how to create a call-point in the 'frinx-test' YANG file by using the 
 'frinx-callpoint@2022-06-22.yang' extension.
 
 ``` example of using of the frinx-callpoint@2022-06-22.yang in YANG file
@@ -797,20 +860,22 @@ module frinx-test {
     }
 ```
 
-The argument for the 'url' extension is '/data/from/remote', which is appended to the remote server URI 
-configured in 'config/lighty-uniconfig-config.json'. Thus the final address for the remote callpoint is 
+The argument of the 'url' extension is '/data/from/remote', which is appended to the end of the remote server URI 
+configured in 'config/lighty-uniconfig-config.json'. Thus the final address for the remote call-point is 
 'https://remote.server.io/data/from/remote'.
 
 #### Add action (POST request)
 
-In the snippet below, you can see how to create an action in the frinx-test YANG file using the
-'frinx-callpoint@2022-06-22.yang' extension. It is also necessary to import 'tailf-common.yang'. The action consists of:
+The following snippet shows how to create an action in the 'frinx-test' YANG file by using the
+'frinx-callpoint@2022-06-22.yang' extension. You must also import 'tailf-common.yang'.
 
-1. Action name defined by 'tailf:action'.
-2. Suffix of the remote endpoint defined by 'fcal:url'.
-3. Input that contains the body of the request (optional).
+The action consists of:
 
-``` example of using of the frinx-callpoint@2022-06-22.yang in YANG file
+1. The action name, defined by 'tailf:action'.
+2. The suffix for the remote endpoint, defined by 'fcal:url'.
+3. The input that contains body of the request. This part is optional.
+
+``` example of using frinx-callpoint@2022-06-22.yang in YANG file
 module frinx-test {
     yang-version 1.1;
     namespace "http://frinx.io/frinx-test";
@@ -834,21 +899,23 @@ module frinx-test {
 
 #### Add script
 
-The following snippet shows how to create a script in the frinx-test YANG file using
-'tailf-common.yang'. It is not necessary to import the 'frinx-callpoint@2022-06-22.yang' extension. The script consists of:
+The following snippet shows how to create a script in the 'frinx-test' YANG file by using
+'tailf-common.yang'. It is not required to import the 'frinx-callpoint@2022-06-22.yang' extension.
 
-1. Script name defined by 'tailf:action'.
-2. Path to the script defined by 'tailf:exec'.
-3. Arguments of the script defined by 'tailf:exec'.
+The script consists of:
 
-Arguments can be dynamic (i.e., the user can pass values to them) or static (flags). Arguments should follow
-these conventions:
+1. The script name, defined by 'tailf:action'.
+2. The path to the script, defined by 'tailf:exec'.
+3. Arguments for the script, defined by 'tailf:exec'.
 
-1. Each argument must contain a name (e.g. -n, -j).
-2. Dynamic arguments must be enclosed in '$(...)'. For example, '$(name)'.
-3. Flags are simple words without whitespace. For example, VIP, UPPER, upper.
+Arguments can be dynamic (i.e., the user can pass values to them) or static (flags). Follow these conventions 
+when creating arguments:
 
-``` example of using of the frinx-callpoint@2022-06-22.yang in YANG file
+1. Each argument must contain a name (for example, -n, -j).
+2. Dynamic arguments must be enclosed in '$(...)' (for example, '$(name)').
+3. Flags are simple words without whitespace. (for example, VIP, UPPER, upper).
+
+``` example of using frinx-callpoint@2022-06-22.yang in YANG file
 module frinx-test {
     yang-version 1.1;
     namespace "http://frinx.io/frinx-test";
@@ -865,6 +932,7 @@ module frinx-test {
 ```
 
 ### UniStore node
+
 
 A UniStore node can be created by RestConf or UniConfig shell. If a repository is explicitly defined by the query 
 parameter '?uniconfig-schema-repository=repository-name', this repository must contain all necessary YANG 
