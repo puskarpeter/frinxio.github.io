@@ -25,6 +25,7 @@ Description of fields in the edit entry:
 
 * **path** (mandatory): Path encoded using the RFC-8040 format. Specified as relative path to root
   'configuration' container. If this leaf contains a single character '/', the path points to the whole configuration.
+  If this path contains a list node without key, the operation is applied to all list node elements.
 * **operation** (mandatory): Operation that must be executed on the specified path. Supported operations
   are 'merge', 'replace', and 'remove'. Operations 'merge' and 'replace' requires to also specify input 'data'.
 * **data** (optional): Content of the replaced or merged data without wrapping parent element
@@ -44,7 +45,7 @@ RPC output contains the global status of the executed operation and per-node sta
 Description of output fields:
 
 * **overall-status**: Status of operation. If RPC execution fails on at least one of the target nodes,
-  the overall status is set to 'fail'. Otherwise status is set to 'complete'.
+  the overall status is set to 'fail'. Otherwise, status is set to 'complete'.
 * **error-message**: "Reason for the failure. Used if there is a structural error 
   in the RPC input that does not relate to one specific target node."
 * **node-result**: Results of RPC execution divided per target node ('node-id' is the key of the list).
@@ -53,7 +54,7 @@ Description of fields in the node-result entry:
 
 * **node-id**: Identifier for the target node.
 * **status**: Status of bulk-edit operation on this node. This value is set to 'complete' only if all modifications have
-  been successfully written into UniConfig transaction (including other nodes). Otherwise the value is set to 'fail'.
+  been successfully written into UniConfig transaction (including other nodes). Otherwise, the value is set to 'fail'.
 * **error-message**: Reason for the failure. This field appears in the output only if RPC execution failed
   on this target node.
 * **error-type**: Categorized error type.
@@ -86,6 +87,11 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/subtree-m
             "tpl_4"
         ],
         "edit": [
+            {
+                "path": "/sfc:service-node-groups/service-node-group/type",
+                "operation": "replace",
+                "data": "test"
+            },
             {
                 "path": "/groups/group=test/description",
                 "operation": "replace",
