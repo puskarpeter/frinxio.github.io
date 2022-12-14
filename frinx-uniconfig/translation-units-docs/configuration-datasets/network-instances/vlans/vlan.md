@@ -88,6 +88,6 @@ dhcp l2-relay-agent enable | disable vlan {{vlan_id}}
 dhcp l2-relay-agent set vlan {{vlan_id}} port {{port_name}} trust-mode {{trust_mode_enum}}</pre>
 
 {{vlan_tpid}} should be pure numeric, converted from oc-vlan-types:TPID_TYPES from openconfig  
-*enable* is a conversion of {{enable}} set *true*  
-*disable* is a conversion of {{enable}} set *false*  
-{{trust_mode_enum}} is enumeration value of trust-mode - it could be *client-trusted* or *server-trusted* or *dualrole-trusted* or *untrusted*  
+*enable* is a conversion of {{enable}} to *true*  
+*disable* is a conversion of {{enable}} to *false*  
+{{trust_mode_enum}} is an enumeration trust-mode - options are *client-trusted*, *server-trusted*, *dualrole-trusted* and *untrusted*  
