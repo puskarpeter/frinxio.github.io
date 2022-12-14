@@ -29,6 +29,20 @@ network-instances/network-instance=default/vlans/vlan={{vlan_id}}
                         }
                     }
                 ]
+            },
+            "frinx-saos-vlan-extension:relay-agent": {
+                "config": {
+                    "enable": {{enable}},    // true or false
+                    "ports": [
+                        {
+                            "port-name": "{{port_name}}",
+                            "config": {
+                                "port-name": "{{port_name}}",
+                                "trust-mode": "{{trust_mode_enum}}"
+                            }
+                        }
+                    ]
+                }
             }
         }
     ]
@@ -68,6 +82,12 @@ bridge
 <pre>vlan create vlan {{vlan_id}}
 vlan set vlan {{vlan_id}} name {{vlan_name}}
 vlan set vlan {{vlan_id}} egress-tpid {{vlan_tpid_e}}
-ring-protection virtual-ring add ring {{ring-name}} vid {{vlan-id}}</pre>
+ring-protection virtual-ring add ring {{ring-name}} vid {{vlan-id}}
+dhcp l2-relay-agent create vlan {{vlan_id}}
+dhcp l2-relay-agent enable | disable vlan {{vlan_id}}
+dhcp l2-relay-agent set vlan {{vlan_id}} port {{port_name}} trust-mode {{trust_mode_enum}}</pre>
 
-{{vlan_tpid}} should be pure numeric, converted from oc-vlan-types:TPID_TYPES from openconfig
+{{vlan_tpid}} should be pure numeric, converted from oc-vlan-types:TPID_TYPES from openconfig  
+*enable* is a conversion of {{enable}} to *true*  
+*disable* is a conversion of {{enable}} to *false*  
+{{trust_mode_enum}} is an enumeration trust-mode - options are *client-trusted*, *server-trusted*, *dualrole-trusted* and *untrusted*  
