@@ -83,10 +83,82 @@ frinx-openconfig-platform:components
                         "software-compatibility": "<cpu_soft_comp>",
                         "functional-test-count": "<cpu_func_test_cnt>",
                         "fault-card": "<cpu_fault_card>"
+                    },
+                    "frinx-arris-platform-extension:transceiver": {
+                        "serial-number": "<transceiver_serial_number>",
+                        "temperature": "<transceiver_temperature>",
+                        "vendor": "<transceiver_vendor>",
+                        "revision": "<transceiver_revision>",
+                        "date-code": "<transceiver_date_code>",
+                        "ch-0-tx-bias": "<transceiver_ch_0_tx_bias>",
+                        "t-type": "<transceiver_t_type>",
+                        "voltage": "<transceiver_voltage>",
+                        "speed": "<transceiver_speed>",
+                        "part-number": "<transceiver_part_number>",
+                        "type": "<transceiver_type>",
+                        "ch-0-tx-power": "<transceiver_ch0_tx_power>",
+                        "ch-0-rx-power": "<transceiver_ch0_rx_power>",
+                    },
+                    "frinx-arris-platform-extension:chassis": {
+                        "model-version": "<chassis_model_version>",
+                        "serial-number": "<chassis_serial_number>",
+                        "model-name": "<chassis_model_name>"
+                    },
+                    "frinx-arris-platform-extension:version-detail": {
+                        "serial-number": "<version_serial_number>",
+                        "cpu-speed": "<version_cpu_speed>",
+                        "active-sw": "<version_active_sw>",
+                        "active-patch": "<version_active_patch>",
+                        "pic-serial-number": "<version_pic_serial_number>",
+                        "ram-size": "<version_ram_size>",
+                        "model-name": "<version_model_name>",
+                        "nor-flash-size": "<version_nor_flash_size>",
+                        "nand-flash-size": "<version_nand_flash_size>",
+                        "model-version": "<version_model_version>",
+                        "reason-last-booted": "<version_reason_last_booted>",
+                        "firmware-version": "<version_firmware_version>",
+                        "bus-speed": "<version_bus_speed>",
+                        "uptime": "<version_uptime>",
+                        "type": "<version_type>",
+                        "pic-model-name": "<version_pic_model_name>",
+                        "pic-model-version": "<version_pic_model_version>"
                     }
                 },
                 "config": {
                     "name": "<component_key>"
+                }
+            },
+            {
+                "name": "OS",
+                "state": {
+                    "name": "OS",
+                    "frinx-arris-platform-extension:license": {
+                        "system-lld-us-asf": <license_lld_us_asf>,    // true or false
+                        "chassis-serial-number": "<license_chassis_serial_number>",
+                        "system-legal-intercept": <license_system_legal_intercept>,    //true or false
+                        "system-calea": <license_system_calea>,    // true or false
+                        "system-laes": <license_system_laes>,    // true or false
+                        "system-us-pgs": <license_system_us_pgs>,    // true or false
+                        "system-principal-core": <license_system_principal_core>,    // true or false
+                        "system-auxiliary-core": <license_system_aux_core>    // true or false
+                    },
+                    "frinx-arris-platform-extension:lldp": {
+                        "lldp-status": "<lldp_status>",
+                        "lldp-ad-interval": "<lldp_ad_interval>",
+                        "lldp-ad-hold-time": "<lldp_ad_hold_time>",
+                    },
+                    "frinx-arris-platform-extension:version-detail": {
+                        "last-booted-time": "<version_last_booted_time>"
+                    },
+                    "frinx-arris-platform-extension:chassis": {
+                        "chassis-type": "<chassis_type>",
+                        "model-version": "<chassis_model_version_type>",
+                        "serial-number": "<chassis_serial_number_type>",
+                        "model-name": "<chassis_model_name_type>"
+                    }
+                },
+                "config": {
+                    "name": "OS"
                 }
             }
         ]
@@ -508,3 +580,80 @@ SAOS8&gt; chassis device-id show
 ##### Unit
 
 Link to github : [saos8-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos-6/saos-8-platform)
+
+### CER Arris devices
+
+#### CLI
+
+---
+<pre>
+CER#show license
+system-legal-intercept        : &lt;license_system_legal_intercept&gt;
+system-principal-core         : &lt;license_system_principal_core&gt;
+system-auxiliary-core         : &lt;license_system_aux_core&gt;
+system-laes                   : &lt;license_system_laes&gt;
+system-calea                  : &lt;license_system_calea&gt;
+system-lld-us-asf             : &lt;license_lld_us_asf&gt;
+system-us-pgs                 : &lt;license_system_us_pgs&gt;
+
+Chassis Serial Number: &lt;license_chassis_serial_number&gt;
+
+CER#show LLDP
+Global LLDP Information:
+    Status: &lt;lldp_status&gt;
+    LLDP advertisements are sent every &lt;lldp_ad_interval&gt;
+    LLDP hold time advertised is &lt;lldp_ad_hold_time&gt;
+
+CER#show port transceiver
+slot/port: &lt;component_name&gt;
+  tType        : &lt;transceiver_t_type&gt;
+  speed        : &lt;transceiver_speed&gt;
+  type         : &lt;transceiver_type&gt;
+  vendor       : &lt;transceiver_vendor&gt;
+  partNumber   : &lt;transceiver_part_number&gt;
+  revision     : &lt;transceiver_revision&gt;
+  serialNumber : &lt;transceiver_serial_number&gt;
+  dateCode     : &lt;transceiver_date_code&gt;
+  temperature  : &lt;transceiver_temperature&gt;
+  voltage      : &lt;transceiver_voltage&gt;
+  Ch 0 txBias  : &lt;transceiver_ch_0_tx_bias&gt;
+  Ch 0 txPower : &lt;transceiver_ch0_tx_power&gt;
+  Ch 0 rxPower : &lt;transceiver_ch0_rx_power&gt;
+
+CER#show version chassis detail
+Chassis Type: &lt;chassis_type&gt;
+  Model Name:          &lt;chassis_model_name_type&gt;
+  Model Version:       &lt;chassis_model_version_type&gt;
+  Serial Number:       &lt;chassis_serial_number_type&gt;
+Module:   &lt;component_name&gt;
+  Model Name:          &lt;chassis_model_name&gt;
+  Model Version:       &lt;chassis_model_version&gt;
+  Serial Number:       &lt;chassis_serial_number&gt;
+
+CER#show version detail
+Chassis Type: &lt;chassis_type&gt;
+Time since the CMTS was last booted: &lt;version_last_booted_time&gt;
+Slot:   &lt;component_name&gt;
+  Type:                &lt;version_type&gt;
+  Model Name:          &lt;version_model_name&gt;
+  Model Version:       &lt;version_model_version&gt;
+  Serial Number:       &lt;version_serial_number&gt;
+  CPU Speed:           &lt;version_cpu_speed&gt;
+  Bus Speed:           &lt;version_bus_speed&gt;
+  RAM Size:            &lt;version_ram_size&gt;
+  NOR  Flash Size:     &lt;version_nor_flash_size&gt;
+  NAND Flash Size:     &lt;version_nand_flash_size&gt;
+  PIC Model Name:      &lt;version_pic_model_name&gt;
+  PIC Model Version:   &lt;version_pic_model_version&gt;
+  PIC Serial Number:   &lt;version_pic_serial_number&gt;
+  Firmware Version:    &lt;version_firmware_version&gt;
+  Active SW:           &lt;version_active_sw&gt;
+  Active Patch:        &lt;version_active_patch&gt;
+  Reason Last Booted:  &lt;version_reason_last_booted&gt;
+  Uptime:              &lt;version_uptime&gt;
+</pre>
+---
+
+##### Unit
+
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/cer/platform)
