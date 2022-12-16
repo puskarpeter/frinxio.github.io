@@ -122,7 +122,149 @@ frinx-openconfig-platform:components
                         "type": "<version_type>",
                         "pic-model-name": "<version_pic_model_name>",
                         "pic-model-version": "<version_pic_model_version>"
-                    }
+                    },
+                    "frinx-ciena-platform-extension:rx-monitor-clock-options": {
+                        "rx-monitor-clock-options": "<ciena_rx_monitor_clock_options>",
+                        "monitor-clock-option": <ciena_rx_monitor_clock_option>,    // true or false
+                        "network-ln-rate-1-8": <ciena_rx_network_ln_rate_1_8>,    // true or false
+                        "network-ln-rate-1-64": <ciena_rx_network_ln_rate_1_64>,    // true or false
+                        "host-ln-rate-1-64": <ciena_rx_host_ln_rate_1_64>,    // true or false
+                        "host-ln-rate-1-16": <ciena_rx_host_ln_rate_1_16>,    // true or false
+                        "network-ln-rate-1-16": <ciena_rx_network_ln_rate_1_16>    // true or false
+                    },
+                    "frinx-ciena-platfrom-extension:clei-code": "<ciena_clei_code>",
+                    "frinx-ciena-platform-extension:empty": <ciena_empty>,    // true or false
+                    "frinx-ciena-platform-extension:max-pwr-in-low-pwr-mode": "<ciena_max_pwr_low_pwr_mode>",
+                    "frinx-ciena-platform-extension:module-fw-version": "<ciena_module_fw_version>",
+                    "frinx-ciena-platform-extension:cfp-msa-mgmt-if-spec-rev": "<ciena_cfp_mgmp_if_rev>",
+                    "frinx-ciena-platform-extension:ex-identifier": {
+                        "clei-code-present": <ciena_clei_code_present>,    // true or false
+                        "module-power-level": "<ciena_module_power_level>",
+                        "lane-ratio-type": "<ciena_lane_ratio_type>",
+                        "wdm-type": "<ciena_wdm_type>",
+                        "ext-identifier": "<ciena_ext_identifier>"
+                    },
+                    "frinx-ciena-platform-extension:max-mm-fiber-length": "<ciena_max_fiber_length_mm>",
+                    "frinx-ciena-platform-extension:max-input-pwr-per-lane": "<ciena_max_input_pwr_per_lane>",
+                    "frinx-ciena-platform-extension:diag-monitor-caps": {
+                        "tx-soa-bias-current": <ciena_tx_soa_bias_current>,    // true or false
+                        "tx-aux-monitor-1": <ciena_tx_aux_monitor_1>,    // true or false
+                        "network-ln-temperature": <ciena_network_ln_temperature>,    // true or false
+                        "tx-aux-monitor-2": <ciena_tx_aux_monitor_2>,    // true or false
+                        "network-ln-bias-current": <ciena_network_ln_bias_current>,    // true or false
+                        "network-ln-output-pwr": <ciena_network_ln_output_pwr>,    // true or false
+                        "diag-monitor-caps-1": "<ciena_diag_monitor_caps_1>",
+                        "tx-pwr-supply-voltage": <ciena_tx_pwr_supply_voltage>,    // true or false
+                        "diag-monitor-caps-2": "<ciena_diag_monitor_caps_2>",
+                        "tx-temperature": <ciena_tx_temperature>,    // true or false
+                        "network-ln-rx-pwr": <ciena_ln_rx_pwr>    // true or false
+                    },
+                    "frinx-ciena-platform-extension:num-lanes-supported": {
+                        "num-lanes-supported": "<ciena_num_lanes_supported>",
+                        "num-network-lanes": <ciena_num_network_lanes>,
+                        "num-host-lanes": <ciena_num_host_lanes>
+                    },
+                    "frinx-ciena-platform-extension:min-oper-case-temp": "<ciena_min_oper_case_temp>",
+                    "frinx-ciena-platform-extension:date-code": "<ciena_date_code>",
+                    "frinx-ciena-platform-extension:max-network-lane-br": "<ciena_max_network_lane_br>",
+                    "frinx-ciena-platform-extension:max-high-power-down-time": "<ciena_max_hight_pwr_down_time>",
+                    "frinx-ciena-platform-extension:max-cu-cable-length": "<ciena_max_cu_cable_length>",
+                    "frinx-ciena-platform-extension:max-pwr-consumption": "<ciena_max_pwr_consumption>",
+                    "frinx-ciena-platform-extension:max-oper-case-temp": "<ciena_max_oper_case_temp>",
+                    "frinx-ciena-platform-extension:lot-code": "<ciena_lot_code>",
+                    "frinx-ciena-platform-extension:media-properties": {
+                        "media-type": "<ciena_media_type>",
+                        "active-fiber-per-con": "<ciena_active_fiber_per_con>",
+                        "media-properties": "<ciena_media_properties>",
+                        "directionality": "<ciena_directionality>",
+                        "optical-mux-demux": <ciena_optical_mux_demux>    // true or false
+                    },
+                    "frinx-ciena-platform-extension:max-output-pwr-per-con": "<ciena_max_out_pwr_per_con>",
+                    "frinx-ciena-platform-extension:transceiver-codes-props": {
+                        "ethernet-compliance": "<ciena_ethernet_compliance>",
+                        "sonet-compliance": "<ciena_sonet_compliance>",
+                        "fiber-compliance": "<ciena_fiber_compliance>",
+                        "otn-compliance": "<ciena_otn_compliance>",
+                        "transceiver-codes": "<ciena_transceiver_codes>",
+                        "copper-compliance": "<ciena_copper_compliance>"
+                    },
+                    "frinx-ciena-platform-extension:host-ln-signal-spec": "<ciena_host_ln_sig_spec>",
+                    "frinx-ciena-platform-extension:rates-supported": {
+                        "rate-43": <ciena_rates_rate_43>,    // true or false
+                        "rate-39-8": <ciena_rates_rate_39_8>,    // true or false
+                        "rates-supported": "<ciena_rates_supported>",
+                        "rate-103-125": <ciena_rates_rate_103_125>,    // true or false
+                        "rate-111-8": <ciena_rates_rate_111_8>,    // true or false
+                        "rate-41-25": <ciena_rates_rate_41_25>    // true or false
+                    },
+                    "frinx-ciena-platform-extension:ciena-module-item-number": "<ciena_module_item_number>",
+                    "frinx-ciena-platform-extension:max-tx-turn-on-time": "<ciena_max_tx_turn_on_time>",
+                    "frinx-ciena-platform-extension:cfp-msa-hw-spec-rev": "<ciena_cfp_msa_hw_spec_rev>",
+                    "frinx-ciena-platform-extension:ciena-vendor-serial-number": "<ciena_vendor_sn>",
+                    "frinx-ciena-platform-extension:min-wavelenght-per-fiber": "<ciena_min_wave_per_fiber>",
+                    "frinx-ciena-platform-extension:max-host-lane-br": "<ciena_max_host_lane_br>",
+                    "frinx-ciena-platform-extension:max-wavelength-per-fiber": "<ciena_max_wave_per_fiber>",
+                    "frinx-ciena-platform-extension:ethernet-type": "<ciena_ethernet_type>",
+                    "frinx-ciena-platform-extension:max-high-power-up-time": "<ciena_max_high_power_up_time>",
+                    "frinx-ciena-platform-extension:max-sm-fiber-lenght": "<ciena_max_sm_fiber_length>",
+                    "frinx-ciena-platform-extension:heat-sink-type": "<ciena_heat_sink_type>",
+                    "frinx-ciena-platform-extension:max-per-lane-opt-width": "<ciena_max_per_lane_opt_width>",
+                    "frinx-ciena-platform-extension:diagnostic-monitor-type": {
+                        "tx-power-meas-type": "<ciena_diag_tx_power_meas_type>",
+                        "diag-monitor-type": "<ciena_diag_monitor_type>",
+                        "rx-power-meas-type": "<ciena_diag_rx_power_meas_type>"
+                    },
+                    "frinx-ciena-platform-extension:ciena-module-identifier": "<ciena_module_identifier>",
+                    "frinx-ciena-platform-extension:max-tx-turn-off-time": "<ciena_max_tx_turn_off_time>",
+                    "frinx-ciena-platform-extension:signal-code": {
+                        "signal-coding": "<ciena_sig_coding>",
+                        "signal-code": "<ciena_sig_code>",
+                        "modulation": "<ciena_modulation>"
+                    },
+                    "frinx-ciena-platform-extension:diagnostic-data": <ciena_diagnostic_data>,    // true or false
+                    "frinx-ciena-platform-extension:enhanced-opt": {
+                        "enhanced-options-2": "<ciena_enhanced_options_2>",
+                        "host-ln-loopback": <ciena_host_ln_loopback>,    // true or false
+                        "host-ln-prbs": <ciena_host_ln_prbs>,    // true or false
+                        "amplitude-adjustment": <ciena_amplitude_adjustment>,    // true or false
+                        "enhanced-options-1": "<ciena_enhanced_options_1>",
+                        "active-volt-phase-func": <ciena_active_volt_phase_func>,    // true or false
+                        "unidirectional-tx-rx": <ciena_unidirectional_tx_rx>,    // true or false
+                        "rx-fifo-reset": <ciena_rx_fifo_reset>,    // true or false
+                        "rx-fifo-auto-reset": <ciena_rx_fifo_auto_reset>,    // true or false
+                        "network-ln-loopback": <ciena_network_ln_loopback>,    // true or false
+                        "network-ln-prbs": <ciena_network_ln_prbs>,    // true or false
+                        "tx-fifo-reset": <ciena_tx_fifo_reset>,    // true or false
+                        "tx-fifo-auto-reset": <ciena_tx_fifo_auto_reset>,    // true or false
+                        "host-ln-emphasis-ctrl": <ciena_host_ln_emphasis_ctrl>,    / true or false
+                        "phase-adjustment": <ciena_phase_adjustment>    // true or false
+                    },
+                    "frinx-ciena-platform-extension:ciena-module-rev-number": "<ciena_module_rev_number>",
+                    "frinx-ciena-platform-extension:vendor-part-number": "<ciena_vendor_part_number>",
+                    "frinx-ciena-platform-extension:device-technology": {
+                        "device-technology-1": "<ciena_device_technology_1>",
+                        "device-technology-2": "<ciena_device_technology_2>",
+                        "tunability": <ciena_tunability>,    // true or false
+                        "cooled-transmitter": <ciena_cooled_transmitter>,    // true or false
+                        "wavelength-control": <ciena_wave_control>,    // true or false
+                        "voa-implemented": <ciena_voa_implemented>,    // true or false
+                        "tx-modulation-tech": "<ciena_tx_modulation_tech>",
+                        "cdr-with-edc": <ciena_cdr_with_edc>,    // true or false
+                        "laser-source-tech": "<ciena_laser_source_tech>",
+                        "detector-type": "<ciena_detector_type>"
+                    },
+                    "frinx-ciena-platform-extension:module-hw-version": "<ciena_module_hw_version>",
+                    "frinx-ciena-platform-extension:tx-monitor-clock-options": {
+                        "monitor-clock-option": <ciena_tx_monitor_clock_option>,    // true or false
+                        "network-ln-rate-1-8": <ciena_tx_network_ln_rate_1_8>,    // true or false
+                        "network-ln-rate-1-64": <ciena_tx_network_ln_rate_1_64>,    // true or false
+                        "host-ln-rate-1-64": <ciena_tx_host_ln_rate_1_64>,    // true or false
+                        "host-ln-rate-1-16": <ciena_tx_host_ln_rate_1_16>,    // true or false
+                        "tx-monitor-clock-options": "<ciena_tx_monitor_clock_options>",
+                        "network-ln-rate-1-16": <ciena_tx_network_ln_rate_1_16>    // true or false
+                    },
+                    "frinx-ciena-platform-extension:identifier": "<ciena_port_identifier>",
+                    "frinx-ciena-platform-extension:connector": "<ciena_port_connector>"
                 },
                 "config": {
                     "name": "<component_key>"
@@ -574,6 +716,142 @@ SAOS8&gt; chassis device-id show
 | Software Compatibility    | &lt;software_compatibility&gt;|
 | Functional Test Count     | &lt;functional_test_count&gt; |
 +---------------------------+-------------------------+
+
+SAOS8&gt; port xcvr show
++------------------------------------------Transceiver-Status----------------------------------------------------------+
+|                                |                                       |    Ether Medium &   |         Diag          |
+|             Port               |      Vendor Name & Part Number        |    Connector Type   |         Data          |
++--------------------------------+---------------------------------------+---------------------+-----------------------+
+| &lt;component_name&gt;               | &lt;ciena_vendor_part_number&gt;            |&lt;ciena_ethernet_type&gt;|&lt;ciena_diagnostic_data&gt;|
++--------------------------------+---------------------------------------+---------------------+-----------------------+
+
+SAOS8&gt; port xcvr show port &lt;component_name&gt; vendor
++------------------------ XCVR VENDOR DATA - Port &lt;component_name&gt; -----------------------------+
+| Parameter                | Value                            | Decoded String Equivalent       |
++--------------------------+----------------------------------+---------------------------------+
+| Identifier               |                                  | &lt;ciena_port_identifier&gt;         |
+| Ext. Identifier          | &lt;ciena_ext_identifier&gt;           |                                 |
+|  - Module Power Level    |                                  | &lt;ciena_module_power_level&gt;      |
+|  - Lane Ratio Type       |                                  | &lt;ciena_lane_ratio_type&gt;         |
+|  - WDM Type              |                                  | &lt;ciena_wdm_type&gt;                |
+|  - CLEI Code Present     |                                  | &lt;ciena_clei_code_present&gt;       |
+| Connector                |                                  | &lt;ciena_port_connector&gt;          |
++--------------------------+----------------------------------+---------------------------------+
+| Transceiver Codes        | &lt;ciena_transceiver_codes&gt;        |                                 |
+|  - Ethernet Compliance   |                                  | &lt;ciena_ethernet_compliance&gt;     |
+|  - Fiber Compliance      |                                  | &lt;ciena_fiber_compliance&gt;        |
+|  - Copper Compliance     |                                  | &lt;ciena_copper_compliance&gt;       |
+|  - SONET Compliance      |                                  | &lt;ciena_sonet_compliance&gt;        |
+|  - OTN Compliance        |                                  | &lt;ciena_otn_compliance&gt;          |
+|--------------------------+----------------------------------+---------------------------------|
+| Add'l Rates Supported    | &lt;ciena_rates_supported&gt;          |                                 |
+|  - 111.8 Gb/s            |                                  | &lt;ciena_rates_rate_111_8&gt;        |
+|  - 103.125 Gb/s          |                                  | &lt;ciena_rates_rate_103_125&gt;      |
+|  - 41.25 Gb/s            |                                  | &lt;ciena_rates_rate_41_25&gt;        |
+|  - 43 Gb/s               |                                  | &lt;ciena_rates_rate_43&gt;           |
+|  - 39.8 Gb/s             |                                  | &lt;ciena_rates_rate_39_8&gt;         |
+| Num Lanes Supported      | &lt;ciena_num_lanes_supported&gt;      |                                 |
+|  - Num Network Lanes     |                                  | &lt;ciena_num_network_lanes&gt;       |
+|  - Num Host Lanes        |                                  | &lt;ciena_num_host_lanes&gt;          |
+| Media Properties         | &lt;ciena_media_properties&gt;         |                                 |
+|  - Media Type            |                                  | &lt;ciena_media_type&gt;              |
+|  - Directionality        |                                  | &lt;ciena_directionality&gt;          |
+|  - Optical Mux/Demux     |                                  | &lt;ciena_optical_mux_demux&gt;       |
+|  - Active Fiber per Con  |                                  | &lt;ciena_active_fiber_per_con&gt;    |
+|--------------------------+----------------------------------+---------------------------------|
+| Max Network Lane BR      |                                  | &lt;ciena_max_network_lane_br&gt;     |
+| Max Host Lane BR         |                                  | &lt;ciena_max_host_lane_br&gt;        |
+| Max SM Fiber Length      |                                  | &lt;ciena_max_sm_fiber_length&gt;     |
+| Max MM Fiber Length      |                                  | &lt;ciena_max_fiber_length_mm&gt;     |
+| Max Cu Cable Length      |                                  | &lt;ciena_max_cu_cable_length&gt;     |
+| Min Wavelength per Fiber |                                  | &lt;ciena_min_wave_per_fiber&gt;      |
+| Max Wavelength per Fiber |                                  | &lt;ciena_max_wave_per_fiber&gt;      |
+| Max per Lane Opt Width   |                                  | &lt;ciena_max_per_lane_opt_width&gt;  |
+|--------------------------+----------------------------------+---------------------------------|
+| Device Technology 1      | &lt;ciena_device_technology_1&gt;      |                                 |
+|  - Laser Source Tech     |                                  | &lt;ciena_laser_source_tech&gt;       |
+|  - Tx Modulation Tech    |                                  | &lt;ciena_tx_modulation_tech&gt;      |
+| Device Technology 2      | &lt;ciena_device_technology_2&gt;      |                                 |
+|  - Wavelength Control    |                                  | &lt;ciena_wave_control&gt;            |
+|  - Cooled Transmitter    |                                  | &lt;ciena_cooled_transmitter&gt;      |
+|  - Tunability            |                                  | &lt;ciena_tunability&gt;              |
+|  - VOA Implemented       |                                  | &lt;ciena_voa_implemented&gt;         |
+|  - Detector Type         |                                  | &lt;ciena_detector_type&gt;           |
+|  - CDR with EDC          |                                  | &lt;ciena_cdr_with_edc&gt;            |
+| Signal Code              | &lt;ciena_sig_code&gt;                 |                                 |
+|  - Modulation            |                                  | &lt;ciena_modulation&gt;              |
+|  - Signal Coding         |                                  | &lt;ciena_sig_coding&gt;              |
+|--------------------------+----------------------------------+---------------------------------|
+| Max Output Pwr per Con   |                                  | &lt;ciena_max_out_pwr_per_con&gt;     |
+| Max Input Pwr per Lane   |                                  | &lt;ciena_max_input_pwr_per_lane&gt;  |
+| Max Pwr Consumption      |                                  | &lt;ciena_max_pwr_consumption&gt;     |
+| Max Pwr in Low Pwr Mode  |                                  | &lt;ciena_max_pwr_low_pwr_mode&gt;    |
+| Max Oper Case Temp       |                                  | &lt;ciena_max_oper_case_temp&gt;      |
+| Min Oper Case Temp       |                                  | &lt;ciena_min_oper_case_temp&gt;      |
+| Max High-Power-up Time   |                                  | &lt;ciena_max_high_power_up_time&gt;  |
+| Max High-Power-down Time |                                  | &lt;ciena_max_hight_pwr_down_time&gt; |
+| Max Tx-Turn-on Time      |                                  | &lt;ciena_max_tx_turn_on_time&gt;     |
+| Max Tx-Turn-off Time     |                                  | &lt;ciena_max_tx_turn_off_time&gt;    |
+| Heat Sink Type           |                                  | &lt;ciena_heat_sink_type&gt;          |
+| Host Ln Signal Spec      |                                  | &lt;ciena_host_ln_sig_spec&gt;        |
+|--------------------------+----------------------------------+---------------------------------|
+| Ciena Module Identifier  | &lt;ciena_module_identifier&gt;        |                                 |
+| Ciena Module Item Number | &lt;ciena_module_item_number&gt;       |                                 |
+| Ciena Module Rev Number  | &lt;ciena_module_rev_number&gt;        |                                 |
+| Ciena Vendor Serial Num  | &lt;ciena_vendor_sn&gt;                |                                 |
+| Date Code                | &lt;ciena_date_code&gt;                |                                 |
+| Lot Code                 | &lt;ciena_lot_code&gt;                 |                                 |
+| CLEI Code                | &lt;ciena_clei_code&gt;                |                                 |
+| CFP MSA HW Spec Rev      |                                  | &lt;ciena_cfp_msa_hw_spec_rev&gt;     |
+| CFP MSA Mgmt IF Spec Rev |                                  | &lt;ciena_cfp_mgmp_if_rev&gt;         |
+| Module HW Version        |                                  | &lt;ciena_module_hw_version&gt;       |
+| Module FW Version        |                                  | &lt;ciena_module_fw_version&gt;       |
+|--------------------------+----------------------------------+---------------------------------|
+| Diag Monitor Type        | &lt;ciena_diag_monitor_type&gt;        |                                 |
+|  - Rx Power Meas. Type   |                                  | &lt;ciena_diag_rx_power_meas_type&gt; |
+|  - Tx Power Meas. Type   |                                  | &lt;ciena_diag_tx_power_meas_type&gt; |
+| Diag Monitor Caps 1      | &lt;ciena_diag_monitor_caps_1&gt;      |                                 |
+|  - Tx aux monitor 2      |                                  | &lt;ciena_tx_aux_monitor_2&gt;        |
+|  - Tx aux monitor 1      |                                  | &lt;ciena_tx_aux_monitor_1&gt;        |
+|  - Tx SOA bias current   |                                  | &lt;ciena_tx_soa_bias_current&gt;     |
+|  - Tx pwr supply voltage |                                  | &lt;ciena_tx_pwr_supply_voltage&gt;   |
+|  - Tx temperature        |                                  | &lt;ciena_tx_temperature&gt;          |
+| Diag Monitor Caps 2      | &lt;ciena_diag_monitor_caps_2&gt;      |                                 |
+|  - Netwk ln rx pwr       |                                  | &lt;ciena_ln_rx_pwr&gt;               |
+|  - Netwk ln output pwr   |                                  | &lt;ciena_network_ln_output_pwr&gt;   |
+|  - Netwk ln bias current |                                  | &lt;ciena_network_ln_bias_current&gt; |
+|  - Netwk ln temperature  |                                  | &lt;ciena_network_ln_temperature&gt;  |
+|--------------------------+----------------------------------+---------------------------------|
+| Enhanced Options 1       | &lt;ciena_enhanced_options_1&gt;       |                                 |
+|  - Host ln loopback      |                                  | &lt;ciena_host_ln_loopback&gt;        |
+|  - Host ln PRBS          |                                  | &lt;ciena_host_ln_prbs&gt;            |
+|  - Host ln emphasis ctrl |                                  | &lt;ciena_host_ln_emphasis_ctrl&gt;   |
+|  - Netwk ln loopback     |                                  | &lt;ciena_network_ln_loopback&gt;     |
+|  - Netwk ln PRBS         |                                  | &lt;ciena_network_ln_prbs&gt;         |
+|  - Amplitude adjustment  |                                  | &lt;ciena_amplitude_adjustment&gt;    |
+|  - Phase adjustment      |                                  | &lt;ciena_phase_adjustment&gt;        |
+|  - Unidirectional tx/rx  |                                  | &lt;ciena_unidirectional_tx_rx&gt;    |
+| Enhanced Options 2       | &lt;ciena_enhanced_options_2&gt;       |                                 |
+|  - Active volt/phase func|                                  | &lt;ciena_active_volt_phase_func&gt;  |
+|  - Rx FIFO reset         |                                  | &lt;ciena_rx_fifo_reset&gt;           |
+|  - Rx FIFO auto reset    |                                  | &lt;ciena_rx_fifo_auto_reset&gt;      |
+|  - Tx FIFO reset         |                                  | &lt;ciena_tx_fifo_reset&gt;           |
+|  - Tx FIFO auto reset    |                                  | &lt;ciena_tx_fifo_auto_reset&gt;      |
+| Tx Monitor Clock Options | &lt;ciena_tx_monitor_clock_options&gt; |                                 |
+|  - 1/16 of Host ln rate  |                                  | &lt;ciena_tx_host_ln_rate_1_16&gt;    |
+|  - 1/16 of Netwk ln rate |                                  | &lt;ciena_tx_network_ln_rate_1_16&gt; |
+|  - 1/64 of Host ln rate  |                                  | &lt;ciena_tx_host_ln_rate_1_64&gt;    |
+|  - 1/64 of Netwk ln rate |                                  | &lt;ciena_tx_network_ln_rate_1_64&gt; |
+|  - 1/8 of Netwk ln rate  |                                  | &lt;ciena_tx_network_ln_rate_1_8&gt;  |
+|  - Monitor clock option  |                                  | &lt;ciena_tx_monitor_clock_option&gt; |
+| Rx Monitor Clock Options | &lt;ciena_rx_monitor_clock_options&gt; |                                 |
+|  - 1/16 of Host ln rate  |                                  | &lt;ciena_rx_host_ln_rate_1_16&gt;    |
+|  - 1/16 of Netwk ln rate |                                  | &lt;ciena_rx_network_ln_rate_1_16&gt; |
+|  - 1/64 of Host ln rate  |                                  | &lt;ciena_rx_host_ln_rate_1_64&gt;    |
+|  - 1/64 of Netwk ln rate |                                  | &lt;ciena_rx_network_ln_rate_1_64&gt; |
+|  - 1/8 of Netwk ln rate  |                                  | &lt;ciena_rx_network_ln_rate_1_8&gt;  |
+|  - Monitor clock option  |                                  | &lt;ciena_rx_monitor_clock_option&gt; |
+|--------------------------+----------------------------------+---------------------------------|
 </pre>
 ---
 
