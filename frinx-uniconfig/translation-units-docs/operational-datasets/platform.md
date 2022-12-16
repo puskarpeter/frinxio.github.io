@@ -188,7 +188,7 @@ Compiled Thu 21-Apr-16 01:18 by prod_rel_team
 
 ##### Unit
 
-Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/platform)
+Link to GitHub : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/platform)
 
 ### Cisco IOS XE 15, 16, 17
 
@@ -211,7 +211,7 @@ Compiled Thu 09-Jul-20 17:13 by mcpre
 
 ##### Unit
 
-Link to github : [ios-xe-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xe/platform)
+Link to GitHub : [ios-xe-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xe/platform)
 
 ### Ciena SAOS 6
 
@@ -460,7 +460,7 @@ Ciena_saos6&gt; chassis show capabilities
 
 ##### Unit
 
-Link to github : [saos6-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos-6/saos-6-platform)
+Link to GitHub : [saos6-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos-6/saos-6-platform)
 
 ### Ciena SAOS 8
 
@@ -579,7 +579,7 @@ SAOS8&gt; chassis device-id show
 
 ##### Unit
 
-Link to github : [saos8-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos-6/saos-8-platform)
+Link to GitHub : [saos8-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos-6/saos-8-platform)
 
 ### CER Arris devices
 
@@ -656,4 +656,4 @@ Slot:   &lt;component_name&gt;
 
 ##### Unit
 
-Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/cer/platform)
+Link to GitHub : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/cer/platform)
