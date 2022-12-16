@@ -28,6 +28,11 @@ The configuration of nodes consists of the following phases:
    which is by default turned on. It can be switched off by setting up 'do-rollback' flag in input of  
    Commit RPC request. Then only failed devices will be rollbacked. 
 
+!!!
+The 'skip-unreachable-nodes' flag controls whether unreachable nodes are skipped when the RPC commit is sent. If set
+to 'true', nodes that are not reachable are skipped and others are configured. The default value is 'false'.
+!!!
+
 ![RPC commit](RPC_commit-RPC_commit.svg)
 
 The third and fourth phases take place only on the nodes that support
@@ -188,6 +193,46 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
                 }
             ]
         },
+    }
+}
+```
+
+### Successful Example
+
+RPC commit input has two target nodes and the flag to skip unreachable nodes. The output describes the result
+of the commit.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "skip-unreachable-nodes": true,
+        "target-nodes": {
+            "node": ["dev1","dev2"]
+        }
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "node-results": {
+            "node-result": [
+                {
+                    "node-id": "dev1",
+                    "configuration-status": "complete"
+                },
+                {
+                    "node-id": "dev2",
+                    "error-message": "Node dev2 is unreachable (skipped)",
+                    "configuration-status": "fail"
+                }
+            ]
+        },
+        "overall-status": "complete"
     }
 }
 ```
