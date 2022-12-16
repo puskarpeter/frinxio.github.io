@@ -97,7 +97,7 @@ frinx-openconfig-platform:components
                         "part-number": "<transceiver_part_number>",
                         "type": "<transceiver_type>",
                         "ch-0-tx-power": "<transceiver_ch0_tx_power>",
-                        "ch-0-rx-power": "<transceiver_ch0_rx_power>",
+                        "ch-0-rx-power": "<transceiver_ch0_rx_power>"
                     },
                     "frinx-arris-platform-extension:chassis": {
                         "model-version": "<chassis_model_version>",
@@ -145,7 +145,7 @@ frinx-openconfig-platform:components
                     "frinx-arris-platform-extension:lldp": {
                         "lldp-status": "<lldp_status>",
                         "lldp-ad-interval": "<lldp_ad_interval>",
-                        "lldp-ad-hold-time": "<lldp_ad_hold_time>",
+                        "lldp-ad-hold-time": "<lldp_ad_hold_time>"
                     },
                     "frinx-arris-platform-extension:version-detail": {
                         "last-booted-time": "<version_last_booted_time>"
