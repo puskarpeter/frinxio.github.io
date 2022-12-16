@@ -14,7 +14,6 @@ curl PUT \
       {
         "node-id": "ocnos",
         "netconf-node-topology:host": "192.168.1.248",
-        "node-extension:reconcile": false,
         "netconf-node-topology:session-timers" : {
           "netconf-node-topology:keepalive-delay": 10,
           "netconf-node-topology:reconnection-attempts-multiplier": 1,

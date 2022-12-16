@@ -100,7 +100,7 @@ that actually
 The plugin itself is responsible for defining the mapping between YANG
 and CLI. However, the translation layer into which it plugs in is what
 handles the heavy lifting for it e.g. transactions, rollback, config
-data storage, reconciliation etc. Additionally, the SPIs of the
+data storage etc. Additionally, the SPIs of the
 translation layer are very simple to implement because the translation
 plugin only needs to focus on the translations between YANG \<-\ CLI.
 
@@ -177,29 +177,6 @@ CLI southbound plugin:
 
 - **RPCs** stand on their own and can encapsulate any command(s) on
     the device.
-
-## Reconciliation
-
-There might be situations where there are inconsistencies between actual
-configuration on the device and the state cached in Frinx UniConfig.
-That's why a reconciliation mechanism was developed to:
-
--   Allows the mountpoint to sync its state when first connecting to the
-    device.
--   Allows apps/users to request synchronization when an inconsistent
-    state is expected e.g. manual configuration of the device.
-
-Reconciliation is performed when issuing any READ operation. If the data
-coming from device is different compared to mountpoint cache, the cache
-will be updated automatically.
-
-Initial reconciliation (after connection has been established) takes
-place automatically on the CLI layer. However it can be disabled with
-attribute "node-extension:reconcile" set to false when installing a
-device. Uniconfig performs its own reconciliation when devices are
-connected so if both the Uniconfig and CLI layer reconcile, the install
-process is unnecessarily prolonged. That's why it is advised to turn off
-reconciliation on the CLI layer when using Uniconfig.
 
 ## RPCs provided by CLI layer
 

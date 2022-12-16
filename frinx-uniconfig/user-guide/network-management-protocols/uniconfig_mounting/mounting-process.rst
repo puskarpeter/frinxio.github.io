@@ -93,7 +93,6 @@ Other non-mandatory parameters that can be added to mount-request.
 * **cli-topology:error-commit-patterns** - Device specific list of commit error patterns. The following list of patterns is checked in the input after 'commit' command is sent.
 * **cli-topology:error-patterns** - Device specific list of error patterns. This list is the primary source of error checking on the device. The list defined by this parameter can override hardcoded one specified in the code.
 * **cli-topology:parsing-engine** - Specification of the parsing system that is responsible for interpretation of device running-configuration. For now, supported methods are 'tree-parser' (default option) and 'batch-parser'.
-* **node-extension:reconcile** - Whether to invoke reconciliation upon connection to a device.
 
 .. note::
 
@@ -124,8 +123,7 @@ Mounting of IOS-XR device (version 6.3.4) on address '192.168.1.211' with enable
                 "cli-topology:username": "cisco",
                 "cli-topology:password": "cisco",
                 "cli-topology:journal-size": 150,
-                "cli-topology:dry-run-journal-size": 200,
-                "node-extension:reconcile": false
+                "cli-topology:dry-run-journal-size": 200
             }
         }'
 
@@ -433,7 +431,7 @@ For mounting of NETCONF device with uniconfig-native support, it is necessary to
 Example - mounting of uniconfig-native CLI device
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For mounting of CLI device with uniconfig-native support, it is necessary to explicitly enable this functionality using 'uniconfig-native-enabled' flag. The following example shows request used for mounting of JUNOS 17.3 device as native-CLI device with enabled dry-run functionality and disabled reconciliation.
+For mounting of CLI device with uniconfig-native support, it is necessary to explicitly enable this functionality using 'uniconfig-native-enabled' flag. The following example shows request used for mounting of JUNOS 17.3 device as native-CLI device with enabled dry-run functionality.
 
 .. code:: bash
 
@@ -451,7 +449,6 @@ For mounting of CLI device with uniconfig-native support, it is necessary to exp
             "cli-topology:password": "junos17pass",
             "cli-topology:journal-size": 150,
             "cli-topology:dry-run-journal-size": 180,
-            "node-extension:reconcile": false,
             "uniconfig-config:uniconfig-native-enabled": true
         }
     }'
