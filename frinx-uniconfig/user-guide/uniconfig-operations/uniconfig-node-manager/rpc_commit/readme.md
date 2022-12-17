@@ -197,46 +197,6 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 }
 ```
 
-### Successful Example
-
-RPC commit input has two target nodes and the flag to skip unreachable nodes. The output describes the result
-of the commit.
-
-```bash RPC Request
-curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "input": {
-        "skip-unreachable-nodes": true,
-        "target-nodes": {
-            "node": ["dev1","dev2"]
-        }
-    }
-}'
-```
-
-```json RPC Response, Status: 200
-{
-    "output": {
-        "node-results": {
-            "node-result": [
-                {
-                    "node-id": "dev1",
-                    "configuration-status": "complete"
-                },
-                {
-                    "node-id": "dev2",
-                    "error-message": "Node dev2 is unreachable (skipped)",
-                    "configuration-status": "fail"
-                }
-            ]
-        },
-        "overall-status": "complete"
-    }
-}
-```
-
 ### Failed Example
 
 RPC commit input has 2 target nodes and the output describes the result
@@ -611,6 +571,46 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 {
     "output": {
         "error-message": "There aren't any nodes specified in input RPC and there aren't any touched nodes.",
+        "overall-status": "fail"
+    }
+}
+```
+
+### Failed Example
+
+RPC commit input has two target nodes and the flag to skip unreachable nodes. The output describes the result
+of the commit.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:commit' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "skip-unreachable-nodes": true,
+        "target-nodes": {
+            "node": ["dev1","dev2"]
+        }
+    }
+}'
+```
+
+```json RPC Response, Status: 200
+{
+    "output": {
+        "node-results": {
+            "node-result": [
+                {
+                    "node-id": "dev1",
+                    "configuration-status": "complete"
+                },
+                {
+                    "node-id": "dev2",
+                    "error-message": "Node dev2 is unreachable (skipped)",
+                    "configuration-status": "fail"
+                }
+            ]
+        },
         "overall-status": "fail"
     }
 }
