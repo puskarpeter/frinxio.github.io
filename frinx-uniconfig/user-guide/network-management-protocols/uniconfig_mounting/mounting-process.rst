@@ -431,7 +431,7 @@ For mounting of NETCONF device with uniconfig-native support, it is necessary to
 Example - mounting of uniconfig-native CLI device
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For mounting of CLI device with uniconfig-native support, it is necessary to explicitly enable this functionality using 'uniconfig-native-enabled' flag. The following example shows request used for mounting of JUNOS 17.3 device as native-CLI device with enabled dry-run functionality.
+To mount a CLI device with uniconfig-native support, you must explicitly enable this functionality using the 'uniconfig-native-enabled' flag. The following example shows a request used to mount a JUNOS 17.3 device as a native-CLI device with dry-run functionality enabled.
 
 .. code:: bash
 
