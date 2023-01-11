@@ -25,6 +25,7 @@ Synchronization from the network reads configuration from devices and
 stores it as an actual state to the OPER DS.
 
 - [RPC check-installed-nodes](../uniconfig-node-manager/uniconfig_check_installed_devices)
+- [RPC get-installed-nodes](../uniconfig-node-manager/uniconfig_get_installed_devices)
 - [RPC install-multiple-nodes](../uniconfig-node-manager/uniconfig_install_multiple_nodes)
 - [RPC uninstall-multiple-nodes](../uniconfig-node-manager/uniconfig_uninstall_multiple_nodes)
 - [RPC commit](../uniconfig-node-manager/rpc_commit)

@@ -662,6 +662,49 @@ curl --location --request POST 'http://localhost:8181/rests/operations/template-
 }
 ```
 
+## RPC get-template-nodes
+
+This RPC returns all created templates from the template topology. No input body 
+is required.
+
+### Successful example
+
+There is no template created in the template topology.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:get-template-nodes' \
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json'
+```
+
+```bash RPC Response
+{
+    "output": {}
+}
+```
+
+### Successful example
+
+There is a template 'test-template' created in template topology.
+
+```bash RPC Request
+curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:get-template-nodes' \
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json'
+```
+
+```bash RPC Response
+{
+    "output": {
+        "nodes": [
+            "test-template"
+        ]
+    }
+}
+```
+
 ## Upgrading template to latest yang repository
 
 Template can be upgraded to latest YANG repository using 'upgrade-template' RPC.
@@ -1179,7 +1222,7 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/template-
             {
                 "node-id": "Template-name1",
                 "error-type": "uniconfig-error",
-                "error-message": "Failed to find schema repository: schema-1
+                "error-message": "Failed to find schema repository: schema-1",
                 "status": "fail"
             },
             {
