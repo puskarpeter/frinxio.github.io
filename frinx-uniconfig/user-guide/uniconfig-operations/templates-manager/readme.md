@@ -664,12 +664,12 @@ curl --location --request POST 'http://localhost:8181/rests/operations/template-
 
 ## RPC get-template-nodes
 
-This RPC returns all created templates from the template topology. No input body 
+This RPC returns all templates from the template topology. No input body 
 is required.
 
 ### Successful example
 
-There is no template created in the template topology.
+There are no templates in the template topology.
 
 ```bash RPC Request
 curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:get-template-nodes' \
@@ -686,7 +686,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/template-
 
 ### Successful example
 
-There is a template 'test-template' created in template topology.
+There is a template called 'test-template' in the template topology.
 
 ```bash RPC Request
 curl --location --request POST 'http://localhost:8181/rests/operations/template-manager:get-template-nodes' \
