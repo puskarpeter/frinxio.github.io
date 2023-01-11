@@ -32,7 +32,6 @@ Output:
     "node": [
         {
             "node-id": "cliNode",
-            "node-extension:reconcile": false,
             "uniconfig-config:install-uniconfig-node-enabled": true,
             "cli-topology:host": "192.168.1.225",
             "cli-topology:transport-type": "ssh",
@@ -104,7 +103,6 @@ curl -X PUT \
      "node": [
         {
             "node-id": "cliNode",
-            "node-extension:reconcile": false,
             "uniconfig-config:install-uniconfig-node-enabled": true,
             "cli-topology:host": "192.168.1.230",
             "cli-topology:transport-type": "ssh",

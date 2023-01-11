@@ -28,7 +28,6 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
                     "cli-topology:password": "cisco",
                     "cli-topology:journal-size": 150,
                     "cli-topology:dry-run-journal-size": 150,
-                    "node-extension:reconcile": false,
                     "uniconfig-config:install-uniconfig-node-enabled": true
                 }
             },
@@ -44,8 +43,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
                     "cli-topology:password": "cisco",
                     "cli-topology:dry-run-journal-size": 180,
                     "cli-topology:journal-size": 150,
-                    "uniconfig-config:install-uniconfig-node-enabled": true,
-                    "node-extension:reconcile": false
+                    "uniconfig-config:install-uniconfig-node-enabled": true
                 }
             }
         ]
@@ -94,8 +92,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
                     "cli-topology:password": "cisco",
                     "cli-topology:dry-run-journal-size": 180,
                     "cli-topology:journal-size": 150,
-                    "uniconfig-config:install-uniconfig-node-enabled": false,
-                    "node-extension:reconcile": false
+                    "uniconfig-config:install-uniconfig-node-enabled": false
                 },
                 "netconf": {
                     "netconf-node-topology:host": "192.168.1.211",
@@ -122,9 +119,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
                     "cli-topology:username": "cisco",
                     "cli-topology:password": "cisco",
                     "cli-topology:journal-size": 150,
-                    "cli-topology:dry-run-journal-size": 150,
-                    "node-extension:reconcile": false
-
+                    "cli-topology:dry-run-journal-size": 150
                 }
             }
         ]
@@ -173,7 +168,6 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
                     "cli-topology:password": "cisco",
                     "cli-topology:journal-size": 150,
                     "cli-topology:dry-run-journal-size": 150,
-                    "node-extension:reconcile": false,
                     "uniconfig-config:install-uniconfig-node-enabled": true
                 }
             },
@@ -189,8 +183,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
                     "cli-topology:password": "cisco",
                     "cli-topology:dry-run-journal-size": 180,
                     "cli-topology:journal-size": 150,
-                    "uniconfig-config:install-uniconfig-node-enabled": true,
-                    "node-extension:reconcile": false
+                    "uniconfig-config:install-uniconfig-node-enabled": true
                 }
             }
         ]
@@ -241,7 +234,6 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
                     "cli-topology:password": "cisco",
                     "cli-topology:journal-size": 150,
                     "cli-topology:dry-run-journal-size": 150,
-                    "node-extension:reconcile": false,
                     "uniconfig-config:install-uniconfig-node-enabled": true
                 }
             },
@@ -257,8 +249,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
                     "cli-topology:password": "cisco",
                     "cli-topology:dry-run-journal-size": 180,
                     "cli-topology:journal-size": 150,
-                    "uniconfig-config:install-uniconfig-node-enabled": true,
-                    "node-extension:reconcile": false
+                    "uniconfig-config:install-uniconfig-node-enabled": true
                 }
             }
         ]

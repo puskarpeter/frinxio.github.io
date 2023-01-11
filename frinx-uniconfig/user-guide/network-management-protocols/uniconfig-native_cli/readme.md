@@ -55,7 +55,6 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
             "cli-topology:journal-size": 150,
             "cli-topology:dry-run-journal-size": 150,
             "cli-topology:parsing-engine": "batch-parser",
-            "node-extension:reconcile": false,
             "uniconfig-config:install-uniconfig-node-enabled": false,
             "uniconfig-config:uniconfig-native-enabled": true
         }
