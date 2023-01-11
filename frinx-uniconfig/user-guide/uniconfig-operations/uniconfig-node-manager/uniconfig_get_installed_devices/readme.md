@@ -1,14 +1,14 @@
 # RPC get-installed-nodes
 
-This RPC gets all the installed devices from a selected topology. 
-If a topology is not specified, the output may contain devices from 
-mulitple topologies (CLI, NETCONF, gNMI).
+This RPC returns all installed devices from a selected topology. 
+If no topology is specified, the output may contain devices from 
+multiple topologies (CLI, NETCONF, gNMI).
 
 ## RPC Examples
 
 ### Successful example
 
-RPC does not have any input and device 'testDevice' is installed in the NETCONF topology.
+The RPC has no input and a device called 'testDevice' is installed in the NETCONF topology.
 
 ```bash RPC Request
 curl --location --request POST 'http://localhost:8181/rests/operations/connection-manager:get-installed-nodes' \
@@ -29,7 +29,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/connectio
 
 ### Successful example
 
-RPC input contains CLI topology in the input, but no device in CLI topology is installed.
+The RPC input contains the CLI topology, but no devices are installed in the topology.
 
 ```bash RPC Request
 curl --location --request POST 'http://localhost:8181/rests/operations/connection-manager:get-installed-nodes' \
