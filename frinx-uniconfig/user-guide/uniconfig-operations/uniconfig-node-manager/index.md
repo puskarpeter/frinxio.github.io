@@ -37,3 +37,4 @@ stores it as an actual state to the OPER DS.
 - [RPC calculate-diff](../uniconfig-node-manager/rpc_calculate-diff)
 - [RPC calculate-git-like-diff](../uniconfig-node-manager/rpc_calculate-git-like-diff)
 - [RPC health](../uniconfig-node-manager/rpc_health)
+- [RPC compare-config](../uniconfig-node-manager/rpc_compare_config)
