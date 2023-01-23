@@ -1,14 +1,16 @@
 # RPC compare-config
 
-This RPC is a combination of sync-from-network and calculate diff RPCs. 
-If one of these RPCs fails the RPC will fail without any changes made.
+This RPC is a combination of the sync-from-network and calculate-diff RPCs. 
+If one of those RPCs fails, this one also fails with no changes made.
 
-The purpose of this RPC is to synchronize configuration from the network
-devices to UniConfig nodes in the Configuration datastore of UniConfig
-transaction. The RPC input contains a list of the UniConfig nodes where
-the configuration should be refreshed within the network. Output of the
-RPC describes the result of compare-config and matches all input nodes
-with list of statements representing the diff.
+The purpose of this RPC is to synchronize configurations from network
+devices to UniConfig nodes in the Configuration datastore of the UniConfig
+transaction.
+
+The RPC input contains a list of UniConfig nodes where the configuration
+should be refreshed within the network. The output of the RPC describes
+the result of compare-config and matches all input nodes with a list of
+statements representing the diff.
 
 ## RPC Examples
 
@@ -72,7 +74,7 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/uniconfig
 
 ### Successful Example
 
-If the RPC input does not contain the target nodes, all touched nodes will be invoked.
+If the RPC input does not contain the target nodes, all touched nodes are invoked.
 
 ```bash RPC Request
 curl --location --request POST 'http://127.0.0.1:8181/rests/operations/uniconfig-manager:compare-config' \
@@ -165,8 +167,8 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/uniconfig
 }
 ```
 
-If the RPC input does not contain the target nodes and there weren't any
-touched nodes, the request will result in an error.
+If the RPC input does not contain the target nodes and there are no
+touched nodes, the request results in an error.
 
 ### Failed Example
 
