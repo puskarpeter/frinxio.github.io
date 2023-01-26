@@ -294,8 +294,8 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 
 ### Failed example
 
-Trying to use non-existing UniConfig transaction results in 403 status
-code (Forbidden access).
+Trying to use non-existing UniConfig transaction results in 422 status
+code (Unprocessable Entity).
 
 ```bash GET Request
 curl --location --request GET 'http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=junos/configuration/frinx-openconfig-interfaces:interfaces/interface=fxp0' \
@@ -303,13 +303,13 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 --header 'Cookie: UNICONFIGTXID=d7ff736e-8efa-4cc5-9d27-b7f560a76ff4'
 ```
 
-```json GET Response, Status: 403
+```json GET Response, Status: 422
 {
     "errors": {
         "error": [
             {
                 "error-message": "Unknown uniconfig transaction: d7ff736e-8efa-4cc5-9d27-b7f560a76ff4",
-                "error-tag": "access-denied",
+                "error-tag": "invalid-transaction",
                 "error-type": "protocol"
             }
         ]
@@ -488,13 +488,13 @@ curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig
 --header 'Cookie: UNICONFIGTXID=2ab7cfc3-dedc-4444-8431-6e9cf94fad3b'
 ```
 
-```json RPC Response, Status: 403
+```json RPC Response, Status: 422
 {
     "errors": {
         "error": [
             {
                 "error-message": "Uniconfig transaction 3819fbaa-6bd4-4c79-bc4e-68f70cf97903 has already been closed",
-                "error-tag": "access-denied",
+                "error-tag": "invalid-transaction",
                 "error-type": "protocol"
             }
         ]
@@ -862,7 +862,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 --header 'Cookie: UNICONFIGTXID=5e8ab9d0-803a-40d6-9f0a-92e47524bab8; JSESSIONID=node0jlfqlo2ggxgxe9fv0y6y5ogh7.node0'
 ```
 
-Response - Status 403 Forbidden:
+Response - Status 422 Unprocessable Entity:
 
 ``` RPC Response
 {
@@ -870,7 +870,7 @@ Response - Status 403 Forbidden:
         "error": [
             {
                 "error-message": "Uniconfig transaction 5e8ab9d0-803a-40d6-9f0a-92e47524bab8 has already been closed",
-                "error-tag": "access-denied",
+                "error-tag": "invalid-transaction",
                 "error-type": "protocol"
             }
         ]
@@ -888,7 +888,7 @@ curl --location --request GET 'http://localhost:8181/rests/data/network-topology
 --header 'Cookie: UNICONFIGTXID=73f85310-a20a-46b9-beaf-d2ac98cc74cc; JSESSIONID=node0jlfqlo2ggxgxe9fv0y6y5ogh7.node0'
 ```
 
-Response - Status 403 Forbidden:
+Response - Status 422 Unprocessable Entity:
 
 ``` RPC Response
 {
@@ -896,7 +896,7 @@ Response - Status 403 Forbidden:
         "error": [
             {
                 "error-message": "Uniconfig transaction 73f85310-a20a-46b9-beaf-d2ac98cc74cc has already been closed",
-                "error-tag": "access-denied",
+                "error-tag": "invalid-transaction",
                 "error-type": "protocol"
             }
         ]
