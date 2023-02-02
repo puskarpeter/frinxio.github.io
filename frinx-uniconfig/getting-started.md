@@ -98,17 +98,11 @@ in a Docker container:
 ```
 docker pull frinx/uniconfig:5.0.7
 docker pull postgres:12.2
-TOKEN=[frinx-license_secret-token]
 docker run -it -d --hostname postgres --name postgres -p 26257:5432 -e POSTGRES_PASSWORD=unipass -e POSTGRES_USER=uniremote -e POSTGRES_DB=uniconfig postgres:12.2
-docker run -it --hostname uniconfig --name uniconfig -p 8181:8181 --network host frinx/uniconfig:5.0.7 -l $token
+docker run -it --hostname uniconfig --name uniconfig -p 8181:8181 --network host frinx/uniconfig:5.0.7
 ```
 
-!!!
-Replace [frinx-licence-secret-token] with your unique token. The token is unique to your user account on frinx.io and cannot be shared with other users. It can be found [here](https://frinx.io/profile). (you need to be logged in frinx.io to view your token).
-!!!
-
 ### Stop the container
-
 
 To stop the container type:
 
@@ -132,12 +126,8 @@ To activate UniConfig, unzip the file, open the directory and run the
 following command:
 
 ```
-./run_uniconfig.sh -l [frinx-license-secret-token]
+./run_uniconfig.sh
 ```
-
-!!!
-Replace [frinx-licence-secret-token] with your unique token. The token is unique to your user account on frinx.io and cannot be shared with other users. It can be found [here](https://frinx.io/profile). (you need to be logged in frinx.io to view your token).
-!!!
 
 !!!
 For more information on the different arguments run the startup script with the **-h** flag
