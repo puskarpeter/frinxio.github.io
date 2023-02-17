@@ -21,13 +21,9 @@
  - Fix delete request in replace-paths
  
  - Fixed schema context building
- 
- - Java based migration (#745)
- 
- - Java based migration for huawei config - review 2
- 
- - Java based migration for huawei config - review
- 
+
+ - Java based migration for huawei config
+
  - Bulk-edit - removed the version comparison before version drop procedure
  
  - Bump dependencycheck.version, update suppress for CVE-2022-41915, CVE-2022-41881

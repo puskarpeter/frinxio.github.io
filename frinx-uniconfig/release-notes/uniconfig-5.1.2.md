@@ -23,13 +23,7 @@
  - Changed log level in mockito-configuration to INFO
  
  - Fix wrong groupIds
- 
- - Java based migration (#746)
- 
- - Java based migration for huawei config - review 2
- 
- - Java based migration for huawei config - review
- 
+
  - Java based migration for huawei config
  
  - Bulk-edit - removed the version comparison before version drop procedure
