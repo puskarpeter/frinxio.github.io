@@ -5,7 +5,7 @@
 To add new device to invetory, click on the **Add device** button in the
 **Device inventory** tab.
 
-![Add device to inventory](add_and_install_device.gif)
+![Add device to inventory](Add_and_install_new_device.gif)
 
 ## JSON examples
 

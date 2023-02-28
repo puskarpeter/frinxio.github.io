@@ -20,7 +20,7 @@ Open your browser and go to `[host_ip]` if installed locally go to
 `https://localhost`. This is the GUI (UniConfig UI) for managing all of
 your devices. You should see a screen like this:
 
-[![FM 1.6 Dashboard](fm1.6_dashboard.png)](fm1.6_dashboard.png)
+[![FM 2.0 Dashboard](fm2.0_dashboard.png)](fm2.0_dashboard.png)
 
 !!!
 For Demo Use Cases, please download repository [fm-workflows](https://github.com/FRINXio/fm-workflows)
