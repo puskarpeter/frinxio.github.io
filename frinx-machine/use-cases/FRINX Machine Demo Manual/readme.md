@@ -6,7 +6,7 @@ Select **Login** in the upper-right corner to log into the service. Please conta
 
 After logging in, you can see the **FRINX Machine dashboard**:
 
-![FRINX Machine dashboard](fm_dashboard.png)
+![FRINX Machine dashboard](fm2.0_dashboard.png)
 
 ## Demo Config Manager UI
 

@@ -2,7 +2,7 @@
 
 ## Adding device to inventory
 
-To add new device to invetory, click on the **Add device** button in the
+To add a new device to inventory, click on the **Add device** button in the
 **Device inventory** tab.
 
 ![Add device to inventory](Add_and_install_new_device.gif)
