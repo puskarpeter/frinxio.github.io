@@ -934,4 +934,4 @@ Slot:   &lt;component_name&gt;
 
 ##### Unit
 
-Link to GitHub : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/cer/platform)
+Link to GitHub : [cer-unit](https://github.com/FRINXio/cli-units/tree/master/cer/platform)
