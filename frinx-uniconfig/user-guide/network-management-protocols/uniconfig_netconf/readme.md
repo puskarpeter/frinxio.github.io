@@ -768,7 +768,8 @@ the java executable can be found in appeared 'target' directory with
 name 'netconf-testtool-[version]-executable.jar' (version placeholder
 depends on used release).
 
-Up-to-date NETCONF testtool is also available at frinx artifactory <https://artifactory.frinx.io/>. 
+Up-to-date NETCONF testtool is also available at frinx artifactory <https://artifactory.frinx.io/>.  
+Up-to-date NETCONF testtool is also available at DockerHub as Docker Image.  
 
 ### Starting of the NETCONF testtool
 
@@ -963,6 +964,92 @@ Notes:
 2. --md-sal true --md-sal-persistent true will preserves datastore content across netconf sessions
 3. --initial-config-xml-file data.xml overrides --md-sal true and send hardcoded response to get-config.
 4. --notification-file notif.xml notification support
+
+### Starting of the NETCONF testtool from Docker Image
+
+1. download docker image using download command
+```
+docker pull frinx/netconf-testtool
+```
+2. run it using docker run command
+```
+docker run -it frinx/netconf-testtool
+```
+3. you can use options of Netconf test tool starting script
+```
+-x or --xmx to set Java heap for test tool
+-p or --port to set starting port
+-d or --devices to set number of simulated devices
+-s or --schemas to set schemas folder (required firstly mount schemas folder to docker container using -v)
+-i or --init-conf to set initial simulated config to be returned by get-config RPC (required firstly mount this config file to docker container using -v)
+--ssh to enable ssh
+--md-sal to enable md-sal
+--debug to run in debug mode
+-h or --help to display help options
+--override to override these options to access all netconf test tool options directly
+```
+**note**  
+To set value of xmx is required to separate -x or --xmx option and value of xmx with space.  
+When using xmx setting option together with override option, it is required to use xmx setting option first before override.  
+All options and their values should be separated with space.  
+Setting to enable ssh or md-sal requires only option ssh or md-sal to be present to enable these functions and no other value is required.  
+When override is used, then it is not possible to set any other option from simple interface except Java specific options, like xmx and partially also debug.  
+After override option there should be Netconf test tool complex interface options.  
+If you want to use external files like schemas or init config file, you should first mount them using -v option of docker.  
+You should use --publish option to publish ports if you want to use them.  
+You can use --rm option after docker run to automatically remove docker container after it is stopped.  
+
+```
+docker run --publish 1024-1123:1024-1123 -v ./schemas:/opt/schemas -v ./i.xml:/opt/i.xml -it frinx/netconf-testtool \
+--xmx 1G --port 1024 --devices 100 --schemas ./schemas --init-conf ./i.xml --ssh --md-sal --debug
+```
+4. you can also use help option to show how to use it using -h or --help
+```
+docker run --rm -it frinx/netconf-testtool --help
+```
+5. you can also override simple interface of starting script and use all options of test tool directly
+```
+docker run --publish 1024-1123:1024-1123 -v ./schemas:/opt/schemas -v ./i.xml:/opt/i.xml -v ./notification.xml:/opt/notification.xml \
+            -it frinx/netconf-testtool --xmx 1G --override \
+            --ssh true \
+            --md-sal true \
+            --starting-port 1024 \
+            --device-count 100 \
+            --schemas-dir ./schemas \
+            --initial-config ./i.xml \
+            --notification-file ./notification.xml \
+            --debug true
+```
+**note**  
+If you override starting script options, you should set Java heap size using -x or --xmx option before --override option.  
+You could not use any other starting script options except xmx and debug option.  
+If you override starting script options, --debug option activate only Java and shell debug mode, but not debug mode of test tool itself.  
+If you want to start debug mode of netconf test tool, you should use debug options of Netconf test tool directly.  
+
+6. you can also override docker entrypoint and run netconf test tool by custom way using all options including java options and run like bellow
+```
+docker run --publish 1024-1123:1024-1123 -v ./schemas:/opt/schemas -v ./i.xml:/opt/i.xml -v ./notifications.xml:/opt/notification.xml \
+-it --entrypoint /bin/bash frinx/netconf-testtool
+```
+and in docker container shell:
+```
+java -Djava.security.egd=file:/dev/./urandom \
+     -Xmx1G \
+     -jar netconf-testtool-executable.jar \
+     --ssh true \
+     --md-sal true \
+     --device-count 100 \
+     --starting-port 1024 \
+     --schemas-dir ./schemas \
+     --initial-config ./i.xml \
+     --notification-file ./notification.xml \
+     --debug true
+```
+7. in custom way of running test tool there are these files, placed in /opt folder
+```
+netconf-testtool-executable.jar   file to run netconf test tool
+run_netconf_testtool.sh           shell script file to start netconf test tool as default entrypoint
+```
 
 ### Prepare init config via Uniconfig for simulated netconf-testtool device
 1. start Uniconfig - in cache folder there can be present the folder with device yang models to preload them faster
