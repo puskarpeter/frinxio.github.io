@@ -274,27 +274,31 @@ Sample data-change-event captured by Kafka console consumer:
         "subtree-path": "/process=p3",
         "data-after": "{\n  \"process\": [\n    {\n      \"uid\": \"p3\"\n    }\n  ]\n}",
         "operation": "CREATE",
-        "node-id": "node"
+        "node-id": "node",
+        "topology-id": "uniconfig"
       },
       {
         "subtree-path": "/process=p2",
         "data-before": "{\n  \"process\": [\n    {\n      \"uid\": \"p2\"\n    }\n  ]\n}",
         "operation": "DELETE",
-        "node-id": "node"
+        "node-id": "node",
+        "topology-id": "uniconfig"
       },
       {
         "subtree-path": "/process=p1/address/bus-size",
         "data-after": "{\n  \"config:bus-size\": 2048\n}",
         "data-before": "{\n  \"config:bus-size\": 1024\n}",
         "operation": "UPDATE",
-        "node-id": "node"
+        "node-id": "node",
+        "topology-id": "uniconfig"
       },
       {
         "subtree-path": "/process=p1/address/bus-id",
         "data-after": "{\n  \"config:bus-id\": \"0xFFFF\"\n}",
         "data-before": "{\n  \"config:bus-id\": \"0x451FE\"\n}",
         "operation": "UPDATE",
-        "node-id": "node"
+        "node-id": "node",
+        "topology-id": "uniconfig"
       }
     ]
   }
@@ -321,6 +325,7 @@ Edit entry fields:
   'data-before' represents removed data.
 - operation: Operation type of the data change event.
 - node-id: Node identifier of the data change event.
+- topology-id: Topology where the node exists. Can be either 'uniconfig' or 'unistore'.
 
 ## Connection notifications
 
