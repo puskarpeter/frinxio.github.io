@@ -35,6 +35,18 @@ frinx-openconfig-platform:components
                     "frinx-ciena-platform-extension:platform-description": "<platform_description>",
                     "frinx-ciena-platform-extension:platform-name": "<platform_name>",
                     "frinx-ciena-platform-extension:device-sn": "<device_sn>",
+                    "frinx-ciena-platform-extension:device-type": "<device_type>",
+                    "frinx-ciena-platform-extension:device-part-number": "<device_part_number>",
+                    "frinx-ciena-platform-extension:device-revision": "<device_revision>",
+                    "frinx-ciena-platform-extension:device-manufactured-date": "<device_manufactured_date>",
+                    "frinx-ciena-platform-extension:device-clei-code": "<device_clei_code>",
+                    "frinx-ciena-platform-extension:location": "<location>",
+                    "frinx-ciena-platform-extension:mac-address": "<mac_address>",
+                    "frinx-ciena-platform-extension:vendor-name": "<vendor_name>",
+                    "frinx-ciena-platform-extension:vendor-oui": "<vendor_oui>",
+                    "frinx-ciena-platform-extension:vendor-clei-code": "<vendor_clei_code>",
+                    "frinx-ciena-platform-extension:ciena-port-number": "<ciena_port_number>",
+                    "frinx-ciena-platform-extension:ciena-revision": "<ciena_revision>",
                     "frinx-ciena-platform-extension:software-running-package": "<running_package>",
                     "frinx-ciena-platform-extension:device-param-version": "<param_version>",
                     "frinx-ciena-platform-extension:ethernet-base-address": "<eth_base_address>",
@@ -58,6 +70,48 @@ frinx-openconfig-platform:components
                     "frinx-ciena-platform-extension:board-pn": "<board_pn>",
                     "frinx-ciena-platform-extension:board-rev": "<board_rev>",
                     "frinx-ciena-platform-extension:fault-card": "<fault_card>",
+                    "frinx-ciena-platform-extension:identifier": "<identifier>",
+                    "frinx-ciena-platform-extension:ext-identifier": "<ext_identifier>",
+                    "frinx-ciena-platform-extension:connector": "<connector>",
+                    "frinx-ciena-platform-extension:transceiver-codes": "<transceiver_codes>",
+                    "frinx-ciena-platform-extension:transceiver-codes-10-gbe-compliance": "<transceiver_codes_10_gbe_compliance>",
+                    "frinx-ciena-platform-extension:transceiver-codes-sonet-compliance": "<transceiver_codes_sonet_compliance>",
+                    "frinx-ciena-platform-extension:transceiver-codes-ethernet-compliance": "<transceiver_codes_ethernet_compliance>",
+                    "frinx-ciena-platform-extension:transceiver-codes-link-length": "<transceiver_codes_link_length>",
+                    "frinx-ciena-platform-extension:transceiver-codes-transmitter-technology": "<transceiver_codes_transmitter_technology>",
+                    "frinx-ciena-platform-extension:transceiver-codes-transmission-media": "<transceiver_codes_transmission_media>",
+                    "frinx-ciena-platform-extension:transceiver-codes-channel-speed": "<transceiver_codes_channel_speed>",
+                    "frinx-ciena-platform-extension:encoding": "<encoding>",
+                    "frinx-ciena-platform-extension:br-nominal": "<br_nominal>",
+                    "frinx-ciena-platform-extension:length-fiber-1-km": "<length_fiber_1_km>",
+                    "frinx-ciena-platform-extension:length-fiber-100-m": "<length_fiber_100_m>",
+                    "frinx-ciena-platform-extension:length-50um-10-m": "<length_50um_10_m>",
+                    "frinx-ciena-platform-extension:length-625um-10-m": "<length_625um_10_m>",
+                    "frinx-ciena-platform-extension:length-copper-1-m": "<length_copper_1_m>",
+                    "frinx-ciena-platform-extension:wavelength": "<wavelength>",
+                    "frinx-ciena-platform-extension:options": "<options>",
+                    "frinx-ciena-platform-extension:options-tunable": "<options_tunable>",
+                    "frinx-ciena-platform-extension:options-rate-select": "<options_rate_select>",
+                    "frinx-ciena-platform-extension:options-tx-disable": "<options_tx_disable>",
+                    "frinx-ciena-platform-extension:options-tx-fault": "<options_tx_fault>",
+                    "frinx-ciena-platform-extension:options-loss-of-signal-invert": "<options_loss_of_signal_invert>",
+                    "frinx-ciena-platform-extension:options-loss-of-signal": "<options_loss_of_signal>",
+                    "frinx-ciena-platform-extension:br-max": "<br_max>",
+                    "frinx-ciena-platform-extension:br-min": "<br_min>",
+                    "frinx-ciena-platform-extension:date": "<date>",
+                    "frinx-ciena-platform-extension:diag-monitor-type": "<diag_monitor_type>",
+                    "frinx-ciena-platform-extension:diag-monitor-type-legacy-diagnostics": "<diag_monitor_type_legacy_diagnostics>",
+                    "frinx-ciena-platform-extension:diag-monitor-type-diagnostics-monitoring": "<diag_monitor_type_diagnostics_monitoring>",
+                    "frinx-ciena-platform-extension:diag-monitor-type-internally-calibrated": "<diag_monitor_type_internally_calibrated>",
+                    "frinx-ciena-platform-extension:diag-monitor-type-externally-calibrated": "<diag_monitor_type_externally_calibrated>",
+                    "frinx-ciena-platform-extension:diag-monitor-type-rw-power-measurement": "<diag_monitor_type_rw_power_measurement>",
+                    "frinx-ciena-platform-extension:enhanced-options": "<enhanced_options>",
+                    "frinx-ciena-platform-extension:enhanced-options-alarm-warning-flags": "<enhanced_options_alarm_warning_flags>",
+                    "frinx-ciena-platform-extension:enhanced-options-soft-tx-disable": "<enhanced_options_soft_tx_disable>",
+                    "frinx-ciena-platform-extension:enhanced-options-soft-tx-fault": "<enhanced_options_soft_tx_fault>",
+                    "frinx-ciena-platform-extension:enhanced-options-soft-rx-los": "<enhanced_options_soft_rx_los>",
+                    "frinx-ciena-platform-extension:enhanced-options-soft-rate-select": "<enhanced_options_soft_rate_select>",
+                    "frinx-ciena-platform-extension:sff-8472-compliance": "<sff_8472_compliance>",
                     "frinx-ciena-platform-extension:main-board": {
                         "module-sn": "<main_module_sn>",
                         "model-part-number": "<main_model_pn>",
@@ -395,78 +449,78 @@ ciena_saos6&gt; port xcvr show port &lt;component_name&gt; vendor
 +-------------------------- XCVR VENDOR DATA - Port &lt;component_name&gt; ---------------+
 | Parameter                | Value              | Decoded String Equivalent         |
 +--------------------------+--------------------+-----------------------------------+
-| Identifier               |                    |                                   |
-| Ext. Identifier          |                    |                                   |
-| Connector                |                    |                                   |
+| Identifier               | &lt;identifier&gt;       |                                   |
+| Ext. Identifier          | &lt;ext_identifier&gt;   |                                   |
+| Connector                | &lt;connector&gt;        |                                   |
 +--------------------------+--------------------+-----------------------------------+
-| Transceiver Codes        |                    |                                   |
-|  - 10 GbE Compliance     |                    |                                   |
-|  - SONET Compliance      |                    |                                   |
-|  - Ethernet Compliance   |                    |                                   |
-|  - Link Length           |                    |                                   |
-|  - Transmitter Technology|                    |                                   |
-|  - Transmission Media    |                    |                                   |
-|  - Channel speed         |                    |                                   |
+| Transceiver Codes        | &lt;transceiver_codes&gt;                        |           |
+|  - 10 GbE Compliance     | &lt;transceiver_codes_10_gbe_compliance&gt;      |           |
+|  - SONET Compliance      | &lt;transceiver_codes_sonet_compliance&gt;       |           |
+|  - Ethernet Compliance   | &lt;transceiver_codes_ethernet_compliance&gt;    |           |
+|  - Link Length           | &lt;transceiver_codes_link_length&gt;            |           |
+|  - Transmitter Technology| &lt;transceiver_codes_transmitter_technology&gt; |           |
+|  - Transmission Media    | &lt;transceiver_codes_transmission_media&gt;     |           |
+|  - Channel speed         | &lt;transceiver_codes_channel_speed&gt;          |           |
 +--------------------------+--------------------+-----------------------------------+
-| Encoding                 |                    |                                   |
-| BR, Nominal              |                    |                                   |
+| Encoding                 | &lt;encoding&gt;         |                                   |
+| BR, Nominal              | &lt;br_nominal&gt;       |                                   |
 |--------------------------+--------------------+-----------------------------------|
-| Length(9um fiber) 1km    |                    |                                   |
-| Length(9um fiber) 100m   |                    |                                   |
-| Length(50um) 10m         |                    |                                   |
-| Length(62.5um) 10m       |                    |                                   |
-| Length(copper) 1m        |                    |                                   |
+| Length(9um fiber) 1km    | &lt;length_fiber_1_km&gt;     |                              |
+| Length(9um fiber) 100m   | &lt;length_fiber_100_m&gt;    |                              |
+| Length(50um) 10m         | &lt;length_50um_10_m&gt;      |                              |
+| Length(62.5um) 10m       | &lt;length_625um_10_m&gt;     |                              |
+| Length(copper) 1m        | &lt;length_copper_1_m&gt;     |                              |
 |--------------------------+--------------------+-----------------------------------|
-| Vendor Name              | CISCO-OEM          |                                   |
-| Vendor OUI               | 0x009065           |                                   |
-| Vendor PN                | &lt;port_vendor_pn&gt;   |                                   |
-| Vendor Revision          | &lt;port_vendor_rev&gt;  |                                   |
-| Vendor Serial Number     | &lt;port_vendor_sn&gt;   |                                   |
-| Vendor CLEI Code         |                    |                                   |
-| Ciena PN                 |                    |                                   |
-| Ciena Revision           |                    |                                   |
-| Wavelength               |                    |                                   |
+| Vendor Name              | &lt;vendor_name&gt;           |                              |
+| Vendor OUI               | &lt;vendor_oui&gt;            |                              |
+| Vendor PN                | &lt;port_vendor_pn&gt;        |                              |
+| Vendor Revision          | &lt;port_vendor_rev&gt;       |                              |
+| Vendor Serial Number     | &lt;port_vendor_sn&gt;        |                              |
+| Vendor CLEI Code         | &lt;vendor_clei_code&gt;      |                              |
+| Ciena PN                 | &lt;ciena_port_number&gt;     |                              |
+| Ciena Revision           | &lt;ciena_revision&gt;        |                              |
+| Wavelength               | &lt;wavelength&gt;            |                              |
 |--------------------------+--------------------+-----------------------------------|
-| Options                  |                    |                                   |
-|  - Tunable               |                    |                                   |
-|  - RATE_SELECT           |                    |                                   |
-|  - TX_DISABLE            |                    |                                   |
-|  - TX_FAULT              |                    |                                   |
-|  - Loss of Signal Invert |                    |                                   |
-|  - Loss of Signal        |                    |                                   |
+| Options                  | &lt;options&gt;                       |                      |
+|  - Tunable               | &lt;options_tunable&gt;               |                      |
+|  - RATE_SELECT           | &lt;options_rate_select&gt;           |                      |
+|  - TX_DISABLE            | &lt;options_tx_disable&gt;            |                      |
+|  - TX_FAULT              | &lt;options_tx_fault&gt;              |                      |
+|  - Loss of Signal Invert | &lt;options_loss_of_signal_invert&gt; |                      |
+|  - Loss of Signal        | &lt;options_loss_of_signal&gt;        |                      |
 |--------------------------+--------------------+-----------------------------------|
-| BR, max                  |                    |                                   |
-| BR, min                  |                    |                                   |
-| Date (mm/dd/yy)          |                    |                                   |
+| BR, max                  | &lt;br_max&gt;           |                                   |
+| BR, min                  | &lt;br_min&gt;           |                                   |
+| Date (mm/dd/yy)          | &lt;date&gt;             |                                   |
 |--------------------------+--------------------+-----------------------------------|
-| Diag Monitor Type        |                    |                                   |
-|  - Legacy diagnostics    |                    |                                   |
-|  - Diagnostics monitoring|                    |                                   |
-|  - Internally calibrated |                    |                                   |
-|  - Externally calibrated |                    |                                   |
-|  - Rx power measurement  |                    |                                   |
+| Diag Monitor Type        | &lt;diag_monitor_type&gt;                        |           |
+|  - Legacy diagnostics    | &lt;diag_monitor_type_legacy_diagnostics&gt;     |           |
+|  - Diagnostics monitoring| &lt;diag_monitor_type_diagnostics_monitoring&gt; |           |
+|  - Internally calibrated | &lt;diag_monitor_type_internally_calibrated&gt;  |           |
+|  - Externally calibrated | &lt;diag_monitor_type_externally_calibrated&gt;  |           |
+|  - Rx power measurement  | &lt;diag_monitor_type_rw_power_measurement&gt;   |           |
 |--------------------------+--------------------+-----------------------------------|
-| Enhanced Options         |                    |                                   |
-|  - Alarm/Warning Flags   |                    |                                   |
-|  - Soft TX_DISABLE       |                    |                                   |
-|  - Soft TX_FAULT         |                    |                                   |
-|  - Soft RX_LOS           |                    |                                   |
-|  - Soft RATE_SELECT      |                    |                                   |
+| Enhanced Options         | &lt;enhanced_options&gt;                         |           |
+|  - Alarm/Warning Flags   | &lt;enhanced_options_alarm_warning_flags&gt;     |           |
+|  - Soft TX_DISABLE       | &lt;enhanced_options_soft_tx_disable&gt;         |           |
+|  - Soft TX_FAULT         | &lt;enhanced_options_soft_tx_fault&gt;           |           |
+|  - Soft RX_LOS           | &lt;enhanced_options_soft_rx_los&gt;             |           |
+|  - Soft RATE_SELECT      | &lt;enhanced_options_soft_rate_select&gt;        |           |
 |--------------------------+--------------------+-----------------------------------|
-| SFF-8472 Compliance      |                    |                                   |
+| SFF-8472 Compliance      | &lt;sff_8472_compliance>                      |           |
 +--------------------------+--------------------+-----------------------------------+
 
 Ciena_saos6&gt; chassis show device-id
 +---------------- CHASSIS DEVICE ID ----------------+
 | Parameter                 |                       |
 +---------------------------+-----------------------+
-| Device Type               |                       |
-| Part Number/Revision      |                       |
+| Device Type               | &lt;device_type&gt;         |
+| Part Number/Revision      | &lt;device_part_number&gt;  |
 | Serial Number             | &lt;device_sn&gt;           |
-| Manufactured Date         |                       |
-| CLEI Code                 |                       |
-| Location of Manufacture   |                       |
-| Chassis MAC Address       |                       |
+| Manufactured Date         | &lt;device_manufactured_date&gt;|
+| CLEI Code                 | &lt;device_clei_code&gt;    |
+| Location of Manufacture   | &lt;location&gt;            |
+| Chassis MAC Address       | &lt;mac_address&gt;         |
 | Param Version             | &lt;param_version&gt;       |
 +---------------------------+-----------------------+
 

@@ -26,7 +26,8 @@ frinx-openconfig-aaa:aaa
                             "frinx-huawei-aaa-extension:service-type": [
                                 "{{user_service_types}}"
                             ],
-                            "frinx-huawei-aaa-extension:privilege-level": "{{user_privilege_level}}"
+                            "frinx-huawei-aaa-extension:privilege-level": "{{user_privilege_level}}",
+                            "frinx-ciena-aaa-extension:access-level": "{{user_access_level}}"
                         }
                     }
                 ]
@@ -140,4 +141,21 @@ radius
 
 ##### Unit
 
-Link to github : [huawei-unit](https://github.com/FRINXio/cli-units/tree/master/huawei/aaa)
+Link to GitHub : [huawei-unit](https://github.com/FRINXio/cli-units/tree/master/huawei/aaa)
+
+### SAOS 6
+
+#### CLI
+
+<pre> 
+aaa
+ user create user {{user_name}} access-level {{user_access_level}} secret {{user_hashed_password}}
+</pre>
+
+*limited, admin, super, diag* is conversion of {{user_access_level}} set to "frinx-ciena-aaa-extension:access-level"
+
+##### Unit
+
+Link to GitHub : [saos6-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos-6/saos-6-aaa)
+
+
