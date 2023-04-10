@@ -296,6 +296,8 @@ Description of RPC-request input body fields:
     which the reply from CLI session should already be available (if it
     won't be available, then command output will be read after execution
     of the next command - outputs can be messed up).
+- **error-check** (optional) - By default, UC does not check for errors in commands.
+    If error-handling is enabled and an error occurs, RPC will fail.
 
 #### Wait-for-echo behaviour
 
