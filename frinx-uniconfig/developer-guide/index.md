@@ -14,3 +14,4 @@ commands:
 - [Implementing CLI Translation Unit](../developer-guide/cli-translation-unit)
 - [NETCONF Unified Translation Unit](../developer-guide/netconf-translation-unit)
 - [Native-CLI translation units](../developer-guide/native-cli-units)
+- [Metrics](../developer-guide/metrics)

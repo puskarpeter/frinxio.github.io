@@ -9,7 +9,8 @@ RPC health input is empty and RPC output contains result of operation.
 
 ```bash RPC Request
 curl --location --request POST 'http://localhost:8181/rests/operations/uniconfig-manager:health' \
---header 'Accept: application/json'
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json'
 ```
 
 **Response when database persistence is disabled:**
