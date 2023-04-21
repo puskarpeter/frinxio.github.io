@@ -1,128 +1,126 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-     contentScriptType="application/ecmascript" contentStyleType="text/css" height="367px" preserveAspectRatio="none"
-     style="width:781px;height:367px;background:#FFFFFF;" version="1.1" viewBox="0 0 781 367" width="781px"
-     zoomAndPan="magnify">
-    <defs>
-        <filter height="300%" id="f12ye8m17c9a9q" width="300%" x="-1" y="-1">
-            <feGaussianBlur result="blurOut" stdDeviation="2.0"/>
-            <feColorMatrix in="blurOut" result="blurOut2" type="matrix"
-                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
-            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
-            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
-        </filter>
-    </defs>
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="543px" preserveAspectRatio="none" style="width:687px;height:543px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 687 543" width="687px" zoomAndPan="magnify">
+    <defs/>
     <g>
-        <text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="233" x="276"
-              y="28.708">RPC calculate-subtree-diff
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+              textLength="175" x="257.75" y="29.9659">RPC calculate-subtree-diff
         </text>
-        <rect fill="#FFFFFF" filter="url(#f12ye8m17c9a9q)" height="217.9297" style="stroke:#A80036;stroke-width:1.0;"
-              width="10" x="346" y="133.25"/>
-        <rect fill="#FFFFFF" filter="url(#f12ye8m17c9a9q)" height="217.9297" style="stroke:#A80036;stroke-width:1.0;"
-              width="10" x="737" y="133.25"/>
-        <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="48" x2="48" y1="123.25"
-              y2="360.1797"/>
-        <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="351" x2="351" y1="123.25"
-              y2="360.1797"/>
-        <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="742" x2="742" y1="123.25"
-              y2="360.1797"/>
-        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="5"
-              y="119.9482">Application
+        <rect fill="#FFFFFF" height="393.7481" style="stroke:#181818;stroke-width:1.0;" width="10" x="316"
+              y="134.1358"/>
+        <rect fill="#FFFFFF" height="393.7481" style="stroke:#181818;stroke-width:1.0;" width="10" x="646"
+              y="134.1358"/>
+        <rect fill="none" height="188.512" style="stroke:#000000;stroke-width:1.5;" width="440.5" x="210.5"
+              y="299.6659"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="46" x2="46" y1="124.1358"
+              y2="536.8839"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="320.5" x2="320.5" y1="124.1358"
+              y2="536.8839"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="650.5" x2="650.5" y1="124.1358"
+              y2="536.8839"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="5"
+              y="120.0339">Application
         </text>
-        <ellipse cx="48" cy="49.9531" fill="#FEFECE" filter="url(#f12ye8m17c9a9q)" rx="8" ry="8"
-                 style="stroke:#A80036;stroke-width:2.0;"/>
-        <path d="M48,57.9531 L48,84.9531 M35,65.9531 L61,65.9531 M48,84.9531 L35,99.9531 M48,84.9531 L61,99.9531 "
-              fill="none" filter="url(#f12ye8m17c9a9q)" style="stroke:#A80036;stroke-width:2.0;"/>
-        <rect fill="#FEFECE" filter="url(#f12ye8m17c9a9q)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;"
-              width="208" x="245" y="87.9531"/>
-        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="194" x="252"
-              y="107.9482">Uniconfig Subtree Manager
+        <ellipse cx="46" cy="53.5679" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+        <path d="M46,61.5679 L46,88.5679 M33,69.5679 L59,69.5679 M46,88.5679 L33,103.5679 M46,88.5679 L59,103.5679 "
+              fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+        <rect fill="#E2E2F0" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="201"
+              x="220.5" y="90.0679"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="187" x="227.5"
+              y="112.0339">Uniconfig Subtree Manager
         </text>
-        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="704"
-              y="119.9482">Datastore
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="65" x="615.5"
+              y="120.0339">Datastore
         </text>
-        <path d="M724,70.9531 C724,60.9531 742,60.9531 742,60.9531 C742,60.9531 760,60.9531 760,70.9531 L760,96.9531 C760,106.9531 742,106.9531 742,106.9531 C742,106.9531 724,106.9531 724,96.9531 L724,70.9531 "
-              fill="#FEFECE" filter="url(#f12ye8m17c9a9q)" style="stroke:#000000;stroke-width:1.5;"/>
-        <path d="M724,70.9531 C724,80.9531 742,80.9531 742,80.9531 C742,80.9531 760,80.9531 760,70.9531 " fill="none"
-              style="stroke:#000000;stroke-width:1.5;"/>
-        <rect fill="#FFFFFF" filter="url(#f12ye8m17c9a9q)" height="217.9297" style="stroke:#A80036;stroke-width:1.0;"
-              width="10" x="346" y="133.25"/>
-        <rect fill="#FFFFFF" filter="url(#f12ye8m17c9a9q)" height="217.9297" style="stroke:#A80036;stroke-width:1.0;"
-              width="10" x="737" y="133.25"/>
-        <polygon fill="#A80036" points="334,150.3828,344,154.3828,334,158.3828,338,154.3828"
-                 style="stroke:#A80036;stroke-width:1.0;"/>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="48" x2="340" y1="154.3828" y2="154.3828"/>
-        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="274" x="55"
-              y="149.3169">RPC calculate-subtree-diff (source, target)
+        <path d="M633,69.0679 C633,59.0679 651,59.0679 651,59.0679 C651,59.0679 669,59.0679 669,69.0679 L669,95.0679 C669,105.0679 651,105.0679 651,105.0679 C651,105.0679 633,105.0679 633,95.0679 L633,69.0679 "
+              fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+        <path d="M633,69.0679 C633,79.0679 651,79.0679 651,79.0679 C651,79.0679 669,79.0679 669,69.0679 " fill="none"
+              style="stroke:#181818;stroke-width:1.5;"/>
+        <rect fill="#FFFFFF" height="393.7481" style="stroke:#181818;stroke-width:1.0;" width="10" x="316"
+              y="134.1358"/>
+        <rect fill="#FFFFFF" height="393.7481" style="stroke:#181818;stroke-width:1.0;" width="10" x="646"
+              y="134.1358"/>
+        <polygon fill="#181818" points="304,153.8419,314,157.8419,304,161.8419,308,157.8419"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="46" x2="310" y1="157.8419" y2="157.8419"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="246" x="53"
+              y="152.0328">RPC calculate-subtree-diff (source, target)
         </text>
-        <polygon fill="#A80036" points="725,179.5156,735,183.5156,725,187.5156,729,183.5156"
-                 style="stroke:#A80036;stroke-width:1.0;"/>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="356" x2="731" y1="183.5156" y2="183.5156"/>
-        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="246" x="363"
-              y="178.4497">read source data by path and location
+        <polygon fill="#181818" points="634,185.5479,644,189.5479,634,193.5479,638,189.5479"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="326" x2="640" y1="189.5479" y2="189.5479"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="226" x="333"
+              y="183.7389">read source data by path and location
         </text>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="356" x2="366" y1="212.6484" y2="208.6484"/>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="356" x2="366" y1="212.6484" y2="216.6484"/>
-        <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="356" x2="736" y1="212.6484"
-              y2="212.6484"/>
-        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="96" x="373"
-              y="207.5825">source subtree
+        <line style="stroke:#181818;stroke-width:1.0;" x1="327" x2="337" y1="221.2539" y2="217.2539"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="327" x2="337" y1="221.2539" y2="225.2539"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="326" x2="645" y1="221.2539"
+              y2="221.2539"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89" x="343"
+              y="215.4449">source subtree
         </text>
-        <polygon fill="#A80036" points="725,237.7813,735,241.7813,725,245.7813,729,241.7813"
-                 style="stroke:#A80036;stroke-width:1.0;"/>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="356" x2="731" y1="241.7813" y2="241.7813"/>
-        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="242" x="363"
-              y="236.7153">read target data by path and location
+        <polygon fill="#181818" points="634,248.9599,644,252.9599,634,256.9599,638,252.9599"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="326" x2="640" y1="252.9599" y2="252.9599"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="223" x="333"
+              y="247.1509">read target data by path and location
         </text>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="356" x2="366" y1="270.9141" y2="266.9141"/>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="356" x2="366" y1="270.9141" y2="274.9141"/>
-        <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="356" x2="736" y1="270.9141"
-              y2="270.9141"/>
-        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="92" x="373"
-              y="265.8481">target subtree
+        <line style="stroke:#181818;stroke-width:1.0;" x1="327" x2="337" y1="284.6659" y2="280.6659"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="327" x2="337" y1="284.6659" y2="288.6659"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="326" x2="645" y1="284.6659"
+              y2="284.6659"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="86" x="343"
+              y="278.8569">target subtree
         </text>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="356" x2="398" y1="300.0469" y2="300.0469"/>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="398" x2="398" y1="300.0469" y2="313.0469"/>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="357" x2="398" y1="313.0469" y2="313.0469"/>
-        <polygon fill="#A80036" points="367,309.0469,357,313.0469,367,317.0469,363,313.0469"
-                 style="stroke:#A80036;stroke-width:1.0;"/>
-        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="367" x="363"
-              y="294.981">diff between source and target subtree in a git-like style
+        <path d="M210.5,299.6659 L270.5,299.6659 L270.5,309.3719 L260.5,319.3719 L210.5,319.3719 L210.5,299.6659 "
+              fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+        <rect fill="none" height="188.512" style="stroke:#000000;stroke-width:1.5;" width="440.5" x="210.5"
+              y="299.6659"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="15" x="225.5" y="314.5629">alt
         </text>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="48" x2="58" y1="342.1797" y2="338.1797"/>
-        <line style="stroke:#A80036;stroke-width:1.0;" x1="48" x2="58" y1="342.1797" y2="346.1797"/>
-        <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="48" x2="345" y1="342.1797"
-              y2="342.1797"/>
-        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="125" x="65"
-              y="337.1138">RPC result with diff
-        </text><!--MD5=[2a7f54885d87cc07055909ee548e4f15]
-@startuml
-hide footbox
-title RPC calculate-subtree-diff
-
-actor Application
-participant "Uniconfig Subtree Manager"
-database "Datastore"
-
-activate "Uniconfig Subtree Manager"
-activate Datastore
-
-Application -> "Uniconfig Subtree Manager": RPC calculate-subtree-diff (source, target)
-"Uniconfig Subtree Manager" -> "Datastore": read source data by path and location
-"Datastore" - ->> "Uniconfig Subtree Manager": source subtree
-"Uniconfig Subtree Manager" -> "Datastore": read target data by path and location
-"Datastore" - ->> "Uniconfig Subtree Manager": target subtree
-"Uniconfig Subtree Manager" -> "Uniconfig Subtree Manager": diff between source and target subtree in a git-like style
-"Uniconfig Subtree Manager" - ->> Application: RPC result with diff
-@enduml
-
-PlantUML version 1.2021.11(Sat Oct 02 15:26:11 CEST 2021)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Default Encoding: UTF-8
-Language: en
-Country: GB
--->
+        <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing"
+              textLength="250" x="285.5" y="313.4248">[source and target use different YANG schemas]
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="326" x2="368" y1="343.0779" y2="343.0779"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="368" x2="368" y1="343.0779" y2="356.0779"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="327" x2="368" y1="356.0779" y2="356.0779"/>
+        <polygon fill="#181818" points="337,352.0779,327,356.0779,337,360.0779,333,356.0779"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="306" x="333"
+              y="337.2689">convert source and target data to opposite schema
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="326" x2="368" y1="405.49" y2="405.49"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="368" x2="368" y1="405.49" y2="418.49"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="327" x2="368" y1="418.49" y2="418.49"/>
+        <polygon fill="#181818" points="337,414.49,327,418.49,337,422.49,333,418.49"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="207" x="333"
+              y="381.975">compare source to dropped target
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="207" x="336"
+              y="399.681">and target to dropped source data
+        </text>
+        <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="210.5" x2="651" y1="427.49"
+              y2="427.49"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing"
+              textLength="231" x="215.5" y="439.2489">[source and target use same YANG schemas]
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="326" x2="368" y1="467.1779" y2="467.1779"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="368" x2="368" y1="467.1779" y2="480.1779"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="327" x2="368" y1="480.1779" y2="480.1779"/>
+        <polygon fill="#181818" points="337,476.1779,327,480.1779,337,484.1779,333,480.1779"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108" x="333"
+              y="461.3689">compare subtrees
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="47" x2="57" y1="518.8839" y2="514.8839"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="47" x2="57" y1="518.8839" y2="522.8839"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="46" x2="315" y1="518.8839"
+              y2="518.8839"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112" x="63"
+              y="513.0749">RPC result with diff
+        </text><!--SRC=[bPB1QWCX48RlFiMmfnQwBv138BJGKqffoA7GowpE9eAhehDf-_RLrLtsaBJKa-Bytp_pwrahWjuvxjoNOCs6uEtr4IGQEHfaQkFOSI1gbUvx8L2o2x3ptcY9h9qL7WDhgJrQXkPejNIsroSu51diqUA9GWCOuNZO2uMC7KQ2vYdjOg9HCs7r9RbD9SjXgH1YvGZjDfTjVkaJxg8RWwG7O0mdudkH15ct43SG21MKCiXDGVSD7laCQ1KOLwTR1D2ss-fRHTNm5heu_nDTHJDQeE7PBclhzPZYosDIe1Jw- -xb6Q8yqu1HG5greGcONkD2uHfaQemTEEzTr2djWhX26D8Jqqn82XMIXcRGXrrJLzUhR0MPI3S6YJZGNpFK3aegKP1LeiIUWrjzZV8d0iKnvVQfK-8vfXy0]-->
     </g>
 </svg>

@@ -1,0 +1,27 @@
+@startuml
+hide footbox
+title RPC calculate-subtree-git-like-diff
+
+actor Application
+participant "Uniconfig Subtree Manager" as USM
+database "Datastore"
+
+activate USM
+activate Datastore
+
+Application -> USM: RPC calculate-subtree-git-like-diff (source, target)
+USM -> Datastore: read source data by path and location
+Datastore -->> USM: source subtree
+USM -> Datastore: read target data by path and location
+Datastore -->> USM: target subtree
+
+alt source and target use different YANG schemas
+    USM -> USM: convert source and target data to opposite schema
+    USM -> USM: compare source to dropped target\n and target to dropped source data
+else source and target use same YANG schemas
+    USM -> USM: compare subtrees
+end
+
+USM -> USM: formatting diff to git-like style
+USM -->> Application: RPC result with diff
+@enduml
