@@ -2,19 +2,19 @@
 
 UniConfig shell is a command-line interface for Uniconfig. Accessible over SSH, it allows users to interact with Uniconfig features including the following:
 
-* reading operational data of devices
-* manipulating device configuration
-* manipulating configuration templates
-* manipulating data stored in Unistore
-* invoking device or UniConfig operations
-* manipulating global UniConfig settings
+* Reading operational data of devices
+* Manipulating device configuration
+* Manipulating configuration templates
+* Manipulating data stored in Unistore
+* Invoking device or UniConfig operations
+* Manipulating global UniConfig settings
 
 As Uniconfig shell is model-driven, its interface is mostly auto-generated from YANG schemas (e.g., tree structure of data-nodes or available
 RPC/action operations).
 
 ## Configuration
 
-By default, UniConfig shell is disabled. To enable it, configuration parameter 'cliShell/sshServer/enabled' must be set to 'true'
+By default, UniConfig shell is disabled. To enable it, the configuration parameter 'cliShell/sshServer/enabled' must be set to 'true'
 in the 'config/lighty-uniconfig-config.json' file.
 
 All available settings and descriptions are displayed in the following snippet.
@@ -32,26 +32,25 @@ cli-shell.ssh-server.username-password-auth.username=admin
 cli-shell.ssh-server.username-password-auth.password=secret
 ```
 
-After starting UniConfig, SSH server will listen for connections on port 2022 and loopback interface.
+After starting UniConfig, the SSH server will listen for connections on port 2022 and loopback interface.
 
-## Navigation in the shell
+## Navigating in the shell
 
-* Every command line starts with command prompt that ends with '>' character. Identifier of the command prompt changes
-  based on current shell mode and state of the execution in this mode.
-* Commands 'exit' and 'quit' appear in all shell modes. Command 'exit' returns state to the parent state, command 'quit'
-  returns state to the nearest parent mode (e.g., configuration mode, root mode, operational show mode). If the current
-  state of shell represents some mode, commands 'quit' and 'exit' have the same effect - returning to the parent mode.
-* Typed command can be sent to the UniConfig using ENTER key. After that, UniConfig processes the command and may
-  send a response to the console depending on the command behaviour. All commands are processed synchronously - user 
+* Every command line starts with a command prompt that ends with the '>' character. The identifier of the command prompt changes
+  based on the current shell mode and the state of the execution in this mode.
+* The commands 'exit' and 'quit' appear in all shell modes. The 'exit' command returns the state to the parent state, 'quit'
+  returns the state to the nearest parent mode (e.g., configuration mode, root mode, operational show mode). If the current
+  state of the shell represents some mode, 'quit' and 'exit' have the same effect - returning to the parent mode.
+* Typed commands can be sent to the UniConfig using the ENTER key. After that, UniConfig processes the command and may
+  send a response to the console depending on the command behaviour. All commands are processed synchronously - a user 
   cannot execute multiple commands in parallel in the same SSH session.
-* CTRL-A and CTRL-E can be used for moving cursor on the current line to the beginning of the line, or the end of the
-  line, respectively.
-* CTRl-L is used for clearing of the shell screen.
-* Arrow keys UP/DOWN are used for loading of the previous or more recent command in the command history.
-* To cancel current line and moving to the blank line, user can use CTRL+C shortcut.
-* Key TAB can be used for loading of the available suggestions in the current context. By hitting TAB again, user can
-  navigate through suggested commands using arrow keys and select some of them using ENTER. Submode with suggestions
-  can be left using CTRL-E shortcut. Text in the brackets contain description of the next command.
+* CTRL-A and CTRL-E move the cursor to the beginning or end of the current line.
+* CTRL-L clears the shell screen.
+* Arrow keys UP/DOWN are used to load previous commands in the command history.
+* CTRL+C cancels the current line and moves to a new blank line.
+* The TAB key can be used to load suggestions in the current context. Hit TAB again to navigate
+  through suggested commands using the arrow keys and select some of them using ENTER. Submode with suggestions
+  can be left with the shortcut CTRL-E. The text in the brackets contains a description of the next command.
 
 ```shell Loading available suggestions in 'uniconfig-topology-vnf21>' under 'show' command
 uniconfig-topology-vnf21>show 
@@ -66,9 +65,9 @@ confdConfig                                (ConfD configuration.)   |           
 event                                             (Event scripts)
 ```
 
-* If displayed output is longer than the current length of command-line window, output is displayed with scrolling 
-  capability. ENTER is used for displaying next line, while SPACE is used for displaying the next page. Character 'q'
-  can be used to leave scrolling mode. It is possible to scroll only in one direction - towards the end of the output.
+* If the displayed output is longer than the length of the command-line window, the output is displayed with scrolling 
+  capability. Use ENTER to display the next line and SPACE to display the next page. Use the 'q' key
+  to leave scrolling mode. You can only scroll only in one direction - towards the end of the output.
 
 ![Scrolling through long output](scrolling_example.png)
 
@@ -147,10 +146,10 @@ List of invoked commands are persisted across UniConfig restarts and SSH connect
 2. CRUD operations on top of persisted UniConfig settings.
 3. UniConfig RPC operations such as commit or calculate-diff.
 
-* After opening Configuration mode, a new UniConfig transaction is created. All operations that are invoked from
-  the configuration mode are executed in scope of created transaction.
-* Transaction is automatically closed after leaving the Configuration mode ('exit' or 'quit' command).
-* If user invokes 'commit' or 'checked-commit', transaction is automatically refreshed (user stays in the configuration
+* After opening Configuration mode, a new UniConfig transaction is created. All operations invoked from
+  the configuration mode are executed in the scope of the created transaction.
+* The transaction is automatically closed after leaving the Configuration mode ('exit' or 'quit' command).
+* If 'commit' or 'checked-commit' is invoked, the transaction is automatically refreshed (the user stays in configuration
   mode with a newly created transaction).
 
 ```shell Configuration mode overview
@@ -169,7 +168,7 @@ aliases
 diff (alias for 'request calculate-diff target-nodes/node *')
 ```
 
-Commands like SET / SHOW / DELETE are now available only on a specific device and are not accessible in the root configuration mode.
+Commands like SET / SHOW / DELETE are now available only on a specific device and are not accessible in root configuration mode.
 
 ```shell set / show / delete commands overview
 config>uniconfig-topology test-node-1
@@ -194,9 +193,9 @@ interfaces                             (Interfaces configuration)
   Construction of the path works the same way for SET / SHOW/ DELETE operations.
 
   
-* Example - displaying configuration of selected container:
+* Example - displaying the configuration of a selected container:
 
-1. user first needs to go into a specific topology on a specific device:
+1. The user must first go into a specific topology on a specific device:
 ```shell move to a specific topology
 config>uniconfig-topology
 nodes
@@ -208,7 +207,7 @@ config>uniconfig-topology test-node-1
 uniconfig-topology-test-node-1>
 ```
 
-2. afterwards, show is available to the user
+2. After this, the show operation is available:
 
 ```shell Show operation: selection of root data container
 uniconfig-topology-test-node-1>show 
@@ -223,13 +222,13 @@ confdConfig                                (ConfD configuration.)   |           
 event                                             (Event scripts)
 ```
 
-```shell Show operation: selection of specific virtual network interface 
+```shell Show operation: selection of a specific virtual network interface 
 uniconfig-topology-test-node-1>show interfaces vni 
 > (output to file)   vni-0/4              vni-0/6              vni-0/8              |           (pipe)
 vni-0/10             vni-0/5              vni-0/7              vni-0/9
 ```
 
-```shell Show operation: invocation of command
+```shell Show operation: invocation of a command
 uniconfig-topology-test-node-1>show interfaces vni vni-0/10 
 {
   "name": "vni-0/10",
@@ -245,9 +244,9 @@ uniconfig-topology-test-node-1>show interfaces vni vni-0/10
 ### Delete configuration
 
 * Delete operation removes a selected subtree.
-* Example - removal of a container:
+* Example - removing a container:
 
-1. user first needs to go into a specific topology on a specific device:
+1. The user must first go into a specific topology on a specific device:
 ```shell move to a specific topology
 config>uniconfig-topology
 nodes
@@ -259,7 +258,7 @@ config>uniconfig-topology test-node-1
 uniconfig-topology-test-node-1>
 ```
 
-2. afterwards, delete is available to the user
+2. After this, the delete operation is available:
 
 ```shell Construction of path with help from suggestions
 uniconfig-topology-test-node-1>delete 
@@ -278,7 +277,7 @@ uniconfig-topology-test-node-1>delete interfaces vni vni-0/10 ether-options
 uniconfig-topology-test-node-1>
 ```
 
-3. user needs to quit to configuration mode, commit using request mode and afterwards return to the device on the topology.
+3. The user must quit to configuration mode, commit using request mode and return to the device on the topology:
 
 ```shell Verify state of 'network-instance'
 uniconfig-topology-test-node-1>show interfaces vni vni-0/10 
@@ -293,12 +292,12 @@ uniconfig-topology-test-node-1>show interfaces vni vni-0/10
 
 * Set operation can be used for:
 
-1. Setting value of a single leaf.
+1. Setting the value of a single leaf.
 2. Setting values of multiple leaves in a single shell operation.
-3. Setting list of values for a leaf-list.
+3. Setting a list of values for a leaf-list.
 4. Replacing the whole subtree using a JSON snippet.
 
-* Example - setting value of a single leaf:
+* Example - setting the value of a single leaf:
 ```shell move to specified device
 config>uniconfig-topology iosxr
 ```
@@ -493,8 +492,8 @@ in configuration-mode.
 1. Invoke selected UniConfig requests that read or alter UniConfig settings.
 2. Invoke RPCs or actions that are provided by network devices or other southbound mount-points.
 
-* User can fill in input parameters and values interactively or via provided JSON snippet.
-* The transaction is passed from the configuration-mode.
+* The user can fill in input parameters and values interactively or via a provided JSON snippet.
+* The transaction is passed from configuration-mode.
 - Example - invocation of RPC 'execute-and-read' with typed input parameters:
 
 ```shell Displaying available RPCs provided by device 'iosxr'
@@ -547,7 +546,7 @@ w!
 ```
 
 !!!
-UniConfig shell doesn't support interactive typing of input arguments for RPC/action that contains 'list' YANG element.
+UniConfig shell does not support interactive typing of input arguments for an RPC/action that contains the 'list' YANG element.
 Such operations must be executed using input JSON.
 !!!
 
@@ -578,7 +577,7 @@ lbr      (alias for 'logging-status broker restconf')
 ```
 
 
-* After opening Show mode, a new UniConfig transaction is opened. Transaction is closed after leaving this mode.
+* After opening Show mode, a new UniConfig transaction is opened. The transaction is closed after leaving this mode.
 
 
 ```shell Opening Show operational mode
@@ -624,7 +623,7 @@ show>transactions transaction-data
 
 ## Pipe operations
 UniConfig shell supports pipe operations that are similar to unix shell/bash pipes.
-When a command is followed by pipe sign: |, output of that command will be passed to a selected pipe operation.
+When a command is followed by pipe sign: |, the output of that command will be passed to a selected pipe operation.
 - Example:
 ```shell move to specified device
 config>uniconfig-topology R1
@@ -645,7 +644,7 @@ Supported pipe operations are:
 6. hide-attributes - hides attributes of data nodes.
 
 ## Redirection of output
-Result of a command execution can be redirected to a file using ">" sign followed by file name.
+The output of an executed command can be redirected to a file using the ">" sign followed by a filename.
 - Example
 
 ```shell move to specified device
@@ -655,7 +654,7 @@ config>uniconfig-topology R1
 ```shell Redirection of output to file
 uniconfig-topology-R1>show interface-configurations interface-configuration act\ GigabitEthernet0/0/0/1 > '/home/output.txt' 
 ```
-In this case output in console is empty but content of output.txt file could look like this:
+In this case, output in the console is empty but the content of the output.txt file is a follows:
 ```text Redirection output
 {
   "active": "act",
@@ -668,9 +667,9 @@ In this case output in console is empty but content of output.txt file could loo
 
 ## Aliases
 
-It is possible to define aliases in UniConfig shell. For this purpose, there is a json file named shell-aliases in the 
-UniConfig distribution. This file can be found under Uniconfig/distribution/packaging/zip/target/uniconfig-x.x.x/config 
-after unpacking of the UniConfig distribution. This file contains some sample aliases.
+You can define aliases in UniConfig shell. For this purpose, there is a json file named shell-aliases in the 
+UniConfig distribution. The file can be found under Uniconfig/distribution/packaging/zip/target/uniconfig-x.x.x/config 
+after unpacking the UniConfig distribution. The file contains some sample aliases.
 
 ``` shell-aliases.json with default samples
 /*
@@ -693,12 +692,11 @@ Asterisk symbol is a placeholder. We can dynamically add an alias value
 
 ### Aliases creation
 
-It is not possible to create aliases dynamically, only before Uniconfig is started. Creation of aliases 
-has some rules:
+It is not possible to create aliases dynamically, only before Uniconfig is started. The following rules apply:
 
-1. Alias name has to be unique and cannot contain whitespaces
-2. Command can contain a wildcard (*). In this case user will be prompted to add value
-3. Alias is only visible in the mode under which it was defined
+1. The alias name must be unique and cannot contain whitespaces.
+2. The command can contain a wildcard (*). In this case the user will be prompted to add a value.
+3. The alias is only visible in the mode where it was defined.
 
 ### Examples
 
