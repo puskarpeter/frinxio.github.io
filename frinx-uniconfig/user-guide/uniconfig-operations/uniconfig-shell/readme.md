@@ -2,85 +2,72 @@
 
 UniConfig shell is a command-line interface for Uniconfig. Accessible over SSH, it allows users to interact with Uniconfig features including the following:
 
-* reading operational data of devices
-* manipulating device configuration
-* manipulating configuration templates
-* manipulating data stored in Unistore
-* invoking device or UniConfig operations
-* manipulating global UniConfig settings
+* Reading operational data of devices
+* Manipulating device configuration
+* Manipulating configuration templates
+* Manipulating data stored in Unistore
+* Invoking device or UniConfig operations
+* Manipulating global UniConfig settings
 
 As Uniconfig shell is model-driven, its interface is mostly auto-generated from YANG schemas (e.g., tree structure of data-nodes or available
 RPC/action operations).
 
 ## Configuration
 
-By default, UniConfig shell is disabled. To enable it, configuration parameter 'cliShell/sshServer/enabled' must be set to 'true'
+By default, UniConfig shell is disabled. To enable it, the configuration parameter 'cliShell/sshServer/enabled' must be set to 'true'
 in the 'config/lighty-uniconfig-config.json' file.
 
-All available settings and descriptions are displayed in the following JSON snippet.
+All available settings and descriptions are displayed in the following snippet.
 
-```json UniConfig shell configuration (config/lighty-uniconfig-config.json)
-    "cliShell": {
-        "sshServer": {
-            // Flag that determines if ssh server will be started or not.
-            "enabled": false,
-            // Port bind to ssh server.
-            "port": 2022,
-            // IP address bind to ssh server.
-            "inetAddress": "127.0.0.1",
-            // Basic username + password authentication.
-            "usernamePasswordAuth": {
-                "username": "admin",
-                "password": "secret"
-            }
-        },
-        // Flag that determines if uniconfig-shell provides scrolling of output
-        "enableScrolling": false,
-        // Number of history items to keep in memory
-        "historySize": 500,
-        // Number of history items to keep in the history file
-        "historyFileSize": 1000
-    }
+```properties UniConfig shell configuration (config/application.properties)
+# CLI shell config
+cli-shell.default-unistore-node-id=system
+cli-shell.enable-scrolling=false
+cli-shell.history-size=500
+cli-shell.history-file-size=1000
+cli-shell.ssh-server.enabled=false
+cli-shell.ssh-server.port=2022
+cli-shell.ssh-server.inet-address=127.0.0.1
+cli-shell.ssh-server.username-password-auth.username=admin
+cli-shell.ssh-server.username-password-auth.password=secret
 ```
 
-After starting UniConfig, SSH server will listen for connections on port 2022 and loopback interface.
+After starting UniConfig, the SSH server will listen for connections on port 2022 and loopback interface.
 
-## Navigation in the shell
+## Navigating in the shell
 
-* Every command line starts with command prompt that ends with '>' character. Identifier of the command prompt changes
-  based on current shell mode and state of the execution in this mode.
-* Commands 'exit' and 'quit' appear in all shell modes. Command 'exit' returns state to the parent state, command 'quit'
-  returns state to the nearest parent mode (e.g., configuration mode, root mode, operational show mode). If the current
-  state of shell represents some mode, commands 'quit' and 'exit' have the same effect - returning to the parent mode.
-* Typed command can be sent to the UniConfig using ENTER key. After that, UniConfig processes the command and may
-  send response to the console depending on the command behaviour. All commands are processed synchronously - user 
+* Every command line starts with a command prompt that ends with the '>' character. The identifier of the command prompt changes
+  based on the current shell mode and the state of the execution in this mode.
+* The commands 'exit' and 'quit' appear in all shell modes. The 'exit' command returns the state to the parent state, 'quit'
+  returns the state to the nearest parent mode (e.g., configuration mode, root mode, operational show mode). If the current
+  state of the shell represents some mode, 'quit' and 'exit' have the same effect - returning to the parent mode.
+* Typed commands can be sent to the UniConfig using the ENTER key. After that, UniConfig processes the command and may
+  send a response to the console depending on the command behaviour. All commands are processed synchronously - a user 
   cannot execute multiple commands in parallel in the same SSH session.
-* CTRL-A and CTRL-E can be used for moving cursor on the current line to the beginning of the line, or the end of the
-  line, respectively.
-* CTRl-L is used for clearing of the shell screen.
-* Arrow keys UP/DOWN are used for loading of the previous or more recent command in the command history.
-* To cancel current line and moving to the blank line, user can use CTRL+C shortcut.
-* Key TAB can be used for loading of the available suggestions in the current context. By hitting TAB again, user can
-  navigate through suggested commands using arrow keys and select some of them using ENTER. Submode with suggestions
-  can be left using CTRL-E shortcut. Text in the brackets contain description of the next command.
+* CTRL-A and CTRL-E move the cursor to the beginning or end of the current line.
+* CTRL-L clears the shell screen.
+* Arrow keys UP/DOWN are used to load previous commands in the command history.
+* CTRL+C cancels the current line and moves to a new blank line.
+* The TAB key can be used to load suggestions in the current context. Hit TAB again to navigate
+  through suggested commands using the arrow keys and select some of them using ENTER. Submode with suggestions
+  can be left with the shortcut CTRL-E. The text in the brackets contains a description of the next command.
 
-```shell Loading available suggestions under 'show uniconfig iosxr' command
-config>show uniconfig iosxr
->                                                                            (output to file)
-evpn                                       (Top level configuration containers for EVPN data)
-interfaces        (Top level container for interfaces, including configuration
-and state data.)
-logging                                               (Enclosing container for logging data.)
-network-instances                       (The L2, L3, or L2+L3 forwarding instances that are…)
-oam                                 (Top level configuration container for ethernet OAM data)
-snmp                                    (Enclosing container for snmp interface-specific
-data.)
-|
+```shell Loading available suggestions in 'uniconfig-topology-vnf21>' under 'show' command
+uniconfig-topology-vnf21>show 
+>                                                (output to file)   interfaces                             (Interfaces configuration)
+SNMP-NOTIFICATION-MIB                                               nacm               (Parameters for NETCONF Access Control Model.)
+SNMP-TARGET-MIB                                                     ntp                                           (NTP configuration)
+SNMP-VIEW-BASED-ACM-MIB                                             redundancy                             (Redundancy Configuration)
+aaa                                              (AAA management)   service-node-groups (Service Node Gateway Services Configuration)
+alarms                                      (Alarm configuration)   snmp    (Simple Network Management Protocol (SNMP) configuration)
+alias                                     (Create command alias.)   system                      (System configuration and statistics)
+confdConfig                                (ConfD configuration.)   |                                                          (pipe)
+event                                             (Event scripts)
 ```
 
-* If displayed output is longer than the current length of command-line window, output is displayed with scrolling 
-  capability. ENTER is used for displaying next line, while SPACE is used for displaying next page. Character 'q'
-  can be used to leave scrolling mode. It is possible to scroll only in the one direction - towards end of output.
+* If the displayed output is longer than the length of the command-line window, the output is displayed with scrolling 
+  capability. Use ENTER to display the next line and SPACE to display the next page. Use the 'q' key
+  to leave scrolling mode. You can only scroll only in one direction - towards the end of the output.
 
 ![Scrolling through long output](scrolling_example.png)
 
@@ -101,7 +88,6 @@ uniconfig>
 uniconfig>
 configuration-mode      (opening configuration mode)
 exit
-request                          (execution of RPCs)
 show                      (reading data from device)
 show-history (show history [max number of commands])
 ```
@@ -118,12 +104,12 @@ Connection to 127.0.0.1 closed.
 
 !!!
 Currently, only username/password single-user authentication is supported according to configuration
-in the 'config/lighty-uniconfig-config.json'.
+in the 'application.properties'.
 !!!
 
 ### Accessing sub-modes
 
-* Root mode acts as a gateway for opening configuration, show, and request operational modes.
+* Root mode acts as a gateway for opening configuration and show modes.
 * Example - switching into Configuration mode:
 
 ```shell Opening configuration mode
@@ -160,113 +146,145 @@ List of invoked commands are persisted across UniConfig restarts and SSH connect
 2. CRUD operations on top of persisted UniConfig settings.
 3. UniConfig RPC operations such as commit or calculate-diff.
 
-* After opening Configuration mode, a new UniConfig transaction is created. All operations that are invoked from
-  the configuration mode are executed in scope of created transaction.
-* Transaction is automatically closed after leaving the Configuration mode ('exit' or 'quit' command).
-* If user invokes 'commit' or 'checked-commit', transaction is automatically refreshed (user stays in the configuration
+* After opening Configuration mode, a new UniConfig transaction is created. All operations invoked from
+  the configuration mode are executed in the scope of the created transaction.
+* The transaction is automatically closed after leaving the Configuration mode ('exit' or 'quit' command).
+* If 'commit' or 'checked-commit' is invoked, the transaction is automatically refreshed (the user stays in configuration
   mode with a newly created transaction).
 
 ```shell Configuration mode overview
 config>
 others
-delete                                     (delete operation)
+callbacks                           (operations on callbacks)
 exit                                  (return to parent mode)
 quit                                    (return to root mode)
 request                                   (execution of RPCs)
-set                                           (set operation)
-show                                         (show operation)
+settings                             (operations on settings)
 show-history          (show history [max number of commands])
+template-topology       (operations on the template topology)
+uniconfig-topology     (operations on the uniconfig topology)
+unistore-topology       (operations on the unistore topology)
 aliases
 diff (alias for 'request calculate-diff target-nodes/node *')
+```
+
+Commands like SET / SHOW / DELETE are now available only on a specific device and are not accessible in root configuration mode.
+
+```shell set / show / delete commands overview
+config>uniconfig-topology test-node-1
+uniconfig-topology-test-node-1>
+SNMP-NOTIFICATION-MIB                                               nacm               (Parameters for NETCONF Access Control Model.)
+SNMP-TARGET-MIB                                                     ntp                                           (NTP configuration)
+SNMP-VIEW-BASED-ACM-MIB                                             quit                                        (return to root mode)
+aaa                                              (AAA management)   redundancy                             (Redundancy Configuration)
+alarms                                      (Alarm configuration)   service-node-groups (Service Node Gateway Services Configuration)
+alias                                     (Create command alias.)   set                                               (set operation)
+confdConfig                                (ConfD configuration.)   show                                  (show data in current path)
+delete                                         (delete operation)   show-history              (show history [max number of commands])
+event                                             (Event scripts)   snmp    (Simple Network Management Protocol (SNMP) configuration)
+exit                                      (return to parent mode)   system                      (System configuration and statistics)
+interfaces                             (Interfaces configuration)
 ```
 
 ### Show configuration
 
 * Show operation can be used to display selected subtrees.
 * Subtree path can be constructed interactively with help of shell suggestions / auto-completion mechanism.
-  Construction of the path works the same way in the Show, Delete, and Set operations.
+  Construction of the path works the same way for SET / SHOW/ DELETE operations.
 
-* Example - displaying configuration of selected container:
+  
+* Example - displaying the configuration of a selected container:
 
-```shell Show operation: available topologies or root configuration containers
-config>show
-settings            (settings)   uniconfig (uniconfig topology)
-template   (template topology)   unistore   (unistore topology)
-```
-
-```shell Show operation: selection of installed node
-config>show uniconfig
+1. The user must first go into a specific topology on a specific device:
+```shell move to a specific topology
+config>uniconfig-topology
 nodes
-iosxr    iosxr2
+test-node-1   test-node-2
 ```
+
+```shell move to a specific device
+config>uniconfig-topology test-node-1
+uniconfig-topology-test-node-1>
+```
+
+2. After this, the show operation is available:
 
 ```shell Show operation: selection of root data container
-config>show uniconfig iosxr
->                                                                            (output to file)
-evpn                                       (Top level configuration containers for EVPN data)
-interfaces        (Top level container for interfaces, including configuration
-and state data.)
-logging                                               (Enclosing container for logging data.)
-network-instances                       (The L2, L3, or L2+L3 forwarding instances that are…)
-oam                                 (Top level configuration container for ethernet OAM data)
-snmp                                    (Enclosing container for snmp interface-specific
-data.)
+uniconfig-topology-test-node-1>show 
+>                                                (output to file)   interfaces                             (Interfaces configuration)
+SNMP-NOTIFICATION-MIB                                               nacm               (Parameters for NETCONF Access Control Model.)
+SNMP-TARGET-MIB                                                     ntp                                           (NTP configuration)
+SNMP-VIEW-BASED-ACM-MIB                                             redundancy                             (Redundancy Configuration)
+aaa                                              (AAA management)   service-node-groups (Service Node Gateway Services Configuration)
+alarms                                      (Alarm configuration)   snmp    (Simple Network Management Protocol (SNMP) configuration)
+alias                                     (Create command alias.)   system                      (System configuration and statistics)
+confdConfig                                (ConfD configuration.)   |                                                          (pipe)
+event                                             (Event scripts)
 ```
 
-```shell Show operation: selection of interface id
-config>show uniconfig iosxr interfaces interface
->     (output to file)   GigabitEthernet0/0/0/2   MgmtEth0/0/CPU0/0
-GigabitEthernet0/0/0/0   GigabitEthernet0/0/0/3   |               (pipe)
-GigabitEthernet0/0/0/1   GigabitEthernet0/0/0/4
+```shell Show operation: selection of a specific virtual network interface 
+uniconfig-topology-test-node-1>show interfaces vni 
+> (output to file)   vni-0/4              vni-0/6              vni-0/8              |           (pipe)
+vni-0/10             vni-0/5              vni-0/7              vni-0/9
 ```
 
-```shell Show operation: invocation of command
-config>show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 config
+```shell Show operation: invocation of a command
+uniconfig-topology-test-node-1>show interfaces vni vni-0/10 
 {
-  "type": "iana-if-type:ethernetCsmacd",
-  "enabled": false,
-  "name": "GigabitEthernet0/0/0/0"
+  "name": "vni-0/10",
+  "ether-options": {
+    "link-mode": "auto",
+    "link-speed": "10m"
+  },
+  "description": "sample description",
+  "enable": true
 }
 ```
 
 ### Delete configuration
 
 * Delete operation removes a selected subtree.
-* Example - removal of a container:
+* Example - removing a container:
+
+1. The user must first go into a specific topology on a specific device:
+```shell move to a specific topology
+config>uniconfig-topology
+nodes
+test-node-1   test-node-2
+```
+
+```shell move to a specific device
+config>uniconfig-topology test-node-1
+uniconfig-topology-test-node-1>
+```
+
+2. After this, the delete operation is available:
 
 ```shell Construction of path with help from suggestions
-config>delete uniconfig iosxr
-evpn                                       (Top level configuration containers for EVPN data)
-interfaces        (Top level container for interfaces, including configuration
-and state data.)
-logging                                               (Enclosing container for logging data.)
-network-instances                       (The L2, L3, or L2+L3 forwarding instances that are…)
-oam                                 (Top level configuration container for ethernet OAM data)
-snmp                                    (Enclosing container for snmp interface-specific
-data.)
+uniconfig-topology-test-node-1>delete 
+SNMP-NOTIFICATION-MIB                                               interfaces                             (Interfaces configuration)
+SNMP-TARGET-MIB                                                     nacm               (Parameters for NETCONF Access Control Model.)
+SNMP-VIEW-BASED-ACM-MIB                                             ntp                                           (NTP configuration)
+aaa                                              (AAA management)   redundancy                             (Redundancy Configuration)
+alarms                                      (Alarm configuration)   service-node-groups (Service Node Gateway Services Configuration)
+alias                                     (Create command alias.)   snmp    (Simple Network Management Protocol (SNMP) configuration)
+confdConfig                                (ConfD configuration.)   system                      (System configuration and statistics)
+event                                             (Event scripts)
 ```
 
-```shell Delete 'config' container under 'network-instance' with key value 'default'
-config>delete uniconfig iosxr network-instances network-instance default config
-config>
+```shell Delete 'ether-options' container under 'vni' with key value 'vni-0/10'
+uniconfig-topology-test-node-1>delete interfaces vni vni-0/10 ether-options
+uniconfig-topology-test-node-1>
 ```
+
+3. The user must quit to configuration mode, commit using request mode and return to the device on the topology:
 
 ```shell Verify state of 'network-instance'
-config>show uniconfig iosxr network-instances network-instance default
+uniconfig-topology-test-node-1>show interfaces vni vni-0/10 
 {
-  "name": "default",
-  "protocols": {
-    "protocol": [
-      {
-        "identifier": "frinx-openconfig-policy-types:STATIC",
-        "name": "default",
-        "config": {
-          "identifier": "frinx-openconfig-policy-types:STATIC",
-          "name": "default"
-        }
-      }
-    ]
-  }
+  "name": "vni-0/10",
+  "description": "sample description",
+  "enable": true
 }
 ```
 
@@ -274,49 +292,55 @@ config>show uniconfig iosxr network-instances network-instance default
 
 * Set operation can be used for:
 
-1. Setting value of a single leaf.
+1. Setting the value of a single leaf.
 2. Setting values of multiple leaves in a single shell operation.
-3. Setting list of values for a leaf-list.
+3. Setting a list of values for a leaf-list.
 4. Replacing the whole subtree using a JSON snippet.
 
-* Example - setting value of a single leaf:
+* Example - setting the value of a single leaf:
+```shell move to specified device
+config>uniconfig-topology iosxr
+```
 
 ```shell Providing datatype hints at selected leaf
-config>set uniconfig iosxr lacp config system-priority
+uniconfig-topology-iosxr>set lacp config system-priority
 (type: uint16, constraints: [Range: [[0..65535]]])
 ```
 
 ```shell Setting value of LACP 'system-priority' to '100'
-config>set uniconfig iosxr lacp config system-priority 100
-config>
+uniconfig-topology-iosxr>set lacp config system-priority 100
+uniconfig-topology-iosxr>
 ```
 
 ```shell Displaying changed LACP configuration 
-config>show uniconfig iosxr lacp config
+uniconfig-topology-iosxr>show lacp config
 {
   "system-priority": 100
 }
 ```
 
 * Example - setting values of multiple leaves: under 'hold-time' container:
+```shell move to specified device
+config>uniconfig-topology iosxr
+```
 
 ```shell Displaying hint for value of the leaf 'up'
-config>set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-time config up
+uniconfig-topology-iosxr>set interfaces interface GigabitEthernet0/0/0/0 hold-time config up
 (type: uint32, constraints: [Range: [[0..4294967295]]])
 ```
 
 ```shell Setting value of the leaf 'up' and displaying hint for value of the leaf 'down'
-config>set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-time config up 20 down
+uniconfig-topology-iosxr>set interfaces interface GigabitEthernet0/0/0/0 hold-time config up 20 down
 (type: uint32, constraints: [Range: [[0..4294967295]]])
 ```
 
 ```shell Setting values of the leaves 'up' and 'down'
-config>set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-time config up 20 down 15
-config>
+uniconfig-topology-iosxr>set interfaces interface GigabitEthernet0/0/0/0 hold-time config up 20 down 15
+uniconfig-topology-iosxr>
 ```
 
 ```shell Verification of the 'hold-time' configuration
-config>show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-time
+uniconfig-topology-iosxr>show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-time
 {
   "config": {
     "up": 20,
@@ -330,8 +354,12 @@ config>show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/0 hold-tim
   using pattern 'w!' + newline or to cancel the set operation with 'q!' + newline pattern.
 * Example - replacing configuration of an interface using a JSON snippet:
 
+```shell move to specified device
+config>uniconfig-topology iosxr
+```
+
 ```shell Replacing 'config' container under interface using provided JSON snippet
-config>set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1 config json
+uniconfig-topology-iosxr>set interfaces interface GigabitEthernet0/0/0/1 config json
 {
 >   "config": {
 >     "type": "iana-if-type:ethernetCsmacd",
@@ -343,7 +371,7 @@ w!
 ```
 
 ```shell Verification of Set operation
-config>show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1
+uniconfig-topology-iosxr>show interfaces interface GigabitEthernet0/0/0/1
 {
   "name": "GigabitEthernet0/0/0/1",
     "config": {
@@ -357,7 +385,7 @@ config>show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1
 * Example - leaving 'json' sub-mode without execution of Set operation:
 
 ```shell Cancellation of the Set operation and leaving 'json' sub-mode
-config>set uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1 config json
+uniconfig-topology-iosxr>set interfaces interface GigabitEthernet0/0/0/1 config json
 {
 >   "config": {
 >     "type": "iana-if-type:ethernetCsmacd",
@@ -369,7 +397,7 @@ q!
 ```
 
 ```shell Verification of the cancelled Set operation
-config>show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1
+uniconfig-topology-iosxr>show interfaces interface GigabitEthernet0/0/0/1
 {
   "name": "GigabitEthernet0/0/0/1",
   "config": {
@@ -384,6 +412,7 @@ config>show uniconfig iosxr interfaces interface GigabitEthernet0/0/0/1
 
 * Command 'request' is used to execute UniConfig operations such as 'commit' or 'calculate-diff'
   in the UniConfig transaction.
+* The command is available in configuration-mode.
 * User can fill in input parameters and values interactively or via provided JSON snippet.
 
 - Example - execution of UniConfig RPCs in the scope of open UniConfig transaction:
@@ -425,6 +454,7 @@ config>request calculate-diff target-nodes/node iosxr
   },
   "overall-status": "complete"
 }
+[24.04.2023, 09:25:31]
 ```
 
 ```shell Displaying available 'sync-from-network' RPC paramaters:
@@ -449,7 +479,76 @@ config>request sync-from-network check-timestamp true target-nodes/node iosxr
   },
   "overall-status": "complete"
 }
+[24.04.2023, 09:26:48]
 ```
+
+## Request operational mode
+
+This command has been merged with request configuration mode and is now only available 
+in configuration-mode.
+
+* Request mode allows users to:
+
+1. Invoke selected UniConfig requests that read or alter UniConfig settings.
+2. Invoke RPCs or actions that are provided by network devices or other southbound mount-points.
+
+* The user can fill in input parameters and values interactively or via a provided JSON snippet.
+* The transaction is passed from configuration-mode.
+- Example - invocation of RPC 'execute-and-read' with typed input parameters:
+
+```shell Displaying available RPCs provided by device 'iosxr'
+request>cli iosxr
+operations
+clear-journal
+execute (Simple execution of single or multiple commands on remote terminal. Multiple comma…)
+execute-and-expect (Form of the 'execute-and-read' RPC that can contain 'expect(..)' patter…)
+execute-and-read (Execution of the sequence of commands specified in the input. These comma…)
+execute-and-read-until
+read-journal
+```
+
+```shell Displaying available 'execute-and-read' RPC parameters
+request>cli iosxr execute-and-read
+>                                                                            (output to file)
+command        (Input configuration snippet (one or multiple commands separated by newline).)
+json                                                                             (JSON input)
+wait-for-output-timer (If no output is received during this time, then execute next command…)
+|                                                                                      (pipe)
+```
+
+```shell Execution of 'execute-and-read' RPC with two arguments - 'wait-for-output-timer' and 'command'
+request>cli iosxr execute-and-read wait-for-output-timer 2 command "show users"
+{
+   "output": "Mon May 16 07:28:30.405 UTC
+   Line            User                 Service  Conns   Idle        Location
+*  vty0            cisco                ssh          0  00:00:00     192.168.1.42"
+}
+[24.04.2023, 09:34:21]
+```
+
+- Example - execution of the same RPC 'execute-and-read' using input JSON:
+
+```shell Execution of 'execute-and-read' RPC with input JSON snippet:
+request>cli iosxr execute-and-read json
+  {
+>     "input": {
+>         "command": "show users",
+>         "wait-for-output-timer": 2
+>     }
+> }
+w!
+{
+   "output": "Mon May 16 07:37:55.256 UTC
+   Line            User                 Service  Conns   Idle        Location
+*  vty0            cisco                ssh          0  00:00:00     192.168.1.42"
+}
+[24.04.2023, 09:36:48]
+```
+
+!!!
+UniConfig shell does not support interactive typing of input arguments for an RPC/action that contains the 'list' YANG element.
+Such operations must be executed using input JSON.
+!!!
 
 ## Show operational mode
 
@@ -478,7 +577,7 @@ lbr      (alias for 'logging-status broker restconf')
 ```
 
 
-* After opening Show mode, a new UniConfig transaction is opened. Transaction is closed after leaving this mode.
+* After opening Show mode, a new UniConfig transaction is opened. The transaction is closed after leaving this mode.
 
 
 ```shell Opening Show operational mode
@@ -522,76 +621,16 @@ show>transactions transaction-data
 ]
 ```
 
-## Request operational mode
-
-* Request mode allows users to:
-
-1. Invoke selected UniConfig requests that read or alter UniConfig settings.
-2. Invoke RPCs or actions that are provided by network devices or other southbound mount-points.
-
-* User can fill in input parameters and values interactively or via provided JSON snippet.
-* After opening Request mode, a new UniConfif transaction is open. Transaction is closed after leaving this mode.
-
-- Example - invocation of RPC 'execute-and-read' with typed input parameters:
-
-```shell Displaying available RPCs provided by device 'iosxr'
-request>cli iosxr
-operations
-clear-journal
-execute (Simple execution of single or multiple commands on remote terminal. Multiple comma…)
-execute-and-expect (Form of the 'execute-and-read' RPC that can contain 'expect(..)' patter…)
-execute-and-read (Execution of the sequence of commands specified in the input. These comma…)
-execute-and-read-until
-read-journal
-```
-
-```shell Displaying available 'execute-and-read' RPC parameters
-request>cli iosxr execute-and-read
->                                                                            (output to file)
-command        (Input configuration snippet (one or multiple commands separated by newline).)
-json                                                                             (JSON input)
-wait-for-output-timer (If no output is received during this time, then execute next command…)
-|                                                                                      (pipe)
-```
-
-```shell Execution of 'execute-and-read' RPC with two arguments - 'wait-for-output-timer' and 'command'
-request>cli iosxr execute-and-read wait-for-output-timer 2 command "show users"
-{
-   "output": "Mon May 16 07:28:30.405 UTC
-   Line            User                 Service  Conns   Idle        Location
-*  vty0            cisco                ssh          0  00:00:00     192.168.1.42"
-}
-```
-
-- Example - execution of the same RPC 'execute-and-read' using input JSON:
-
-```shell Execution of 'execute-and-read' RPC with input JSON snippet:
-request>cli iosxr execute-and-read json
-  {
->     "input": {
->         "command": "show users",
->         "wait-for-output-timer": 2
->     }
-> }
-w!
-{
-   "output": "Mon May 16 07:37:55.256 UTC
-   Line            User                 Service  Conns   Idle        Location
-*  vty0            cisco                ssh          0  00:00:00     192.168.1.42"
-}
-```
-
-!!!
-UniConfig shell doesn't support interactive typing of input arguments for RPC/action that contains 'list' YANG element.
-Such operations must be executed using input JSON.
-!!!
-
 ## Pipe operations
 UniConfig shell supports pipe operations that are similar to unix shell/bash pipes.
-When a command is followed by pipe sign: |, output of that command will be passed to a selected pipe operation.
+When a command is followed by pipe sign: |, the output of that command will be passed to a selected pipe operation.
 - Example:
+```shell move to specified device
+config>uniconfig-topology R1
+```
+
 ```shell Execution of grep pipe operation:
-config>show uniconfig R1 interface-configurations interface-configuration | grep netmask
+uniconfig-topology-R1>show interface-configurations interface-configuration | grep netmask
 
     "netmask": "255.255.255.0"
 ```
@@ -605,12 +644,17 @@ Supported pipe operations are:
 6. hide-attributes - hides attributes of data nodes.
 
 ## Redirection of output
-Result of a command execution can be redirected to a file using ">" sign followed by file name.
+The output of an executed command can be redirected to a file using the ">" sign followed by a filename.
 - Example
-```shell Redirection of output to file
-config>show uniconfig R1 interface-configurations interface-configuration act\ GigabitEthernet0/0/0/1 > '/home/output.txt' 
+
+```shell move to specified device
+config>uniconfig-topology R1
 ```
-In this case output in console is empty but content of output.txt file could look like this:
+
+```shell Redirection of output to file
+uniconfig-topology-R1>show interface-configurations interface-configuration act\ GigabitEthernet0/0/0/1 > '/home/output.txt' 
+```
+In this case, output in the console is empty but the content of the output.txt file is a follows:
 ```text Redirection output
 {
   "active": "act",
@@ -623,9 +667,9 @@ In this case output in console is empty but content of output.txt file could loo
 
 ## Aliases
 
-It is possible to define aliases in UniConfig shell. For this purpose, there is a json file named shell-aliases in the 
-UniConfig distribution. This file can be found under Uniconfig/distribution/packaging/zip/target/uniconfig-x.x.x/config 
-after unpacking of the UniConfig distribution. This file contains some sample aliases.
+You can define aliases in UniConfig shell. For this purpose, there is a json file named shell-aliases in the 
+UniConfig distribution. The file can be found under Uniconfig/distribution/packaging/zip/target/uniconfig-x.x.x/config 
+after unpacking the UniConfig distribution. The file contains some sample aliases.
 
 ``` shell-aliases.json with default samples
 /*
@@ -648,12 +692,11 @@ Asterisk symbol is a placeholder. We can dynamically add an alias value
 
 ### Aliases creation
 
-It is not possible to create aliases dynamically, only before Uniconfig is started. Creation of aliases 
-has some rules:
+It is not possible to create aliases dynamically, only before Uniconfig is started. The following rules apply:
 
-1. Alias name has to be unique and cannot contain whitespaces
-2. Command can contain a wildcard (*). In this case user will be prompted to add value
-3. Alias is only visible in the mode under which it was defined
+1. The alias name must be unique and cannot contain whitespaces.
+2. The command can contain a wildcard (*). In this case the user will be prompted to add a value.
+3. The alias is only visible in the mode where it was defined.
 
 ### Examples
 
@@ -673,6 +716,7 @@ config>diff xr5
   },
   "overall-status": "complete"
 }
+[24.04.2023, 09:31:32]
 config>
 ```
 
@@ -710,10 +754,10 @@ request>
 
 Callbacks include sending POST and GET requests to the remote server and invoking user scripts from the UniConfig shell.
 
-The following are required to use callbacks:
+The following is required to use callbacks:
 
 1. Necessary YANG modules - YANG modules that are required by the callbacks.
-2. Configuration - Enable callbacks in 'config/lighty-uniconfig-config.json' and set the remote server and access token.
+2. Configuration - Enable callbacks in 'config/application.properties' and set the remote server and access token.
 3. Update repository - Add the necessary YANG modules from step 1 into at least one YANG repository in the cache
 directory, and either define remote endpoints and scripts in a YANG file or create a new one for callbacks. For definition of 
 remote endpoints, use the 'frinx-callpoint@2022-06-22.yang' extension.
@@ -743,18 +787,13 @@ for the remote server and store an access token in the UniConfig database.
 
 The host and port for the remote server can be set in three ways:
 
-1. Before starting Uniconfig, in the 'config/lighty-uniconfig-config.json' file. The port number is optional:
+1. Before starting Uniconfig, in the 'config/application.properties' file. The port number is optional:
 
-```json UniConfig callbacks/remote-server configuration (config/lighty-uniconfig-config.json)
-...
-// remote server settings
-"remoteServer": {
-    // remote server hostname / IP address
-    "host": "127.0.0.1",
-    // port on which remote server listens
-    "port": 9000
-}
-...
+```properties UniConfig callbacks configuration (config/application.proprties)
+# Callbacks config
+callbacks.enabled=true
+callbacks.remote-server.host=127.0.0.1
+callbacks.remote-server.port=8443
 ```
 
 2. After starting UniConfig, with a PUT request:
@@ -804,20 +843,13 @@ The access token can be stored in the UniConfig database in two ways:
   config>request commit
 ```
 
-Available settings and descriptions for callbacks are displayed in the following JSON snippet.
+Available settings and descriptions for callbacks are displayed in the following snippet.
 
-```json UniConfig callbacks configuration (config/lighty-uniconfig-config.json)
-"callbacks": {
-    // flag that determines whether callbacks will work
-    "enabled": true,
-    // remote server settings
-    "remoteServer": {
-        // remote server hostname / IP address
-        "host": "127.0.0.1",
-        // port on which remote server listens
-        "port": 9000
-    }
-}
+```properties UniConfig callbacks configuration (config/application.proprties)
+# Callbacks config
+callbacks.enabled=true
+callbacks.remote-server.host=127.0.0.1
+callbacks.remote-server.port=8443
 ```
 
 ### Update repository
@@ -944,21 +976,21 @@ must be in the 'latest' schema repository.
 - Example - callpoint invocation in the shell:
 
 ``` callpoint invocation
-uniconfig>show
-show>unistore node1 test get-request
+config>callbacks repository-name
+callbacks-repository-name>show test get-request
 {
   "response": {
     "value": "some-value"
   }
 }
-show>
+callbacks-repository-name>
 ```
 
 - Example - action invocation in the shell:
 
 ``` action invocation
-uniconfig>request 
-request>unistore node1 post-request test-action body data "some-data"
+config>request 
+request>callbacks repository-name post-request test-action body data "some-data"
 {
   "response": {
     "value": "some-data was processed"
@@ -970,12 +1002,12 @@ request>
 - Example - user script execution in the shell:
 
 ``` user script execution
-uniconfig>request 
-request>unistore node1 script test-script /tmp/test_script.sh 
+config>request 
+request>callbacks repository-name script test-script /tmp/test_script.sh 
 VIP    job    name
-request>unistore node1 script test-script /tmp/test_script.sh job "FRINX" 
+request>callbacks repository-name script test-script /tmp/test_script.sh job "FRINX" 
 VIP    name
-unistore node1 script test-script /tmp/test_script.sh job "FRINX" VIP
+request>callbacks repository-name test-script /tmp/test_script.sh job "FRINX" VIP
 Name: 
 Job: Frinx
 is VIP
