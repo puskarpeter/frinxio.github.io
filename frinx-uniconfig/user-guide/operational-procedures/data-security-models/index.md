@@ -198,26 +198,27 @@ Encryption settings are stored in the 'config/lighty-uniconfig-config.json' file
 
 Example:
 
-```json settings
-"crypto": {
-    "encryptExtensionId": "frinx-encrypt:encrypt",
-    "netconfReferenceModuleName": "system",
-    "netconfEncryptedPathsModuleName": "encrypted-paths"
-}
+```settings
+crypto.encrypt-enabled=true
+crypto.encrypt-extension-id=frinx-encrypt:encrypt
+crypto.netconf-reference-module-name=system
+crypto.netconf-encrypted-paths-module-name=encrypted-paths
 ```
 
-* encryptExtensionId - If this setting is not defined, then encryption is disabled despite of other
+* encrypt-enabled - If this setting is false, then encryption is disabled despite other settings or install-node 
+  parameters. If this setting is true, then encryption is enabled. The default value is true.
+* encrypt-extension-id - If this setting is not defined, then encryption is disabled despite other
   settings or install-node parameters. The value must have the format [module-name]:[extension-name] and specifies
   extension used for marking of encrypted leaves/leaf-lists in YANG modules. Corresponding YANG module, that contain
-  this extension, can be part of device/unistore YANG schemas or it can be side-loaded during installation of NETCONF
+  this extension, can be part of device/unistore YANG schemas, or it can be side-loaded during installation of NETCONF
   device as imported module from 'default' repository.
-* netconfReferenceModuleName - Name of the module for which NETCONF client looks for during mounting process. If
+* netconf-reference-module - Name of the module for which NETCONF client looks for during mounting process. If
   UniConfig finds module with this name in the list of received capabilities, then it uses its revision in the lookup
   process for correct YANG module with encrypted paths (using deviations).
-* netconfEncryptedPathsModuleName - Name of the module which contains deviations with paths to encrypted
+* netconf-encrypted-paths-module-name - Name of the module which contains deviations with paths to encrypted
   leaves/leaf-lists. There could be multiple revisions of this file prepared in the 'default' NETCONF repository.
-  NETCONF client in the UniConfig chooses the correct revision based on 'netconfReferenceModuleName' setting.
-  Together, 'netconfReferenceModuleName' and 'netconfEncryptedPathsModuleName' can be used for auto-loading
+  NETCONF client in the UniConfig chooses the correct revision based on 'netconf-reference-module-name' setting.
+  Together, netconf-reference-module-name' and 'netconf-encrypted-paths-module-name' can be used for autoload
   of encrypted paths for different versions of devices.
 
 !!!
@@ -226,6 +227,66 @@ does not already provide encryption capability, then encrypted-paths module is u
 installation of device ('netconfReferenceModuleName' and matching of revisions are ignored).
 !!!
 
+### Change encryption status
+
+!!!
+For proper working of this RPC it is necessary to enable notifications with this parameter:
+
+```settings
+notifications.enabled=true
+```
+!!!
+
+* Encryption can be enabled or disabled with the parameter:
+
+```settings
+crypto.encrypt-enabled=true
+```
+
+* The value of this parameter can be changed with the 'change-encryption-status' RPC request.
+
+Following request is used to enable encryption:
+
+```bash RPC request: change-encryption-status to enable
+curl --location --request POST 'http://127.0.0.1:8181/rests/operations/crypto:change-encryption-status' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--data-raw '{
+    "input": {
+        "encryption-enabled": true
+    }
+}'
+```
+After calling this command, all Uniconfig instances will set this parameter using the notification service 
+to the value which is sent via RPC, in this case it will be set to value true.
+
+Following request is used to disable encryption:
+
+```bash RPC request: change-encryption-status to disable
+curl --location --request POST 'http://127.0.0.1:8181/rests/operations/crypto:change-encryption-status' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--data-raw '{
+    "input": {
+        "encryption-enabled": false
+    }
+}'
+```
+To check the functionality of this RPC, after calling install-device RPC we can request 
+the password of the node, which when encryption is enabled will be returned encrypted, 
+and when it is disabled password will be plain text.
+
+```bash GET request: get netconf-node-topology:password with enabled encryption
+curl --location --request GET 'http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=topology-netconf/node=dev01/netconf-node-topology:password' \
+--header 'Accept: application/json'
+```
+
+```json GET response
+{
+    "netconf-node-topology:password": "rsa_gFXLXIxbeA9Vt8p0+JlprK1YUznBjk9DHRVlZ6Bm2nP0Fi/jUjsAUsGU814QyAZhXBiK6MY7ul75bE1EEI4uj0PlWT4xFYTXaKaMwgdHSCOnE/I6CGakuzGVGgzztKcSA/AsP8/bgXO0Rellw/S6z9U6h8blIG4Ff73GJOr53slWqoqMvAaXgSQtSbYB0EsPey1YqcukKuZnufJAazbHNHuxU1TFxcN/Cn1vTUEr8IATCAohfO7k5MOn0Ds/gYKt63RBO6000gcSP5PS9LRWhucSdLYc4b2+3soz0VXUCGEMPNSrmDXyWKUftI1S3qLfHthHoGEN1YXKGll5ccxW9g=="
+}
+```
+
 ### Device installation
 
 There are 2 settings related to encryption in the 'install-node' RPC request:
@@ -233,7 +294,7 @@ There are 2 settings related to encryption in the 'install-node' RPC request:
 * uniconfig-config:crypto - It allows specifying path to public key on device - 'public-key-path' (leaf with RFC-8040
   path) and cipher type (by default, RSA is used) - 'public-key-cipher-type'. If path to public key is specified, and it
   exists on device, then Global-device encryption model is used. Otherwise, Global-only encryption model is selected.
-* netconf-node-topology:yang-module-capabilities - If auto-loading of YANG module with encrypted paths is not used
+* netconf-node-topology:yang-module-capabilities - If autoload of YANG module with encrypted paths is not used
   and device itself doesn't specify encrypted leaves, then it is necessary to side-load YANG module with encrypted
   paths. This parameter is relevant only on NETCONF nodes. Side-loaded modules must be expressed in the format
   of NETCONF capabilities.
@@ -278,7 +339,7 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/operations/connectio
 During installation, UniConfig tries to download public key from device. Public key can be verified using GET request:
 
 ```bash GET request: reading synced public key from device
-curl --location --request POST 'http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=dev01/crypto:crypto?content=nonconfig' \
+curl --location --request GET 'http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=dev01/crypto:crypto?content=nonconfig' \
 --header 'Accept: application/json'
 ```
 
@@ -298,7 +359,7 @@ curl --location --request POST 'http://127.0.0.1:8181/rests/data/network-topolog
 - The encrypted string is encoded using Base64 encoding.
 
 ```bash GET request: reading encrypted leaf
-curl --location --request POST 'http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=dev01/config/secret' \
+curl --location --request GET 'http://127.0.0.1:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=dev01/config/secret' \
 --header 'Accept: application/json'
 ```
 
@@ -858,7 +919,7 @@ curl --location --request GET 'http://127.0.0.1:8181/rests/data/network-topology
 ```json GET response
 {
     "hash": {
-        "algorithm": "SHA-512",
+        "algorithm": "SHA-512"
     }
 }
 ```
