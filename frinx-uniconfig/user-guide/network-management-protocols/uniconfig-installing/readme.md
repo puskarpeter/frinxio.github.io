@@ -209,6 +209,10 @@ None of these parameters are mandatory (default values will be used).
     (default value: 1). If there are unstable devices in the network it might be useful 
     to provide `max-connection-attempts` higher than the default value. It would try to connect
     `n` times before throwing an ssh connection exception.
+-   **cli-topology:max-connection-attempts-install** - Maximum number of initial connection attempts during install
+    process (default value: 1). If there are unstable devices in the network it might be useful
+    to provide `max-connection-attempts-install` higher than the default value. It would try to connect
+    `n` times before throwing an ssh connection exception.
 -   **cli-topology:max-reconnection-attempts** - Maximum number of reconnection attempts
     (default value: 1). `max-reconnection-attempts` is not that necessary to set. Uniconfig does
     not keep idle sessions open longer than it is necessary.
