@@ -16,38 +16,35 @@ of all the open TCP/UDP ports.
 To test it properly you have to get your IP and add it to the
 configuration JSON file. The configuration file is located under
 
-**\~/FRINX-machine/config/uniconfig/frinx/uniconfig/config/lighty-uniconfig-config.json**
+**\~/FRINX-machine/config/uniconfig/frinx/uniconfig/config/application.properties**
 
 when running UniConfig stand-alone the config file is in the config
 folder:
 
-**/opt/uniconfig-frinx/config/lighty-uniconfig-config.json.**
+**/opt/uniconfig-frinx/config/application.properties**
 
 Execute the command **ifconfig** in the terminal and look for an
 interface. If you use a VPN, it's probably called **tun0**, if not, try
 a different interface. From there, copy the **inet** in the interface
 and paste it in the file.
 
-```json JSON Snippet
-{
-"deviceDiscovery":{
-        // A parameter that specifies the local address from which the scanning will be ran.
-        "localAddress": "10.255.246.107",
-        // A parameter that specifies the maximum pool size by the executor.
-        // If left empty, the default will be CPU_COUNT * 8.
-        //"maxPoolSize": 20,
-        // A parameter that specifies the maximum limit of IP addresses that the service can process in one request.
-        "addressCheckLimit": 254
-    },
-}
+```properties Snippet
+device-discovery.local-address=
+device-discovery.initial-pool-size=1
+device-discovery.max-pool-size=20
+device-discover-keepalive-time=60
+device-discovery.address-check-limit=254
 ```
 
-The JSON snippet contains two additional parameters.
+The snippet contains two additional parameters.
 
--   The first one ("maxPoolSize") contains the value of the size of the
+-   **initial-pool-size** of the thread pool that is used by the executor.
+-   **"max-pool-size"** contains the value of the size of the
     executor that will be used. If the amount of addresses in the
     request is high, consider raising the value.
--   The second one ("addressCheckLimit") contains the value of how many
+-   **kepalive-time** specifies the time in seconds before the execution
+    of a specified task will time out.
+-   **"addressCheckLimit"** contains the value of how many
     addresses should be checked. If the addresses that are specified in
     the request are higher, the request will not be successful.
 
@@ -109,41 +106,94 @@ curl --location --request POST 'http://localhost:8181/rests/operations/device-di
 
 ```json RPC Response, Status: 200
 {
-    "output": {
-        "device": [
-            {
-                "host": "192.168.1.1",
-                "available-udp-ports": [
-                    50,
-                    51,
-                    52,
-                    53,
-                    69
-                ],
-                "is-host-reachable": true
-            },
-            {
-                "host": "192.168.1.2",
-                "is-host-reachable": true
-            },
-            {
-                "host": "192.168.1.3",
-                "is-host-reachable": false
-            },
-            {
-                "host": "192.168.1.4",
-                "is-host-reachable": false
-            },
-            {
-                "host": "192.168.1.5",
-                "is-host-reachable": false
-            },
-            {
-                "host": "192.168.1.6",
-                "is-host-reachable": false
-            }
+  "output": {
+    "device": [
+      {
+        "host": "192.168.1.1",
+        "available-udp-ports": [
+          50,
+          51,
+          52,
+          69
+        ],
+        "unavailable-tcp-ports": [
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88
+        ],
+        "available-tcp-ports": [
+          80,
+          443
+        ],
+        "is-host-reachable": true
+      },
+      {
+        "host": "192.168.1.2",
+        "is-host-reachable": false
+      },
+      {
+        "host": "192.168.1.3",
+        "unavailable-tcp-ports": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          443
+        ],
+        "is-host-reachable": true,
+        "unavailable-udp-ports": [
+          50,
+          51,
+          52,
+          53,
+          69
         ]
-    }
+      },
+      {
+        "host": "192.168.1.4",
+        "is-host-reachable": false
+      },
+      {
+        "host": "192.168.1.5",
+        "is-host-reachable": false
+      },
+      {
+        "host": "192.168.1.6",
+        "unavailable-tcp-ports": [
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88
+        ],
+        "available-tcp-ports": [
+          80,
+          443
+        ],
+        "is-host-reachable": true,
+        "unavailable-udp-ports": [
+          50,
+          51,
+          52,
+          53,
+          69
+        ]
+      }
+    ]
+  }
 }
 ```
 
@@ -189,49 +239,102 @@ curl --location --request POST 'http://localhost:8181/rests/operations/device-di
 
 ```json RPC Response, Status: 200
 {
-    "output": {
-        "device": [
-            {
-                "host": "192.168.1.1",
-                "available-udp-ports": [
-                    50,
-                    51,
-                    52,
-                    53,
-                    69
-                ],
-                "is-host-reachable": true
-            },
-            {
-                "host": "192.168.1.2",
-                "is-host-reachable": true
-            },
-            {
-                "host": "192.168.1.3",
-                "is-host-reachable": false
-            },
-            {
-                "host": "192.168.1.4",
-                "is-host-reachable": false
-            },
-            {
-                "host": "192.168.1.5",
-                "is-host-reachable": false
-            },
-            {
-                "host": "192.168.1.6",
-                "is-host-reachable": false
-            },
-            {
-                "host": "192.168.1.7",
-                "is-host-reachable": false
-            },
-            {
-                "host": "192.168.1.8",
-                "is-host-reachable": false
-            }
+  "output": {
+    "device": [
+      {
+        "host": "192.168.1.1",
+        "available-udp-ports": [
+          50,
+          51,
+          52,
+          69
+        ],
+        "unavailable-tcp-ports": [
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88
+        ],
+        "available-tcp-ports": [
+          80,
+          443
+        ],
+        "is-host-reachable": true
+      },
+      {
+        "host": "192.168.1.2",
+        "is-host-reachable": false
+      },
+      {
+        "host": "192.168.1.3",
+        "unavailable-tcp-ports": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          443
+        ],
+        "is-host-reachable": true,
+        "unavailable-udp-ports": [
+          50,
+          51,
+          52,
+          53,
+          69
         ]
-    }
+      },
+      {
+        "host": "192.168.1.4",
+        "is-host-reachable": false
+      },
+      {
+        "host": "192.168.1.5",
+        "is-host-reachable": false
+      },
+      {
+        "host": "192.168.1.6",
+        "unavailable-tcp-ports": [
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88
+        ],
+        "available-tcp-ports": [
+          80,
+          443
+        ],
+        "is-host-reachable": true,
+        "unavailable-udp-ports": [
+          50,
+          51,
+          52,
+          53,
+          69
+        ]
+      },
+      {
+        "host": "192.168.1.7",
+        "is-host-reachable": false
+      },
+      {
+        "host": "192.168.1.8",
+        "is-host-reachable": false
+      }
+    ]
+  }
 }
 ```
 
@@ -276,25 +379,35 @@ curl --location --request POST 'http://localhost:8181/rests/operations/device-di
 
 ```json RPC Response, Status: 200
 {
-    "output": {
-        "device": [
-            {
-                "host": "46.229.232.182",
-                "available-udp-ports": [
-                    50,
-                    51,
-                    52,
-                    53,
-                    69
-                ],
-                "available-tcp-ports": [
-                    80,
-                    443
-                ],
-                "is-host-reachable": true
-            }
-        ]
-    }
+  "output": {
+    "device": [
+      {
+        "host": "46.229.232.182",
+        "available-udp-ports": [
+          50,
+          51,
+          52,
+          53,
+          69
+        ],
+        "unavailable-tcp-ports": [
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88
+        ],
+        "available-tcp-ports": [
+          80,
+          443
+        ],
+        "is-host-reachable": true
+      }
+    ]
+  }
 }
 ```
 
