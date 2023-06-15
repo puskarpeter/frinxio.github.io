@@ -1,19 +1,19 @@
 # Device Discovery
 
-RPC device-discovery is used to verificy reachable devices in a
-network. You can check either a single IP address in IPv4 format, a
+RPC device-discovery is used to verify reachable devices in a
+network. You can either check a single IP address in IPv4 format, a
 network or a range of addresses. Additionally, you can also specify
 a port or range of ports (TCP or UDP) that are checked if they are open.
-The ICMP protocol is used to check the availability of the device. 
+The ICMP protocol is used to check the availability devices. 
 
 The input consists of a list of all IP addresses that should be checked
 (IPv4 or IPv6, a single IP address or a network with a prefix, or a
 range of IP addresses). Additionally, it contains the TCP/UDP ports that
-should be checked if they are open or not on the given addresses.
+should be checked whether they are open or not on the given addresses.
 
-The output of the RPC contains the result that shows if the IP addresses are
-reachable via the ICMP protocol. For every IP address, a list of open TCP/UPD
-ports is also included.
+The output of the RPC shows if the IP addresses are reachable via the
+ICMP protocol. For every IP address, a list of open TCP/UPD ports is
+also included.
 
 For testing, you need to add your IP address to the configuration JSON file.
 The configuration file is located under
@@ -40,8 +40,8 @@ device-discovery.address-check-limit=254
 The snippet contains two additional parameters.
 
 -   **initial-pool-size** of the thread pool that is used by the executor.
--   **"max-pool-size"** specifies to the size of the
-    executor that will be used. If the amount of addresses in the
+-   **"max-pool-size"** specifies the size of the
+    executor that is used. If the amount of addresses in the
     request is high, consider raising the value.
 -   **kepalive-time** specifies the time (in seconds) before the execution
     of a specified task is timed out.
@@ -200,7 +200,7 @@ curl --location --request POST 'http://localhost:8181/rests/operations/device-di
 
 ### Successful example
 
-RPC input contains a range of addresses. The addresses and the desired
+RPC input contains a range of addresses. The addresses and desired
 ports are checked for availability. The output contains reachable addresses
 and all open TCP/UDP ports.
 
