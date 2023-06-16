@@ -19,26 +19,26 @@
 
 ## Architecture
 
-Following diagram outlines the basic architecture for this purpose.
-It includes only a subset of components and is simplified but will serve as the baseline for
-documenting various data flows.
+The following diagram outlines the basic architecture for this purpose.
+It gives a simplified overview and only includes a subset of components,
+but serves as a baseline for illustrating various data flows.
 
-The main components included:
+The following main components are included:
 * **Northbound**
-  * **Restconf** - REST api of Uniconfig.
-    * [Restconf RFC](https://datatracker.ietf.org/doc/html/rfc8040) provides detailed information on YANG based REST API specifics
-    * [JSON YANG RFC](https://datatracker.ietf.org/doc/html/rfc7951) provides information on how JSON is used
-    * [Uniconfig restconf documentation](../../uniconfig-operations/restconf) provides a nice overview
-  * **Uniconfig Java SDK** - Java SDK of Uniconfig. Uses Restconf internally.
-    * [Uniconfig java SDK documentation](../../uniconfig-operations/uniconfig-shell) provides a nice overview
-  * **Uniconfig CLI shell** - CLI interface to Uniconfig. Similar capabilities to RESTCONF but intended for users preferring CLI access.
-    * [Uniconfig shell documentation](../../uniconfig-operations/uniconfig-shell) provides a nice overview
+  * **Restconf** - REST API for Uniconfig.
+    * [Restconf RFC](https://datatracker.ietf.org/doc/html/rfc8040) provides detailed information on YANG-based REST API specifics.
+    * [JSON YANG RFC](https://datatracker.ietf.org/doc/html/rfc7951) provides information on how JSON is used.
+    * [Uniconfig restconf documentation](../../uniconfig-operations/restconf) provides an overview.
+  * **Uniconfig Java SDK** - Java SDK for Uniconfig. Uses Restconf internally.
+    * [Uniconfig java SDK documentation](../../uniconfig-operations/uniconfig-shell) provides an overview.
+  * **Uniconfig CLI shell** - CLI interface for Uniconfig. Similar capabilities as RESTCONF, but intended for users who prefer CLI access.
+    * [Uniconfig shell documentation](../../uniconfig-operations/uniconfig-shell) provides an overview.
 * **Uniconfig core**
-  * Uniconfig core consists of many different components/features. A good place to start is [Documentation related to build and commit model in Uniconfig](../../uniconfig-operations/build-and-commit-model)
+  * The Uniconfig core consists of many different components/features. A good place to start is the [build-and-commit model in Uniconfig](../../uniconfig-operations/build-and-commit-model).
 * **Southbound**
-  * **CLI** - Southbound plugin to manage devices over CLI (SSH).
-  * **NETCONF** - Southbound plugin to manage devices over Netconf (SSH).
-  * **gNMI** - Southbound plugin to manage devices over gNMI (SSH).
+  * **CLI** - Southbound plugin for managing devices over CLI (SSH).
+  * **NETCONF** - Southbound plugin for managing devices over Netconf (SSH).
+  * **gNMI** - Southbound plugin for managing devices over gNMI (SSH).
   * **SNMP** - // TBD
 
 ![Data flow architecture](uc_data_flows_arch.svg)
@@ -47,20 +47,20 @@ The main components included:
 
 ### CLI, direct to device, plaintext interface
 
-Flow of reading / writing arbitrary commands to a CLI device.
+Flow for reading/writing arbitrary commands to a CLI device.
 
-1. User sends HTTP POST REST (rpc) request into Uniconfig
-    * URL specifies Uniconfig defined execute-and-read or execute-and-expect RPC
-    * URL needs to specify
-        * `topology=cli` - to specify CLI managed device
-        * `node=<nodeID>` - to specify which managed device
-3. Restconf invokes an asynchronous RPC on the southbound layer, but blocks until it completes
-4. CLI layer invokes generic implementation of the plaintext access RPC and returns output from device as is
-6. Restconf receives the data from CLI layer and completes the request
+1. The User sends an HTTP POST REST (rpc) request to Uniconfig.
+    * URL specifies Uniconfig defined execute-and-read or execute-and-expect RPC.
+    * URL must specify the following:
+        * `topology=cli` - CLI-managed device
+        * `node=<nodeID>` - specific managed device
+2. Restconf invokes an asynchronous RPC on the southbound layer, but blocks until it completes.
+3. The CLI layer invokes a generic implementation of the plaintext access RPC and returns output from the device as is.
+4. Restconf receives the data from the CLI layer and completes the request.
 
 ***Restconf example:***
 
-To send arbitrary command to a device and get response back:
+To send an arbitrary command to a device and receive a response:
 ```
 POST http://localhost:8181/rests/operations/network-topology:network-topology/topology=cli/node=IOS/yang-ext:mount/cli-unit-generic:execute-and-read
 
@@ -72,7 +72,7 @@ POST http://localhost:8181/rests/operations/network-topology:network-topology/to
 }
 ```
 
-To send a sequence of commands (ssh expect style) and get response back:
+To send a sequence of commands (ssh expect style) and receive a response:
 ```
 POST http://localhost:8181/rests/operations/network-topology:network-topology/topology=cli/node=IOS/yang-ext:mount/cli-unit-generic:execute-and-expect
 
@@ -98,20 +98,20 @@ exit
 
 ### CLI, direct from device, configuration data read
 
-Flow of reading structured (YANG model based) configuration data from a device over CLI.
+Flow for reading structured (YANG-model based) configuration data from a device over CLI.
 The data is always retrieved from device, no cache involved.
 
-1. User sends HTTP GET REST request into Uniconfig
-   * URL needs to conform to openconfig data models used for all CLI devices
-   * URL needs to specify 
-     * `topology=cli` - to specify CLI managed device
-     * `node=<nodeID>` - to specify which managed device
+1. The user sends an HTTP GET REST request to Uniconfig.
+   * URL must conform to openconfig data models used for all CLI devices.
+   * URL must specify the following:
+     * `topology=cli` - CLI-managed device
+     * `node=<nodeID>` - specific managed device
      * `?content=config` - to specify only configuration data must be read from device (if not present, defaults to config)
-2. Restconf component parses URL and validates against openconfig YANG models
-3. Restconf invokes an asynchronous read from the southbound layer, but blocks until it completes
-4. CLI layer finds appropriate CLI driver (cli units) and invokes all readers registered for a specific path provided in the URL
-5. CLI readers send specific commands to the device and parse the output into an internal DOM data structure
-6. Restconf receives the data from CLI layer, serializes them into JSON and completes the request
+2. Restconf component parses the URL and validates it against openconfig YANG models.
+3. Restconf invokes an asynchronous read from the southbound layer, but blocks until it completes.
+4. The CLI layer finds appropriate an CLI driver (cli units) and invokes all readers registered for a specific path provided in the URL.
+5. CLI readers send specific commands to the device and parse the output into an internal DOM data structure.
+6. Restconf receives the data from CLI layer, serializes them into JSON and completes the request.
 
 ***Restconf example:***
 
@@ -127,18 +127,16 @@ GET http://localhost:8181/rests/data/network-topology:network-topology/topology=
 
 ### CLI, direct from device, operational data read
 
-Flow of reading structured (YANG model based) operational data from a device over CLI.
+Flow for reading structured (YANG-model based) operational data from a device over CLI.
 The data is always retrieved from device, no cache involved.
 
 **This flow is identical to `CLI, direct from device, configuration data read` flow**.
 **The difference is that this READ returns a combination of configuration and operational data !**
 **To invoke operational data read, use `?content=nonconfig` in the URL, the rest of URL is no different**
 
-!!! warning
-Be careful when requesting operation data from devices.
-Operational data can be massive and the act of reading such data can cause issues on device itself.
-Always be as specific as possible when reading operational data i.e. most specific (longest) URL possible.
-!!!
+**Warning!** Be careful when requesting operation data from devices.
+The data can be massive and the act of reading such data can cause issues on device itself.
+Always be as specific as possible, i.e., use the most specific (longest) URL possible.
 
 ***Restconf example:***
 
@@ -153,26 +151,23 @@ GET http://localhost:8181/rests/data/network-topology:network-topology/topology=
 
 ### CLI, direct to device, configuration data write
 
-Flow of writing structured (YANG model based) configuration data to a device over CLI.
+Flow for writing structured (YANG-model based) configuration data to a device over CLI.
 The data is transformed and sent directly to a device.
 
-1. User sends HTTP PUT or POST REST request into Uniconfig
-  * URL and payload need to conform to openconfig data models used for all CLI devices
-  * URL needs to specify
-    * `topology=cli` - to specify CLI managed device
-    * `node=<nodeID>` - to specify which managed device
-    * `?content=config` - to specify only configuration data must be read from device
-2. The payload needs to contain valid JSON corresponding to where the URL points within the YANG model
-3. Restconf component parses URL and the payload and validates against openconfig YANG models
-3. Restconf invokes an asynchronous write on the southbound layer, but blocks until it completes
-4. CLI layer finds appropriate CLI driver (cli units) and invokes all writers registered for a specific path provided in the URL
-5. CLI writers send specific commands to the device and check output for any errors
-6. Restconf receives success or failed response from the CLI layer and maps it to appropriate status code
+1. The user sends an HTTP PUT or POST REST request into Uniconfig.
+  * URL and payload need to conform to openconfig data models used for all CLI devices.
+  * URL must specify the following:
+    * `topology=cli` - CLI-managed device
+    * `node=<nodeID>` - specific managed device
+    * `?content=config` - only configuration data is read from the device
+2. The payload must contain valid JSON that correspondos to the URL points within the YANG model.
+3. Restconf component parses the URL and the payload and validates them against openconfig YANG models.
+3. Restconf invokes an asynchronous write on the southbound layer, but blocks until it completes.
+4. The CLI layer finds the appropriate CLI driver (cli units) and invokes all writers registered for a specific path provided in the URL.
+5. CLI writers send specific commands to the device and check the output for errors.
+6. Restconf receives a success or failed response from the CLI layer and maps it to the appropriate status code.
 
-!!! note
-Writing directly to device is not recommended.
-Using Uniconfig core to build an intent and commit the changes to the network is the preferred option.
-!!!
+**Note:** We do not recommend writing directly to a device. The preferred option is to use Uniconfig core to build an intent and commit the changes to the network.
 
 ***Restconf example:***
 
@@ -202,20 +197,20 @@ PUT http://localhost:8181/rests/data/network-topology:network-topology/topology=
 
 ### Netconf, direct from device, configuration data read
 
-Flow of reading structured (YANG model based) configuration data from a device over Netconf.
-The data is always retrieved from device, no cache involved.
+Flow for reading structured (YANG-model based) configuration data from a device over Netconf.
+The data is always retrieved from the device with no cache involved.
 
-1. User sends HTTP GET REST request into Uniconfig
-    * URL needs to conform to vendor specific YANG data models used by the device
-      * Which models are used depends on the device. Many vendor specific models can be found on [github](https://github.com/YangModels/yang/tree/main/vendor) 
-    * URL needs to specify
-      * `topology=topology-netconf` - to specify CLI managed device
-      * `node=<nodeID>` - to specify which managed device
-      * `?content=config` - to specify only configuration data must be read from device (if not present, defaults to config)
-2. Restconf component parses URL and validates against vendor specific YANG models
-3. Restconf invokes an asynchronous read from the southbound layer, but blocks until it completes
-5. Netconf layer serializes the path(URL) into a get-config request with a filter, sends it to the device and parses the output into an internal DOM data structure
-6. Restconf receives the data from Netconf layer, serializes them into JSON and completes the request
+1. The User sends an HTTP GET REST request to Uniconfig.
+    * URL must conform to vendor-specific YANG data models used by the device.
+      * Which models are used depends on the device. Many vendor-specific models can be found on [GitHub](https://github.com/YangModels/yang/tree/main/vendor).
+    * URL must specify the following:
+      * `topology=topology-netconf` - CLI-managed device
+      * `node=<nodeID>` - specific managed device
+      * `?content=config` - only configuration data is read from the device (if not given, defaults to config)
+2. Restconf component parses the URL and validates it against vendor-specific YANG models.
+3. Restconf invokes an asynchronous read from the southbound layer, but blocks until it completes.
+5. The Netconf layer serializes the path (URL) into a get-config request with a filter, sends it to the device and parses the output into an internal DOM data structure.
+6. Restconf receives the data from the Netconf layer, serializes them into JSON and completes the request
 
 ***Restconf example:***
 
@@ -230,17 +225,16 @@ GET http://localhost:8181/rests/data/network-topology:network-topology/topology=
 
 ### Netconf, direct from device, operational data read
 
-Flow of reading structured (YANG model based) operational data from a device over Netconf.
-The data is always retrieved from device, no cache involved.
+Flow for reading structured (YANG-model based) operational data from a device over Netconf.
+The data is always retrieved from the device with no cache involved.
 
-**This flow is identical to `Netconf, direct from device, configuration data read` flow**.
+**This flow is identical to the `Netconf, direct from device, configuration data read` flow**.
 **The difference is that this READ returns a combination of configuration and operational data by using `get` netconf RPC instead of `get-config`!**
 **To invoke operational data read, use `?content=nonconfig` in the URL**
 
-!!! warning
-Be careful when requesting operation data from devices.
-Operational data can be massive and the act of reading such data can cause issues on device itself.
-Always be as specific as possible when reading operational data i.e. most specific (longest) URL possible.
+**Warning!** Be careful when requesting operation data from devices.
+The data can be massive and the act of reading such data can cause issues on device itself.
+Always be as specific as possible, i.e., use the most specific (longest) URL possible.
 !!!
 
 ***Restconf example:***
@@ -256,13 +250,11 @@ GET http://localhost:8181/rests/data/network-topology:network-topology/topology=
 
 ### Netconf, direct to device, configuration data write
 
-Flow of writing structured (YANG model based) configuration data to a device over Netconf.
+Flow for writing structured (YANG-model based) configuration data to a device over Netconf.
 The data is transformed and sent directly to a device.
 
-!!! note
-Writing directly to device is not recommended.
-Using Uniconfig core to build an intent and commit the changes to the network is the preferred option.
-!!!
+**Note:** We do not recommend writing directly to a device. The preferred option is to use Uniconfig core to build an intent and commit the changes to the network.
+
 
 ***Restconf example:***
 
@@ -290,33 +282,33 @@ PUT http://localhost:8181/rests/data/network-topology:network-topology/topology=
 
 ### Uniconfig, cached intent configuration, data read
 
-Flow of reading structured (YANG model based) cached intent (not applied to network) configuration data for a device (regardless of its management protocol).
-The data is retrieved from in memory cache (or database if not available in memory).
+Flow for reading structured (YANG-model based), cached intent configuration data (not applied to network) for a device, regardless of its management protocol.
+The data is retrieved from in-memory cache (or a database, if not available in memory).
 
-1. User sends HTTP GET REST request into Uniconfig
-    * URL needs to conform to models used for that specific device, whether standard models or vendor specific
-    * URL needs to specify
-        * `topology=uniconfig` - to specify device cached in uniconfig
-        * `node=<nodeID>` - to specify which managed device
-        * `?content=config` - to specify only intent data must be read for a device (if not present, defaults to config == intent)
-2. Restconf component parses URL and validates against device specific YANG models
-3. An ad hoc uniconfig transaction is started
-   * Transactions can be started automatically by Uniconfig or controlled by the user
-   * More information about transactions: [Build and commit mode](../../uniconfig-operations/build-and-commit-model) or [Immediate commit model](../../uniconfig-operations/immediate-commit-model)
-4. Restconf invokes an asynchronous read from uniconfig core, but blocks until it completes
-5. Uniconfig core reads in-memory cached intent (or loads latest version of data from database)
-   * This is typically a very quick operation, compared to when reading directly from device
-6. Restconf receives the data from Uniconfig core, serializes them into JSON and completes the request
-7. Ad hoc transaction is closed
+1. The user sends an HTTP GET REST request to Uniconfig.
+    * URL must conform to models used for that specific device, whether standard or vendor-specific models.
+    * URL must specify the following:
+        * `topology=uniconfig` - device cached in uniconfig
+        * `node=<nodeID>` - specific managed device
+        * `?content=config` - only intent data is read for a device (if not given, defaults to config == intent)
+2. Restconf component parses the URL and validates it against device-specific YANG models.
+3. An ad-hoc uniconfig transaction is started.
+   * Transactions can be started automatically by Uniconfig or controlled by the user.
+   * For more information about transactions, see [Build and commit mode](../../uniconfig-operations/build-and-commit-model) or [Immediate commit model](../../uniconfig-operations/immediate-commit-model).
+4. Restconf invokes an asynchronous read from uniconfig core, but blocks until it completes.
+5. Uniconfig core reads in-memory cached intent (or loads the latest version of data from the database).
+   * This is typically a very quick operation compared to reading directly from a device.
+6. Restconf receives the data from Uniconfig core, serializes them into JSON and completes the request.
+7. The ad-hoc transaction is closed.
 
 ***Restconf example:***
 
-To get Loopback999 interface cached, intent configuration using IOS XR vendor models:
+To get Loopback999 interface cached intent configuration using IOS XR vendor models:
 ```
 GET http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=IOSXR/configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback999?content=config
 ```
 
-To get Loopback999 interface cached, intent configuration using openconfig models for a device over CLI:
+To get Loopback999 interface cached intent configuration using openconfig models for a device over CLI:
 ```
 GET GET http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=IOS/configuration/frinx-openconfig-interfaces:interfaces/interface=Loopback999?content=config
 ```
@@ -327,33 +319,33 @@ GET GET http://localhost:8181/rests/data/network-topology:network-topology/topol
 
 ### Uniconfig, cached applied configuration, data read
 
-Flow of reading structured (YANG model based) cached configuration (already applied to network) data for a device (regardless of its management protocol).
-The data is retrieved from in memory cache (or database if not available in memory).
+Flow for reading structured (YANG-model based), cached configuration data (already applied to the network) for a device, regardless of its management protocol.
+The data is retrieved from in-memory cache (or a database, if not available in memory).
 
-1. User sends HTTP GET REST request into Uniconfig
-    * URL needs to conform to models used for that specific device, whether standard models or vendor specific
-    * URL needs to specify
-        * `topology=uniconfig` - to specify device cached in uniconfig
-        * `node=<nodeID>` - to specify which managed device
-        * `?content=nonconfig` - to specify only applied data must be read for a device (if not present, defaults to config == intent)
-2. Restconf component parses URL and validates against device specific YANG models
-3. An ad hoc uniconfig transaction is started
-    * Transactions can be started automatically by Uniconfig or controlled by the user
-    * More information about transactions: [Build and commit mode](../../uniconfig-operations/build-and-commit-model) or [Immediate commit model](../../uniconfig-operations/immediate-commit-model)
-4. Restconf invokes an asynchronous read from uniconfig core, but blocks until it completes
-5. Uniconfig core reads in-memory cached, already applied configuration (or loads latest version of data from database)
-    * This is typically a very quick operation, compared to when reading directly from device
-6. Restconf receives the data from Uniconfig core, serializes them into JSON and completes the request
-7. Ad hoc transaction is closed
+1. The user sends an HTTP GET REST request to Uniconfig.
+    * URL must conform to models used for that specific device, whether standard or vendor-specific models.
+    * URL must specify the following:
+        * `topology=uniconfig` - device cached in uniconfig
+        * `node=<nodeID>` - specific managed device
+        * `?content=nonconfig` - only applied data is read for a device (if not given, defaults to config == intent)
+2. Restconf component parses the URL and validates it against device-specific YANG models.
+3. An ad-hoc uniconfig transaction is started.
+    * Transactions can be started automatically by Uniconfig or controlled by the user.
+    * For more information about transactions, see [Build and commit mode](../../uniconfig-operations/build-and-commit-model) or [Immediate commit model](../../uniconfig-operations/immediate-commit-model).
+4. Restconf invokes an asynchronous read from Uniconfig core, but blocks until it completes.
+5. Uniconfig core reads in-memory cached, already applied configuration (or loads the latest version of data from a database).
+    * This is typically a quick operation compared to reading directly from a device.
+6. Restconf receives the data from Uniconfig core, serializes them into JSON and completes the request.
+7. The ad-hoc transaction is closed.
 
 ***Restconf example:***
 
-To get Loopback999 interface cached, intent configuration using IOS XR vendor models:
+To get Loopback999 interface cached intent configuration using IOS XR vendor models:
 ```
 GET http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=IOSXR/configuration/Cisco-IOS-XR-ifmgr-cfg:interface-configurations/interface-configuration=act,Loopback999?content=config
 ```
 
-To get Loopback999 interface cached, intent configuration using openconfig models for a device over CLI:
+To get Loopback999 interface cached intent configuration using openconfig models for a device over CLI:
 ```
 GET GET http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=IOS/configuration/frinx-openconfig-interfaces:interfaces/interface=Loopback999?content=config
 ```
@@ -364,23 +356,22 @@ GET GET http://localhost:8181/rests/data/network-topology:network-topology/topol
 
 ### Uniconfig, applying intent to a device
 
-Flow of writing structured (YANG model based) configuration data into Uniconfig's intent.
+Flow for writing structured (YANG-model based) configuration data to Uniconfig's intent.
 Intent is typically modified for multiple devices.
-When modifications are complete a commit is issued to apply the changes to the network.
-Automated rollback might kick in when a failure occurs.
+When modifications are completed, a commit is issued to apply the changes to the network.
+Automated rollback may kick in when a failure occurs.
 
-There is more information on this flow present in [Build and commit mode](../../uniconfig-operations/build-and-commit-model) or [Immediate commit model](../../uniconfig-operations/immediate-commit-model).
+For more information on this flow, see [Build and commit mode](../../uniconfig-operations/build-and-commit-model) or [Immediate commit model](../../uniconfig-operations/immediate-commit-model).
 
-!!! note
+**Note:**
 Uniconfig core builds on top of "direct to device data flows" 
-and everything happening south of Uniconfig core is identical to
-those (direct to device) data flows e.g. Uniconfig core uses `Netconf, direct to device, configuration data write`
-flow when applying configuration to a Netconf device when performing commit
-!!!
+and everything south of Uniconfig core is identical to
+those (direct to device) data flows. For example, Uniconfig core uses the `Netconf, direct to device, configuration data write`
+flow to apply configurations to Netconf devices when performing a commit.
 
 ***Restconf example:***
 
-To configure 2 devices in a single transaction:
+To configure two devices in a single transaction:
 
 ```
 # Start a transaction and preserve the cookie afterwards
@@ -420,7 +411,7 @@ PUT http://localhost:8181/rests/data/network-topology:network-topology/topology=
     ]
 }
 
-# To commit the transaction and apply changes to both devices
+# To commit the transaction and apply changes to both devices:
 
 POST http://localhost:8181/rests/operations/uniconfig-manager:commit
 
@@ -436,29 +427,29 @@ POST http://localhost:8181/rests/operations/uniconfig-manager:commit
 
 ### Uniconfig, synchronizing applied configuration from network
 
-Flow of synchronizing / updating applied configuration from the network device.
-Especially useful when configuration is changed in the network directly (outside of Uniconfig).
-Once configuration is synchronized, those direct changes can be accepted or reverted in Uniconfig.
+Flow for synchronizing/updating an applied configuration from a network device.
+This is useful especially when the configuration is changed in the network directly (outside of Uniconfig).
+Once the configuration is synchronized, those direct changes can be accepted or reverted in Uniconfig.
 
-There is more information on this flow present in [Sync from network](../../uniconfig-operations/uniconfig-node-manager/rpc_sync-from-network).
+For more information on this flow, see [Sync from network](../../uniconfig-operations/uniconfig-node-manager/rpc_sync-from-network).
 
-1. User sends HTTP GET REST request into Uniconfig
-    * URL specifies Uniconfig defined sync-from-network RPC
-    * Payload needs to specify a list of devices to be synchronized
-3. An ad hoc uniconfig transaction is started
-    * Transactions can be started automatically by Uniconfig or controlled by the user
-    * More information about transactions: [Build and commit mode](../../uniconfig-operations/build-and-commit-model) or [Immediate commit model](../../uniconfig-operations/immediate-commit-model)
-3. Restconf invokes an asynchronous RPC in Uniconfig core, but blocks until it completes
-5. Uniconfig core performs direct from device configuration data read flows for each device in parallel
-    * Uniconfig has a mechanism to verify whether a device is out of sync based on last commit timestamp and only if out of sync, perform full configuration read
-6. Uniconfig core stores new configuration in the applied configuration cache and in the database
-6. Restconf receives success or failed response from Uniconfig core and maps it to appropriate status code and response
-7. Ad hoc transaction is committed
+1. The user sends an HTTP GET REST request to Uniconfig.
+    * URL specifies Uniconfig defined sync-from-network RPC.
+    * Payload must specify a list of devices to be synchronized.
+3. An ad-hoc uniconfig transaction is started.
+    * Transactions can be started automatically by Uniconfig or controlled by the user.
+    * For more information about transactions, see [Build and commit mode](../../uniconfig-operations/build-and-commit-model) or [Immediate commit model](../../uniconfig-operations/immediate-commit-model).
+3. Restconf invokes an asynchronous RPC in Uniconfig core, but blocks until it completes.
+5. Uniconfig core performs direct from device configuration data read flows for each device in parallel.
+    * Uniconfig has a mechanism to verify whether a device is out of sync based on the last commit timestamp. A full configuration is performed only if out of sync.
+6. Uniconfig core stores the new configuration in the applied configuration cache and in the database.
+6. Restconf receives a success or failed response from Uniconfig core and maps it to the appropriate status code and response.
+7. The ad-hoc transaction is committed.
 
 
 ***Restconf example:***
 
-To synchronize 2 devices from the network.
+To synchronize two devices from the network:
 ```
 POST http://localhost:8181/rests/operations/uniconfig-manager:sync-from-network
 
