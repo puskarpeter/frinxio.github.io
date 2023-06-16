@@ -14,6 +14,7 @@
     * [Uniconfig, cached intent configuration, data read](#uniconfig-cached-intent-configuration-data-read)
     * [Uniconfig, cached applied configuration, data read](#uniconfig-cached-applied-configuration-data-read)
     * [Uniconfig, applying intent to a device](#uniconfig-applying-intent-to-a-device)
+    * [Uniconfig, synchronizing applied configuration from network](#uniconfig-synchronizing-applied-configuration-from-network)
 <!-- TOC -->
 
 ## Architecture
@@ -433,3 +434,43 @@ POST http://localhost:8181/rests/operations/uniconfig-manager:commit
 
 ![Data flow architecture](uc_data_flows_uc_commit.svg)
 
+### Uniconfig, synchronizing applied configuration from network
+
+Flow of synchronizing / updating applied configuration from the network device.
+Especially useful when configuration is changed in the network directly (outside of Uniconfig).
+Once configuration is synchronized, those direct changes can be accepted or reverted in Uniconfig.
+
+There is more information on this flow present in [Sync from network](../../uniconfig-operations/uniconfig-node-manager/rpc_sync-from-network).
+
+1. User sends HTTP GET REST request into Uniconfig
+    * URL specifies Uniconfig defined sync-from-network RPC
+    * Payload needs to specify a list of devices to be synchronized
+3. An ad hoc uniconfig transaction is started
+    * Transactions can be started automatically by Uniconfig or controlled by the user
+    * More information about transactions: [Build and commit mode](../../uniconfig-operations/build-and-commit-model) or [Immediate commit model](../../uniconfig-operations/immediate-commit-model)
+3. Restconf invokes an asynchronous RPC in Uniconfig core, but blocks until it completes
+5. Uniconfig core performs direct from device configuration data read flows for each device in parallel
+    * Uniconfig has a mechanism to verify whether a device is out of sync based on last commit timestamp and only if out of sync, perform full configuration read
+6. Uniconfig core stores new configuration in the applied configuration cache and in the database
+6. Restconf receives success or failed response from Uniconfig core and maps it to appropriate status code and response
+7. Ad hoc transaction is committed
+
+
+***Restconf example:***
+
+To synchronize 2 devices from the network.
+```
+POST http://localhost:8181/rests/operations/uniconfig-manager:sync-from-network
+
+{
+    "input": {
+        "target-nodes": {
+            "node": ["IOS", "IOSXR"]
+        }
+    }
+}
+```
+
+***Flow diagram:***
+
+![Data flow architecture](uc_data_flows_uc_sync_from_network.svg)
