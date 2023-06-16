@@ -56,3 +56,11 @@ UniConfig uses thread pools in several places. They can be configured in the
 application.properties file.
 
 [!ref text ="Thread pools"](../operational-procedures/thread-pools)
+
+## Data flows & transformations
+
+There are multiple paths and transformations of data within Uniconfig.
+Following section provides more information on some of the most common paths.
+
+[!ref text ="Thread pools"](../operational-procedures/data-flows)
+
