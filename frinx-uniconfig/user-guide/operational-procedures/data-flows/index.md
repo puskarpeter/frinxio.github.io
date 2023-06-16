@@ -99,7 +99,7 @@ exit
 ### CLI, direct from device, configuration data read
 
 Flow for reading structured (YANG-model based) configuration data from a device over CLI.
-The data is always retrieved from device, no cache involved.
+The data is always retrieved from the device with no cache involved.
 
 1. The user sends an HTTP GET REST request to Uniconfig.
    * URL must conform to openconfig data models used for all CLI devices.
@@ -128,7 +128,7 @@ GET http://localhost:8181/rests/data/network-topology:network-topology/topology=
 ### CLI, direct from device, operational data read
 
 Flow for reading structured (YANG-model based) operational data from a device over CLI.
-The data is always retrieved from device, no cache involved.
+The data is always retrieved from the device with no cache involved.
 
 **This flow is identical to `CLI, direct from device, configuration data read` flow**.
 **The difference is that this READ returns a combination of configuration and operational data !**
