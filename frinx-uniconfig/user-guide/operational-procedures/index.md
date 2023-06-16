@@ -60,7 +60,7 @@ application.properties file.
 ## Data flows & transformations
 
 There are multiple paths and transformations of data within Uniconfig.
-Following section provides more information on some of the most common paths.
+The following section provides more information on some of the more common paths.
 
 [!ref text ="Thread pools"](../operational-procedures/data-flows)
 
