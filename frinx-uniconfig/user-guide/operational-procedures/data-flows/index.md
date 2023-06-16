@@ -235,7 +235,6 @@ The data is always retrieved from the device with no cache involved.
 **Warning!** Be careful when requesting operation data from devices.
 The data can be massive and the act of reading such data can cause issues on device itself.
 Always be as specific as possible, i.e., use the most specific (longest) URL possible.
-!!!
 
 ***Restconf example:***
 
