@@ -204,7 +204,7 @@ The data is always retrieved from the device with no cache involved.
     * URL must conform to vendor-specific YANG data models used by the device.
       * Which models are used depends on the device. Many vendor-specific models can be found on [GitHub](https://github.com/YangModels/yang/tree/main/vendor).
     * URL must specify the following:
-      * `topology=topology-netconf` - CLI-managed device
+      * `topology=topology-netconf` - Netconf-managed device
       * `node=<nodeID>` - specific managed device
       * `?content=config` - only configuration data is read from the device (if not given, defaults to config)
 2. Restconf component parses the URL and validates it against vendor-specific YANG models.
