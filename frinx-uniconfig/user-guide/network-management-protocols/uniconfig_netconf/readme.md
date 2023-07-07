@@ -8,7 +8,7 @@ order: 8000
 ## Overview
 
 NETCONF is an Internet Engineering Task Force (IETF) protocol used for
-configuration and monitoring devices in the network. It can be used to
+configuration and monitoring of devices in a network. It can be used to
 “create, recover, update, and delete configurations of network devices”.
 The base NETCONF protocol is described in
 [RFC-6241](https://tools.ietf.org/html/rfc6241).
@@ -283,76 +283,107 @@ $ ssh cisco@192.168.1.216
 
 ### PKI Data persistence in NETCONF
 
-The PKI data from data store are stored in a JSON file in the crypto
-directory and updated each time when the data store is updated. Also the
-data store is updated, when the JSON file with PKI data is updated.
+* PKI data is used for authentication of NETCONF sessions with the provided RSA private key.
+  The corresponding public key must be stored on the device side.
+* Keys are identified using a unique 'key-id'. This key identifier can be specified in the
+  NETCONF installation request.
+* Keys can be managed using the 'remove-keystore-entry' and 'add-keystore-entry' operations.
+  These RPC calls are part of the UniConfig transaction. Changes are not applied until
+  they are committed by the user or the immediate commit model is used to invoke the operation.
+* Keys are stored in the UniConfig database. In a clustered environment, all nodes
+  share the same set of keys.
 
-**Keystore insertion example**
+#### Registration of the new key
 
-**RPC request:**
+The following request demonstrates how to register a new RSA private key with a key-id of 'key1'.
+The private key must be specified in the PKCS#8 format. The passphrase is optional and must
+be specified only if the private key is encrypted.
 
-```
-REST
-    POST
-URL
-    http://localhost:8181/rests/operations/netconf-keystore:add-keystore-entry
-HEAD
-    Accept
-        application/json
-    Content-Type
-        application/json
+Multiple keys can be registered at once if the user provides a list of the 'key-credential' in the input.
 
-BODY
-{
-    "input" :
-    {
+```bash
+
+```bash Registration of the new key
+curl --location 'http://127.0.0.1:8181/rests/operations/netconf-keystore:add-keystore-entry' \
+--header 'Content-Type: application/json' \
+--data '{
+    "input": {
         "key-credential": [
-                {
-                        "netconf-keystore:key-id": "my_device_key",
-                        "netconf-keystore:private-key": "-----BEGIN RSA PRIVATE KEY-----
-MIICXAIBAAKBgQClEX+nOWXIn51qQffvi1FxM97AQvjdd8Upol1uJxoWzDnQ67h+
-lP9nEnamehPjL3JNsdJOQwWhNE4hVKm4ZC+7PfxGyY4a+sZ3Q+t2KzLlY/i59UUb
-fWlV5tNdE/LHEV4hc3JE+k0NoxtjpQ5DNuiulQX6Pup5zvV2kzCnmJ6pUwIDAQAB
-AoGBAJS08/yRv/mCmkzcy2FZcHB8W0N30j2qpcvBQ0x2G5HIQJnPkjEvR/vybUPD
-HOGBoAcQmLb6uDqnJW/vlsrQLxKcTeVKcWzMLI5LfLXo3VU7VVokagyal/2nCVtp
-R1vKjC6uUw6eY/9zQDTbLAqu7vXIQn4HK48ml6/orYyrAHUxAkEA2nGPwzYzbECv
-fX6Km4+a8abEm0SQ4rV7z48E9PnH5Wmg8fs0AP4chp/Yf3eMohFL1nOXLQfyZl2K
-VjpEFezr6wJBAMFytnfi5bc20OS5pvACEOapDY9wEje37B2Kg/+NBaraCMLp0oRA
-eTC1ANusg90aEeCsTCj5yAbg9KlNqEN75jkCQA64GDfPLyfcM/cAz9YrlwUxd43+
-0MR19iHGQU9AhXev5mhnxNlMRh/MJYpxQ8in4bRRlZ4zKuI661dkFbJkhIECQAcD
-aaofB8UEr74bHPpGmOZD6sHwhjiO6niHtRFmw3XWQcsPPxqcW8hwR3+vWXiCoXNL
-y9cQdzgIn9Yjgp4vt8ECQAD/bkgp3g7+boKcYvKO4uEpzr9bzgDhu1Q66TwApO0k
-6TqFm7lxWCLJROSl/4VvEZpUFsD31zAWosMpo3Oq08c=
+            {
+                "key-id": "key1",
+                "private-key": "-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAyx3eACAkPMRGTKERfjik+hY1fCoY0FEYVshPvqigjILLlFD6
+1phD3Az20gSdrFy6l3x+7IS0Iqy4yhAuj3uSPoE1HWdTxDBG1TpFxNv0kGhOkxwW
+X5teB7/wViqYFu7niCvQHP3+cn+bhJhGN71h9hfYXUzkL4/ZP8Ojt9k+cwADgMy1
+qvoGlYV7I7MbhI3EHSA8R8/a83rqwRk3Q6pfAu1Dko8ypsBe6b1TWFIHJCoHmIwz
+sxbHictzuZKiGuVSb5+dwxH3h3AhV8zjjttwyhCn+220VNfsL49E/1rP+1qODz5H
+xIQbIhyoxmfVnwtFl0tQO7EkpctruSKrX7eq8QIDAQABAoIBAQC/7aYDyltTjEe9
+SwmDkrTZl7jMbd7qoWZ1QmyQBTlH7KO/r1GHC3Q774ge5buzzh+G21330mGAzmMC
+lI3aiPKk22S8NxHhNZkJDTo2DX2oItf0jDrb9qzAd+77DN6P9QmVE4lgi+UufkQO
+4/Cd5Pc3GksZxnlsM+oeJZiDNeWbtXxI+DVGf8goQGpsGLq6rzWMGPnY6PFXyV+O
+zdhWYAZP0qmXNE0BoMqG0AmUYN9O53Mxx4rYeEAF/+znPOatu9FO9W8IbUH23Exv
+JuopiK+8BohKTVQ2Tcuqoq/YZYEbkpBuKdqiao+QOZ4LHKoJ3VnWDgK0xPjR8sI0
+z5xGFE0tAoGBAPb0O5hNat1mGbIlad3pBMd2Nfd6qWUuusT9DP3JeCYRn7Tu6rbq
+Qvvmeamoe0OWaEzS8PfRSOrlL+GPyB98rHiFkvc2ePu9C3BH3yV1z51kOPCH9KKY
+nZHeK4mA/8nQEjDuHR/3bEjZC2J78Rnj00O9JKZDW3k3+poWcZ9f+1pDAoGBANKO
+jq7WrqeDT+Dm01nPut+1lYtyMFOce8JNryyKnEMrpRDlEwbu6Wvk3YuuajznwLQ2
+7ydUCBtDJJkEPmAhZI38439lyp4fzHFrQeptjEClRJkb4qv36+IcUS59c/MNuPaC
+t6FYTjHXZZriTIvXkDWYMPALcV9i3vGb3xTlepS7AoGBAPKe4snwDXS08bvfHBKj
+80kPr1eTkEdTULVmM9RGkp88I178d2b74pFfTtpLJ8cwRwprF8kxOWVlg9QkkaW1
+tDC4crokL1qL0WgfhHFmPHJSW8qcl9EDBZOg5b8zGJqqrKSb28tjJ2SusIuyXx5j
+gVUEx7P9ayo9wByQvlKpVuXHAoGATrhJlAhjZ/FqDdV+sxc88KJ89JOOidP5WR2e
+HnL8FQjeP8DFKlRsJJB+W9irk3W50Caxpux902N47VRu1ZXmeEdR7rFp3VBaKRVG
+oZSvWQPw76VDS7P3FqQrncv9a6N3wYIBkWroYS38qLlukOHY4pCxyy0cB+N5Iq95
+6eAZwj0CgYAz9MWvU/UMnWl958e4Al9Na0PwRWL68Q9pzCkczXODh9/ZqAEMBWUh
+wxRzmXqTmesqqDR7rX/sv2qStEOy4sUrZPh49U+9G2xl2OScXMKnjHNu2A7QdbVm
+KBhDnvxKaos9nXJrezxThvyA7qD0F4ulBw3jg1nYr4z+oriqxDHKEw==
 -----END RSA PRIVATE KEY-----",
-                                "netconf-keystore:passphrase": ""
-                }
+                "passphrase": "pa$$word"
+            }
         ]
     }
+}'
+```
+
+#### Removing of the existing key
+
+The following example shows how to remove the existing key 'key1' from UniConfig.
+It is possible to remove multiple keys at once.
+
+```bash Removing of the existing key
+curl --location 'http://127.0.0.1:8181/rests/operations/netconf-keystore:remove-keystore-entry' \
+--header 'Content-Type: application/json' \
+--data '{
+    "input": {
+        "key-id": [
+            "key1"
+        ]
+    }
+}'
+```
+
+#### Reading list of the existing keys
+
+The following example shows how to read list of the existing keys from UniConfig.
+
+```bash Reading list of the existing keys
+curl --location 'http://127.0.0.1:8181/rests/data/netconf-keystore:keystore/key-credential'
+```
+
+```json Sample response
+{
+  "key-credential": [
+    {
+      "key-id": "key1",
+      "passphrase": "UPII5ErGsvPB7L+2OfI4xQ==",
+      "private-key": "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"
+    }
+  ]
 }
 ```
 
-**JSON file example**
-
-```
-{"netconf-keystore:keystore":{"key-credential":[{"key-id":"my_device_key","passphrase":"jKNzkicDKmVrpOehbo/Jtw==",
-"private-key":"kjTlzs/EpFAQA6xLjmye5uvWdUtpQyD0oQKan49EIdlXhpk76FO8QU7kptJpqG8XhREOKkDQpOFw1FYIi92e2czIFS9N8OlOMsXtc
-0GEoYTG+vjkOAx6PIqjelVTcB1doF5YvmZwR3D7aLBSA8EnatWjJ0lPkP6Tq0jFh0qVLURTgAACbx+JkbSYJ45w/+HAwaIBWzcPtcQH3H6rqoMaux5Z7
-C3+XIZRQJszdyj429qlHnordSSe/5mAY1WbrN9YPxpqd87MHLAAn1cdiPXyx3MEPPStAqzDrCThRSK4ViEER/YL1XcKEWpnHIApVlrqaow91m+4cJ3N+
-pJLrlv/hVxohEwNZDJQyS1UFwA5KN2kYA3t8/EIL+IR4lEnm+5/PrvEiD964R+EYQtZNJgC+vaCy85JBl+/M1cFG+kQR7NRypBCwuvlITmPwko9Q9rlY
-/LiISxCzEp8xk1MNu/XQ2t5dGTK/ppEehsCLLt61G3hVIM+0MZVkntHDuW4xtIf33zU0FxnealTPK0fiw2CDgPW4AkS4VYXLEoBFttt4vIGaXLU82i/q
-GnThBA7ZCofYdAnsJmcWK8rZqhuRVzGq5JltHcXaGBp2kY9se8vENKXsA0W7xaf4V3wHIySw+5tn0/lfusgkbGJpTrRJH2nj2q6NWG1isay2E7M9qLjw
-rIOHZHm+he9qQVFptjx7gTRtOF9XV6ImmPqP0dXPeTm4fUwG9vEI40CuIZkyhmQpXqCjOzQIRxWe3Bnxx2iNHIhTDUSMz49q4iv9KHT6BqJ1FkKxX3TG
-HoosuKneWmmtgixFg+48cgRcWFZ2OxAHsBde6YIsuFunPyL70/soQP9UBVcNF4huliknbF4axgkdsIFqm/toz/loRRgNfgjbjEINF4/zLQsHbFOSSlTC
-jUrq0DsR5u/X4glnOk/aAi3RirpCoPZiA+Qx8Cjysy9GaTviejcmBaLnhASksWuncaBQHxd6go6eNxzHE95igus+LvEeJFNJKZb8RFejNsMnIcXptDOi
-6lpL5piPoKT/Hz8ExfDQj17mm8ZLIoAIXS1ZzlkJ6Z59a3eKNHGCsPUXnP7Y/0gQzK6sDnL7C9TKvsPwn5D6G10FK5OA4Mpfnmf+vUDp/gFfsPlsF1cd
-T12+NoAdThcSgaELaWXO329/YiU4GPRnuLHndZDLry84MNCLow="}]}}
-```
-
-**Empty data store JSON file example**
-
-```
-{"netconf-keystore:keystore":{}}
-```
+**Note:** Both 'passphrase' and 'private-key' are additionally encrypted by the UniConfig encryption system
+to protect confidential data.
 
 ### Keepalive settings
 
